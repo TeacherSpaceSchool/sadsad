@@ -2,30 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/manifest.json" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/precache-manifest.f8d1a63726aa243b5be5279cba3f7674.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/css/20.7b91a8a1.chunk.css" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/css/20.7b91a8a1.chunk.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/css/5.1eede2e1.chunk.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/css/5.1eede2e1.chunk.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/css/6.6033a5d1.chunk.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/css/6.6033a5d1.chunk.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/css/main.6de0a9d7.chunk.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/css/main.6de0a9d7.chunk.css.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/0.78fb6322.chunk.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/0.78fb6322.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/1.b29f4172.chunk.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/1.b29f4172.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/10.d205a9c6.chunk.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/10.d205a9c6.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/11.5d7e7f23.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/11.5d7e7f23.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.6ab14d2f.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.6ab14d2f.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/13.360e7af1.chunk.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/13.360e7af1.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.0c5b0aaf.chunk.js" afterPath="" />
@@ -34,14 +19,10 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/15.7d300389.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/16.ce027052.chunk.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/16.ce027052.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/17.57149a37.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/17.57149a37.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/18.43c42e2e.chunk.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/18.43c42e2e.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/19.83a3ced1.chunk.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/19.83a3ced1.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/2.7a453991.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/2.7a453991.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/20.1878a274.chunk.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/20.1878a274.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/21.ae1de9c3.chunk.js" afterPath="" />
@@ -66,8 +47,10 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/main.4895a4bf.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.70a62a2c.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.70a62a2c.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/media/logo.fdc48fe4.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -514,12 +497,12 @@
       <workItem from="1550677938186" duration="3855000" />
       <workItem from="1550723509071" duration="19201000" />
       <workItem from="1550831185528" duration="1200000" />
-      <workItem from="1550839222220" duration="3534000" />
+      <workItem from="1550839222220" duration="3590000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="531795000" />
+    <option name="totallyTimeSpent" value="531851000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
