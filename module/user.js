@@ -94,10 +94,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Национальный Центр детей и юношества "Сейтек"',
                 nameKg:  'Национальный Центр детей и юношества "Сейтек"',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -107,10 +107,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Киргизский национальный академический театр оперы и балета им. Абдыласа Малдыбаева',
                 nameKg:  'Киргизский национальный академический театр оперы и балета им. Абдыласа Малдыбаева',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -120,10 +120,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Кыргызская Государственная Филармония - Малый зал',
                 nameKg:  'Кыргызская Государственная Филармония - Малый зал',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -133,10 +133,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Кыргызская Государственная Филармония',
                 nameKg:  'Кыргызская Государственная Филармония',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -146,10 +146,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Русский драм театр им. Ч.Айтматова',
                 nameKg:  'Русский драм театр им. Ч.Айтматова',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -159,10 +159,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Кыргызский государственный цирк им. А. Изибаева',
                 nameKg:  'Кыргызский государственный цирк им. А. Изибаева',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -172,10 +172,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Цирк Шапито',
                 nameKg:  'Цирк Шапито',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -185,10 +185,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Стадион Спартак имени Долона Омурзакова',
                 nameKg:  'Стадион Спартак имени Долона Омурзакова',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -198,10 +198,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Ош улуттук драма театры',
                 nameKg:  'Ош улуттук драма театры',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Ош'
             });
             await WhereBiletiki.create(_user);
@@ -211,10 +211,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Барыпы атындагы кыргыз драма театры',
                 nameKg:  'Барыпы атындагы кыргыз драма театры',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Джалал-Абад'
             });
             await WhereBiletiki.create(_user);
@@ -224,10 +224,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Дворец спорта им. К. Кожомкула',
                 nameKg:  'Дворец спорта им. К. Кожомкула',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -237,10 +237,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Киргизский государственный исторический музей',
                 nameKg:  'Киргизский государственный исторический музей',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -250,10 +250,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Кыргызский драм. театр им. Т. Абдумомунова',
                 nameKg:  'Кыргызский драм. театр им. Т. Абдумомунова',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -263,10 +263,10 @@ let createAdmin = async () => {
             let _user = new WhereBiletiki({
                 nameRu: 'Ош Филармония им. Р. Абдыкадырова',
                 nameKg:  'Ош Филармония им. Р. Абдыкадырова',
-                image: '',
-                imageThumbnail: '',
-                address: '',
-                coords: '',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
                 city: 'Ош'
             });
             await WhereBiletiki.create(_user);
