@@ -1,4 +1,4 @@
-const url = 'http://localhost:80/',
+const url = 'http://88.212.253.143/',
     adminLogin = 'admin',
     adminPass = 'SehzHp',
     month = {
