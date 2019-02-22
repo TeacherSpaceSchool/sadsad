@@ -2,196 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/asset-manifest.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/LOGO3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/basket.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/bill-baner/baner1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/bill-baner/baner2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/bill-baner/events-page-baner.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/bill-baner/events-page-baner2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/calendar.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/close.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/contacts-social/fb.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/contacts-social/inst.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/contacts-social/ok.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event-small.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event7.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/event/event9.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/facebook-logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/fb.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/film-detail1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/finca.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/icheck-light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/icheck.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/information.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/instagram.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/loadmore.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/logo-mobile.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/logo-page/h_logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/logo-page/rect-logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/logo-page/vert-logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/logo_b.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mc.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/menu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/Detyam.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/Kino.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/Koncert.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/Razvitie.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/Sport.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/cirk.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/show.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/sport.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/star.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/teatr.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-icon/theatre.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-search.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobile-slider.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/mobilnik-logo.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/10.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/11.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/12.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/7.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/8.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/9.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/link-baner.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/link-baner2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/movies-img/slider_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/nav.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/odnoklassniki-logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/ok.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/orange.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/pay_Qazkom.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/pay_Qiwi.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/payment-icon/elcart.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/payment-icon/elsom-logo2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/payment-methods.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/pin.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/place.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/pmu-next-dark.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/pmu-next.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/pmu-prev-dark.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/pmu-prev.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/pmvisa.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/qiwi_logo_rgb_small.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/right-arrow (1).svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/ru.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/rub.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/scroll-baner/banner_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/scroll-baner/banner_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/scroll-baner/banner_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/scroll-baner/banner_4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/scroll-baner/banner_5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/scroll-baner/banner_6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/search-arrow.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/search.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/slider-mobile/slide_m1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/slider-mobile/slide_m2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/slider-mobile/slide_m3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/slider-mobile/slide_m4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/slider-mobile/slide_m5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/slider-mobile/slide_m6.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/slider1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/theatre-list-toggler.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/ticket-card/IkonaNaKupitbilet.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/ticket-card/calendar.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/ticket-card/wallet.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/tickets.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/visa.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/img/vk.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/js/main.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/all.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/bootstrap-reboot.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/jquery.fancybox.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/jquery.fancybox.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/owl.carousel.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/owl.carousel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/owl.carousel.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/owl.carousel.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/pickmeup.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/pickmeup.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/pickmeup.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/slider-baner.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/manifest.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/precache-manifest.1dad51f44745a32d7e3d28560bd5ae0d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/service-worker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/7.dc672e4e.chunk.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/7.dc672e4e.chunk.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/8.c8dc11ad.chunk.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/8.c8dc11ad.chunk.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/main.5205acd9.chunk.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/main.5205acd9.chunk.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/0.cacd7c3f.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/0.cacd7c3f.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/1.f4666ca8.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/1.f4666ca8.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/10.132e946e.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/10.132e946e.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/11.96e7d70d.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/11.96e7d70d.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/12.9c1daf5b.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/12.9c1daf5b.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/13.66fe5ba2.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/13.66fe5ba2.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/14.949f7e40.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/14.949f7e40.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/15.c30029dc.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/15.c30029dc.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/16.f619053e.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/16.f619053e.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/17.6182ae71.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/17.6182ae71.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/18.635c5791.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/18.635c5791.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/19.39597276.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/19.39597276.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/2.bf9ce359.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/2.bf9ce359.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/20.5f383f24.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/20.5f383f24.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/21.e1efcfb8.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/21.e1efcfb8.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/22.2ad4e9bc.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/22.2ad4e9bc.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/23.868f455f.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/23.868f455f.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/24.6c949728.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/24.6c949728.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/3.b72409f9.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/3.b72409f9.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/5.1392a54b.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/5.1392a54b.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/6.959dc60f.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/6.959dc60f.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/7.b5a02f7f.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/7.b5a02f7f.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.eea420a6.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.eea420a6.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/9.7003166e.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/9.7003166e.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.80942ece.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.80942ece.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.b544f74b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.b544f74b.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
     </list>
@@ -259,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="54" column="139" lean-forward="false" selection-start-line="54" selection-start-column="139" selection-end-line="54" selection-end-column="139" />
+              <caret line="54" column="183" lean-forward="false" selection-start-line="54" selection-start-column="183" selection-end-line="54" selection-end-column="183" />
               <folding />
             </state>
           </provider>
@@ -650,12 +460,12 @@
       <workItem from="1550677938186" duration="3855000" />
       <workItem from="1550723509071" duration="19201000" />
       <workItem from="1550831185528" duration="1200000" />
-      <workItem from="1550839222220" duration="7634000" />
+      <workItem from="1550839222220" duration="7999000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="535895000" />
+    <option name="totallyTimeSpent" value="536260000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -668,6 +478,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.7597865" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1080,7 +891,7 @@
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="54" column="139" lean-forward="false" selection-start-line="54" selection-start-column="139" selection-end-line="54" selection-end-column="139" />
+          <caret line="54" column="183" lean-forward="false" selection-start-line="54" selection-start-column="183" selection-end-line="54" selection-end-column="183" />
           <folding />
         </state>
       </provider>
