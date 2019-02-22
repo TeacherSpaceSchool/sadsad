@@ -1,4 +1,4 @@
-const ContactBiletiki = require('../models/ContactBiletiki');
+const ContactBiletiki = require('../models/contactBiletiki');
 const format = require('./const').stringifyDateTime
 
 const getClient = async () => {
