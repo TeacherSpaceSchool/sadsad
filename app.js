@@ -52,7 +52,7 @@ app.use(formData.stream());
 app.use(formData.union());
 
 
-app.use(new RegExp('/(faq|about|logo|offer|return|delivery|contacts|vacancies|halls|profile|historycinema|historyevent|events|search|hall/[0-9A-Za-zА-Яа-я]+|event/[0-9A-Za-zА-Яа-я]+|selectplace/[0-9A-Za-zА-Яа-я&]+|cinema|movie/[0-9A-Za-zА-Яа-я]+)?'), indexRouter);
+app.use(new RegExp('/(faq|about|logo|offer|return|delivery|contacts|vacancies|halls|profile|historycinema|historyevent|events|search|hall/[\s\S]+|event/[\s\S]+|selectplace/[\s\S]+|cinema|movie/[\s\S]+)?'), indexRouter);
 app.use('/admin', adminRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
