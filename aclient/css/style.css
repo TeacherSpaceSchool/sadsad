@@ -2283,6 +2283,7 @@ input[type="button"].button-primary {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  min-height: 60px;
 }
 
 .content .event-content_title h1 {
@@ -2292,8 +2293,9 @@ input[type="button"].button-primary {
 }
 
 .content .event-content_title .icons {
-  margin-top: 20px;
   padding: 0 7px;
+  position: absolute;
+  right: 20px;
 }
 
 .content .event-content_title .icons .age {
