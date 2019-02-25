@@ -2545,6 +2545,10 @@ input[type="button"].button-primary {
   font-weight: bold;
 }
 
+.content-stage {
+  overflow-x: auto;
+}
+
 .main-buy .order-first-stage .content-stage .stage-sector {
   padding-top: 20px;
 }
