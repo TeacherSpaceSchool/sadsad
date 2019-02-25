@@ -5990,6 +5990,8 @@ p0-pppp
     background: #f8f8f8;
   }
 
+
+
   .main-kino .heading-title_wrap-kino.with-info {
     color: #27272d;
   }
@@ -6061,6 +6063,10 @@ p0-pppp
 
   .load_more_loader_kino {
     background-size: cover;
+  }
+
+  .load-more_text-cinema{
+    color: #27272d;
   }
 
   .main-about {
