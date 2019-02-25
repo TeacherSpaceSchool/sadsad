@@ -2425,6 +2425,10 @@ input[type="button"].button-primary {
   z-index: 10;
 }
 
+.arrow-top {
+  z-index: 10001;
+}
+
 .event-description .description_title:before {
   content: '';
   width: 100%;
