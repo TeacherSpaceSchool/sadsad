@@ -153,14 +153,14 @@ let recoveryPass = async (email) => {
         let user = await UserBiletiki.findOne({email: email});
         user.password = newPassword;
         await user.save();
+        let mailingBiletiki = await MailingBiletiki.findOne();
         let mailOptions = {
-            from: 'alilameneg@gmail.com',
+            from: mailingBiletiki.mailuser,
             to: email,
             subject: 'Восстановление пароля',
             text: 'Ваш новый пароль: '+newPassword
         };
-        let mailingBiletiki = await MailingBiletiki.findOne();
-        if(mailingBiletiki!==null&&UserBiletiki.find({email: email}).length>0){
+        if(mailingBiletiki!==null){
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
