@@ -53,11 +53,13 @@ router.get('/qiwi', async (req, res, next) => {
             let wallet = await WalletBiletiki.findOne({wallet: req.body.account})
             /*XML*/
             if(wallet!=null){
+                result = [ { response: [ { osmp_txn_id: req.body.txn_id } , { result: 0 }, {comment: 'ok'} ] } ];
                 res.status(200);
-                res.end({osmp_txn_id: req.body.txn_id, result: 0, comment: 'ok'});
+                res.end(xml(result, true));
             } else {
+                result = [ { response: [ { osmp_txn_id: req.body.txn_id } , { result: 1 }, {comment: 'ok'} ] } ];
                 res.status(200);
-                res.end({osmp_txn_id: req.body.txn_id, result: 1, comment: 'no such user'});
+                res.end(xml(result, true));
             }
         } else if(req.body.command==='pay'){
             let wallet = await WalletBiletiki.findOne({wallet: req.body.account})
@@ -66,10 +68,13 @@ router.get('/qiwi', async (req, res, next) => {
                 await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
                 let payment = new PaymentBiletiki({user: wallet.user, ammount: parseInt(req.body.sum), service: 'QIWI', meta:'Дата: '+req.body.txn_date+' \nID: '+req.body.txn_id});
                 await PaymentBiletiki.create(payment);
-                res.end({osmp_txn_id: req.body.txn_id, prv_txn: payment._id, sum: req.body.sum, result: 0, comment: 'ok'});
-            } else {
+                result = [ { response: [ { osmp_txn_id: req.body.txn_id } , { prv_txn: payment._id } , { sum: req.body.sum } , { result: 0 } , { comment: 'ok' } ] } ];
                 res.status(200);
-                res.end({osmp_txn_id: req.body.txn_id, prv_txn: '', sum: req.body.sum, result: 1, comment: 'no such user'});
+                res.end(xml(result, true));
+            } else {
+                result = [ { response: [ { osmp_txn_id: req.body.txn_id } , { prv_txn: '' } , { sum: req.body.sum } , { result: 1 } , { comment: 'no such user' } ] } ];
+                res.status(200);
+                res.end(xml(result, true));
             }
         }
     } catch(error) {
