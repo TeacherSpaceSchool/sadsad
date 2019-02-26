@@ -20,7 +20,8 @@ const stringifyDateTime = (dateTime) => {
     dateTime = JSON.stringify(dateTime)
     let date = dateTime.split('T')[0].split('-')
     let time = dateTime.split('T')[1].split(':')
-    dateTime = date[2]+'.'+date[1]+'.'+date[0]+', '+time[0]+':'+time[1];
+    dateTime = date[2]+'.'+date[1]+'.'+date[0]+' '+time[0]+':'+time[1];
+    dateTime = dateTime.replace('"', '');
     return dateTime
 }
 module.exports.stringifyDateTime = stringifyDateTime;

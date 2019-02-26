@@ -1,0 +1,28 @@
+.sector{
+    width: calc(100% - 100px);
+    height: auto;
+    text-align: center;
+    padding: 50px;
+}
+
+.sector-div{
+    margin-top: 20px;
+    display: inline-block;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    max-height: 500px;
+}
+
+.sector-image{
+    margin-top: 20px;
+    display: inline-block;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    max-height: 500px;
+}
+
+.sector-part{
+    display: inline-block;
+}

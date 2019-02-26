@@ -1,0 +1,59 @@
+.part{
+    width: 22px;
+    height: 22px;
+    margin: 2px;
+    display: inline-block;
+    border-radius: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.part-text{
+    font-size: 12px;
+    font-weight: 700;
+    width: 22px;
+    height: 22px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.part-empty{
+    width: 22px;
+    height: 22px;
+    margin: 2px;
+    display: inline-block;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+
+.part-div-price{
+    text-align: left;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.part-number{
+    width: 100px;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 2px;
+    margin-right: 22px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: right;
+}
+
+.part-price{
+    font-size: 14px;
+    font-weight: 700;
+    margin: 2px;
+    margin-right: 22px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.part-div{
+    margin: 5px;
+}

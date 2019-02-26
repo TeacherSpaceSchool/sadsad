@@ -1,0 +1,607 @@
+export const sectorOshPhilharmonic = () => {
+    let oshPhilharmonic = {
+        'part1': [
+            [
+                {name: 'ряд 1:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 1:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+            ], [
+
+                {name: 'ряд 2:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 2:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 3:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 3:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 4:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 4:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 5:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 5:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 6:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 6:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 7:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 7:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 8:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 8:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 9:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 9:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 10:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 10:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 11:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 11:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 12:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 12:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 13:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 13:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ]],
+        'part2': [
+            [
+
+                {name: 'ряд 14:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 14:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 15:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 15:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 16:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 16:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 17:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 17:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 18:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 18:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 19:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 19:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 20:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 20:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 21:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 21:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 22:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 22:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 23:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 23:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 24:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 24:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 25:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 25:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 26:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 26:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ], [
+
+                {name: 'ряд 27:1 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:2 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:3 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:4 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:5 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:6 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:7 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:8 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:9 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:10 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:11 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:12 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:13 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:14 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:15 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:16 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:17 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+                {name: 'ряд 27:18 место', status: 'block', type: 'seat', price: '0', color: 'gray'},
+
+
+            ]
+        ]
+    }
+    oshPhilharmonic['part1'] = oshPhilharmonic['part1'].reverse()
+    oshPhilharmonic['part2'] = oshPhilharmonic['part2'].reverse()
+    return oshPhilharmonic
+
+
+}
+
