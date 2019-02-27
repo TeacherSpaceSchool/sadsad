@@ -7,7 +7,7 @@ var xml = require('xml');
 /* GET home page. */
 router.get('/asisnur', async (req, res, next) => {
     try{
-        console.log(req.param('command'))
+        console.log(req.ip, req.ips)
         let result;
         res.set('Content-Type', 'text/xml');
         if(req.param.command==='check'){
@@ -27,7 +27,7 @@ router.get('/asisnur', async (req, res, next) => {
             if(wallet!=null){
                 wallet.balance = parseInt(wallet.balance)-parseInt(req.param('sum'))
                 await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
-                let payment = new PaymentBiletiki({user: wallet.user, ammount: parseInt(req.param('sum')), service: 'AsisNur', meta:'Дата: '+req.param('txn_date')+' \nID: '+req.param('txn_id')});
+                let payment = new PaymentBiletiki({user: wallet.user, ammount: parseInt(req.param('sum')), service: 'AsisNur', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')});
                 await PaymentBiletiki.create(payment);
                 result = [ { response: [ { txn_id: req.param('txn_id') } , { result: 0 } , { comment: 'no such user' } ] } ];
                 res.status(200);
@@ -46,7 +46,7 @@ router.get('/asisnur', async (req, res, next) => {
 
 router.get('/qiwi', async (req, res, next) => {
     try{
-        console.log(req.param('command'))
+        console.log(req.ip, req.ips)
         let result;
         res.set('Content-Type', 'text/xml');
         if(req.param('command')==='check'){
@@ -67,7 +67,7 @@ router.get('/qiwi', async (req, res, next) => {
             if(wallet!=null){
                 wallet.balance = wallet.balance-parseInt(req.param('sum'))
                 await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
-                let payment = new PaymentBiletiki({user: wallet.user, ammount: parseInt(req.param('sum')), service: 'QIWI', meta:'Дата: '+req.param('txn_date')+' \nID: '+req.param('txn_id')});
+                let payment = new PaymentBiletiki({user: wallet.user, ammount: parseInt(req.param('sum')), service: 'QIWI', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')});
                 await PaymentBiletiki.create(payment);
                 result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: payment._id } , { sum: req.param('sum') } , { result: 0 } , { comment: 'ok' } ] } ];
                 res.status(200);
@@ -86,7 +86,7 @@ router.get('/qiwi', async (req, res, next) => {
 
 router.get('/balancekg', async (req, res, next) => {
     try{
-        console.log(req.param('command'))
+        console.log(req.ip, req.ips)
         let result;
         res.set('Content-Type', 'text/xml');
         if(req.param('command')==='check'){
@@ -106,7 +106,7 @@ router.get('/balancekg', async (req, res, next) => {
             if(wallet!=null){
                 wallet.balance = wallet.balance-parseInt(req.param('sum'))
                 await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
-                let payment = new PaymentBiletiki({user: wallet.user, ammount: parseInt(req.param('sum')), service: 'balancekg', meta:'Дата: '+req.param('txn_date')+' \nID: '+req.param('txn_id')});
+                let payment = new PaymentBiletiki({user: wallet.user, ammount: parseInt(req.param('sum')), service: 'balancekg', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')});
                 await PaymentBiletiki.create(payment);
                 result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: payment._id } , { sum: req.param('sum') } , { result: 0 } , { comment: 'ok' } ] } ];
                 res.status(200);
