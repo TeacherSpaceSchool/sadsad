@@ -8,7 +8,7 @@ var xml = require('xml');
 router.get('/asisnur', async (req, res, next) => {
     try{
         let ip = JSON.stringify(req.ip)
-        console.log(ip.include('212.112.122.179'))
+        console.log(ip.includes('212.112.122.179'))
         let result;
         res.set('Content-Type', 'text/xml');
         if(req.param.command==='check'){
@@ -48,7 +48,7 @@ router.get('/asisnur', async (req, res, next) => {
 router.get('/qiwi', async (req, res, next) => {
     try{
         let ip = JSON.stringify(req.ip)
-        console.log(ip.include('212.112.122.179'))
+        console.log(ip.includes('212.112.122.179'))
         let result;
         res.set('Content-Type', 'text/xml');
         if(req.param('command')==='check'){
@@ -89,7 +89,7 @@ router.get('/qiwi', async (req, res, next) => {
 router.get('/balancekg', async (req, res, next) => {
     try{
         let ip = JSON.stringify(req.ip)
-        console.log(ip.include('212.112.122.179'))
+        console.log(ip.includes('212.112.122.179'))
         let result;
         res.set('Content-Type', 'text/xml');
         if(req.param('command')==='check'){
