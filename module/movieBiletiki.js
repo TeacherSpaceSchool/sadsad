@@ -27,7 +27,7 @@ const getAll1 = async () => {
 
 const getAll = async () => {
     let id = await SeanceBiletiki
-        .find({}).distinct('movie')
+        .find({realDate: {$gte: new Date()}}).distinct('movie')
     return await MovieBiletiki
         .find({_id: {$in: id}})
         .select('name _id');
