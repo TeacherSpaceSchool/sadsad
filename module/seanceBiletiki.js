@@ -23,7 +23,7 @@ const getSeanceHallByDate = async (movie, realDate) => {
 
 const getSeanceTimes = async (movie, user) => {
     let tomorrow = new Date()
-    return await SeanceBiletiki.find({realDate: {$gte: tomorrow}, movie: movie, cinema: {'$regex': user, '$options': 'i'}}).sort('realDate').distinct('realDate')
+    return await SeanceBiletiki.find({ movie: movie, cinema: {'$regex': user, '$options': 'i'}}).sort('realDate').distinct('realDate')
 }
 
 const getSeanceBiletiki1 = async (search, sort, skip, cinema) => {
