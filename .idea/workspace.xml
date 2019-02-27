@@ -23,8 +23,8 @@
       <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1072">
-              <caret line="90" column="16" lean-forward="false" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
+            <state relative-caret-position="986">
+              <caret line="115" column="48" lean-forward="false" selection-start-line="115" selection-start-column="48" selection-end-line="115" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -136,7 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>path: 'event'</find>
       <find>buy</find>
       <find>'Билеты'</find>
       <find>SeanceBiletiki.setSeanceBiletiki</find>
@@ -166,9 +165,9 @@
       <find>ВсеКино</find>
       <find>СеансДаты</find>
       <find>req.param('txn_date')</find>
+      <find>-</find>
     </findStrings>
     <replaceStrings>
-      <replace>EventBiletiki</replace>
       <replace>TicketBiletiki</replace>
       <replace>image</replace>
       <replace>verifydadmin</replace>
@@ -198,6 +197,7 @@
       <replace>\d\w</replace>
       <replace>'</replace>
       <replace>new Date(parseInt(req.param('txn_date')))</replace>
+      <replace>+</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -467,12 +467,12 @@
       <workItem from="1550831185528" duration="1200000" />
       <workItem from="1550839222220" duration="8501000" />
       <workItem from="1551073138912" duration="13770000" />
-      <workItem from="1551164159023" duration="10699000" />
+      <workItem from="1551164159023" duration="11071000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="561231000" />
+    <option name="totallyTimeSpent" value="561603000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -898,8 +898,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1072">
-          <caret line="90" column="16" lean-forward="false" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
+        <state relative-caret-position="986">
+          <caret line="115" column="48" lean-forward="false" selection-start-line="115" selection-start-column="48" selection-end-line="115" selection-end-column="48" />
           <folding />
         </state>
       </provider>
