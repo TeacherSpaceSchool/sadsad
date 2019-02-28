@@ -102,8 +102,8 @@ router.get('/qiwi', async (req, res, next) => {
 router.get('/balancekg', async (req, res, next) => {
     try{
         let ip = JSON.stringify(req.ip)
-        console.log(ip.includes('212.112.122.179'))
-        if(ip.includes('212.112.122.179')){
+        console.log(ip.includes('212.112.101.182'))
+        if(ip.includes('212.112.101.182')){
             let result;
             res.set('Content+Type', 'text/xml');
             if(req.param('command')==='check'){
