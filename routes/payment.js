@@ -8,40 +8,46 @@ var xml = require('xml');
 router.get('/asisnur', async (req, res, next) => {
     try{
         let ip = JSON.stringify(req.ip)
-        console.log(ip.includes('212.112.122.179'))
-        let result;
-        res.set('Content+Type', 'text/xml');
-        if(req.param.command==='check'){
-            let wallet = await WalletBiletiki.findOne({wallet: req.param('account')})
-            /*XML*/
-            if(wallet!=null){
-                result = [ { response: [ { result: 0 } , { comment: 'ok' } ] } ];
-                res.status(200);
-                res.end(xml(result, true));
-            } else {
-                result = [ { response: [ { result: 1 } , { comment: 'no such user' } ] } ];
-                res.status(200);
-                res.end(xml(result, true));
+        console.log(ip.includes('95.47.232.100'))
+        if(ip.includes('95.47.232.100')){
+            let result;
+            res.set('Content+Type', 'text/xml');
+            if(req.param.command==='check'){
+                let wallet = await WalletBiletiki.findOne({wallet: req.param('account')})
+                /*XML*/
+                if(wallet!=null){
+                    result = [ { response: [ { result: 0 } , { comment: 'ok' } ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
+                } else {
+                    result = [ { response: [ { result: 1 } , { comment: 'no such user' } ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
+                }
+            } else if(req.param('command')==='pay'){
+                let wallet = await WalletBiletiki.findOne({wallet: req.param('account')})
+                if(wallet!=null){
+                    wallet.balance = parseInt(wallet.balance)+parseInt(req.param('sum'))
+                    await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
+                    let payment = new PaymentBiletiki({user: wallet.user, ammount: parseInt(req.param('sum')), service: 'AsisNur', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')});
+                    await PaymentBiletiki.create(payment);
+                    result = [ { response: [ { txn_id: req.param('txn_id') } , { result: 0 } , { comment: 'no such user' } ] } ];
+                    res.status(200);
+                    res.end(result);
+                } else {
+                    result = [ { response: [ { txn_id: req.param('txn_id') } , { result: 1 } , { comment: 'no such user' } ] } ];
+                    res.status(200);
+                    res.end(result);
+                }
             }
-        } else if(req.param('command')==='pay'){
-            let wallet = await WalletBiletiki.findOne({wallet: req.param('account')})
-            if(wallet!=null){
-                wallet.balance = parseInt(wallet.balance)+parseInt(req.param('sum'))
-                await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
-                let payment = new PaymentBiletiki({user: wallet.user, ammount: parseInt(req.param('sum')), service: 'AsisNur', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')});
-                await PaymentBiletiki.create(payment);
-                result = [ { response: [ { txn_id: req.param('txn_id') } , { result: 0 } , { comment: 'no such user' } ] } ];
-                res.status(200);
-                res.end(result);
-            } else {
-                result = [ { response: [ { txn_id: req.param('txn_id') } , { result: 1 } , { comment: 'no such user' } ] } ];
-                res.status(200);
-                res.end(result);
-            }
+        } else {
+            console.error(req.ip)
+            res.status(501);
         }
     } catch(error) {
         console.error(error)
         res.status(501);
+        res.end();
     }
 });
 
