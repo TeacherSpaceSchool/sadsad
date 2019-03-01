@@ -25,6 +25,7 @@ const SeanceBiletiki = require('../module/seanceBiletiki');
 const PaymentBiletiki = require('../module/paymentBiletiki');
 const TicketCinemaBiletiki = require('../module/ticketCinemaBiletiki');
 const WalletBiletiki = require('../module/walletBiletiki');
+const CashboxBiletiki = require('../module/cashboxBiletiki');
 const qr = require('qr-image');
 const myConst = require('../module/const');
 const randomstring = require('randomstring');
@@ -36,6 +37,8 @@ const Jimp = require('jimp');
 router.post('/getclient', async (req, res) => {
     if(req.body.name == 'Телефон'){
         await res.send(await PhoneBiletiki.getClient())
+    } else if(req.body.name == 'Кассы'){
+        await res.send(await CashboxBiletiki.getClient())
     } else if(req.body.name == 'Email'){
         await res.send(await EmailBiletiki.getClient())
     } else if(req.body.name == 'FAQ'){
@@ -124,6 +127,8 @@ router.post('/get', async (req, res) => {
                     await res.send(await AboutBiletiki.getAboutBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Рассылка'){
                     await res.send(await MailingBiletiki.getMailingBiletiki(req.body.search, req.body.sort, req.body.skip))
+                } else if(req.body.name == 'Кассы'){
+                    await res.send(await CashboxBiletiki.getCashboxBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'СеансДаты'){
                     let data = JSON.parse(req.body.data);
                     await res.send(await SeanceBiletiki.getSeanceTimes(data.movie, data.user))
@@ -273,6 +278,9 @@ router.post('/delete', async (req, res) => {
                 if(req.body.name == 'О нас'){
                     await AboutBiletiki.deleteAboutBiletiki(JSON.parse(req.body.deleted))
                     await res.send(await AboutBiletiki.getAboutBiletiki(req.body.search, req.body.sort, req.body.skip))
+                } else if(req.body.name == 'Кассы'){
+                    await CashboxBiletiki.deleteCashboxBiletiki(JSON.parse(req.body.deleted))
+                    await res.send(await CashboxBiletiki.getCashboxBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Залы'){
                     await CinemaHallBiletiki.deleteCinemaHallBiletiki(JSON.parse(req.body.deleted))
                     await res.send(await CinemaHallBiletiki.getCinemaHallBiletiki(req.body.search, req.body.sort, req.body.skip))
@@ -406,6 +414,20 @@ router.post('/add', async (req, res) => {
                     else
                         await AboutBiletiki.setAboutBiletiki(data, req.body.id)
                     await res.send(await AboutBiletiki.getAboutBiletiki(req.body.search, req.body.sort, req.body.skip))
+                } else if(req.body.name == 'Кассы'){
+                    data = {
+                        name: myNew.name,
+                        address: myNew.address,
+                    };
+                    if(req.body.id===undefined)
+                        await CashboxBiletiki.addCashboxBiletiki(data)
+                    else
+                        await CashboxBiletiki.setCashboxBiletiki(data, req.body.id)
+                    await res.send(await CashboxBiletiki.getCashboxBiletiki(req.body.search, req.body.sort, req.body.skip))
+                } else if(req.body.name === 'Баланс') {
+                    if(req.body.id!=undefined)
+                        await WalletBiletiki.setWalletBiletiki(myNew.balance, req.body.id)
+                    await res.send(await WalletBiletiki.getWalletBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Рассылка'){
                     data = {
                         mailuser: myNew.mailuser,
@@ -516,6 +538,7 @@ router.post('/add', async (req, res) => {
                         await SeanceBiletiki.setSeanceBiletiki(data, req.body.id)
                     await res.send(await SeanceBiletiki.getSeanceBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Событие'){
+                    console.log(myNew.date)
                     let realDate = []
                     for(let i=0; i<myNew.date.length; i++){
                         realDate.push(new Date(myNew.date[i]+'Z'));

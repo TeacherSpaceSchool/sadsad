@@ -121,6 +121,7 @@
 .header .mobile-header-wrap .toggle-menu-btn_active {
   background: #ffc500;
   left: calc(100% - 66px);
+  height: 100vh;
 }
 
 .header .mobile-header-wrap .mobile-menu-wrap {
@@ -418,11 +419,19 @@
   height: 100%;
 }
 
+.mobile-auth_icon {
+  width: 24px;
+  height: 24px;
+  background-image: url(../img/profile.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .header .mobile-header-wrap .search-btn-wrap .search-btn_icon {
   display: inline-block;
   width: 24px;
   height: 24px;
-  background-image: url(../img/mobile-search.png);
+  background-image: url(../img/mobile-search.svg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -4337,7 +4346,6 @@ input[type="button"].button-primary {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  background-color: rgba(28, 28, 32, 0.8);
   padding: 10px 0;
 }
 

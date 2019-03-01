@@ -6,11 +6,11 @@ var xml = require('xml');
 
 /* GET home page. */
 router.get('/asisnur', async (req, res, next) => {
+    let result;
     try{
         let ip = JSON.stringify(req.ip)
         console.log(ip.includes('95.47.232.100'))
         if(ip.includes('95.47.232.100')){
-            let result;
             res.set('Content+Type', 'text/xml');
             if(req.param('command')==='check'){
                 let wallet = await WalletBiletiki.findOne({wallet: req.param('account')})
@@ -20,7 +20,7 @@ router.get('/asisnur', async (req, res, next) => {
                     res.status(200);
                     res.end(xml(result, true));
                 } else {
-                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { result: 1 }, {comment: 'ok'} ] } ];
+                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { result: 5 }, {comment: 'Идентификатора абонента не найден'} ] } ];
                     res.status(200);
                     res.end(xml(result, true));
                 }
@@ -36,19 +36,23 @@ router.get('/asisnur', async (req, res, next) => {
                     res.status(200);
                     res.end(xml(result, true));
                 } else {
-                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 1 } , { comment: 'no such user' } ] } ];
+                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 5 } , { comment: 'Идентификатора абонента не найден' } ] } ];
                     res.status(200);
                     res.end(xml(result, true));
                 }
             }
         } else {
+            res.set('Content+Type', 'text/xml');
             console.error(req.ip)
             res.status(501);
+            result = [ { response: [ { result: 501 } , { comment: 'IP адресс не разрешен' } ] } ];
+            res.end(xml(result, true));
         }
     } catch(error) {
+        res.set('Content+Type', 'text/xml');
         console.error(error)
-        res.status(501);
-        res.end();
+        result = [ { response: [ { result: 1 } , { comment: 'Временная ошибка, повторите запрос позже' } ] } ];
+        res.end(xml(result, true));
     }
 });
 
@@ -144,16 +148,16 @@ router.get('/balancekg', async (req, res, next) => {
     }
 });
 
-router.get('/elsom/generate', async (req, res, next) => {
+router.post('/elsom/generate', async (req, res, next) => {
     try{
-        if(await WalletBiletiki.findOne({wallet: req.param('wallet')})!=null&&isNaN(req.param('sum'))&&parseInt(req.param('sum'))>0){
+       if(await WalletBiletiki.findOne({wallet: req.body.wallet})!=null&&!isNaN(req.body.sum)&&parseInt(req.body.sum)>0){
 
             res.status(200);
+            res.end('1345678');
+       } else {
+            res.status(200);
             res.end('error');
-        } else {
-            res.status(501);
-            res.end('error');
-        }
+       }
     } catch(error) {
         console.error(error)
         res.status(501);

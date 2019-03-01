@@ -24,6 +24,7 @@ const getEvents = async (city, date, genre, skip) => {
     skip = parseInt(skip)*20;
     if(date===''&&!Array.isArray(date)) {
         date = new Date()
+        console.log(date)
         return await EventBiletiki.find({city: city, genre: {'$regex': genre, '$options': 'i'}, active: 'on', realDate: {$elemMatch: { $gte: date }}}).skip(skip).limit(20);
     }
     let yesterday = date[0]

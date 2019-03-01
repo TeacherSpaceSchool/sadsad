@@ -271,6 +271,19 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Ипподром Иссык–Куль'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Ипподром Иссык–Куль',
+                nameKg:  'Ипподром Иссык–Куль',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
+                city: 'Иссык–Куль'
+            });
+            await WhereBiletiki.create(_user);
+        }
     } catch(error) {
         console.log(error)
     }
