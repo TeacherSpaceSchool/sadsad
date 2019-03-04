@@ -16,7 +16,7 @@ const user = require('./module/user');
 const formData = require('express-form-data');
 const os = require('os');
 const compression = require('compression');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 module.exports.dirname = __dirname;
 
 
