@@ -6,6 +6,19 @@ const checkHash = async (hash) => {
     return(new1)
 }
 
+const approveTicketBiletiki = async (object, hash) => {
+    try{
+        if(await TicketBiletiki.count({hash: hash, status: 'продан'})!==0){
+            await TicketBiletiki.findOneAndUpdate({hash: hash}, {$set: {status: 'использован'}});
+            return('ok')
+        } else {
+            return('error')
+        }
+    } catch(error) {
+        console.error(error)
+    }
+}
+
 const getById = async (id) => {
     return(await TicketBiletiki.findOne({_id: id}))
 }
@@ -133,3 +146,4 @@ module.exports.getTicketBiletiki = getTicketBiletiki;
 module.exports.setTicketBiletiki = setTicketBiletiki;
 module.exports.addTicketBiletiki = addTicketBiletiki;
 module.exports.getById = getById;
+module.exports.approveTicketBiletiki = approveTicketBiletiki;

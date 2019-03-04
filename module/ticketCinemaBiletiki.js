@@ -14,6 +14,19 @@ const getByHash = async (hash) => {
     return(await TicketCinemaBiletiki.findOne({hash: hash}).populate({path: 'user', select: 'name email'}))
 }
 
+const approveTicketCinemaBiletiki = async (object, hash) => {
+    try{
+        if(await TicketCinemaBiletiki.count({hash: hash, status: 'продан'})!==0){
+            await TicketCinemaBiletiki.findOneAndUpdate({hash: hash}, {$set: {status: 'использован'}});
+            return('ok')
+        } else {
+            return('error')
+        }
+    } catch(error) {
+        console.error(error)
+    }
+}
+
 const getTicketCinemaBiletiki1 = async (search, sort, skip, user) => {
     try{
         let findResult = [], data = [], count;
@@ -193,56 +206,15 @@ const getTicketCinemaBiletiki = async (search, sort, skip) => {
 const addTicketCinemaBiletiki = async (object) => {
     try{
         let _object = new TicketCinemaBiletiki(object);
-        _object = await TicketCinemaBiletiki.create(_object);
-        if(_object.status==='зарезервирован'){
-            lessReserve(_object._id)
-        }
+        await TicketCinemaBiletiki.create(_object);
     } catch(error) {
         console.error(error)
     }
 }
 
-const lessReserve = (id)=>{
-        setTimeout(async ()=>{
-            try{
-                let ticket = await TicketCinemaBiletiki.findOne({_id: id});
-                if(ticket.status==='зарезервирован') {
-                    ticket.status = 'возвращен';
-                    await TicketCinemaBiletiki.findOneAndUpdate({_id: id}, {$set: ticket});
-                    let event = await EventBiletiki.findOne({_id: ticket.event});
-                    if (!event.where.data[event.date[0]].without) {
-                        for (let i = 0; i < event.date.length; i++) {
-                            let keys = Object.keys(event.where.data[event.date[i]]);
-                            for (let i1 = 0; i1 < keys.length; i1++) {
-                                for (let i2 = 0; i2 < event.where.data[event.date[i]][keys[i1]].length; i2++) {
-                                    for (let i3 = 0; i3 < event.where.data[event.date[i]][keys[i1]][i2].length; i3++) {
-                                        for(let i4 = 0; i4 < ticket.seats.length; i4++){
-                                            if (event.where.data[event.date[i]][keys[i1]][i2][i3].name === ticket.seats[i4]){
-                                                event.where.data[event.date[i]][keys[i1]][i2][i3].status = 'free'
-                                                for(let i5 = 0; i5< event.price.length; i5++){
-                                                    if(event.price[i5].price===event.where.data[event.date[i]][keys[i1]][i2][i3].price)
-                                                        event.where.data[event.date[i]][keys[i1]][i2][i3].color = event.price[i5].color
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-                } catch(error) {
-                console.error(error)
-            }
-        }, 86400000);
-}
-
 const setTicketCinemaBiletiki = async (object, id) => {
     try{
         await TicketCinemaBiletiki.findOneAndUpdate({_id: id}, {$set: object});
-        if(object.status==='зарезервирован'){
-            lessReserve(id)
-        }
     } catch(error) {
         console.error(error)
     }
@@ -264,3 +236,4 @@ module.exports.getTicketCinemaBiletiki = getTicketCinemaBiletiki;
 module.exports.setTicketCinemaBiletiki = setTicketCinemaBiletiki;
 module.exports.addTicketCinemaBiletiki = addTicketCinemaBiletiki;
 module.exports.getById = getById;
+module.exports.approveTicketCinemaBiletiki = approveTicketCinemaBiletiki;

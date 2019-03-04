@@ -11,6 +11,7 @@ const SeanceBiletiki = require('../models/seanceBiletiki');
 const TicketCinemaBiletiki = require('../models/ticketCinemaBiletiki');
 const WalletBiletiki = require('../models/walletBiletiki');
 const WalletBiletikiAction = require('../module/walletBiletiki');
+const constAction = require('../module/const');
 const jwt = require('jsonwebtoken');
 const randomstring = require('randomstring');
 const app = require('../app');
@@ -19,6 +20,12 @@ const path = require('path');
 const PDFDocument = require('pdfkit');
 const qr = require('qr-image');
 const myConst = require('../module/const');
+const barcode = require('barcode');
+const nodemailer = require('nodemailer');
+const MailingBiletiki = require('../models/mailingBiletiki');
+const accountSid = 'ACb02dc7067344b48d030f98e5a11c08f6';
+const authToken = '60788a08ed67261f358bf2299e8e0a9a';
+const client = require('twilio')(accountSid, authToken);
 
 let start = () => {
 //настройка паспорта
@@ -101,6 +108,20 @@ const verifydcinema = async (req, res, func) => {
         try{
             if (user&&user.status==='active'&&(user.role==='cinema')) {
                 await func(user)
+            }
+        } catch (err) {
+            console.error(err)
+            res.status(401);
+            res.end('err')
+        }
+    } )(req, res)
+}
+
+const verifydturnstile = async (req, res, func) => {
+    await passport.authenticate('jwt', async function (err, user) {
+        try{
+            if (user&&user.status==='active'&&(user.role==='admin'||user.role==='manager'||user.role==='turnstile')) {
+                await func()
             }
         } catch (err) {
             console.error(err)
@@ -234,17 +255,24 @@ const buy = async (req, res) => {
                 wallet.balance = wallet.balance-data.fullPrice
                 await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
 
-                let hash = randomstring.generate(20) + user._id + data.event._id;
+                let hash = randomstring.generate({length: 12, charset: 'numeric'});
                 while (!await TicketBiletikiAction.checkHash(hash))
-                    hash = randomstring.generate(20) + user._id + data.event._id;
-                let qrname = randomstring.generate(7) + user._id + data.event._id+'.png';
+                     hash = randomstring.generate({length: 12, charset: 'numeric'});
+                let qrname = randomstring.generate(5) + user._id + data.event._id+'.png';
                 let pdfname = qrname.replace('.png','.pdf');
                 let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
                 let fstream = fs.createWriteStream(qrpath);
                 let qrTicket = await qr.image(hash, { type: 'png' });
                 let stream = qrTicket.pipe(fstream)
                 stream.on('finish', async () => {
-                    let doc = new PDFDocument();
+                    const code39 = barcode('code39', {
+                        data: hash,
+                        width: 400,
+                        height: 100,
+                    });
+                    let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                    code39.saveImage(barcodepath, function (err){
+                        let doc = new PDFDocument();
                     let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                     let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                     doc.registerFont('NotoSans', robotoBlack);
@@ -303,7 +331,7 @@ const buy = async (req, res) => {
                     doc.moveDown()
                     doc.image(qrpath, (doc.page.width - 225) /2 )
                     doc.end()
-                })
+                })})
                 await EventBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
                 let _object = new TicketBiletiki({
                     seats: data.seats,
@@ -318,6 +346,36 @@ const buy = async (req, res) => {
                 });
                 await TicketBiletiki.create(_object);
 
+                let mailingBiletiki = await MailingBiletiki.findOne();
+                let mailOptions = {
+                    from: mailingBiletiki.mailuser,
+                    to: user.email,
+                    subject: 'Ticket.kg - Покупка билета',
+                    text: 'Ваш билет: '+myConst.url + 'ticket/' + pdfname
+                };
+                if(mailingBiletiki!==null&&constAction.validMail(user.email)){
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: mailingBiletiki.mailuser,
+                            pass: mailingBiletiki.mailpass
+                        }
+                    });
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });
+                }
+                client.messages
+                    .create({
+                        body: 'Ваш билет: '+myConst.url + 'ticket/' + pdfname,
+                        from: '+17622526173',
+                        to: user.phonenumber
+                    })
+                    .then(message => console.log(message.sid));
                 res.status(200);
                 res.end('ok');
             } else {
@@ -361,17 +419,24 @@ const buy1 = async (req, res) => {
             if (user&&user.status==='active'&&wallet.balance>data.fullPrice) {
                 wallet.balance = wallet.balance-data.fullPrice
                 await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
-                let hash = randomstring.generate(20) + user._id + data.event._id;
+                let hash = randomstring.generate({length: 12, charset: 'numeric'});
                 while (!await TicketBiletikiAction.checkHash(hash))
-                    hash = randomstring.generate(20) + user._id + data.event._id;
-                let qrname = randomstring.generate(7) + user._id + data.event._id+'.png';
+                    hash = randomstring.generate({length: 12, charset: 'numeric'});
+                let qrname = randomstring.generate(5) + user._id + data.event._id+'.png';
                 let pdfname = qrname.replace('.png','.pdf');
                 let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
                 let fstream = fs.createWriteStream(qrpath);
                 let qrTicket = await qr.image(hash, { type: 'png' });
                 let stream = qrTicket.pipe(fstream)
                 stream.on('finish', async () => {
-                    let doc = new PDFDocument();
+                    const code39 = barcode('code39', {
+                        data: hash,
+                        width: 400,
+                        height: 100,
+                    });
+                    let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                    code39.saveImage(barcodepath, function (err){
+                        let doc = new PDFDocument();
                     let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                     let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                     doc.registerFont('NotoSans', robotoBlack);
@@ -436,7 +501,7 @@ const buy1 = async (req, res) => {
                     doc.moveDown()
                     doc.image(qrpath, (doc.page.width - 225) /2 )
                     doc.end()
-                })
+                })})
                 await SeanceBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
                 let _object = new TicketCinemaBiletiki({
                     seats: data.seats,
@@ -452,6 +517,36 @@ const buy1 = async (req, res) => {
                 });
                 await TicketCinemaBiletiki.create(_object);
 
+                let mailingBiletiki = await MailingBiletiki.findOne();
+                let mailOptions = {
+                    from: mailingBiletiki.mailuser,
+                    to: user.email,
+                    subject: 'Ticket.kg - Покупка билета',
+                    text: 'Ваш билет: '+myConst.url + 'ticket/' + pdfname
+                };
+                if(mailingBiletiki!==null&&constAction.validMail(user.email)){
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: mailingBiletiki.mailuser,
+                            pass: mailingBiletiki.mailpass
+                        }
+                    });
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });
+                }
+                client.messages
+                    .create({
+                        body: 'Ваш билет: '+myConst.url + 'ticket/' + pdfname,
+                        from: '+17622526173',
+                        to: user.phonenumber
+                    })
+                    .then(message => console.log(message.sid));
                 res.status(200);
                 res.end('ok');
             } else {
@@ -578,3 +673,4 @@ module.exports.verifydeuser = verifydeuser;
 module.exports.signinuser = signinuser;
 module.exports.buy = buy;
 module.exports.buy1 = buy1;
+module.exports.verifydturnstile = verifydturnstile;

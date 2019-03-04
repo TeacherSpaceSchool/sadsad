@@ -305,6 +305,12 @@
   margin-right: 7px;
 }
 
+
+.lobster-font{
+  font-family: 'Lobster', cursive;
+  font-size: 20px;
+}
+
 .header .mobile-header-wrap .mobile-menu_content .main-menu .main-menu_item .evolution-icon {
   display: inline-block;
   width: 16px;
@@ -367,7 +373,7 @@
 }
 
 .header .mobile-header-wrap .mobile-logo-wrap .mobile-logo img {
-  width: 110px;
+  width: 125px;
 }
 
 .header .mobile-header-wrap .search-btn-wrap {
@@ -5535,7 +5541,7 @@ p0-pppp
   }
 
   .footer .footer-cont {
-    padding: 0 35px;
+    padding: 50px 35px
   }
 
   .footer_menu {

@@ -33,6 +33,7 @@ const app = require('../app');
 const fs = require('fs');
 const path = require('path');
 const Jimp = require('jimp');
+const barcode = require('barcode');
 
 router.post('/getclient', async (req, res) => {
     if(req.body.name == 'Телефон'){
@@ -203,6 +204,18 @@ router.post('/get', async (req, res) => {
                     await res.send(await TicketCinemaBiletiki.getByHash(JSON.parse(req.body.data).hash))
                 } else if(req.body.name == 'Баланс'){
                     await res.send(await WalletBiletiki.getWalletBiletiki(req.body.search, req.body.sort, req.body.skip))
+                } else if(req.body.name == 'Подтверждение'){
+                    await res.send(await TicketBiletiki.approveTicketBiletiki(JSON.parse(req.body.data).hash))
+                } else if(req.body.name == 'ПодтверждениеКино'){
+                    await res.send(await TicketCinemaBiletiki.approveTicketCinemaBiletiki(JSON.parse(req.body.data).hash))
+                }
+            });
+        } else if(role==='turnstile'){
+            await passportEngine.verifydturnstile(req, res, async ()=>{
+                if(req.body.name == 'Подтверждение'){
+                    await res.send(await TicketBiletiki.approveTicketBiletiki(JSON.parse(req.body.data).hash))
+                } else if(req.body.name == 'ПодтверждениеКино'){
+                    await res.send(await TicketCinemaBiletiki.approveTicketCinemaBiletiki(JSON.parse(req.body.data).hash))
                 }
             });
         } else if(role==='accountant'){
@@ -684,77 +697,91 @@ router.post('/add', async (req, res) => {
                 } else
                 if(req.body.name == 'Билеты'){
                     if(req.body.id==undefined){
-                        let hash = randomstring.generate(20) + myNew.user + myNew.event._id;
+                        let hash = randomstring.generate({length: 12, charset: 'numeric'});
                         while (!await TicketBiletiki.checkHash(hash))
-                            hash = randomstring.generate(20) + myNew.user + myNew.event._id;
-                        let qrname = randomstring.generate(7) + myNew.user + myNew.event._id+'.png';
+                            hash = randomstring.generate({length: 12, charset: 'numeric'});
+                        let qrname = randomstring.generate(5) + myNew.user + myNew.event._id+'.png';
                         let pdfname = qrname.replace('.png','.pdf');
                         let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
                         let fstream = fs.createWriteStream(qrpath);
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
-                            let doc = new PDFDocument();
-                            let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
-                            let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
-                            doc.registerFont('NotoSans', robotoBlack);
-                            let fstream = fs.createWriteStream(pdfpath);
-                            doc.pipe(fstream);
-                            doc
-                                .font('NotoSans')
-                                .fontSize(20)
-                                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                            doc.moveDown()
-                            doc
-                                .font('NotoSans')
-                                .fontSize(20)
-                                .text('Площадка:', {width: doc.page.width - 100, align: 'center'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(15)
-                                .text(myNew.event.where.name, {width: doc.page.width - 100, align: 'justify'})
-                            doc.moveDown()
-                            doc
-                                .font('NotoSans')
-                                .fontSize(20)
-                                .text('Мероприятие:', {width: doc.page.width - 100, align: 'center'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(15)
-                                .text(myNew.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
-                            doc.moveDown()
-                            doc
-                                .font('NotoSans')
-                                .fontSize(20)
-                                .text('Места:', {width: doc.page.width - 100, align: 'center'})
-                            for(let i = 0; i<myNew.seats.length; i++){
+                            const code39 = barcode('code39', {
+                                data: hash,
+                                width: 400,
+                                height: 100,
+                            });
+                            let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                            code39.saveImage(barcodepath, function (err){
+                                if (err) throw err;
+                                let doc = new PDFDocument();
+                                let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
+                                let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+                                doc.registerFont('NotoSans', robotoBlack);
+                                let fstream = fs.createWriteStream(pdfpath);
+                                doc.pipe(fstream);
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(20)
+                                    .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                doc.moveDown()
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(20)
+                                    .text('Площадка:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
                                     .fontSize(15)
-                                    .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
-                                let date = data.seats[i][1].split('T')[0].split('-')
-                                let time = data.seats[i][1].split('T')[1].split(':')
-                                let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+                                    .text(myNew.event.where.name, {width: doc.page.width - 100, align: 'justify'})
+                                doc.moveDown()
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(20)
+                                    .text('Мероприятие:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
                                     .fontSize(15)
-                                    .text('        Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
+                                    .text(myNew.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
+                                doc.moveDown()
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(20)
+                                    .text('Места:', {width: doc.page.width - 100, align: 'center'})
+                                for(let i = 0; i<myNew.seats.length; i++){
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(15)
+                                        .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
+                                    let date = data.seats[i][1].split('T')[0].split('-')
+                                    let time = data.seats[i][1].split('T')[1].split(':')
+                                    let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(15)
+                                        .text('        Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(15)
+                                        .text('        Место: '+myNew.seats[i][0]['name'], {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(15)
+                                        .text('        Цена: '+myNew.seats[i][0]['price']+' сом', {width: doc.page.width - 100, align: 'justify'})
+                                }
+                                doc.moveDown()
+                                doc.addPage()
+                                doc.moveDown()
+                                doc.image(qrpath, (doc.page.width - 225) /2 )
+                                doc.moveDown()
+                                doc.image(barcodepath, (doc.page.width - 400) /2 )
                                 doc
                                     .font('NotoSans')
                                     .fontSize(15)
-                                    .text('        Место: '+myNew.seats[i][0]['name'], {width: doc.page.width - 100, align: 'justify'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(15)
-                                    .text('        Цена: '+myNew.seats[i][0]['price']+' сом', {width: doc.page.width - 100, align: 'justify'})
-                            }
-                            doc.moveDown()
-                            doc.addPage()
-                            doc.moveDown()
-                            doc.image(qrpath, (doc.page.width - 225) /2 )
-                            doc.end()
+                                    .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
+                                doc.end()
+                            });
                         })
-
                         data = {
                             seats: myNew.seats,
                             hash: hash,
@@ -775,18 +802,25 @@ router.post('/add', async (req, res) => {
                 }
                 else if(req.body.name == 'Билеты кино'){
                     if(req.body.id==undefined){
-                        console.log(myNew.seats)
-                        let hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
+                        let hash = randomstring.generate({length: 12, charset: 'numeric'});
                         while (!await TicketBiletiki.checkHash(hash))
-                            hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
-                        let qrname = randomstring.generate(7) + myNew.user + myNew.seance._id+'.png';
+                            hash = randomstring.generate({length: 12, charset: 'numeric'});
+                        let qrname = randomstring.generate(5) + myNew.user + myNew.seance._id+'.png';
                         let pdfname = qrname.replace('.png','.pdf');
                         let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
                         let fstream = fs.createWriteStream(qrpath);
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
-                            try{
+                            const code39 = barcode('code39', {
+                                data: hash,
+                                width: 400,
+                                height: 100,
+                            });
+
+                            let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                            code39.saveImage(barcodepath, function(){
+                                try{
                                 let doc = new PDFDocument();
                                 let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                 let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
@@ -851,10 +885,16 @@ router.post('/add', async (req, res) => {
                                 doc.addPage()
                                 doc.moveDown()
                                 doc.image(qrpath, (doc.page.width - 225) /2 )
-                                doc.end()
+                                    doc.moveDown()
+                                    doc.image(barcodepath, (doc.page.width - 400) /2 )
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(15)
+                                        .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
+                                    doc.end()
                             } catch(error) {
                                 console.error(error)
-                            }
+                            }})
                         })
 
                         data = {
@@ -1075,17 +1115,25 @@ router.post('/add', async (req, res) => {
                 let data, myNew = JSON.parse(req.body.new);
                 if(req.body.name == 'Билеты'){
                     if(req.body.id==undefined){
-                        let hash = randomstring.generate(20) + myNew.user + myNew.event._id;
+                        let hash = randomstring.generate({length: 12, charset: 'numeric'});
                         while (!await TicketBiletiki.checkHash(hash))
-                            hash = randomstring.generate(20) + myNew.user + myNew.event._id;
-                        let qrname = randomstring.generate(7) + myNew.user + myNew.event._id+'.png';
+                            hash = randomstring.generate({length: 12, charset: 'numeric'});
+                        let qrname = randomstring.generate(5) + myNew.user + myNew.event._id+'.png';
                         let pdfname = qrname.replace('.png','.pdf');
                         let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
                         let fstream = fs.createWriteStream(qrpath);
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
-                            let doc = new PDFDocument();
+                            const code39 = barcode('code39', {
+                                data: hash,
+                                width: 400,
+                                height: 100,
+                            });
+
+                            let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                            code39.saveImage(barcodepath, function(){
+                                let doc = new PDFDocument();
                             let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                             let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                             doc.registerFont('NotoSans', robotoBlack);
@@ -1143,7 +1191,14 @@ router.post('/add', async (req, res) => {
                             doc.addPage()
                             doc.moveDown()
                             doc.image(qrpath, (doc.page.width - 225) /2 )
-                            doc.end()
+                                doc.moveDown()
+                                doc.image(barcodepath, (doc.page.width - 400) /2 )
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(15)
+                                    .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
+                                doc.end()
+                            })
                         })
 
                         data = {
@@ -1166,17 +1221,25 @@ router.post('/add', async (req, res) => {
                 }
                 else if(req.body.name == 'Билеты кино'){
                     if(req.body.id==undefined){
-                        let hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
+                        let hash = randomstring.generate({length: 12, charset: 'numeric'});
                         while (!await TicketBiletiki.checkHash(hash))
-                            hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
-                        let qrname = randomstring.generate(7) + myNew.user + myNew.seance._id+'.png';
+                            hash = randomstring.generate({length: 12, charset: 'numeric'});
+                        let qrname = randomstring.generate(5) + myNew.user + myNew.seance._id+'.png';
                         let pdfname = qrname.replace('.png','.pdf');
                         let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
                         let fstream = fs.createWriteStream(qrpath);
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
-                            try{
+                            const code39 = barcode('code39', {
+                                data: hash,
+                                width: 400,
+                                height: 100,
+                            });
+
+                            let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                            code39.saveImage(barcodepath, function(){
+                                try{
                                 let doc = new PDFDocument();
                                 let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                 let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
@@ -1241,10 +1304,16 @@ router.post('/add', async (req, res) => {
                                 doc.addPage()
                                 doc.moveDown()
                                 doc.image(qrpath, (doc.page.width - 225) /2 )
-                                doc.end()
+                                    doc.moveDown()
+                                    doc.image(barcodepath, (doc.page.width - 400) /2 )
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(15)
+                                        .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
+                                    doc.end()
                             } catch(error) {
                                 console.error(error)
-                            }
+                            }})
                         })
 
                         data = {
