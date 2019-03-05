@@ -1,4 +1,4 @@
-const url = 'http://88.212.253.143/',
+const url = 'https://kassir.kg/',
     adminLogin = 'admin',
     adminPass = 'SehzHp',
     month = {
