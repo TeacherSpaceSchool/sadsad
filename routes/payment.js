@@ -163,7 +163,7 @@ router.post('/elsom/generate', async (req, res, next) => {
                        'Amount': req.body.sum,
                        'CashierNo': req.body.wallet,
                        'UDF': 'TEST',
-                       'Password': 'md5(Password1)'
+                       'Password': '2ac9cb7dc02b3c0083eb70898e549b63'
                    }
                }
            )  .then(function (response) {
