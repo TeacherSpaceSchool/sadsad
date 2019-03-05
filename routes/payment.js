@@ -166,7 +166,7 @@ router.post('/elsom/generate', async (req, res, next) => {
                    }
                }
            )
-           console.log(res)
+           console.log('res', res)
             res.status(200);
             res.end('1345678');
        } else {
