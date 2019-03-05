@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/asset-manifest.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/favicon.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/js/main.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/all.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/bootstrap-reboot.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/jquery.fancybox.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/jquery.fancybox.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/owl.carousel.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/owl.carousel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/owl.carousel.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/owl.carousel.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/pickmeup.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/pickmeup.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/pickmeup.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/lib/slider-baner.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/manifest.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/precache-manifest.06fb0859b3e0fc52757b0e79134ac46b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/service-worker.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,7 +19,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="355">
@@ -55,16 +32,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="701" column="91" lean-forward="false" selection-start-line="701" selection-start-column="35" selection-end-line="701" selection-end-column="91" />
+            <state relative-caret-position="212">
+              <caret line="1271" column="27" lean-forward="false" selection-start-line="1271" selection-start-column="27" selection-end-line="1271" selection-end-column="27" />
               <folding>
-                <element signature="e#25952#26194#0" expanded="false" />
-                <element signature="e#57098#58982#0" expanded="false" />
-                <element signature="e#61388#67935#0" expanded="false" />
+                <element signature="e#25916#26158#0" expanded="false" />
+                <element signature="e#55934#57818#0" expanded="false" />
+                <element signature="e#60224#66771#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data123.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/data123.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -140,8 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>const format = require('date-format') ;</find>
-      <find>TicketBiletiki.addTicketBiletiki</find>
       <find>new TicketBiletiki</find>
       <find>.asString('yyyy.dd.MM hh:mm',</find>
       <find>SoldAndReturned</find>
@@ -170,6 +155,8 @@
       <find>http</find>
       <find>&quot;</find>
       <find>билеты</find>
+      <find>barcodepath</find>
+      <find>barcode</find>
     </findStrings>
     <replaceStrings>
       <replace>verifydadmin</replace>
@@ -254,13 +241,13 @@
         <option value="$PROJECT_DIR$/module/ticketCinemaBiletiki.js" />
         <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/module/passport.js" />
-        <option value="$PROJECT_DIR$/routes/data.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/module/logoBiletiki.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/module/const.js" />
         <option value="$PROJECT_DIR$/aclient/index.html" />
         <option value="$PROJECT_DIR$/routes/payment.js" />
+        <option value="$PROJECT_DIR$/routes/data.js" />
       </list>
     </option>
   </component>
@@ -353,18 +340,18 @@
     <property name="javascript.nodejs.core.library.configured.version" value="11.4.0" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\biletiki\biletiki-api\routes" />
+      <recent name="C:\projects\biletiki\biletiki-api\node_modules" />
+      <recent name="C:\projects\biletiki\biletiki-api\public\barcode" />
+      <recent name="C:\projects\biletiki\biletiki-api\module" />
+      <recent name="C:\projects\biletiki\biletiki-api\models" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\projects\biletiki\biletiki-api\bin" />
       <recent name="C:\projects\biletiki\biletiki-api\public" />
       <recent name="C:\projects\biletiki\biletiki-api\node_modules" />
       <recent name="C:\projects\museum\museum-api" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\projects\biletiki\biletiki-api\node_modules" />
-      <recent name="C:\projects\biletiki\biletiki-api\public\barcode" />
-      <recent name="C:\projects\biletiki\biletiki-api\module" />
-      <recent name="C:\projects\biletiki\biletiki-api\models" />
-      <recent name="C:\projects\biletiki\biletiki-api\node_modules\.bin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -473,12 +460,12 @@
       <workItem from="1551271476669" duration="8033000" />
       <workItem from="1551415664736" duration="11022000" />
       <workItem from="1551500095830" duration="24601000" />
-      <workItem from="1551702833395" duration="11253000" />
+      <workItem from="1551702833395" duration="12065000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="617144000" />
+    <option name="totallyTimeSpent" value="617956000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -491,6 +478,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.83451957" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -524,13 +512,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/module/whereBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="106" column="175" lean-forward="false" selection-start-line="106" selection-start-column="175" selection-end-line="106" selection-end-column="175" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/whereBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -867,18 +848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="701" column="91" lean-forward="false" selection-start-line="701" selection-start-column="35" selection-end-line="701" selection-end-column="91" />
-          <folding>
-            <element signature="e#25952#26194#0" expanded="false" />
-            <element signature="e#57098#58982#0" expanded="false" />
-            <element signature="e#61388#67935#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
@@ -886,6 +855,26 @@
           <folding>
             <element signature="e#368#3062#0" expanded="false" />
             <element signature="e#3112#5424#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/data123.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="1271" column="27" lean-forward="false" selection-start-line="1271" selection-start-column="27" selection-end-line="1271" selection-end-column="27" />
+          <folding>
+            <element signature="e#25916#26158#0" expanded="false" />
+            <element signature="e#55934#57818#0" expanded="false" />
+            <element signature="e#60224#66771#0" expanded="false" />
           </folding>
         </state>
       </provider>

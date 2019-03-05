@@ -33,6 +33,7 @@ const app = require('../app');
 const fs = require('fs');
 const path = require('path');
 const Jimp = require('jimp');
+const barcode = require('barcode');
 
 router.post('/getclient', async (req, res) => {
     if(req.body.name == 'Телефон'){
@@ -706,6 +707,14 @@ router.post('/add', async (req, res) => {
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
+                            const code39 = barcode('code39', {
+                                data: hash,
+                                width: 400,
+                                height: 100,
+                            });
+                            let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                            code39.saveImage(barcodepath, function (err){
+                                if (err) throw err;
                                 let doc = new PDFDocument();
                                 let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                 let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
@@ -765,12 +774,13 @@ router.post('/add', async (req, res) => {
                                 doc.moveDown()
                                 doc.image(qrpath, (doc.page.width - 225) /2 )
                                 doc.moveDown()
-                                 doc
+                                doc.image(barcodepath, (doc.page.width - 400) /2 )
+                                doc
                                     .font('NotoSans')
                                     .fontSize(15)
                                     .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
                                 doc.end()
-
+                            });
                         })
                         data = {
                             seats: myNew.seats,
@@ -802,7 +812,15 @@ router.post('/add', async (req, res) => {
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
-                                 try{
+                            const code39 = barcode('code39', {
+                                data: hash,
+                                width: 400,
+                                height: 100,
+                            });
+
+                            let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                            code39.saveImage(barcodepath, function(){
+                                try{
                                 let doc = new PDFDocument();
                                 let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                 let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
@@ -867,6 +885,8 @@ router.post('/add', async (req, res) => {
                                 doc.addPage()
                                 doc.moveDown()
                                 doc.image(qrpath, (doc.page.width - 225) /2 )
+                                    doc.moveDown()
+                                    doc.image(barcodepath, (doc.page.width - 400) /2 )
                                     doc
                                         .font('NotoSans')
                                         .fontSize(15)
@@ -875,6 +895,7 @@ router.post('/add', async (req, res) => {
                             } catch(error) {
                                 console.error(error)
                             }})
+                        })
 
                         data = {
                             seats: myNew.seats,
@@ -1104,7 +1125,15 @@ router.post('/add', async (req, res) => {
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
-                                 let doc = new PDFDocument();
+                            const code39 = barcode('code39', {
+                                data: hash,
+                                width: 400,
+                                height: 100,
+                            });
+
+                            let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                            code39.saveImage(barcodepath, function(){
+                                let doc = new PDFDocument();
                             let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                             let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                             doc.registerFont('NotoSans', robotoBlack);
@@ -1162,13 +1191,15 @@ router.post('/add', async (req, res) => {
                             doc.addPage()
                             doc.moveDown()
                             doc.image(qrpath, (doc.page.width - 225) /2 )
-                                  doc
+                                doc.moveDown()
+                                doc.image(barcodepath, (doc.page.width - 400) /2 )
+                                doc
                                     .font('NotoSans')
                                     .fontSize(15)
                                     .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
                                 doc.end()
                             })
-
+                        })
 
                         data = {
                             seats: myNew.seats,
@@ -1200,7 +1231,16 @@ router.post('/add', async (req, res) => {
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
-                                 let doc = new PDFDocument();
+                            const code39 = barcode('code39', {
+                                data: hash,
+                                width: 400,
+                                height: 100,
+                            });
+
+                            let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+                            code39.saveImage(barcodepath, function(){
+                                try{
+                                let doc = new PDFDocument();
                                 let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                 let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                                 doc.registerFont('NotoSans', robotoBlack);
@@ -1264,12 +1304,17 @@ router.post('/add', async (req, res) => {
                                 doc.addPage()
                                 doc.moveDown()
                                 doc.image(qrpath, (doc.page.width - 225) /2 )
+                                    doc.moveDown()
+                                    doc.image(barcodepath, (doc.page.width - 400) /2 )
                                     doc
                                         .font('NotoSans')
                                         .fontSize(15)
                                         .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
                                     doc.end()
-                             })
+                            } catch(error) {
+                                console.error(error)
+                            }})
+                        })
 
                         data = {
                             seats: myNew.seats,
