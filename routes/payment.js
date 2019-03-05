@@ -152,10 +152,9 @@ router.get('/balancekg', async (req, res, next) => {
 
 router.post('/elsom/generate', async (req, res, next) => {
     try{
-        console.log(await WalletBiletiki.findOne({wallet: req.body.wallet})!=null&&!isNaN(req.body.sum)&&parseInt(req.body.sum)>0)
         if(await WalletBiletiki.findOne({wallet: req.body.wallet})!=null&&!isNaN(req.body.sum)&&parseInt(req.body.sum)>0){
            console.log('test')
-           const res = await axios.post('https://mbgwt.elsom.kg:10690/MerchantAPI ', {
+           axios.post('https://mbgwt.elsom.kg:10690/MerchantAPI ', {
                    'PartnerGenerateOTP': {
                        'CultureInfo': 'ru-Ru',
                        'MSISDN': '0909000009',
@@ -167,9 +166,14 @@ router.post('/elsom/generate', async (req, res, next) => {
                        'Password': 'md5(Password1)'
                    }
                }
-           )
-           console.log('res', res)
-           console.log('test')
+           )  .then(function (response) {
+               // handle success
+               console.log(response);
+           })
+               .catch(function (error) {
+                   // handle error
+                   console.log(error);
+               })
            res.status(200);
             res.end('8385878');
        } else {
