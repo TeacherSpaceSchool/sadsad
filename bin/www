@@ -9,10 +9,12 @@ let debug = require('debug')('museum-api:server');
 //let http = require('http');
 const https = require('https');
 const fs = require('fs');
+const path = require('path');
 const options = {
-    key: fs.readFileSync(__dirname + '/private.key', 'utf8'),
-    cert: fs.readFileSync(__dirname + '/public.cert', 'utf8')
+    key: fs.readFileSync(path.join(__dirname, 'private.key')),
+    cert: fs.readFileSync(path.join(__dirname, 'certificate.crt'))
 };
+
 /**
  * Get port from environment and store in Express.
  */
@@ -23,8 +25,8 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-
 let server = https.createServer(options, app);
+//let server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.

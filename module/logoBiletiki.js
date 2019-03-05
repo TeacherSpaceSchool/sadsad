@@ -5,9 +5,8 @@ const getOther = async () => {
     return {vertical: (await LogoBiletiki.findOne({name: 'vertical'})).image, square: (await LogoBiletiki.findOne({name: 'square'})).image, horizontal: (await LogoBiletiki.findOne({name: 'horizontal'})).image};
 }
 
-
 const getMain = async () => {
-    return await LogoBiletiki.findOne({name: 'main'});
+    return {kg: await LogoBiletiki.findOne({name: 'mainKG'}), ru: await LogoBiletiki.findOne({name: 'main'})}
 }
 
 const getClient = async () => {
