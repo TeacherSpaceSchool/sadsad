@@ -1,8 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const axios = require('axios');
+const router = express.Router();
 const WalletBiletiki = require('../models/walletBiletiki');
 const PaymentBiletiki = require('../models/paymentBiletiki');
-var xml = require('xml');
+const xml = require('xml');
+const randomstring = require('randomstring');
 
 /* GET home page. */
 router.get('/asisnur', async (req, res, next) => {
@@ -151,7 +153,20 @@ router.get('/balancekg', async (req, res, next) => {
 router.post('/elsom/generate', async (req, res, next) => {
     try{
        if(await WalletBiletiki.findOne({wallet: req.body.wallet})!=null&&!isNaN(req.body.sum)&&parseInt(req.body.sum)>0){
-
+           const res = await axios.post('https://mbgwt.elsom.kg:10690/MerchantAPI ', {
+                   'PartnerGenerateOTP': {
+                       'CultureInfo': 'ru-Ru',
+                       'MSISDN': '0909000009',
+                       'PartnerCode': '04108',
+                       'ChequeNo': randomstring.generate({length: 12, charset: 'numeric'}),
+                       'Amount': req.body.sum,
+                       'CashierNo': req.body.wallet,
+                       'UDF': 'TEST',
+                       'Password': 'md5(Password1)'
+                   }
+               }
+           )
+           console.log(res)
             res.status(200);
             res.end('1345678');
        } else {

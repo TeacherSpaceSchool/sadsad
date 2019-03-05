@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "barcode": "^0.1.0",
     "barcode-generator": "^0.1.0",
     "body-parser": "^1.18.3",
