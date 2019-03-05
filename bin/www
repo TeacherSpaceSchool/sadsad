@@ -57,7 +57,7 @@ function normalizePort(val) {
 }
 
 /**
- * Event listener for HTTP server "error" event.
+ * Event listener for HTTP server 'error' event.
  */
 
 function onError(error) {
@@ -85,7 +85,7 @@ function onError(error) {
 }
 
 /**
- * Event listener for HTTP server "listening" event.
+ * Event listener for HTTP server 'listening' event.
  */
 
 function onListening() {
@@ -95,3 +95,9 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+let http = require('http');
+http.createServer(function (req, res) {
+    res.writeHead(301, { 'Location': 'https://' + req.headers['host'] + req.url });
+    res.end();
+}).listen(80);
