@@ -152,11 +152,12 @@ router.get('/balancekg', async (req, res, next) => {
 
 router.post('/elsom/generate', async (req, res, next) => {
     try{
+        res.set('Content+Type', 'text/json; charset=utf-8');
         if(await WalletBiletiki.findOne({wallet: req.body.wallet})!=null&&!isNaN(req.body.sum)&&parseInt(req.body.sum)>0){
             let wallet = WalletBiletiki.findOne({wallet: req.body.wallet})
             let payment = new PaymentBiletiki({status: 'обработка', user: wallet.user, ammount: parseInt(req.body.sum), service: 'elsom', meta:'*'});
             payment = await PaymentBiletiki.create(payment);
-           axios.post('https://mbgwt.elsom.kg:10690/MerchantAPI ', {
+           axios.post('https://mbgwt.elsom.kg:10690/MerchantAPI', {
                    'PartnerGenerateOTP': {
                        'PartnerTrnID': payment._id,
                        'CultureInfo': 'ru-Ru',
