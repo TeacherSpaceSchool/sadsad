@@ -426,6 +426,13 @@ router.post('/add', async (req, res) => {
                     else
                         await AboutBiletiki.setAboutBiletiki(data, req.body.id)
                     await res.send(await AboutBiletiki.getAboutBiletiki(req.body.search, req.body.sort, req.body.skip))
+                } else if(req.body.name == 'Платежи'){
+                    data = {
+                        status: myNew.status
+                    };
+                    if(req.body.id!==undefined)
+                        await PaymentBiletiki.setPaymentBiletiki(data, req.body.id)
+                    await res.send(await PaymentBiletiki.getPaymentBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Кассы'){
                     data = {
                         name: myNew.name,

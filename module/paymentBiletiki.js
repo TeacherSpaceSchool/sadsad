@@ -9,6 +9,7 @@ const getPaymentBiletiki = async (search, sort, skip) => {
             'сумма',
             'сервис',
             'meta',
+            'статус',
             'создан',
             '_id'
         ];
@@ -26,6 +27,10 @@ const getPaymentBiletiki = async (search, sort, skip) => {
             sort = '-updatedAt';
         else if(sort[0]=='создан'&&sort[1]=='ascending')
             sort = 'updatedAt';
+        else if(sort[0]=='статус'&&sort[1]=='descending')
+            sort = '-status';
+        else if(sort[0]=='статус'&&sort[1]=='ascending')
+            sort = 'status';
         if(search == ''){
             count = await PaymentBiletiki.count();
             findResult = await PaymentBiletiki
@@ -33,7 +38,7 @@ const getPaymentBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('user ammount service updatedAt _id meta')
+                .select('status user ammount service updatedAt _id meta')
                 .populate({
                     path: 'user',
                     select: 'name email'
@@ -43,6 +48,7 @@ const getPaymentBiletiki = async (search, sort, skip) => {
                 $or: [
                     {payment: {'$regex': search, '$options': 'i'}},
                     {user: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
                 ]
             }
             );
@@ -50,22 +56,26 @@ const getPaymentBiletiki = async (search, sort, skip) => {
                 $or: [
                     {payment: {'$regex': search, '$options': 'i'}},
                     {user: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
                 ]
             })
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('user ammount service updatedAt _id meta')
+                .select('status user ammount service updatedAt _id meta')
                 .populate({
                     path: 'user',
                     select: 'name email'
                 });
         }
         for (let i=0; i<findResult.length; i++){
+            let status = '';
+            if(findResult[i].status !=undefined)
+                status = findResult[i].status
             let user = '';
             if(findResult[i].user !=undefined)
                 user = findResult[i].user.name+'\n'+findResult[i].user.email+'\n'+findResult[i].user._id
-            data.push([user, findResult[i].ammount, findResult[i].service, findResult[i].meta, format(findResult[i].updatedAt), findResult[i]._id]);
+            data.push([user, findResult[i].ammount, findResult[i].service, findResult[i].meta, status, format(findResult[i].updatedAt), findResult[i]._id]);
         }
         return {data: data, count: count, row: row}
     } catch(error) {
@@ -82,5 +92,14 @@ const addPaymentBiletiki = async (object) => {
     }
 }
 
+const setPaymentBiletiki = async (object, id) => {
+    try{
+        await PaymentBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+    } catch(error) {
+        console.error(error)
+    }
+}
+
+module.exports.setPaymentBiletiki = setPaymentBiletiki;
 module.exports.getPaymentBiletiki = getPaymentBiletiki;
 module.exports.addPaymentBiletiki = addPaymentBiletiki;
