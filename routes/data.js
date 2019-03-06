@@ -404,7 +404,7 @@ router.post('/add', async (req, res) => {
                         let filepath = path.join(app.dirname, 'public', 'images', filename);
                         let filepathThumbnail = path.join(app.dirname, 'public', 'thumbnail', filename);
                         let fstream = fs.createWriteStream(filepath);
-                        let stream = await req.body['file' + i].pipe(fstream);
+                        let stream = req.body['file' + i].pipe(fstream);
                         image.push(myConst.url + 'images/' + filename)
                         imageThumbnail.push(myConst.url + 'thumbnail/' + filename)
                         stream.on('finish', async () => {

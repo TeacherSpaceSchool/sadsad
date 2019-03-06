@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/payment.js" afterPath="$PROJECT_DIR$/routes/payment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -29,11 +31,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="76">
               <caret line="154" column="57" lean-forward="false" selection-start-line="154" selection-start-column="57" selection-end-line="154" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-56">
+              <caret line="52" column="20" lean-forward="false" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -59,15 +71,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1606">
-              <caret line="434" column="76" lean-forward="false" selection-start-line="434" selection-start-column="76" selection-end-line="434" selection-end-column="76" />
+            <state relative-caret-position="144">
+              <caret line="406" column="37" lean-forward="false" selection-start-line="406" selection-start-column="37" selection-end-line="406" selection-end-column="37" />
               <folding>
                 <element signature="e#25916#26158#0" expanded="false" />
-                <element signature="e#56342#58226#0" expanded="false" />
-                <element signature="e#60632#67179#0" expanded="false" />
+                <element signature="e#56336#58220#0" expanded="false" />
+                <element signature="e#60626#67173#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -84,8 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.asString('yyyy.dd.MM hh:mm',</find>
-      <find>SoldAndReturned</find>
       <find>filter</find>
       <find>Статистика</find>
       <find>stopBannerMove</find>
@@ -114,6 +124,8 @@
       <find>barcode</find>
       <find>&quot;</find>
       <find>Платежи</find>
+      <find>new PaymentBiletiki</find>
+      <find>bodyParser</find>
     </findStrings>
     <replaceStrings>
       <replace>verifydadmin</replace>
@@ -195,7 +207,6 @@
         <option value="$PROJECT_DIR$/module/ticketCinemaBiletiki.js" />
         <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/module/passport.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/module/logoBiletiki.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/module/const.js" />
@@ -203,8 +214,9 @@
         <option value="$PROJECT_DIR$/module/adsBiletiki.js" />
         <option value="$PROJECT_DIR$/models/paymentBiletiki.js" />
         <option value="$PROJECT_DIR$/module/paymentBiletiki.js" />
-        <option value="$PROJECT_DIR$/routes/data.js" />
         <option value="$PROJECT_DIR$/routes/payment.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/data.js" />
       </list>
     </option>
   </component>
@@ -260,22 +272,13 @@
             <path>
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
-              <item name="aclient" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="document" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
@@ -428,12 +431,12 @@
       <workItem from="1551415664736" duration="11022000" />
       <workItem from="1551500095830" duration="24601000" />
       <workItem from="1551702833395" duration="16972000" />
-      <workItem from="1551846108169" duration="3623000" />
+      <workItem from="1551846108169" duration="5635000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="626486000" />
+    <option name="totallyTimeSpent" value="628498000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -684,13 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/logoBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -789,14 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/adsBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="102" column="1" lean-forward="false" selection-start-line="102" selection-start-column="1" selection-end-line="110" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/paymentBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1734">
@@ -813,23 +801,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1606">
-          <caret line="434" column="76" lean-forward="false" selection-start-line="434" selection-start-column="76" selection-end-line="434" selection-end-column="76" />
-          <folding>
-            <element signature="e#25916#26158#0" expanded="false" />
-            <element signature="e#56342#58226#0" expanded="false" />
-            <element signature="e#60632#67179#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="154" column="57" lean-forward="false" selection-start-line="154" selection-start-column="57" selection-end-line="154" selection-end-column="57" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-56">
+          <caret line="52" column="20" lean-forward="false" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/adsBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="102" column="1" lean-forward="false" selection-start-line="102" selection-start-column="1" selection-end-line="110" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="406" column="37" lean-forward="false" selection-start-line="406" selection-start-column="37" selection-end-line="406" selection-end-column="37" />
+          <folding>
+            <element signature="e#25916#26158#0" expanded="false" />
+            <element signature="e#56336#58220#0" expanded="false" />
+            <element signature="e#60626#67173#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
