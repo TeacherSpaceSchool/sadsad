@@ -36,7 +36,8 @@
     "randomstring": "^1.1.5",
     "superagent": "^4.1.0",
     "twilio": "^3.29.0",
-    "xml": "^1.0.1"
+    "xml": "^1.0.1",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

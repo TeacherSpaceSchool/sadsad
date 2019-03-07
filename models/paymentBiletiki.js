@@ -21,6 +21,14 @@ const PaymentBiletikiSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    where: {
+        type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true
+    },
 }, {
     timestamps: true
 });

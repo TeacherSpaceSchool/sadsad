@@ -5,6 +5,7 @@ const WalletBiletiki = require('../models/walletBiletiki');
 const PaymentBiletiki = require('../models/paymentBiletiki');
 const xml = require('xml');
 const randomstring = require('randomstring');
+const https = require('https');
 
 /* GET home page. */
 router.get('/asisnur', async (req, res, next) => {
@@ -155,9 +156,15 @@ router.post('/elsom/generate', async (req, res, next) => {
         res.set('Content+Type', 'text/json; charset=utf-8');
         if(await WalletBiletiki.findOne({wallet: req.body.wallet})!=null&&!isNaN(req.body.sum)&&parseInt(req.body.sum)>0){
             let wallet = WalletBiletiki.findOne({wallet: req.body.wallet})
+            console.log(wallet)
             let payment = new PaymentBiletiki({status: 'обработка', user: wallet.user, ammount: parseInt(req.body.sum), service: 'elsom', meta:'*'});
             payment = await PaymentBiletiki.create(payment);
-           axios.post('https://mbgwt.elsom.kg:10690/MerchantAPI', {
+            const instance = axios.create({
+                httpsAgent: new https.Agent({
+                    rejectUnauthorized: false
+                })
+            });
+            instance.post('https://mbgwt.elsom.kg:10690/MerchantAPI', {
                    'PartnerGenerateOTP': {
                        'PartnerTrnID': payment._id,
                        'CultureInfo': 'ru-Ru',
@@ -190,5 +197,43 @@ router.post('/elsom/generate', async (req, res, next) => {
         res.end('error');
     }
 })
+
+router.get('/kcb/check', async (req, res, next) => {
+    try{
+            let result;
+            res.set('Content+Type', 'text/xml');
+            if(req.param('command')==='check'){
+                let wallet = await WalletBiletiki.findOne({wallet: req.param('account')})
+                /*XML*/
+                if(wallet!=null){
+                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { result: 0 }, {comment: 'ok'} ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
+                } else {
+                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { result: 1 }, {comment: 'ok'} ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
+                }
+            } else if(req.param('command')==='pay'){
+                let wallet = await WalletBiletiki.findOne({wallet: req.param('account')})
+                if(wallet!=null){
+                    wallet.balance = wallet.balance+parseInt(req.param('sum'))
+                    await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
+                    let payment = new PaymentBiletiki({status: 'совершен', user: wallet.user, ammount: parseInt(req.param('sum')), service: 'balancekg', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')});
+                    await PaymentBiletiki.create(payment);
+                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: payment._id } , { sum: req.param('sum') } , { result: 0 } , { comment: 'ok' } ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
+                } else {
+                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 1 } , { comment: 'no such user' } ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
+                }
+            }
+    } catch(error) {
+        console.error(error)
+        res.status(501);
+    }
+});
 
 module.exports = router;
