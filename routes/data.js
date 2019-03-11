@@ -24,7 +24,6 @@ const MovieBiletiki = require('../module/movieBiletiki');
 const SeanceBiletiki = require('../module/seanceBiletiki');
 const PaymentBiletiki = require('../module/paymentBiletiki');
 const TicketCinemaBiletiki = require('../module/ticketCinemaBiletiki');
-const WalletBiletiki = require('../module/walletBiletiki');
 const CashboxBiletiki = require('../module/cashboxBiletiki');
 const qr = require('qr-image');
 const myConst = require('../module/const');
@@ -37,6 +36,8 @@ const Jimp = require('jimp');
 router.post('/getclient', async (req, res) => {
     if(req.body.name == 'Телефон'){
         await res.send(await PhoneBiletiki.getClient())
+    } else if(req.body.name == 'КодПлатежа'){
+        await res.send(await PaymentBiletiki.generateWallet())
     } else if(req.body.name == 'Кассы'){
         await res.send(await CashboxBiletiki.getClient())
     } else if(req.body.name == 'Email'){
@@ -113,9 +114,9 @@ router.post('/getclientsecure', async (req, res) => {
         } else if(req.body.name === 'Баланс'){
             await passportEngine.getWallet(req, res)
         } else if(req.body.name === 'Купить'){
-            await passportEngine.buy(req, res)
+            await passportEngine.verifydclientbuyticket(req, res);
         } else if(req.body.name === 'КупитьКино'){
-            await passportEngine.buy1(req, res)
+            await passportEngine.verifydclientbuyticketcinema(req, res)
         }
 });
 
@@ -201,8 +202,6 @@ router.post('/get', async (req, res) => {
                     await res.send(await TicketBiletiki.getByHash(JSON.parse(req.body.data).hash))
                 } else if(req.body.name == 'БилетыКиноHash'){
                     await res.send(await TicketCinemaBiletiki.getByHash(JSON.parse(req.body.data).hash))
-                } else if(req.body.name == 'Баланс'){
-                    await res.send(await WalletBiletiki.getWalletBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Подтверждение'){
                     await res.send(await TicketBiletiki.approveTicketBiletiki(JSON.parse(req.body.data).hash))
                 } else if(req.body.name == 'ПодтверждениеКино'){
@@ -229,8 +228,6 @@ router.post('/get', async (req, res) => {
                     await res.send(await StatisticBiletiki.getCinemaStatisticCinemaBiletiki())
                 } else if(req.body.name == 'Статистика фильмов'){
                     await res.send(await StatisticBiletiki.getCinemaStatisticMovieBiletiki())
-                } else if(req.body.name == 'Баланс'){
-                    await res.send(await WalletBiletiki.getWalletBiletiki(req.body.search, req.body.sort, req.body.skip))
                 }
             });
         } else if(role==='cashier'){
@@ -383,6 +380,7 @@ router.post('/add', async (req, res) => {
     await passportEngine.verifydrole(req, res, async (role)=> {
         if(role==='admin'){
             await passportEngine.verifydadmin(req, res, async ()=>{
+                console.log(req.body.name)
                 let data, myNew = JSON.parse(req.body.new), image = [], imageThumbnail = [];
                 if(req.body.oldFile!=undefined) {
                     image = req.body.oldFile.split('\n');
@@ -443,10 +441,6 @@ router.post('/add', async (req, res) => {
                     else
                         await CashboxBiletiki.setCashboxBiletiki(data, req.body.id)
                     await res.send(await CashboxBiletiki.getCashboxBiletiki(req.body.search, req.body.sort, req.body.skip))
-                } else if(req.body.name === 'Баланс') {
-                    if(req.body.id!=undefined)
-                        await WalletBiletiki.setWalletBiletiki(myNew.balance, req.body.id)
-                    await res.send(await WalletBiletiki.getWalletBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Рассылка'){
                     data = {
                         mailuser: myNew.mailuser,
@@ -460,10 +454,6 @@ router.post('/add', async (req, res) => {
                     else
                         await MailingBiletiki.setMailingBiletiki(data, req.body.id)
                     await res.send(await MailingBiletiki.getMailingBiletiki(req.body.search, req.body.sort, req.body.skip))
-                } else if(req.body.name === 'Баланс') {
-                    if(req.body.id!=undefined)
-                        await WalletBiletiki.setWalletBiletiki(myNew.balance, req.body.id)
-                    await res.send(await WalletBiletiki.getWalletBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Биллборды'){
                     data = {
                         name: myNew.name,
@@ -557,7 +547,8 @@ router.post('/add', async (req, res) => {
                         await SeanceBiletiki.setSeanceBiletiki(data, req.body.id)
                     await res.send(await SeanceBiletiki.getSeanceBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Событие'){
-                    console.log(myNew.date)
+                    console.log(req.body.name)
+                    console.log(myNew)
                     let realDate = []
                     for(let i=0; i<myNew.date.length; i++){
                         realDate.push(new Date(myNew.date[i]+'Z'));
@@ -660,12 +651,8 @@ router.post('/add', async (req, res) => {
                         status: myNew.status
                     }
                     if(req.body.id==undefined){
-                        data.wallet = await UserBiletiki.generateWallet();
-                        data.balance = 0
                         await UserBiletiki.addUserBiletiki(data)
                     } else {
-                        data.wallet = myNew.wallet;
-                        data.balance = myNew.balance
                         await UserBiletiki.setUserBiletiki(data, req.body.id)
                     }
                     await res.send(await UserBiletiki.getUserBiletiki(req.body.search, req.body.sort, req.body.skip))
@@ -721,62 +708,82 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
                                 doc.moveDown()
-                                doc
+                            let datet = new Date()
+                            datet = datet.toString()
+                            let date = datet.split('T')[0].split('-')
+                            let time = datet.split('T')[1].split(':')
+                            let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+                            doc
+                                .font('NotoSans')
+                                .fontSize(12)
+                                .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
+                            let sum = 0
+                            for(let i = 0; i<myNew.seats.length; i++){
+                                sum+=parseInt(myNew.seats[i][0]['price'])
+                            }
+                            doc
+                                .font('NotoSans')
+                                .fontSize(12)
+                                .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
+                            doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Площадка:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.event.where.name, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Мероприятие:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Места:', {width: doc.page.width - 100, align: 'center'})
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
                                     let date = data.seats[i][1].split('T')[0].split('-')
                                     let time = data.seats[i][1].split('T')[1].split(':')
                                     let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Место: '+myNew.seats[i][0]['name'], {width: doc.page.width - 100, align: 'justify'})
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Цена: '+myNew.seats[i][0]['price']+' сом', {width: doc.page.width - 100, align: 'justify'})
                                 }
                                 doc.moveDown()
                                 doc.addPage()
                                 doc.moveDown()
                                 doc.image(qrpath, (doc.page.width - 225) /2 )
-                                doc.moveDown()
-                                 doc
-                                    .font('NotoSans')
-                                    .fontSize(15)
-                                    .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
-                                doc.end()
+                            doc
+                                .font('NotoSans')
+                                .fontSize(12)
+                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
+                            doc
+                                .font('NotoSans')
+                                .fontSize(12)
+                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                            doc.end()
 
                         })
                         data = {
@@ -818,56 +825,56 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Кино:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.movie, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Кинотеатр:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.cinema, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Зал:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.hall, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Места:', {width: doc.page.width - 100, align: 'center'})
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Дата: '+myNew.seats[i].date, {width: doc.page.width - 100, align: 'justify'})
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Место: '+myNew.seats[i].name, {width: doc.page.width - 100, align: 'justify'})
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Цена: '+myNew.seats[i].priceSelect+' сом', {width: doc.page.width - 100, align: 'justify'})
                                 }
                                 doc.moveDown()
@@ -876,7 +883,7 @@ router.post('/add', async (req, res) => {
                                 doc.image(qrpath, (doc.page.width - 225) /2 )
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
                                     doc.end()
                             } catch(error) {
@@ -1007,62 +1014,62 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Кино:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.movie, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Кинотеатр:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.cinema, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Зал:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.hall, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Места:', {width: doc.page.width - 100, align: 'center'})
                                 for (let i = 0; i < myNew.seats.length; i++) {
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('Место ' + (i + 1), {width: doc.page.width - 100, align: 'justify'})
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Дата: ' + myNew.seats[i].date, {
                                             width: doc.page.width - 100,
                                             align: 'justify'
                                         })
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Место: ' + myNew.seats[i].name, {
                                             width: doc.page.width - 100,
                                             align: 'justify'
                                         })
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Цена: ' + myNew.seats[i].price + ' сом', {
                                             width: doc.page.width - 100,
                                             align: 'justify'
@@ -1119,50 +1126,50 @@ router.post('/add', async (req, res) => {
                             doc.pipe(fstream);
                             doc
                                 .font('NotoSans')
-                                .fontSize(20)
+                                .fontSize(14)
                                 .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
                             doc.moveDown()
                             doc
                                 .font('NotoSans')
-                                .fontSize(20)
+                                .fontSize(14)
                                 .text('Площадка:', {width: doc.page.width - 100, align: 'center'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(15)
+                                .fontSize(12)
                                 .text(myNew.event.where.name, {width: doc.page.width - 100, align: 'justify'})
                             doc.moveDown()
                             doc
                                 .font('NotoSans')
-                                .fontSize(20)
+                                .fontSize(14)
                                 .text('Мероприятие:', {width: doc.page.width - 100, align: 'center'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(15)
+                                .fontSize(12)
                                 .text(myNew.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
                             doc.moveDown()
                             doc
                                 .font('NotoSans')
-                                .fontSize(20)
+                                .fontSize(14)
                                 .text('Места:', {width: doc.page.width - 100, align: 'center'})
                             for(let i = 0; i<myNew.seats.length; i++){
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
                                 let date = data.seats[i][1].split('T')[0].split('-')
                                 let time = data.seats[i][1].split('T')[1].split(':')
                                 let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text('        Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text('        Место: '+myNew.seats[i][0]['name'], {width: doc.page.width - 100, align: 'justify'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text('        Цена: '+myNew.seats[i][0]['price']+' сом', {width: doc.page.width - 100, align: 'justify'})
                             }
                             doc.moveDown()
@@ -1171,7 +1178,7 @@ router.post('/add', async (req, res) => {
                             doc.image(qrpath, (doc.page.width - 225) /2 )
                                   doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
                                 doc.end()
                             })
@@ -1215,56 +1222,56 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Кино:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.movie, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Кинотеатр:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.cinema, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Зал:', {width: doc.page.width - 100, align: 'center'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(15)
+                                    .fontSize(12)
                                     .text(myNew.hall, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(14)
                                     .text('Места:', {width: doc.page.width - 100, align: 'center'})
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Дата: '+myNew.seats[i].date, {width: doc.page.width - 100, align: 'justify'})
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Место: '+myNew.seats[i].name, {width: doc.page.width - 100, align: 'justify'})
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        Цена: '+myNew.seats[i].priceSelect+' сом', {width: doc.page.width - 100, align: 'justify'})
                                 }
                                 doc.moveDown()
@@ -1273,7 +1280,7 @@ router.post('/add', async (req, res) => {
                                 doc.image(qrpath, (doc.page.width - 225) /2 )
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(15)
+                                        .fontSize(12)
                                         .text('        '+hash, {width: doc.page.width - 100, align: 'justify'})
                                     doc.end()
                              })

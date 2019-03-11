@@ -1,5 +1,180 @@
-const TicketCinemaBiletiki = require('../models/ticketCinemaBiletiki'), EventBiletiki = require('../models/eventBiletiki')
+const TicketCinemaBiletiki = require('../models/ticketCinemaBiletiki'), SeanceBiletiki = require('../models/seanceBiletiki')
+const MailingBiletiki = require('../models/mailingBiletiki');
 const format = require('./const').stringifyDateTime
+const randomstring = require('randomstring');
+const app = require('../app');
+const fs = require('fs');
+const path = require('path');
+const PDFDocument = require('pdfkit');
+const qr = require('qr-image');
+const myConst = require('../module/const');
+const PaymentBiletiki = require('../models/paymentBiletiki');
+const checkEmail = require('./const').validMail
+const checkPhone = require('./const').validPhone
+const nodemailer = require('nodemailer');
+
+const buy = async (req, res, user) => {
+    let data = JSON.parse(req.body.data);
+    if(checkEmail(data.email)&&checkPhone(data.phone)) {
+        let hash = randomstring.generate({length: 12, charset: 'numeric'});
+        while (!await checkHash(hash))
+            hash = randomstring.generate({length: 12, charset: 'numeric'});
+        let qrname = randomstring.generate(5) + user._id + data.event._id + '.png';
+        let pdfname = qrname.replace('.png', '.pdf');
+        let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
+        let fstream = fs.createWriteStream(qrpath);
+        let qrTicket = await qr.image(hash, {type: 'png'});
+        let stream = qrTicket.pipe(fstream)
+        stream.on('finish', async () => {
+            /*const code39 = barcode('code39', {
+                data: hash,
+                width: 400,
+                height: 100,
+            });
+            let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
+            code39.saveImage(barcodepath, function (err){*/
+            let doc = new PDFDocument();
+            let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
+            let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+            doc.registerFont('NotoSans', robotoBlack);
+            let fstream = fs.createWriteStream(pdfpath);
+            doc.pipe(fstream);
+            doc
+                .font('NotoSans')
+                .fontSize(20)
+                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
+            doc.moveDown()
+            doc
+                .font('NotoSans')
+                .fontSize(20)
+                .text('Кино:', {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(15)
+                .text(data.movie, {width: doc.page.width - 100, align: 'justify'})
+            doc.moveDown()
+            doc
+                .font('NotoSans')
+                .fontSize(20)
+                .text('Кинотеатр:', {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(15)
+                .text(data.cinema, {width: doc.page.width - 100, align: 'justify'})
+            doc.moveDown()
+            doc
+                .font('NotoSans')
+                .fontSize(20)
+                .text('Зал:', {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(15)
+                .text(data.hall, {width: doc.page.width - 100, align: 'justify'})
+            doc.moveDown()
+            doc
+                .font('NotoSans')
+                .fontSize(20)
+                .text('Места:', {width: doc.page.width - 100, align: 'center'})
+            for(let i = 0; i<data.seats.length; i++){
+                doc
+                    .font('NotoSans')
+                    .fontSize(15)
+                    .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
+                doc
+                    .font('NotoSans')
+                    .fontSize(15)
+                    .text('        Дата: '+data.seats[i].date, {width: doc.page.width - 100, align: 'justify'})
+                doc
+                    .font('NotoSans')
+                    .fontSize(15)
+                    .text('        Место: '+data.seats[i].name, {width: doc.page.width - 100, align: 'justify'})
+                doc
+                    .font('NotoSans')
+                    .fontSize(15)
+                    .text('        Цена: '+data.seats[i].priceSelect+' сом', {width: doc.page.width - 100, align: 'justify'})
+            }
+            doc.moveDown()
+            doc.addPage()
+            doc.moveDown()
+            doc.image(qrpath, (doc.page.width - 225) /2 )
+            doc
+                .font('NotoSans')
+                .fontSize(15)
+                .text('Код: ' + hash, {width: doc.page.width - 100, align: 'center'})
+            doc.end()
+        })
+        await SeanceBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
+        let _object = new TicketCinemaBiletiki({
+            seats: data.seats,
+            image: data.image,
+            hash: hash,
+            user: user._id,
+            event: data.event._id,
+            ticket: myConst.url + 'ticket/' + pdfname,
+            status: 'ожидается оплата',
+            movie: data.movie,
+            cinema: data.cinema,
+            hall: data.hall,
+        });
+        await TicketCinemaBiletiki.create(_object);
+        let payment = new PaymentBiletiki({
+            wallet: data.wallet,
+            ticket: _object._id,
+            ammount: data.fullPrice,
+            service: data.service,
+            meta: '*',
+            status: 'обработка',
+            name: data.name,
+            email: data.email,
+            phone: data.phone
+        });
+        await PaymentBiletiki.create(payment);
+        let mailingBiletiki = await MailingBiletiki.findOne();
+        let mailOptions = {
+            from: mailingBiletiki.mailuser,
+            to: data.email,
+            subject: 'Счет за билет',
+            text: 'Ваш счет для оплаты: ' + data.wallet
+        };
+        if (mailingBiletiki !== null) {
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: mailingBiletiki.mailuser,
+                    pass: mailingBiletiki.mailpass
+                }
+            });
+            transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log('Email sent: ' + info.response);
+                }
+            });
+        }
+        setTimeout(async () => {
+            let ticket = await TicketCinemaBiletiki.findOne({_id: _object._id})
+            if (ticket.status === 'ожидается оплата') {
+                let _seance = await SeanceBiletiki.findOne({_id: data.event._id})
+                for (let x = 0; x < ticket.seats.length; x++) {
+                    for (let i = 0; i < _seance.seats.length; i++) {
+                        for (let i1 = 0; i1 < _seance.seats[i].length; i1++) {
+                            if (_seance.seats[i][i1].name === ticket.seats[x].name) {
+                                _seance.seats[i][i1].status='free'
+                                _seance.seats[i][i1].color='indigo'
+                            }
+                        }
+                    }
+                }
+
+
+                await SeanceBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: _seance});
+                await TicketCinemaBiletiki.deleteMany({_id: _object._id})
+                await PaymentBiletiki.deleteMany({ticket: _object._id})
+            }
+        }, 10000);
+    }
+}
 
 const checkHash = async (hash) => {
     const new1 = await TicketCinemaBiletiki.count({hash: hash})===0;
@@ -237,3 +412,4 @@ module.exports.setTicketCinemaBiletiki = setTicketCinemaBiletiki;
 module.exports.addTicketCinemaBiletiki = addTicketCinemaBiletiki;
 module.exports.getById = getById;
 module.exports.approveTicketCinemaBiletiki = approveTicketCinemaBiletiki;
+module.exports.buy = buy;

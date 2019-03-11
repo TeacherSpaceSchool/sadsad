@@ -6,26 +6,9 @@ const jwtsecret = '@615141ViDiK141516@';
 const UserBiletiki = require('../models/userBiletiki');
 const TicketBiletiki = require('../models/ticketBiletiki');
 const TicketBiletikiAction = require('../module/ticketBiletiki');
-const EventBiletiki = require('../models/eventBiletiki');
-const SeanceBiletiki = require('../models/seanceBiletiki');
 const TicketCinemaBiletiki = require('../models/ticketCinemaBiletiki');
-const WalletBiletiki = require('../models/walletBiletiki');
-const WalletBiletikiAction = require('../module/walletBiletiki');
-const constAction = require('../module/const');
+const TicketCinemaBiletikiAction = require('../module/ticketCinemaBiletiki');
 const jwt = require('jsonwebtoken');
-const randomstring = require('randomstring');
-const app = require('../app');
-const fs = require('fs');
-const path = require('path');
-const PDFDocument = require('pdfkit');
-const qr = require('qr-image');
-const myConst = require('../module/const');
-const barcode = require('barcode');
-const nodemailer = require('nodemailer');
-const MailingBiletiki = require('../models/mailingBiletiki');
-const accountSid = 'ACb02dc7067344b48d030f98e5a11c08f6';
-const authToken = '60788a08ed67261f358bf2299e8e0a9a';
-const client = require('twilio')(accountSid, authToken);
 
 let start = () => {
 //настройка паспорта
@@ -76,6 +59,54 @@ const verifydrole = async (req, res, func) => {
                 console.error('No such user')
                 res.status(401);
                 res.end('No such user');
+            }
+        } catch (err) {
+            console.error(err)
+            res.status(401);
+            res.end('err')
+        }
+    } )(req, res)
+}
+
+const verifydclientbuyticket = async (req, res) => {
+    await passport.authenticate('jwt', async function (err, user) {
+        try{
+            if (user&&user.status==='active'&&user.role==='client') {
+                await TicketBiletikiAction.buy(req, res, user)
+                console.log('ok')
+                res.status(200);
+                res.end('ok');
+                return user
+            } else {
+                user = await UserBiletiki.findOne({role: 'admin'})
+                await TicketBiletikiAction.buy(req, res, user)
+                console.log('ok')
+                res.status(200);
+                res.end('ok');
+            }
+        } catch (err) {
+            console.error(err)
+            res.status(401);
+            res.end('err')
+        }
+    } )(req, res)
+}
+
+const verifydclientbuyticketcinema = async (req, res) => {
+    await passport.authenticate('jwt', async function (err, user) {
+        try{
+            if (user&&user.status==='active'&&user.role==='client') {
+                await TicketCinemaBiletikiAction.buy(req, res, user)
+                console.log('ok')
+                res.status(200);
+                res.end('ok');
+                return user
+            } else {
+                user = await UserBiletiki.findOne({role: 'admin'})
+                await TicketCinemaBiletikiAction.buy(req, res, user)
+                console.log('ok')
+                res.status(200);
+                res.end('ok');
             }
         } catch (err) {
             console.error(err)
@@ -244,153 +275,6 @@ const getHistory = async (req, res) => {
         }
     } )(req, res)
 }
-
-const buy = async (req, res) => {
-    await passport.authenticate('jwt', async function (err, user) {
-        try{
-            let data = JSON.parse(req.body.data);
-            console.log(data.event.where.name)
-            let wallet = await WalletBiletiki.findOne({user: user._id})
-            if (user&&user.status==='active'&&wallet.balance>data.fullPrice) {
-                wallet.balance = wallet.balance-data.fullPrice
-                await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
-
-                let hash = randomstring.generate({length: 12, charset: 'numeric'});
-                while (!await TicketBiletikiAction.checkHash(hash))
-                     hash = randomstring.generate({length: 12, charset: 'numeric'});
-                let qrname = randomstring.generate(5) + user._id + data.event._id+'.png';
-                let pdfname = qrname.replace('.png','.pdf');
-                let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
-                let fstream = fs.createWriteStream(qrpath);
-                let qrTicket = await qr.image(hash, { type: 'png' });
-                let stream = qrTicket.pipe(fstream)
-                stream.on('finish', async () => {
-                    const code39 = barcode('code39', {
-                        data: hash,
-                        width: 400,
-                        height: 100,
-                    });
-                    let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
-                    code39.saveImage(barcodepath, function (err){
-                        let doc = new PDFDocument();
-                    let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
-                    let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
-                    doc.registerFont('NotoSans', robotoBlack);
-                    let fstream = fs.createWriteStream(pdfpath);
-                    doc.pipe(fstream);
-                    doc
-                        .font('NotoSans')
-                        .fontSize(20)
-                        .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                    doc.moveDown()
-                    doc
-                        .font('NotoSans')
-                        .fontSize(20)
-                        .text('Площадка:', {width: doc.page.width - 100, align: 'center'})
-                    doc
-                        .font('NotoSans')
-                        .fontSize(15)
-                        .text(data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
-                    doc.moveDown()
-                    doc
-                        .font('NotoSans')
-                        .fontSize(20)
-                        .text('Мероприятие:', {width: doc.page.width - 100, align: 'center'})
-                    doc
-                        .font('NotoSans')
-                        .fontSize(15)
-                        .text(data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
-                    doc.moveDown()
-                    doc
-                        .font('NotoSans')
-                        .fontSize(20)
-                        .text('Места:', {width: doc.page.width - 100, align: 'center'})
-                    for(let i = 0; i<data.seats.length; i++){
-                        doc
-                            .font('NotoSans')
-                            .fontSize(15)
-                            .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
-                        let date = data.seats[i][1].split('T')[0].split('-')
-                        let time = data.seats[i][1].split('T')[1].split(':')
-                        let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                        doc
-                            .font('NotoSans')
-                            .fontSize(15)
-                            .text('        Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                        doc
-                            .font('NotoSans')
-                            .fontSize(15)
-                            .text('        Место: '+data.seats[i][0]['name'], {width: doc.page.width - 100, align: 'justify'})
-                        doc
-                            .font('NotoSans')
-                            .fontSize(15)
-                            .text('        Цена: '+data.seats[i][0]['price']+' сом', {width: doc.page.width - 100, align: 'justify'})
-                    }
-                    doc.moveDown()
-                    doc.addPage()
-                    doc.moveDown()
-                    doc.image(qrpath, (doc.page.width - 225) /2 )
-                    doc.end()
-                })})
-                await EventBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
-                let _object = new TicketBiletiki({
-                    seats: data.seats,
-                    hash: hash,
-                    user: user._id,
-                    image: data.event.image,
-                    genre: data.event.genre,
-                    event: data.event.nameRu,
-                    where: data.event.where.name,
-                    ticket: myConst.url + 'ticket/' + pdfname,
-                    status: 'продан',
-                });
-                await TicketBiletiki.create(_object);
-
-                let mailingBiletiki = await MailingBiletiki.findOne();
-                let mailOptions = {
-                    from: mailingBiletiki.mailuser,
-                    to: user.email,
-                    subject: 'Ticket.kg - Покупка билета',
-                    text: 'Ваш билет: '+myConst.url + 'ticket/' + pdfname
-                };
-                if(mailingBiletiki!==null&&constAction.validMail(user.email)){
-                    const transporter = nodemailer.createTransport({
-                        service: 'gmail',
-                        auth: {
-                            user: mailingBiletiki.mailuser,
-                            pass: mailingBiletiki.mailpass
-                        }
-                    });
-                    transporter.sendMail(mailOptions, function(error, info){
-                        if (error) {
-                            console.log(error);
-                        } else {
-                            console.log('Email sent: ' + info.response);
-                        }
-                    });
-                }
-                client.messages
-                    .create({
-                        body: 'Ваш билет: '+myConst.url + 'ticket/' + pdfname,
-                        from: '+17622526173',
-                        to: user.phonenumber
-                    })
-                    .then(message => console.log(message.sid));
-                res.status(200);
-                res.end('ok');
-            } else {
-                console.error('No such user')
-                res.status(401);
-                res.end('No such user');
-            }
-        } catch (err) {
-            console.error(err)
-            res.status(401);
-            res.end('err')
-        }
-    } )(req, res)
-}
-
 const getWallet = async (req, res) => {
     await passport.authenticate('jwt', async function (err, user) {
         try{
@@ -409,159 +293,6 @@ const getWallet = async (req, res) => {
         }
     } )(req, res)
 }
-
-const buy1 = async (req, res) => {
-    await passport.authenticate('jwt', async function (err, user) {
-        try{
-            let data = JSON.parse(req.body.data);
-            let wallet = await WalletBiletiki.findOne({user: user._id})
-            console.log(data.seats)
-            if (user&&user.status==='active'&&wallet.balance>data.fullPrice) {
-                wallet.balance = wallet.balance-data.fullPrice
-                await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
-                let hash = randomstring.generate({length: 12, charset: 'numeric'});
-                while (!await TicketBiletikiAction.checkHash(hash))
-                    hash = randomstring.generate({length: 12, charset: 'numeric'});
-                let qrname = randomstring.generate(5) + user._id + data.event._id+'.png';
-                let pdfname = qrname.replace('.png','.pdf');
-                let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
-                let fstream = fs.createWriteStream(qrpath);
-                let qrTicket = await qr.image(hash, { type: 'png' });
-                let stream = qrTicket.pipe(fstream)
-                stream.on('finish', async () => {
-                    const code39 = barcode('code39', {
-                        data: hash,
-                        width: 400,
-                        height: 100,
-                    });
-                    let barcodepath = path.join(app.dirname, 'public', 'barcode', qrname);
-                    code39.saveImage(barcodepath, function (err){
-                        let doc = new PDFDocument();
-                    let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
-                    let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
-                    doc.registerFont('NotoSans', robotoBlack);
-                    let fstream = fs.createWriteStream(pdfpath);
-                    doc.pipe(fstream);
-                    doc
-                        .font('NotoSans')
-                        .fontSize(20)
-                        .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                    doc.moveDown()
-                    doc
-                        .font('NotoSans')
-                        .fontSize(20)
-                        .text('Кино:', {width: doc.page.width - 100, align: 'center'})
-                    doc
-                        .font('NotoSans')
-                        .fontSize(15)
-                        .text(data.movie, {width: doc.page.width - 100, align: 'justify'})
-                    doc.moveDown()
-                    doc
-                        .font('NotoSans')
-                        .fontSize(20)
-                        .text('Кинотеатр:', {width: doc.page.width - 100, align: 'center'})
-                    doc
-                        .font('NotoSans')
-                        .fontSize(15)
-                        .text(data.cinema, {width: doc.page.width - 100, align: 'justify'})
-                    doc.moveDown()
-                    doc
-                        .font('NotoSans')
-                        .fontSize(20)
-                        .text('Зал:', {width: doc.page.width - 100, align: 'center'})
-                    doc
-                        .font('NotoSans')
-                        .fontSize(15)
-                        .text(data.hall, {width: doc.page.width - 100, align: 'justify'})
-                    doc.moveDown()
-                    doc
-                        .font('NotoSans')
-                        .fontSize(20)
-                        .text('Места:', {width: doc.page.width - 100, align: 'center'})
-                    for(let i = 0; i<data.seats.length; i++){
-                        doc
-                            .font('NotoSans')
-                            .fontSize(15)
-                            .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
-                        doc
-                            .font('NotoSans')
-                            .fontSize(15)
-                            .text('        Дата: '+data.seats[i].date, {width: doc.page.width - 100, align: 'justify'})
-                        doc
-                            .font('NotoSans')
-                            .fontSize(15)
-                            .text('        Место: '+data.seats[i].name, {width: doc.page.width - 100, align: 'justify'})
-                        doc
-                            .font('NotoSans')
-                            .fontSize(15)
-                            .text('        Цена: '+data.seats[i].priceSelect+' сом', {width: doc.page.width - 100, align: 'justify'})
-                    }
-                    doc.moveDown()
-                    doc.addPage()
-                    doc.moveDown()
-                    doc.image(qrpath, (doc.page.width - 225) /2 )
-                    doc.end()
-                })})
-                await SeanceBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
-                let _object = new TicketCinemaBiletiki({
-                    seats: data.seats,
-                    image: data.image,
-                    hash: hash,
-                    user: user._id,
-                    event: data.event._id,
-                    ticket: myConst.url + 'ticket/' + pdfname,
-                    status: 'продан',
-                    movie: data.movie,
-                    cinema: data.cinema,
-                    hall: data.hall,
-                });
-                await TicketCinemaBiletiki.create(_object);
-
-                let mailingBiletiki = await MailingBiletiki.findOne();
-                let mailOptions = {
-                    from: mailingBiletiki.mailuser,
-                    to: user.email,
-                    subject: 'Ticket.kg - Покупка билета',
-                    text: 'Ваш билет: '+myConst.url + 'ticket/' + pdfname
-                };
-                if(mailingBiletiki!==null&&constAction.validMail(user.email)){
-                    const transporter = nodemailer.createTransport({
-                        service: 'gmail',
-                        auth: {
-                            user: mailingBiletiki.mailuser,
-                            pass: mailingBiletiki.mailpass
-                        }
-                    });
-                    transporter.sendMail(mailOptions, function(error, info){
-                        if (error) {
-                            console.log(error);
-                        } else {
-                            console.log('Email sent: ' + info.response);
-                        }
-                    });
-                }
-                client.messages
-                    .create({
-                        body: 'Ваш билет: '+myConst.url + 'ticket/' + pdfname,
-                        from: '+17622526173',
-                        to: user.phonenumber
-                    })
-                    .then(message => console.log(message.sid));
-                res.status(200);
-                res.end('ok');
-            } else {
-                console.error('No such user')
-                res.status(401);
-                res.end('No such user');
-            }
-        } catch (err) {
-            console.error(err)
-            res.status(401);
-            res.end('err')
-        }
-    } )(req, res)
-}
-
 const getHistory1 = async (req, res) => {
     await passport.authenticate('jwt', async function (err, user) {
         try{
@@ -671,6 +402,6 @@ module.exports.verifydadmin = verifydadmin;
 module.exports.start = start;
 module.exports.verifydeuser = verifydeuser;
 module.exports.signinuser = signinuser;
-module.exports.buy = buy;
-module.exports.buy1 = buy1;
 module.exports.verifydturnstile = verifydturnstile;
+module.exports.verifydclientbuyticket = verifydclientbuyticket;
+module.exports.verifydclientbuyticketcinema = verifydclientbuyticketcinema;

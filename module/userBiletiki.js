@@ -1,6 +1,4 @@
 const UserBiletiki = require('../models/userBiletiki');
-const WalletBiletiki = require('../models/walletBiletiki');
-const WalletBiletikiAction = require('../module/walletBiletiki');
 const MailingBiletiki = require('../models/mailingBiletiki');
 const format = require('./const').stringifyDateTime
 const mailchimp = require('../module/mailchimp');
@@ -120,8 +118,6 @@ const addUserBiletiki = async (object) => {
         let _object = new UserBiletiki(object);
         await UserBiletiki.create(_object);
         await mailchimp.send(object.email, object.name, object.surname, object._id)
-        _object = new WalletBiletiki({user: object._id, wallet: await WalletBiletikiAction.generateWallet(), balance: 0});
-        await WalletBiletiki.create(_object);
     } catch(error) {
         console.error(error)
     }
@@ -182,7 +178,6 @@ let recoveryPass = async (email) => {
 const deleteUserBiletiki = async (id) => {
     try{
         await UserBiletiki.deleteMany({_id: {$in: id}});
-        await WalletBiletiki.deleteMany({user: {$in: id}});
     } catch(error) {
         console.error(error)
     }

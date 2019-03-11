@@ -1,15 +1,34 @@
 const PaymentBiletiki = require('../models/paymentBiletiki');
+const TicketBiletiki = require('../models/ticketBiletiki');
 const format = require('./const').stringifyDateTime
+const randomstring = require('randomstring');
+
+const generateWallet = async () => {
+    let check = {}
+    let wallet = ''
+    while(check!=null){
+        wallet = randomstring.generate({length: 9, charset: 'numeric'})
+        check = await PaymentBiletiki.findOne({wallet: wallet})
+    }
+    return(wallet)
+}
 
 const getPaymentBiletiki = async (search, sort, skip) => {
     try{
-        let findResult = [], data = [], count;
+        /*await PaymentBiletiki.deleteMany()
+        await TicketBiletiki.deleteMany()
+        */let findResult = [], data = [], count;
         const row = [
-            'пользователь',
+            'адресс',
+            'билет',
+            'сервис',
             'сумма',
             'сервис',
             'meta',
             'статус',
+            'имя',
+            'email',
+            'телефон',
             'создан',
             '_id'
         ];
@@ -31,6 +50,22 @@ const getPaymentBiletiki = async (search, sort, skip) => {
             sort = '-status';
         else if(sort[0]=='статус'&&sort[1]=='ascending')
             sort = 'status';
+        else if(sort[0]=='email'&&sort[1]=='descending')
+            sort = '-email';
+        else if(sort[0]=='email'&&sort[1]=='ascending')
+            sort = 'email';
+        else if(sort[0]=='телефон'&&sort[1]=='descending')
+            sort = '-phone';
+        else if(sort[0]=='телефон'&&sort[1]=='ascending')
+            sort = 'phone';
+        else if(sort[0]=='имя'&&sort[1]=='descending')
+            sort = '-name';
+        else if(sort[0]=='имя'&&sort[1]=='ascending')
+            sort = 'name';
+        else if(sort[0]=='билет'&&sort[1]=='descending')
+            sort = '-ticket';
+        else if(sort[0]=='билет'&&sort[1]=='ascending')
+            sort = 'ticket';
         if(search == ''){
             count = await PaymentBiletiki.count();
             findResult = await PaymentBiletiki
@@ -38,44 +73,41 @@ const getPaymentBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('status user ammount service updatedAt _id meta')
-                .populate({
-                    path: 'user',
-                    select: 'name email'
-                });
+                .select('wallet status ammount service updatedAt _id meta ticket name email phone');
         } else {
             count = await PaymentBiletiki.count({
                 $or: [
+                    {wallet: {'$regex': search, '$options': 'i'}},
                     {payment: {'$regex': search, '$options': 'i'}},
-                    {user: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {ticket: {'$regex': search, '$options': 'i'}},
+                    {name: {'$regex': search, '$options': 'i'}},
+                    {email: {'$regex': search, '$options': 'i'}},
+                    {phone: {'$regex': search, '$options': 'i'}},
                 ]
             }
             );
             findResult = await PaymentBiletiki.find({
                 $or: [
+                    {wallet: {'$regex': search, '$options': 'i'}},
                     {payment: {'$regex': search, '$options': 'i'}},
-                    {user: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {ticket: {'$regex': search, '$options': 'i'}},
+                    {name: {'$regex': search, '$options': 'i'}},
+                    {email: {'$regex': search, '$options': 'i'}},
+                    {phone: {'$regex': search, '$options': 'i'}},
                 ]
             })
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('status user ammount service updatedAt _id meta')
-                .populate({
-                    path: 'user',
-                    select: 'name email'
-                });
+                .select('wallet status ammount service updatedAt _id meta ticket name email phone');
         }
         for (let i=0; i<findResult.length; i++){
             let status = '';
             if(findResult[i].status !=undefined)
                 status = findResult[i].status
-            let user = '';
-            if(findResult[i].user !=undefined)
-                user = findResult[i].user.name+'\n'+findResult[i].user.email+'\n'+findResult[i].user._id
-            data.push([user, findResult[i].ammount, findResult[i].service, findResult[i].meta, status, format(findResult[i].updatedAt), findResult[i]._id]);
+            data.push([findResult[i].wallet, findResult[i].ticket, findResult[i].ammount, findResult[i].service, findResult[i].meta, status, findResult[i].name, findResult[i].email, findResult[i].phone, format(findResult[i].updatedAt), findResult[i]._id]);
         }
         return {data: data, count: count, row: row}
     } catch(error) {
@@ -103,3 +135,4 @@ const setPaymentBiletiki = async (object, id) => {
 module.exports.setPaymentBiletiki = setPaymentBiletiki;
 module.exports.getPaymentBiletiki = getPaymentBiletiki;
 module.exports.addPaymentBiletiki = addPaymentBiletiki;
+module.exports.generateWallet = generateWallet;

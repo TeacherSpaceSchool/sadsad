@@ -28,7 +28,12 @@ const validMail = (mail) =>
 {
     return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(mail);
 }
+const validPhone = (phone) =>
+{
+    return /^[+]{1}996[0-9]{9}$/.test(phone);
+}
 module.exports.stringifyDateTime = stringifyDateTime;
+module.exports.validPhone = validPhone;
 module.exports.validMail = validMail;
 module.exports.month = month;
 module.exports.adminPass = adminPass;

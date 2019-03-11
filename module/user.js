@@ -1,5 +1,4 @@
-const WalletBiletiki = require('../models/walletBiletiki');
-const WalletBiletikiAction = require('../module/walletBiletiki');
+
 const UserBiletiki = require('../models/userBiletiki');
 const WhereBiletiki = require('../models/whereBiletiki');
 let adminId = '';
@@ -25,9 +24,7 @@ let createAdmin = async () => {
                 password: adminPass,
             });
             findAdmin = await UserBiletiki.create(_user);
-            _user = new WalletBiletiki({user: _user._id, wallet: await WalletBiletikiAction.generateWallet(), balance: 0});
-            await WalletBiletiki.create(_user);
-        }
+         }
         adminId = findAdmin._id.toString();
         findAdmin = await UserBiletiki.findOne({name: 'KinoBox'});
         if(findAdmin==null){
@@ -41,8 +38,6 @@ let createAdmin = async () => {
                 password: '12345678',
             });
             await UserBiletiki.create(_user);
-            _user = new WalletBiletiki({user: _user._id, wallet: await WalletBiletikiAction.generateWallet(), balance: 0});
-            await WalletBiletiki.create(_user);
         }
         findAdmin = await UserBiletiki.findOne({name: 'Нур Синема'});
         if(findAdmin==null){
@@ -56,8 +51,6 @@ let createAdmin = async () => {
                 password: '12345678',
             });
             await UserBiletiki.create(_user);
-            _user = new WalletBiletiki({user: _user._id, wallet: await WalletBiletikiAction.generateWallet(), balance: 0});
-            await WalletBiletiki.create(_user);
         }
         findAdmin = await UserBiletiki.findOne({name: 'Россия'});
         if(findAdmin==null){
@@ -71,8 +64,6 @@ let createAdmin = async () => {
                 password: '12345678',
             });
             await UserBiletiki.create(_user);
-            _user = new WalletBiletiki({user: _user._id, wallet: await WalletBiletikiAction.generateWallet(), balance: 0});
-            await WalletBiletiki.create(_user);
         }
         findAdmin = await UserBiletiki.findOne({name: 'Манас'});
         if(findAdmin==null){
@@ -86,8 +77,6 @@ let createAdmin = async () => {
                 password: '12345678',
             });
             await UserBiletiki.create(_user);
-            _user = new WalletBiletiki({user: _user._id, wallet: await WalletBiletikiAction.generateWallet(), balance: 0});
-            await WalletBiletiki.create(_user);
         }
         findAdmin = await WhereBiletiki.findOne({nameRu: 'Национальный Центр детей и юношества "Сейтек"'});
         if(findAdmin==null){
@@ -193,32 +182,6 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
-        findAdmin = await WhereBiletiki.findOne({nameRu: 'Ош улуттук драма театры'});
-        if(findAdmin==null){
-            let _user = new WhereBiletiki({
-                nameRu: 'Ош улуттук драма театры',
-                nameKg:  'Ош улуттук драма театры',
-                image: '*',
-                imageThumbnail: '*',
-                address: '*',
-                coords: '*',
-                city: 'Ош'
-            });
-            await WhereBiletiki.create(_user);
-        }
-        findAdmin = await WhereBiletiki.findOne({nameRu: 'Барыпы атындагы кыргыз драма театры'});
-        if(findAdmin==null){
-            let _user = new WhereBiletiki({
-                nameRu: 'Барыпы атындагы кыргыз драма театры',
-                nameKg:  'Барыпы атындагы кыргыз драма театры',
-                image: '*',
-                imageThumbnail: '*',
-                address: '*',
-                coords: '*',
-                city: 'Джалал-Абад'
-            });
-            await WhereBiletiki.create(_user);
-        }
         findAdmin = await WhereBiletiki.findOne({nameRu: 'Дворец спорта им. К. Кожомкула'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
@@ -271,6 +234,19 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Ош улуттук драма театры'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Ош улуттук драма театры',
+                nameKg:  'Ош улуттук драма театры',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
+                city: 'Ош'
+            });
+            await WhereBiletiki.create(_user);
+        }
         findAdmin = await WhereBiletiki.findOne({nameRu: 'Ипподром Иссык–Куль'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
@@ -281,6 +257,19 @@ let createAdmin = async () => {
                 address: '*',
                 coords: '*',
                 city: 'Иссык–Куль'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Барыпы атындагы кыргыз драма театры'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Барыпы атындагы кыргыз драма театры',
+                nameKg:  'Барыпы атындагы кыргыз драма театры',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
+                city: 'Джалал-Абад'
             });
             await WhereBiletiki.create(_user);
         }

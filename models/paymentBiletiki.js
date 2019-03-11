@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 
 const PaymentBiletikiSchema = mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'UserBiletiki'
+    wallet: {
+        type: String,
+        required: true,
     },
+   ticket: {
+       type: mongoose.Schema.Types.ObjectId,
+       ref: 'TicketBiletiki'
+   },
     ammount: {
         type: Number,
         required: true,
@@ -21,6 +25,19 @@ const PaymentBiletikiSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+
 }, {
     timestamps: true
 });
