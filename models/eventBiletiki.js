@@ -48,7 +48,7 @@ const EventBiletikiSchema = mongoose.Schema({
 },
     video: {
         type: String,
-        required: true,
+        required: false,
     },
     image: {
         type: String,
