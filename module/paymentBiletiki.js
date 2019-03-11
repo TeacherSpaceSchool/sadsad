@@ -15,9 +15,9 @@ const generateWallet = async () => {
 
 const getPaymentBiletiki = async (search, sort, skip) => {
     try{
-        await PaymentBiletiki.deleteMany()
+        /*await PaymentBiletiki.deleteMany()
         await TicketBiletiki.deleteMany()
-        let findResult = [], data = [], count;
+        */let findResult = [], data = [], count;
         const row = [
             'адресс',
             'билет',
