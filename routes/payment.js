@@ -372,7 +372,7 @@ router.get('/kcb/check', async (req, res, next) => {
         console.log(req.body, req.params)
         let ip = JSON.stringify(req.ip)
         let result = {}
-        if(ip.includes('93.170.8.84')){
+        if(ip.includes('95.46.154.64')){
             let responce = convert.xml2json(req.body, {compact: true, spaces: 4})
             let wallet = await PaymentBiletiki.findOne({wallet: responce['XML']['BODY']['_attributes']['PARAM1']})
             if(wallet!=null){
@@ -407,7 +407,7 @@ router.post('/kcb/pay', async (req, res, next) => {
     try{
         let result = {}
         let ip = JSON.stringify(req.ip)
-        if(ip.includes('93.170.8.84')){
+        if(ip.includes('95.46.154.64')){
             let responce = convert.xml2json(req.body, {compact: true, spaces: 4})
             let wallet = await PaymentBiletiki.findOne({wallet: responce['XML']['BODY']['_attributes']['PARAM1']})
             if(wallet!=null){
