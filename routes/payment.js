@@ -605,4 +605,15 @@ router.get('/tested', async (req, res, next) => {
     }
 });
 
+router.post('/tested', async (req, res, next) => {
+    try{
+        console.log(req.body, req.params)
+        res.status(200);
+        res.end('ok');
+    } catch(error) {
+        console.error(error)
+        res.status(501);
+    }
+});
+
 module.exports = router;
