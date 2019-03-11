@@ -23,7 +23,6 @@ const getPaymentBiletiki = async (search, sort, skip) => {
             'билет',
             'сервис',
             'сумма',
-            'сервис',
             'meta',
             'статус',
             'имя',
@@ -107,7 +106,8 @@ const getPaymentBiletiki = async (search, sort, skip) => {
             let status = '';
             if(findResult[i].status !=undefined)
                 status = findResult[i].status
-            data.push([findResult[i].wallet, findResult[i].ticket, findResult[i].ammount, findResult[i].service, findResult[i].meta, status, findResult[i].name, findResult[i].email, findResult[i].phone, format(findResult[i].updatedAt), findResult[i]._id]);
+            data.push([findResult[i].wallet,
+                findResult[i].ticket,  findResult[i].service, findResult[i].ammount,findResult[i].meta, status, findResult[i].name, findResult[i].email, findResult[i].phone, format(findResult[i].updatedAt), findResult[i]._id]);
         }
         return {data: data, count: count, row: row}
     } catch(error) {
