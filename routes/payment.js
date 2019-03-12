@@ -680,7 +680,7 @@ router.post('/balance/pay', async (req, res, next) => {
     }
 })
 
-router.get('/tested', async (req, res, next) => {
+router.post('/tested', async (req, res, next) => {
     try{
         console.log(req.body, req.params)
         res.status(501);
