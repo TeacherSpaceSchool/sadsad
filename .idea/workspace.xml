@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/payment.js" afterPath="$PROJECT_DIR$/routes/payment.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,27 +20,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="-510">
               <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="251" column="31" lean-forward="false" selection-start-line="251" selection-start-column="31" selection-end-line="251" selection-end-column="31" />
               <folding>
                 <element signature="e#8368#13044#0" expanded="false" />
-                <element signature="e#13104#14389#0" expanded="false" />
-                <element signature="e#14444#18497#0" expanded="false" />
-                <element signature="e#28060#29455#0" expanded="false" />
-                <element signature="e#29512#30702#0" expanded="false" />
+                <element signature="e#14469#18522#0" expanded="false" />
+                <element signature="e#28085#29480#0" expanded="false" />
+                <element signature="e#29537#30727#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -113,7 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nodemailer</find>
       <find>param('</find>
       <find>Where</find>
       <find>Билеты</find>
@@ -143,6 +141,7 @@
       <find>&quot;</find>
       <find>normalizePort</find>
       <find>3000</find>
+      <find>PHPFPM</find>
     </findStrings>
     <replaceStrings>
       <replace>City</replace>
@@ -232,8 +231,8 @@
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/php/visa.php" />
-        <option value="$PROJECT_DIR$/routes/payment.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/payment.js" />
       </list>
     </option>
   </component>
@@ -456,12 +455,12 @@
       <workItem from="1551931678240" duration="1901000" />
       <workItem from="1551937376265" duration="53058000" />
       <workItem from="1552296128410" duration="3625000" />
-      <workItem from="1552369019574" duration="4312000" />
+      <workItem from="1552369019574" duration="4704000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="695644000" />
+    <option name="totallyTimeSpent" value="696036000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -829,25 +828,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/payment.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding>
-            <element signature="e#8368#13044#0" expanded="false" />
-            <element signature="e#13104#14389#0" expanded="false" />
-            <element signature="e#14444#18497#0" expanded="false" />
-            <element signature="e#28060#29455#0" expanded="false" />
-            <element signature="e#29512#30702#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-510">
+          <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="18" column="34" lean-forward="false" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-          <folding />
+        <state relative-caret-position="255">
+          <caret line="251" column="31" lean-forward="false" selection-start-line="251" selection-start-column="31" selection-end-line="251" selection-end-column="31" />
+          <folding>
+            <element signature="e#8368#13044#0" expanded="false" />
+            <element signature="e#14469#18522#0" expanded="false" />
+            <element signature="e#28085#29480#0" expanded="false" />
+            <element signature="e#29537#30727#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
