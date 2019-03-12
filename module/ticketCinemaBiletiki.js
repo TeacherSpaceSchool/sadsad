@@ -136,7 +136,7 @@ const buy = async (req, res, user) => {
             subject: 'Счет за билет',
             text: 'Ваш счет для оплаты: ' + data.wallet
         };
-        if (mailingBiletiki !== null && data.service !== 'ЭЛСОМ') {
+        if (mailingBiletiki !== null) {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
