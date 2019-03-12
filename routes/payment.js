@@ -693,8 +693,8 @@ router.post('/tested', async (req, res, next) => {
 
 router.post('/visa/pay', async (req, res, next) => {
     try{
-        let wallet = await PaymentBiletiki.findOne({wallet: req.body.ReturnOid})
-        console.log(req.body, wallet)
+        let wallet = await PaymentBiletiki.findOne({wallet: req.body['ReturnOid']})
+        console.log(req.body['ReturnOid'])
         res.status(200);
         res.end('ok');
     } catch(error) {
