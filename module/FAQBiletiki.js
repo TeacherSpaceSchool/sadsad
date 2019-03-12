@@ -49,6 +49,7 @@ const getFAQBiletiki = async (search, sort, skip) => {
         } else {
             count = await FAQBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {questionRu: {'$regex': search, '$options': 'i'}},
                     {answerRu: {'$regex': search, '$options': 'i'}},
                     {questionKg: {'$regex': search, '$options': 'i'}},
@@ -57,6 +58,7 @@ const getFAQBiletiki = async (search, sort, skip) => {
             });
             findResult = await FAQBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {questionRu: {'$regex': search, '$options': 'i'}},
                     {answerRu: {'$regex': search, '$options': 'i'}},
                     {questionKg: {'$regex': search, '$options': 'i'}},

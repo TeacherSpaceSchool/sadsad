@@ -69,8 +69,15 @@ const getMovieBiletiki = async (search, sort, skip) => {
                 .limit(10)
                 .select('name typeVideo type genre description duration ageCategory premier producers actors video image updatedAt _id');
         } else {
+            count = await MovieBiletiki.count({
+                $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            });
             findResult = await MovieBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             })

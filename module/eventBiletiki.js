@@ -110,6 +110,7 @@ const getEventBiletiki = async (search, sort, skip) => {
         } else {
             count = await EventBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {nameKg: {'$regex': search, '$options': 'i'}},
                     {descriptionRu: {'$regex': search, '$options': 'i'}},
@@ -120,6 +121,7 @@ const getEventBiletiki = async (search, sort, skip) => {
             });
             findResult = await EventBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {nameKg: {'$regex': search, '$options': 'i'}},
                     {descriptionRu: {'$regex': search, '$options': 'i'}},

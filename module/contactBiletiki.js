@@ -69,6 +69,7 @@ const getContactBiletiki = async (search, sort, skip) => {
         } else {
             count = await ContactBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {coords: {'$regex': search, '$options': 'i'}},
                     {cashbox: {'$regex': search, '$options': 'i'}},
                     {address: {'$regex': search, '$options': 'i'}},
@@ -81,6 +82,7 @@ const getContactBiletiki = async (search, sort, skip) => {
             });
             findResult = await ContactBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {coords: {'$regex': search, '$options': 'i'}},
                     {cashbox: {'$regex': search, '$options': 'i'}},
                     {address: {'$regex': search, '$options': 'i'}},

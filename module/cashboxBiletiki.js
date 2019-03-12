@@ -39,12 +39,14 @@ const getCashboxBiletiki = async (search, sort, skip) => {
         } else {
             count = await CashboxBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                     {address: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await CashboxBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                     {address: {'$regex': search, '$options': 'i'}},
                 ]

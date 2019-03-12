@@ -36,11 +36,13 @@ const getSocialBiletiki = async (search, sort, skip) => {
         } else {
             count = await SocialBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await SocialBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             })

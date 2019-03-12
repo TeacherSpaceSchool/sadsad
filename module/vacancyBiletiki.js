@@ -69,6 +69,7 @@ const getVacancyBiletiki = async (search, sort, skip) => {
         } else {
             count = await VacancyBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {requirementsRu: {'$regex': search, '$options': 'i'}},
                     {dutiesRu: {'$regex': search, '$options': 'i'}},
@@ -81,6 +82,7 @@ const getVacancyBiletiki = async (search, sort, skip) => {
             });
             findResult = await VacancyBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {requirementsRu: {'$regex': search, '$options': 'i'}},
                     {dutiesRu: {'$regex': search, '$options': 'i'}},

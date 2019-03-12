@@ -34,11 +34,13 @@ const getEmailBiletiki = async (search, sort, skip) => {
         } else {
             count = await EmailBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {email: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await EmailBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {email: {'$regex': search, '$options': 'i'}},
                 ]
             })

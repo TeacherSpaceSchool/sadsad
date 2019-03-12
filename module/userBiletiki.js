@@ -65,6 +65,7 @@ const getUserBiletiki = async (search, sort, skip) => {
                 $and: [
                     {
                         $or: [
+                            {_id: {'$regex': search, '$options': 'i'}},
                             {name: {'$regex': search, '$options': 'i'}},
                             {surname: {'$regex': search, '$options': 'i'}},
                             {email: {'$regex': search, '$options': 'i'}},
@@ -80,6 +81,7 @@ const getUserBiletiki = async (search, sort, skip) => {
                 $and: [
                     {
                         $or: [
+                            {_id: {'$regex': search, '$options': 'i'}},
                             {name: {'$regex': search, '$options': 'i'}},
                             {surname: {'$regex': search, '$options': 'i'}},
                             {email: {'$regex': search, '$options': 'i'}},

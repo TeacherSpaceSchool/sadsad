@@ -74,6 +74,7 @@ const getWhereBiletiki = async (search, sort, skip) => {
         } else {
             count = await WhereBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {nameKg: {'$regex': search, '$options': 'i'}},
                     {city: {'$regex': search, '$options': 'i'}},
@@ -84,6 +85,7 @@ const getWhereBiletiki = async (search, sort, skip) => {
             });
             findResult = await WhereBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {city: {'$regex': search, '$options': 'i'}},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {nameKg: {'$regex': search, '$options': 'i'}},

@@ -41,11 +41,13 @@ const getBillboardBiletiki = async (search, sort, skip) => {
         } else {
             count = await BillboardBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await BillboardBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             })

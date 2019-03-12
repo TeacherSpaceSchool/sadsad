@@ -39,12 +39,14 @@ const getAboutBiletiki = async (search, sort, skip) => {
         } else {
             count = await AboutBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {descriptionRu: {'$regex': search, '$options': 'i'}},
                     {descriptionKg: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await AboutBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {descriptionRu: {'$regex': search, '$options': 'i'}},
                     {descriptionKg: {'$regex': search, '$options': 'i'}},
                 ]

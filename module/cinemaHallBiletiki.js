@@ -43,6 +43,7 @@ const getCinemaHallBiletiki1 = async (search, sort, skip, user) => {
                     {user: user._id},
                     {
                         $or: [
+                            {_id: {'$regex': search, '$options': 'i'}},
                             {name: {'$regex': search, '$options': 'i'}},
                         ]
                     }
@@ -61,6 +62,7 @@ const getCinemaHallBiletiki1 = async (search, sort, skip, user) => {
                     {user: user._id},
                     {
                         $or: [
+                            {_id: {'$regex': search, '$options': 'i'}},
                             {name: {'$regex': search, '$options': 'i'}},
                         ]
                     }
@@ -126,6 +128,7 @@ const getCinemaHallBiletiki = async (search, sort, skip) => {
         } else {
             findResult = await CinemaHallBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             })

@@ -76,6 +76,7 @@ const getPaymentBiletiki = async (search, sort, skip) => {
         } else {
             count = await PaymentBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {wallet: {'$regex': search, '$options': 'i'}},
                     {payment: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
@@ -88,6 +89,7 @@ const getPaymentBiletiki = async (search, sort, skip) => {
             );
             findResult = await PaymentBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {wallet: {'$regex': search, '$options': 'i'}},
                     {payment: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},

@@ -41,11 +41,11 @@ const buy = async (req, res, user) => {
             doc.pipe(fstream);
             doc
                 .font('NotoSans')
-                .fontSize(20)
+                .fontSize(13)
                 .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
             doc.moveDown()
             let datet = new Date()
-            datet = datet.toString()
+            datet = datet.toJSON()
             let date = datet.split('T')[0].split('-')
             let time = datet.split('T')[1].split(':')
             let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
@@ -60,48 +60,48 @@ const buy = async (req, res, user) => {
             doc
                 .font('NotoSans')
                 .fontSize(12)
-                .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
+                .text('Сервис: '+data.service+' Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
             doc
                 .font('NotoSans')
-                .fontSize(20)
+                .fontSize(12)
                 .text('Площадка:', {width: doc.page.width - 100, align: 'center'})
             doc
                 .font('NotoSans')
-                .fontSize(15)
+                .fontSize(12)
                 .text(data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
             doc.moveDown()
             doc
                 .font('NotoSans')
-                .fontSize(20)
+                .fontSize(12)
                 .text('Мероприятие:', {width: doc.page.width - 100, align: 'center'})
             doc
                 .font('NotoSans')
-                .fontSize(15)
+                .fontSize(12)
                 .text(data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
             doc.moveDown()
             doc
                 .font('NotoSans')
-                .fontSize(20)
+                .fontSize(12)
                 .text('Места:', {width: doc.page.width - 100, align: 'center'})
             for (let i = 0; i < data.seats.length; i++) {
                 doc
                     .font('NotoSans')
-                    .fontSize(15)
+                    .fontSize(12)
                     .text('Место ' + (i + 1), {width: doc.page.width - 100, align: 'justify'})
                 let date = data.seats[i][1].split('T')[0].split('-')
                 let time = data.seats[i][1].split('T')[1].split(':')
                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                 doc
                     .font('NotoSans')
-                    .fontSize(15)
+                    .fontSize(12)
                     .text('        Дата: ' + dateTime, {width: doc.page.width - 100, align: 'justify'})
                 doc
                     .font('NotoSans')
-                    .fontSize(15)
+                    .fontSize(12)
                     .text('        Место: ' + data.seats[i][0]['name'], {width: doc.page.width - 100, align: 'justify'})
                 doc
                     .font('NotoSans')
-                    .fontSize(15)
+                    .fontSize(12)
                     .text('        Цена: ' + data.seats[i][0]['price'] + ' сом', {
                         width: doc.page.width - 100,
                         align: 'justify'
@@ -283,12 +283,14 @@ const getTicketBiletiki = async (search, sort, skip) => {
         } else {
             count = await TicketBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await TicketBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                 ]

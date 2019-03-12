@@ -34,11 +34,13 @@ const getPhoneBiletiki = async (search, sort, skip) => {
         } else {
             count = await PhoneBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {phone: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await PhoneBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {phone: {'$regex': search, '$options': 'i'}},
                 ]
             })

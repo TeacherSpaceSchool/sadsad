@@ -43,11 +43,13 @@ const getLogoBiletiki = async (search, sort, skip) => {
         } else {
             count = await LogoBiletiki.count({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await LogoBiletiki.find({
                 $or: [
+                    {_id: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             })
