@@ -234,7 +234,7 @@ router.post('/elsom/generate', async (req, res, next) => {
                     rejectUnauthorized: false
                 })
             });
-            let result = instance.post('https://mbgwt.elsom.kg:10690/MerchantAPI', {
+            let result = await instance.post('https://mbgwt.elsom.kg:10690/MerchantAPI', {
                    'PartnerGenerateOTP': {
                        'PartnerTrnID': req.body.wallet,
                        'CultureInfo': 'ru-Ru',
@@ -248,6 +248,7 @@ router.post('/elsom/generate', async (req, res, next) => {
                    }
                }
            );
+
         let code = result.data.Response.Result.OTP
            res.status(200);
             res.end(code);
