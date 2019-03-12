@@ -266,7 +266,7 @@ router.post('/elsom/pay', async (req, res, next) => {
         let ip = JSON.stringify(req.ip)
         if(ip.includes('93.170.8.84')){
             console.log(req.body, req.params)
-            let responce = {}
+            let responce = req.body['PartnerPaymentResult']
             let wallet = await PaymentBiletiki.findOne({wallet: responce['PartnerTrnID']})
             if(wallet!=null){
                 if(wallet.status=='совершен'){
@@ -591,17 +591,18 @@ router.post('/balance/pay', async (req, res, next) => {
 router.get('/tested', async (req, res, next) => {
     try{
         console.log(req.body, req.params)
-        res.status(200);
-        res.end('ok');
+        res.status(501);
+        res.end('error');
     } catch(error) {
         console.error(error)
         res.status(501);
     }
 });
 
-router.post('/tested', async (req, res, next) => {
+router.post('/visa/pay', async (req, res, next) => {
     try{
-        console.log(req.body, req.params)
+        let wallet = await PaymentBiletiki.findOne({wallet: req.body.ReturnOid})
+        console.log(req.body, wallet)
         res.status(200);
         res.end('ok');
     } catch(error) {
