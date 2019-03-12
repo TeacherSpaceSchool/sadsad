@@ -249,7 +249,7 @@ router.post('/elsom/generate', async (req, res, next) => {
                }
            )  .then(function (response) {
                // handle success
-               console.log(response.data);
+               console.log(response.data.Response.Result.OTP);
            })
                .catch(function (error) {
                    // handle error
