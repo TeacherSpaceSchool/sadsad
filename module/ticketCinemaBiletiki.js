@@ -44,6 +44,23 @@ const buy = async (req, res, user) => {
                 .fontSize(20)
                 .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
             doc.moveDown()
+            let datet = new Date()
+            datet = datet.toString()
+            let date = datet.split('T')[0].split('-')
+            let time = datet.split('T')[1].split(':')
+            let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+            doc
+                .font('NotoSans')
+                .fontSize(12)
+                .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
+            let sum = 0
+            for(let i = 0; i<data.seats.length; i++){
+                sum+=parseInt(data.seats[i][0]['price'])
+            }
+            doc
+                .font('NotoSans')
+                .fontSize(12)
+                .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
             doc
                 .font('NotoSans')
                 .fontSize(20)
@@ -99,8 +116,12 @@ const buy = async (req, res, user) => {
             doc.image(qrpath, (doc.page.width - 225) /2 )
             doc
                 .font('NotoSans')
-                .fontSize(15)
-                .text('Код: ' + hash, {width: doc.page.width - 100, align: 'center'})
+                .fontSize(12)
+                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(12)
+                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
             doc.end()
         })
         await SeanceBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
