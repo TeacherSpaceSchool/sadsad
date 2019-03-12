@@ -17,6 +17,7 @@ const formData = require('express-form-data');
 const os = require('os');
 const compression = require('compression');
 const nocache = require('nocache')
+
 module.exports.dirname = __dirname;
 
 
@@ -53,7 +54,6 @@ app.use(formData.stream());
 // union body and files
 app.use(formData.union());
 app.set('trust proxy', true)
-
 app.use(/^\/(faq|about|logo|cashboxes|offer|return|delivery|contacts|vacancies|halls|profile|historycinema|historyevent|events|search|hall\/[\s\S]+|event\/[\s\S]+|selectplace\/[\s\S]+|cinema|movie\/[\s\S]+)?/, indexRouter);
 app.use('/admin', adminRouter);
 app.use('/users', usersRouter);
