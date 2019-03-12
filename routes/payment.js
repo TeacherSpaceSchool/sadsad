@@ -292,6 +292,29 @@ router.post('/elsom/pay', async (req, res, next) => {
                     if(ticket!=null){
                         await PaymentBiletiki.findOneAndUpdate({wallet: responce['PartnerTrnID']}, {status: 'совершен', meta:'Сообщение: '+responce['Message']+' \nID: '+responce['PSPTrnID']})
                         await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                        let mailingBiletiki = await MailingBiletiki.findOne();
+                        let mailOptions = {
+                            from: mailingBiletiki.mailuser,
+                            to: wallet.email,
+                            subject: 'Ваш билет',
+                            text: 'Ссылка на ваш билет: ' + ticket.ticket
+                        };
+                        if (mailingBiletiki !== null) {
+                            const transporter = nodemailer.createTransport({
+                                service: 'gmail',
+                                auth: {
+                                    user: mailingBiletiki.mailuser,
+                                    pass: mailingBiletiki.mailpass
+                                }
+                            });
+                            transporter.sendMail(mailOptions, function (error, info) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    console.log('Email sent: ' + info.response);
+                                }
+                            });
+                        }
                         res.status(200);
                         res.end({
                                 'Response': {
@@ -305,6 +328,29 @@ router.post('/elsom/pay', async (req, res, next) => {
                         if(ticket!=null){
                             await PaymentBiletiki.findOneAndUpdate({wallet: responce['PartnerTrnID']}, {status: 'совершен', meta:'Сообщение: '+responce['Message']+' \nID: '+responce['PSPTrnID']})
                             await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                            let mailingBiletiki = await MailingBiletiki.findOne();
+                            let mailOptions = {
+                                from: mailingBiletiki.mailuser,
+                                to: wallet.email,
+                                subject: 'Ваш билет',
+                                text: 'Ссылка на ваш билет: ' + ticket.ticket
+                            };
+                            if (mailingBiletiki !== null) {
+                                const transporter = nodemailer.createTransport({
+                                    service: 'gmail',
+                                    auth: {
+                                        user: mailingBiletiki.mailuser,
+                                        pass: mailingBiletiki.mailpass
+                                    }
+                                });
+                                transporter.sendMail(mailOptions, function (error, info) {
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log('Email sent: ' + info.response);
+                                    }
+                                });
+                            }
                             res.status(200);
                             res.end({
                                     'Response': {
@@ -571,11 +617,57 @@ router.post('/balance/pay', async (req, res, next) => {
             if(ticket!=null){
                     await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'*'})
                     await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
-                } else {
+                let mailingBiletiki = await MailingBiletiki.findOne();
+                let mailOptions = {
+                    from: mailingBiletiki.mailuser,
+                    to: wallet.email,
+                    subject: 'Ваш билет',
+                    text: 'Ссылка на ваш билет: ' + ticket.ticket
+                };
+                if (mailingBiletiki !== null) {
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: mailingBiletiki.mailuser,
+                            pass: mailingBiletiki.mailpass
+                        }
+                    });
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });
+                }
+            } else {
                 ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                 if(ticket!=null){
                     await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'*'})
                     await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                    let mailingBiletiki = await MailingBiletiki.findOne();
+                    let mailOptions = {
+                        from: mailingBiletiki.mailuser,
+                        to: wallet.email,
+                        subject: 'Ваш билет',
+                        text: 'Ссылка на ваш билет: ' + ticket.ticket
+                    };
+                    if (mailingBiletiki !== null) {
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            auth: {
+                                user: mailingBiletiki.mailuser,
+                                pass: mailingBiletiki.mailpass
+                            }
+                        });
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                console.log('Email sent: ' + info.response);
+                            }
+                        });
+                    }
                 }
             }
         }
