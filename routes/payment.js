@@ -694,9 +694,75 @@ router.post('/tested', async (req, res, next) => {
 router.post('/visa/pay', async (req, res, next) => {
     try{
         let wallet = await PaymentBiletiki.findOne({wallet: req.body['ReturnOid']})
-        console.log(req.body['ReturnOid'])
-        res.status(200);
-        res.end('ok');
+        if(wallet!=null){
+            let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
+            if(ticket!=null){
+                await PaymentBiletiki.findOneAndUpdate({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
+                await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                let mailingBiletiki = await MailingBiletiki.findOne();
+                let mailOptions = {
+                    from: mailingBiletiki.mailuser,
+                    to: wallet.email,
+                    subject: 'Ваш билет',
+                    text: 'Ссылка на ваш билет: ' + ticket.ticket
+                };
+                if (mailingBiletiki !== null) {
+                    const transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: mailingBiletiki.mailuser,
+                            pass: mailingBiletiki.mailpass
+                        }
+                    });
+                    transporter.sendMail(mailOptions, function (error, info) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                        }
+                    });
+                }
+                res.writeHead(301, { 'Location': 'https://kassir.kg/' });
+                res.end();
+            } else {
+                ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                if(ticket!=null){
+                    await PaymentBiletiki.findOneAndUpdate({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
+                    await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                    let mailingBiletiki = await MailingBiletiki.findOne();
+                    let mailOptions = {
+                        from: mailingBiletiki.mailuser,
+                        to: wallet.email,
+                        subject: 'Ваш билет',
+                        text: 'Ссылка на ваш билет: ' + ticket.ticket
+                    };
+                    if (mailingBiletiki !== null) {
+                        const transporter = nodemailer.createTransport({
+                            service: 'gmail',
+                            auth: {
+                                user: mailingBiletiki.mailuser,
+                                pass: mailingBiletiki.mailpass
+                            }
+                        });
+                        transporter.sendMail(mailOptions, function (error, info) {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                console.log('Email sent: ' + info.response);
+                            }
+                        });
+                    }
+                    res.writeHead(301, { 'Location': 'https://kassir.kg/' });
+                    res.end();
+                } else {
+                    res.status(501);
+                    res.end('error');
+                }
+            }
+        } else {
+            res.status(501);
+            res.end('error');
+        }
     } catch(error) {
         console.error(error)
         res.status(501);
