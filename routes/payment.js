@@ -285,7 +285,7 @@ router.post('/elsom/pay', async (req, res, next) => {
             responce = responce.PartnerPaymentResult
             console.log(responce)
 
-            let wallet = await PaymentBiletiki.findOne({wallet: responce.CashierNo})
+            let wallet = await PaymentBiletiki.findOne({wallet: responce.PartnerTrnID})
             console.log(wallet)
             if(wallet!=null){
                 console.log(wallet.status)
@@ -310,7 +310,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                 } else {
                     let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
                     if(ticket!=null){
-                        await PaymentBiletiki.findOneAndUpdate({wallet: responce.CashierNo}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
+                        await PaymentBiletiki.findOneAndUpdate({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
                         await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
                         let mailingBiletiki = await MailingBiletiki.findOne();
                         let mailOptions = {
@@ -346,7 +346,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                     } else {
                         ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                         if(ticket!=null){
-                            await PaymentBiletiki.findOneAndUpdate({wallet: responce.CashierNo}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
+                            await PaymentBiletiki.findOneAndUpdate({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
                             await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
