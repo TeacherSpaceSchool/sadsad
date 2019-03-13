@@ -271,7 +271,9 @@ router.post('/elsom/pay', async (req, res, next) => {
             console.log(responce)
 
             let wallet = await PaymentBiletiki.findOne({wallet: responce.PartnerTrnID})
+            console.log(wallet)
             if(wallet!=null){
+                console.log(wallet.status)
                 if(wallet.status=='совершен'){
                     res.status(200);
                     res.end({
