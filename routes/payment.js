@@ -279,12 +279,14 @@ router.post('/elsom/pay', async (req, res, next) => {
         let ip = JSON.stringify(req.ip)
         if(ip.includes('93.170.8.84')){
 
-            console.log(req.headers)
             console.log(req.body)
-            console.log(req.params)
             let responce = req.body
-               responce = responce.PartnerPaymentResult
-
+            if(responce.PartnerPaymentResult==undefined){
+                res.set('Content+Type', 'text/plain; charset=utf-8');
+            }
+            console.log(req.body)
+            responce = req.body
+            responce = responce.PartnerPaymentResult
             let wallet = await PaymentBiletiki.findOne({wallet: responce.PartnerTrnID})
             console.log(wallet)
             if(wallet!=null){
