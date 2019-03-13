@@ -265,9 +265,12 @@ router.post('/elsom/pay', async (req, res, next) => {
     try{
         let ip = JSON.stringify(req.ip)
         if(ip.includes('93.170.8.84')){
-            console.log(req.body, req.params)
-            let responce = req.body['PartnerPaymentResult']
-            let wallet = await PaymentBiletiki.findOne({wallet: responce['PartnerTrnID']})
+            let responce = req.body
+            console.log(responce)
+            responce = responce.PartnerPaymentResult
+            console.log(responce)
+
+            let wallet = await PaymentBiletiki.findOne({wallet: responce.PartnerTrnID})
             if(wallet!=null){
                 if(wallet.status=='совершен'){
                     res.status(200);
@@ -290,7 +293,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                 } else {
                     let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
                     if(ticket!=null){
-                        await PaymentBiletiki.findOneAndUpdate({wallet: responce['PartnerTrnID']}, {status: 'совершен', meta:'Сообщение: '+responce['Message']+' \nID: '+responce['PSPTrnID']})
+                        await PaymentBiletiki.findOneAndUpdate({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
                         await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
                         let mailingBiletiki = await MailingBiletiki.findOne();
                         let mailOptions = {
@@ -326,7 +329,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                     } else {
                         ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                         if(ticket!=null){
-                            await PaymentBiletiki.findOneAndUpdate({wallet: responce['PartnerTrnID']}, {status: 'совершен', meta:'Сообщение: '+responce['Message']+' \nID: '+responce['PSPTrnID']})
+                            await PaymentBiletiki.findOneAndUpdate({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
                             await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
@@ -575,14 +578,14 @@ router.post('/balance/generate', async (req, res, next) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
         console.log('balance')
-       /* let auth_token = await axios.post('http://umai.balance.kg/site-api/acquiring/auth?merchant=...&password=...')
+        let auth_token = await axios.post('http://umai.balance.kg/site-api/acquiring/auth?merchant=...&password=...')
         console.log(auth_token.data)
         if(auth_token.data.status=='FAIL'){
             res.status(200);
             res.end('error');
         }
-        auth_token = auth_token.data.details.auth_token*/
-        let payment_token = ''/*await axios.post('http://umai.balance.kg/site-api/acquiring/request-token?' +
+        auth_token = auth_token.data.details.auth_token
+        let payment_token = await axios.post('http://umai.balance.kg/site-api/acquiring/request-token?' +
             'merchant: Наименование мерчанта ' +
             'service_id: ID сервиса ' +
             'amount:' + req.body.sum + ' ' +
@@ -596,7 +599,7 @@ router.post('/balance/generate', async (req, res, next) => {
             res.status(200);
             res.end('error');
         }
-        payment_token = payment_token.data.details.payment_token*/
+        payment_token = payment_token.data.details.payment_token
         res.status(200);
         res.end('http://balance.kg/acquiring.html?payment_token='+payment_token);
     } catch(error) {
