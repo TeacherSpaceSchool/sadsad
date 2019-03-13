@@ -278,7 +278,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                 console.log(wallet.status)
                 if(wallet.status=='совершен'){
                     res.status(200);
-                    res.send({
+                    res.json({
                         'Response':
                             {
                                 'ErrorCode': '11003',
@@ -287,7 +287,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                     });
                 } else if(wallet.status!='обработка'&&wallet.status!='ошибка'){
                     res.status(200);
-                    res.send({
+                    res.json({
                         'Response':
                             {
                                 'ErrorCode': '11003',
@@ -323,7 +323,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                             });
                         }
                         res.status(200);
-                        res.send({
+                        res.json({
                                 'Response': {
                                     'ErrorCode': '0',
                                     'ErrorMsg': 'Success'
@@ -359,7 +359,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                                 });
                             }
                             res.status(200);
-                            res.send({
+                            res.json({
                                     'Response': {
                                         'ErrorCode': '0',
                                         'ErrorMsg': 'Success'
@@ -368,7 +368,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                             );
                         } else {
                              res.status(200);
-                            res.send({
+                            res.json({
                                 'Response':
                                     {
                                         'ErrorCode': '11003',
@@ -380,7 +380,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                 }
             } else {
                 res.status(200);
-                res.send({
+                res.json({
                     'Response':
                         {
                             'ErrorCode': '11003',
@@ -391,7 +391,7 @@ router.post('/elsom/pay', async (req, res, next) => {
         } else {
             console.error(req.ip)
             res.status(501);
-            res.send({
+            res.json({
                 'Response':
                     {
                         'ErrorCode': '501',
@@ -403,7 +403,7 @@ router.post('/elsom/pay', async (req, res, next) => {
     } catch(error) {
         console.error(error)
         res.status(200);
-        res.send({
+        res.json({
             'Response':
                 {
                     'ErrorCode': '8000',
