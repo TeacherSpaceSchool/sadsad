@@ -242,7 +242,7 @@ router.post('/elsom/generate', async (req, res, next) => {
                        'PartnerCode': '04108',
                        'ChequeNo': '',
                        'Amount': req.body.sum,
-                       'CashierNo': '',
+                       'CashierNo': req.body.wallet,
                        'UDF': 'TEST',
                        'Password': '2ac9cb7dc02b3c0083eb70898e549b63'
                    }
@@ -272,13 +272,13 @@ router.post('/elsom/pay', async (req, res, next) => {
             responce = responce.PartnerPaymentResult
             console.log(responce)
 
-            let wallet = await PaymentBiletiki.findOne({wallet: responce.PartnerTrnID})
+            let wallet = await PaymentBiletiki.findOne({wallet: responce.CashierNo})
             console.log(wallet)
             if(wallet!=null){
                 console.log(wallet.status)
                 if(wallet.status=='совершен'){
                     res.status(200);
-                    res.end({
+                    res.send({
                         'Response':
                             {
                                 'ErrorCode': '11003',
@@ -287,7 +287,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                     });
                 } else if(wallet.status!='обработка'&&wallet.status!='ошибка'){
                     res.status(200);
-                    res.end({
+                    res.send({
                         'Response':
                             {
                                 'ErrorCode': '11003',
@@ -297,7 +297,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                 } else {
                     let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
                     if(ticket!=null){
-                        await PaymentBiletiki.findOneAndUpdate({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
+                        await PaymentBiletiki.findOneAndUpdate({wallet: responce.CashierNo}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
                         await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
                         let mailingBiletiki = await MailingBiletiki.findOne();
                         let mailOptions = {
@@ -323,7 +323,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                             });
                         }
                         res.status(200);
-                        res.end({
+                        res.send({
                                 'Response': {
                                     'ErrorCode': '0',
                                     'ErrorMsg': 'Success'
@@ -333,7 +333,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                     } else {
                         ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                         if(ticket!=null){
-                            await PaymentBiletiki.findOneAndUpdate({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
+                            await PaymentBiletiki.findOneAndUpdate({wallet: responce.CashierNo}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
                             await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
@@ -359,7 +359,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                                 });
                             }
                             res.status(200);
-                            res.end({
+                            res.send({
                                     'Response': {
                                         'ErrorCode': '0',
                                         'ErrorMsg': 'Success'
@@ -368,7 +368,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                             );
                         } else {
                              res.status(200);
-                            res.end({
+                            res.send({
                                 'Response':
                                     {
                                         'ErrorCode': '11003',
@@ -380,7 +380,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                 }
             } else {
                 res.status(200);
-                res.end({
+                res.send({
                     'Response':
                         {
                             'ErrorCode': '11003',
@@ -391,7 +391,7 @@ router.post('/elsom/pay', async (req, res, next) => {
         } else {
             console.error(req.ip)
             res.status(501);
-            res.end({
+            res.send({
                 'Response':
                     {
                         'ErrorCode': '501',
@@ -403,7 +403,7 @@ router.post('/elsom/pay', async (req, res, next) => {
     } catch(error) {
         console.error(error)
         res.status(200);
-        res.end({
+        res.send({
             'Response':
                 {
                     'ErrorCode': '8000',
