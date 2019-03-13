@@ -279,9 +279,12 @@ router.post('/elsom/pay', async (req, res, next) => {
         let ip = JSON.stringify(req.ip)
         if(ip.includes('93.170.8.84')){
             console.log(req.body)
-            console.log(req.params)
             let responce = req.body
-            console.log(responce.PartnerPaymentResult)
+            if(responce.PartnerPaymentResult==undefined){
+                JSON.parse(responce)
+            }
+
+                console.log(responce.PartnerPaymentResult)
             console.log(responce['PartnerPaymentResult'])
             responce = responce.PartnerPaymentResult
             console.log(responce)
