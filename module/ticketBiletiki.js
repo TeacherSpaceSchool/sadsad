@@ -57,6 +57,7 @@ const buy = async (req, res, user) => {
             for(let i = 0; i<data.seats.length; i++){
                 sum+=parseInt(data.seats[i][0]['price'])
             }
+            doc.moveDown()
             doc
                 .font('NotoSans')
                 .fontSize(12)

@@ -720,6 +720,7 @@ router.post('/add', async (req, res) => {
                                 .font('NotoSans')
                                 .fontSize(12)
                                 .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
+                            doc.moveDown()
                             let sum = 0
                             for(let i = 0; i<myNew.seats.length; i++){
                                 sum+=parseInt(myNew.seats[i][0]['price'])
@@ -837,6 +838,7 @@ router.post('/add', async (req, res) => {
                                          .font('NotoSans')
                                          .fontSize(12)
                                          .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
+                                     doc.moveDown()
                                      let sum = 0
                                      for(let i = 0; i<myNew.seats.length; i++){
                                          sum+=parseInt(myNew.seats[i][0]['price'])
@@ -1047,6 +1049,7 @@ router.post('/add', async (req, res) => {
                                     .font('NotoSans')
                                     .fontSize(12)
                                     .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
+                                doc.moveDown()
                                 let sum = 0
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     sum+=parseInt(myNew.seats[i][0]['price'])
@@ -1184,6 +1187,7 @@ router.post('/add', async (req, res) => {
                                 .font('NotoSans')
                                 .fontSize(12)
                                 .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
+                            doc.moveDown()
                             let sum = 0
                             for(let i = 0; i<myNew.seats.length; i++){
                                 sum+=parseInt(myNew.seats[i][0]['price'])
@@ -1301,6 +1305,7 @@ router.post('/add', async (req, res) => {
                                 .font('NotoSans')
                                 .fontSize(12)
                                 .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
+                            doc.moveDown()
                             let sum = 0
                             for(let i = 0; i<myNew.seats.length; i++){
                                 sum+=parseInt(myNew.seats[i][0]['price'])
