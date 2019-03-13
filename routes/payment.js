@@ -280,7 +280,7 @@ router.post('/elsom/pay', async (req, res, next) => {
         if(ip.includes('93.170.8.84')){
             console.log(req.body)
             console.log(req.params)
-            console.log(req.param)
+            console.log(req)
             let responce = req.body
                responce = responce.PartnerPaymentResult
 
