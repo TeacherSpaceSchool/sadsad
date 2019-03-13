@@ -17,7 +17,7 @@ const formData = require('express-form-data');
 const os = require('os');
 const compression = require('compression');
 const nocache = require('nocache')
-
+const bodyParser = require('body-parser');
 module.exports.dirname = __dirname;
 
 
@@ -39,6 +39,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.text({ type: 'text/plain' }))
+app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname, 'aclient')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'admin')));
