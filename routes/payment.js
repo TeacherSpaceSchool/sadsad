@@ -265,8 +265,8 @@ router.post('/elsom/pay', async (req, res, next) => {
     try{
         let ip = JSON.stringify(req.ip)
         if(ip.includes('93.170.8.84')){
-            console.log(req.body)
-            console.log(req.params)
+            console.log('body:'+req.body)
+            console.log('params:'+req.params)
             let responce = req.body
             console.log(responce)
             responce = responce.PartnerPaymentResult
