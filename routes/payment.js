@@ -234,6 +234,19 @@ router.post('/elsom/generate', async (req, res, next) => {
                     rejectUnauthorized: false
                 })
             });
+            console.log({
+                'PartnerGenerateOTP': {
+                    'PartnerTrnID': req.body.wallet,
+                    'CultureInfo': 'ru-Ru',
+                    'MSISDN': '0909000009',
+                    'PartnerCode': '04108',
+                    'ChequeNo': '',
+                    'Amount': req.body.sum,
+                    'CashierNo': req.body.wallet,
+                    'UDF': req.body.wallet,
+                    'Password': '2ac9cb7dc02b3c0083eb70898e549b63'
+                }
+            })
             let result = await instance.post('https://mbgwt.elsom.kg:10690/MerchantAPI', {
                    'PartnerGenerateOTP': {
                        'PartnerTrnID': req.body.wallet,
@@ -243,7 +256,7 @@ router.post('/elsom/generate', async (req, res, next) => {
                        'ChequeNo': '',
                        'Amount': req.body.sum,
                        'CashierNo': req.body.wallet,
-                       'UDF': 'TEST',
+                       'UDF': req.body.wallet,
                        'Password': '2ac9cb7dc02b3c0083eb70898e549b63'
                    }
                }
