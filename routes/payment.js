@@ -278,7 +278,7 @@ router.post('/elsom/pay', async (req, res, next) => {
     res.set('Content+Type', 'text/json; charset=utf-8');
     try{
         let ip = JSON.stringify(req.ip)
-        if(ip.includes('93.170.8.84')){
+        if(true){
 
             console.log(req.body)
             let responce = req.body
@@ -441,7 +441,6 @@ router.post('/kcb', async (req, res, next) => {
                         { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
                         { BODY: { _attr: { STATUS: '200', SUM: wallet.ammount }}}
                     ] } ];
-                    console.log(result)
                     res.status(200);
                     res.end(xml(result, true));
                 } else {
@@ -449,7 +448,6 @@ router.post('/kcb', async (req, res, next) => {
                         { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
                         { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
                     ] } ];
-                    console.log(result)
                     res.status(200);
                     res.end(xml(result, true));
                 }
