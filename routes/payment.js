@@ -429,7 +429,7 @@ router.post('/elsom/pay', async (req, res, next) => {
     }
 })
 
-router.get('/kcb/check', async (req, res, next) => {
+router.post('/kcb/check', async (req, res, next) => {
     res.set('Content+Type', 'text/xml');
     try{
         console.log(req.body, req.params)
