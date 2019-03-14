@@ -584,7 +584,7 @@ router.post('/balance/generate', async (req, res, next) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
         console.log('balance')
-        let auth_token = await axios.post('http://umai.balance.kg/site-api/acquiring/auth?merchant=...&password=...')
+        let auth_token = await axios.post('http://umai.balance.kg/site-api/acquiring/auth?merchant=KASSIR_KG&password=Q3Rup+pE')
         console.log(auth_token.data)
         if(auth_token.data.status=='FAIL'){
             res.status(200);
