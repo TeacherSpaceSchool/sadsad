@@ -274,6 +274,7 @@ router.post('/elsom/generate', async (req, res, next) => {
 })
 
 router.post('/elsom/pay', async (req, res, next) => {
+    console.log(req.body)
     res.set('Content+Type', 'text/json; charset=utf-8');
     try{
         let ip = JSON.stringify(req.ip)
@@ -443,20 +444,20 @@ router.get('/kcb/check', async (req, res, next) => {
                     { BODY: { _attr: { STATUS: '200', SUM: wallet.ammount }}}
                 ] } ];
                 res.status(200);
-                res.end(xml(result, true));
+                res.send(xml(result, true));
             } else {
                 result = [ { XML: [
                     { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
                     { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
                     ] } ];
                 res.status(200);
-                res.end(xml(result, true));
+                res.send(xml(result, true));
             }
         }
         else {
             console.error(req.ip)
             res.status(501);
-            res.end('IP адресс не разрешен');
+            res.send('IP адресс не разрешен');
         }
     } catch(error) {
         console.error(error)
