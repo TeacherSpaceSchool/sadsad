@@ -433,6 +433,7 @@ router.post('/kcb/check', async (req, res, next) => {
     res.set('Content+Type', 'text/xml');
     try{
         console.log(req.body, req.params)
+        console.log(req)
         let ip = JSON.stringify(req.ip)
         let result = {}
         if(ip.includes('95.46.154.64')){

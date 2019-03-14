@@ -18,6 +18,7 @@ const os = require('os');
 const compression = require('compression');
 const nocache = require('nocache')
 const bodyParser = require('body-parser');
+require('body-parser-xml-json')(bodyParser);
 module.exports.dirname = __dirname;
 
 
@@ -41,6 +42,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.text())
+app.use(bodyParser.xml());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'aclient')));
 app.use(express.static(path.join(__dirname, 'public')));
