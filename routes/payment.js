@@ -432,12 +432,12 @@ router.post('/elsom/pay', async (req, res, next) => {
 router.post('/kcb/check', async (req, res, next) => {
     res.set('Content+Type', 'text/xml');
     try{
-        console.log(req.body.elements[0].elements)
         let ip = JSON.stringify(req.ip)
         let result = {}
         if(ip.includes('95.46.154.64')){
-            let responce = convert.xml2json(req.body, {compact: true, spaces: 4})
-            let wallet = await PaymentBiletiki.findOne({wallet: responce['XML']['BODY']['_attributes']['PARAM1']})
+            let responce = req.body.elements[0].elements
+            console.log(responce[1]['attributes']['PARAM1'])
+            let wallet = await PaymentBiletiki.findOne({wallet: responce[1]['attributes']['PARAM1']})
             if(wallet!=null){
                 result = [ { XML: [
                     { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
