@@ -39,10 +39,10 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 //app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.urlencoded({ extended: false }))
+//app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
-app.use(bodyParser.text({type:'text/*'}));
-//app.use(bodyParser.json());
+app.use(bodyParser.text());
+app.use(bodyParser.json());
 app.use(bodyParser.xml());
 app.use(express.static(path.join(__dirname, 'aclient')));
 app.use(express.static(path.join(__dirname, 'public')));
