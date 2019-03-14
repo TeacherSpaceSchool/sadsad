@@ -33,6 +33,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "pdfkit": "^0.8.3",
+    "plaintextparser": "^1.0.3",
     "qr-image": "^3.2.0",
     "randomstring": "^1.1.5",
     "superagent": "^4.1.0",
