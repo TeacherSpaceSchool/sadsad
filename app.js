@@ -47,7 +47,7 @@ app.use(function(req, res, next){
         req.text = '';
         req.setEncoding('utf8');
         req.on('data', function(chunk){ req.text += chunk });
-        req.on('end', next);
+        req.on('end', function(){ req.body = JSON.parse(req.text); next() });
     } else {
         next();
     }
