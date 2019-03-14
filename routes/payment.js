@@ -427,7 +427,7 @@ router.post('/elsom/pay', async (req, res, next) => {
 })
 
 router.post('/kcb', async (req, res, next) => {
-    res.set('Content+Type', 'application/xml');
+    res.set('Content+Type', 'application/xml; charset=utf-8');
     try{
         let ip = JSON.stringify(req.ip)
         let result = {}
