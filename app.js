@@ -44,6 +44,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
 //app.use(bodyParser.text());
 app.use(function(req, res, next){
+    console.log(req.is('text/*'))
     if (req.is('text/*')) {
         req.text = '';
         req.setEncoding('utf8');
