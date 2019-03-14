@@ -440,14 +440,14 @@ router.post('/kcb/check', async (req, res, next) => {
             let wallet = await PaymentBiletiki.findOne({wallet: responce[1]['attributes']['PARAM1']})
             if(wallet!=null){
                 result = [ { XML: [
-                    { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
+                    { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
                     { BODY: { _attr: { STATUS: '200', SUM: wallet.ammount }}}
                 ] } ];
                 res.status(200);
                 res.send(xml(result, true));
             } else {
                 result = [ { XML: [
-                    { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
+                    { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
                     { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
                     ] } ];
                 res.status(200);
