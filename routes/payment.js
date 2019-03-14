@@ -282,9 +282,6 @@ router.post('/elsom/pay', async (req, res, next) => {
 
             console.log(req.body)
             let responce = req.body
-            if(responce.PartnerPaymentResult==undefined){
-                res.set('Content+Type', 'text/plain; charset=utf-8');
-            }
             console.log(req.body)
             responce = req.body
             responce = responce.PartnerPaymentResult
@@ -430,7 +427,7 @@ router.post('/elsom/pay', async (req, res, next) => {
 })
 
 router.post('/kcb', async (req, res, next) => {
-    res.set('Content+Type', 'text/xml');
+    res.set('Content+Type', 'application/xml');
     try{
         let ip = JSON.stringify(req.ip)
         let result = {}
