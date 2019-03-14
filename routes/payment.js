@@ -436,7 +436,7 @@ router.post('/kcb/check', async (req, res, next) => {
         let result = {}
         if(ip.includes('95.46.154.64')){
             let responce = req.body.elements[0].elements
-            console.log(responce[1]['attributes']['PARAM1'])
+            console.log(responce)
             let wallet = await PaymentBiletiki.findOne({wallet: responce[1]['attributes']['PARAM1']})
             if(wallet!=null){
                 result = [ { XML: [
@@ -444,20 +444,20 @@ router.post('/kcb/check', async (req, res, next) => {
                     { BODY: { _attr: { STATUS: '200', SUM: wallet.ammount }}}
                 ] } ];
                 res.status(200);
-                res.send(xml(result, true));
+                res.end(xml(result, true));
             } else {
                 result = [ { XML: [
                     { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
                     { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
                     ] } ];
                 res.status(200);
-                res.send(xml(result, true));
+                res.end(xml(result, true));
             }
         }
         else {
             console.error(req.ip)
             res.status(501);
-            res.send('IP адресс не разрешен');
+            res.end('IP адресс не разрешен');
         }
     } catch(error) {
         console.error(error)
