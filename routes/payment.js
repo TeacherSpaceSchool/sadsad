@@ -567,7 +567,11 @@ router.post('/kcb', async (req, res, next) => {
         else {
             console.error(req.ip)
             res.status(501);
-            res.end('IP адресс не разрешен');
+            result = [ { XML: [
+                { HEAD: { _attr: { DTS: 'DTS', QM: 'QM', QID: 'PARAM1', OP: 'OP',  }}},
+                { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
+            ] } ];
+            res.end(xml(result, true));
         }
     } catch(error) {
         console.error(error)
