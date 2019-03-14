@@ -37,13 +37,13 @@ connectDB.connect()
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(logger('dev'));
-//app.use(express.urlencoded());
+app.use(express.urlencoded());
 app.use(cookieParser());
 //app.use(bodyParser.json());
 //app.use(bodyParser.text());
 app.use(bodyParser.xml());
 //app.use(bodyParser.raw());
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'aclient')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'admin')));
