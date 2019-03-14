@@ -35,10 +35,6 @@ router.get('/asisnur', async (req, res, next) => {
                         result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 8 } , { comment: 'Прием платежей запрещен по техническим причинам' } ] } ];
                         res.status(200);
                         res.end(xml(result, true));
-                    } else if(wallet.status!='обработка'&&wallet.status!='ошибка'){
-                        result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 79 } , { comment: 'Счет абонента не активен' } ] } ];
-                        res.status(200);
-                        res.end(xml(result, true));
                     } else if(wallet.ammount>parseInt(req.param('sum'))){
                         await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'ошибка'})
                         result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 241 } , { comment: 'Сумма слишком мала' } ] } ];
@@ -274,32 +270,17 @@ router.post('/elsom/generate', async (req, res, next) => {
 })
 
 router.post('/elsom/pay', async (req, res, next) => {
-
-    console.log(req.text)
     res.set('Content-Type', 'text/json; charset=utf-8');
     try{
         let ip = JSON.stringify(req.ip)
         if(true){
 
-            console.log(req.body)
             let responce = req.body
-            console.log(req.body)
             responce = req.body
             responce = responce.PartnerPaymentResult
             let wallet = await PaymentBiletiki.findOne({wallet: responce.PartnerTrnID})
-            console.log(wallet)
             if(wallet!=null){
-                console.log(wallet.status)
                 if(wallet.status=='совершен'){
-                    res.status(200);
-                    res.json({
-                        'Response':
-                            {
-                                'ErrorCode': '11003',
-                                'ErrorMsg': 'User Authentication Failed.'
-                            }
-                    });
-                } else if(wallet.status!='обработка'&&wallet.status!='ошибка'){
                     res.status(200);
                     res.json({
                         'Response':
