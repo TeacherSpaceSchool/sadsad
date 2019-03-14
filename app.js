@@ -43,7 +43,6 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.text({type: 'text/plain'}));
 app.use(bodyParser.xml());
-app.use(bodyParser.raw({type: 'text/plain'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'aclient')));
 app.use(express.static(path.join(__dirname, 'public')));
