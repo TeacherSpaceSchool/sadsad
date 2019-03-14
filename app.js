@@ -19,7 +19,6 @@ const compression = require('compression');
 const nocache = require('nocache')
 const bodyParser = require('body-parser');
 require('body-parser-xml-json')(bodyParser);
-const plainTextParser = require('plainTextParser');
 
 module.exports.dirname = __dirname;
 
@@ -44,7 +43,16 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
 //app.use(bodyParser.text());
-app.use(plainTextParser());
+app.use(function(req, res, next){
+    if (req.is('text/*')) {
+        req.text = '';
+        req.setEncoding('utf8');
+        req.on('data', function(chunk){ req.text += chunk });
+        req.on('end', next);
+    } else {
+        next();
+    }
+});
 app.use(bodyParser.json());
 app.use(bodyParser.xml());
 app.use(express.static(path.join(__dirname, 'aclient')));
