@@ -41,18 +41,17 @@ app.use(logger('dev'));
 //app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
-app.use(bodyParser.text());
-/*app.use(function(req, res, next){
+app.use(function(req, res, next){
     console.log(req.is('text/*'))
     if (req.is('text/*')) {
-        req.text = '';
+        req.body = '';
         req.setEncoding('utf8');
-        req.on('data', function(chunk){ req.text += chunk });
+        req.on('data', function(chunk){ req.body += chunk });
         req.on('end', next);
     } else {
         next();
     }
-});*/
+});
 app.use(bodyParser.json());
 app.use(bodyParser.xml());
 app.use(express.static(path.join(__dirname, 'aclient')));
