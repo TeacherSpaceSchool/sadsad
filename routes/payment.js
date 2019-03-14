@@ -429,7 +429,7 @@ router.post('/elsom/pay', async (req, res, next) => {
     }
 })
 
-router.post('/kcb/check', async (req, res, next) => {
+router.post('/kcb', async (req, res, next) => {
     res.set('Content+Type', 'text/xml');
     try{
         let ip = JSON.stringify(req.ip)
@@ -437,98 +437,47 @@ router.post('/kcb/check', async (req, res, next) => {
         if(ip.includes('95.46.154.64')){
             let responce = req.body.elements[0].elements
             console.log(responce)
-            let wallet = await PaymentBiletiki.findOne({wallet: responce[1]['attributes']['PARAM1']})
-            if(wallet!=null){
-                result = [ { XML: [
-                    { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
-                    { BODY: { _attr: { STATUS: '200', SUM: wallet.ammount }}}
-                ] } ];
-                console.log(result)
-                res.status(200);
-                res.end(xml(result, true));
-            } else {
-                result = [ { XML: [
-                    { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
-                    { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
-                    ] } ];
-                console.log(result)
-                res.status(200);
-                res.end(xml(result, true));
-            }
-        }
-        else {
-            console.error(req.ip)
-            res.status(501);
-            res.end('IP адресс не разрешен');
-        }
-    } catch(error) {
-        console.error(error)
-        res.status(501);
-    }
-});
-
-router.post('/kcb/pay', async (req, res, next) => {
-    res.set('Content+Type', 'text/xml');
-    try{
-        let result = {}
-        let ip = JSON.stringify(req.ip)
-        if(ip.includes('95.46.154.64')){
-            let responce = convert.xml2json(req.body, {compact: true, spaces: 4})
-            let wallet = await PaymentBiletiki.findOne({wallet: responce['XML']['BODY']['_attributes']['PARAM1']})
-            if(wallet!=null){
-                if(wallet.status=='совершен'){
+            if(responce[0]['attributes']['OP']=='QE11'){
+                let wallet = await PaymentBiletiki.findOne({wallet: responce[1]['attributes']['PARAM1']})
+                if(wallet!=null){
                     result = [ { XML: [
-                        { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
-                        { BODY: { _attr: { STATUS: '400', ERR_MSG: 'Платеж находится в обработке' }}}
+                        { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
+                        { BODY: { _attr: { STATUS: '200', SUM: wallet.ammount }}}
                     ] } ];
-                    res.status(200);
-                    res.end(xml(result, true));
-                } else if(wallet.status!='обработка'&&wallet.status!='ошибка'){
-                    result = [ { XML: [
-                        { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
-                        { BODY: { _attr: { STATUS: '424', ERR_MSG: 'Сервис временно недоступен' }}}
-                    ] } ];
+                    console.log(result)
                     res.status(200);
                     res.end(xml(result, true));
                 } else {
-                    let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
-                    if(ticket!=null){
-                        await PaymentBiletiki.findOneAndUpdate({wallet: responce['XML']['BODY']['_attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce['XML']['HEAD']['_attributes']['DTS']+' \nID: '+responce['XML']['HEAD']['_attributes']['QID']})
-                        await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
-                        let mailingBiletiki = await MailingBiletiki.findOne();
-                        let mailOptions = {
-                            from: mailingBiletiki.mailuser,
-                            to: wallet.email,
-                            subject: 'Ваш билет',
-                            text: 'Ссылка на ваш билет: ' + ticket.ticket
-                        };
-                        if (mailingBiletiki !== null) {
-                            const transporter = nodemailer.createTransport({
-                                service: 'gmail',
-                                auth: {
-                                    user: mailingBiletiki.mailuser,
-                                    pass: mailingBiletiki.mailpass
-                                }
-                            });
-                            transporter.sendMail(mailOptions, function (error, info) {
-                                if (error) {
-                                    console.log(error);
-                                } else {
-                                    console.log('Email sent: ' + info.response);
-                                }
-                            });
-                        }
+                    result = [ { XML: [
+                        { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
+                        { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
+                    ] } ];
+                    console.log(result)
+                    res.status(200);
+                    res.end(xml(result, true));
+                }
+            } else if(responce[0]['attributes']['OP']=='QE10'){
+                let wallet = await PaymentBiletiki.findOne({wallet: responce[1]['attributes']['PARAM1']})
+                if(wallet!=null){
+                    if(wallet.status=='совершен'){
                         result = [ { XML: [
-                            { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
-                            { BODY: { _attr: { STATUS: '250', ERR_MSG: 'Платеж успешно проведен' }}}
+                            { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
+                            { BODY: { _attr: { STATUS: '400', ERR_MSG: 'Платеж находится в обработке' }}}
+                        ] } ];
+                        res.status(200);
+                        res.end(xml(result, true));
+                    } else if(wallet.status!='обработка'&&wallet.status!='ошибка'){
+                        result = [ { XML: [
+                            { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
+                            { BODY: { _attr: { STATUS: '424', ERR_MSG: 'Сервис временно недоступен' }}}
                         ] } ];
                         res.status(200);
                         res.end(xml(result, true));
                     } else {
-                        ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                        let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
                         if(ticket!=null){
-                            await PaymentBiletiki.findOneAndUpdate({wallet: responce['XML']['BODY']['_attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce['XML']['HEAD']['_attributes']['DTS']+' \nID: '+responce['XML']['HEAD']['_attributes']['QID']})
-                            await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                            await PaymentBiletiki.findOneAndUpdate({wallet: responce[1]['attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce[0]['attributes']['DTS']+' \nID: '+responce[0]['attributes']['QID']})
+                            await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
                                 from: mailingBiletiki.mailuser,
@@ -553,47 +502,78 @@ router.post('/kcb/pay', async (req, res, next) => {
                                 });
                             }
                             result = [ { XML: [
-                                { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
+                                { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
                                 { BODY: { _attr: { STATUS: '250', ERR_MSG: 'Платеж успешно проведен' }}}
                             ] } ];
                             res.status(200);
                             res.end(xml(result, true));
                         } else {
-                            result = [ { XML: [
-                                { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
-                                { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
-                            ] } ];
-                            res.status(200);
-                            res.end(xml(result, true));
+                            ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                            if(ticket!=null){
+                                await PaymentBiletiki.findOneAndUpdate({wallet: responce[1]['attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce[0]['attributes']['DTS']+' \nID: '+responce[0]['attributes']['QID']})
+                                await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                                let mailingBiletiki = await MailingBiletiki.findOne();
+                                let mailOptions = {
+                                    from: mailingBiletiki.mailuser,
+                                    to: wallet.email,
+                                    subject: 'Ваш билет',
+                                    text: 'Ссылка на ваш билет: ' + ticket.ticket
+                                };
+                                if (mailingBiletiki !== null) {
+                                    const transporter = nodemailer.createTransport({
+                                        service: 'gmail',
+                                        auth: {
+                                            user: mailingBiletiki.mailuser,
+                                            pass: mailingBiletiki.mailpass
+                                        }
+                                    });
+                                    transporter.sendMail(mailOptions, function (error, info) {
+                                        if (error) {
+                                            console.log(error);
+                                        } else {
+                                            console.log('Email sent: ' + info.response);
+                                        }
+                                    });
+                                }
+                                result = [ { XML: [
+                                    { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
+                                    { BODY: { _attr: { STATUS: '250', ERR_MSG: 'Платеж успешно проведен' }}}
+                                ] } ];
+                                res.status(200);
+                                res.end(xml(result, true));
+                            } else {
+                                result = [ { XML: [
+                                    { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
+                                    { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
+                                ] } ];
+                                res.status(200);
+                                res.end(xml(result, true));
+                            }
                         }
                     }
+                } else
+                {
+                    result = [ { XML: [
+                        { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
+                        { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
+                    ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
                 }
-            } else {
-                result = [ { XML: [
-                    { HEAD: { _attr: { DTS: responce['XML']['HEAD']['_attributes']['DTS'], QM: responce['XML']['HEAD']['_attributes']['QM'], QID: responce['XML']['BODY']['_attributes']['PARAM1'], OP: responce['XML']['HEAD']['_attributes']['OP'],  }}},
-                    { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
-                ] } ];
-                res.status(200);
-                res.end(xml(result, true));
             }
-        } else {
+
+
+        }
+        else {
             console.error(req.ip)
             res.status(501);
-            res.end('IP адрес не разрешен');
-
+            res.end('IP адресс не разрешен');
         }
     } catch(error) {
         console.error(error)
-        res.status(200);
-        res.end({
-            'Response':
-                {
-                    'ErrorCode': '8000',
-                    'ErrorMsg': 'Success'
-                }
-        });
+        res.status(501);
     }
-})
+});
 
 router.post('/balance/generate', async (req, res, next) => {
     console.log('balance')

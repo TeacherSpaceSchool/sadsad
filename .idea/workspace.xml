@@ -33,8 +33,8 @@
       <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="454" column="16" lean-forward="false" selection-start-line="454" selection-start-column="16" selection-end-line="454" selection-end-column="16" />
+            <state relative-caret-position="2561">
+              <caret line="575" column="3" lean-forward="false" selection-start-line="575" selection-start-column="3" selection-end-line="575" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -480,12 +480,12 @@
       <workItem from="1551937376265" duration="53058000" />
       <workItem from="1552296128410" duration="3625000" />
       <workItem from="1552369019574" duration="28340000" />
-      <workItem from="1552549331890" duration="4567000" />
+      <workItem from="1552549331890" duration="5359000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="724239000" />
+    <option name="totallyTimeSpent" value="725031000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -875,8 +875,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="454" column="16" lean-forward="false" selection-start-line="454" selection-start-column="16" selection-end-line="454" selection-end-column="16" />
+        <state relative-caret-position="2561">
+          <caret line="575" column="3" lean-forward="false" selection-start-line="575" selection-start-column="3" selection-end-line="575" selection-end-column="3" />
           <folding />
         </state>
       </provider>
