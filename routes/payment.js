@@ -275,7 +275,7 @@ router.post('/elsom/generate', async (req, res, next) => {
 
 router.post('/elsom/pay', async (req, res, next) => {
     console.log(req.body)
-    res.set('Content+Type', 'text/json; charset=utf-8');
+    res.set('Content-Type', 'text/json; charset=utf-8');
     try{
         let ip = JSON.stringify(req.ip)
         if(true){
@@ -420,7 +420,7 @@ router.post('/elsom/pay', async (req, res, next) => {
             'Response':
                 {
                     'ErrorCode': '8000',
-                    'ErrorMsg': 'Success'
+                    'ErrorMsg': 'Error server'
                 }
         });
     }
