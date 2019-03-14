@@ -44,9 +44,9 @@ app.use(cookieParser());
 app.use(function(req, res, next){
     console.log(req.is('text/*'))
     if (req.is('text/*')) {
-        req.body = '';
+        req.text = '';
         req.setEncoding('utf8');
-        req.on('data', function(chunk){ req.body += chunk });
+        req.on('data', function(chunk){ req.text += chunk });
         req.on('end', next);
     } else {
         next();
