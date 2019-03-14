@@ -431,7 +431,7 @@ router.post('/kcb', async (req, res, next) => {
     try{
         let ip = JSON.stringify(req.ip)
         let result = {}
-        if(ip.includes('95.46.154.64')){
+        if(true){
             let responce = req.body.elements[0].elements
             console.log(responce)
             if(responce[0]['attributes']['OP']=='QE11'){
