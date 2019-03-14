@@ -42,7 +42,6 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
 //app.use(bodyParser.text());
-app.use(bodyParser.raw());
 app.use(bodyParser.json());
 app.use(bodyParser.xml());
 app.use(express.static(path.join(__dirname, 'aclient')));
