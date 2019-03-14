@@ -274,7 +274,7 @@ router.post('/elsom/generate', async (req, res, next) => {
 })
 
 router.post('/elsom/pay', async (req, res, next) => {
-    console.log(req.text)
+    console.log(req.text.PartnerPaymentResult)
     res.set('Content-Type', 'text/json; charset=utf-8');
     try{
         let ip = JSON.stringify(req.ip)
