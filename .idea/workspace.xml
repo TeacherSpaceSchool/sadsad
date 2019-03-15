@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/checkVisaBiletiki.js" afterPath="$PROJECT_DIR$/module/checkVisaBiletiki.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/payment.js" afterPath="$PROJECT_DIR$/routes/payment.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,8 +23,8 @@
       <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="759" column="14" lean-forward="false" selection-start-line="759" selection-start-column="14" selection-end-line="759" selection-end-column="14" />
+            <state relative-caret-position="204">
+              <caret line="717" column="31" lean-forward="false" selection-start-line="717" selection-start-column="31" selection-end-line="717" selection-end-column="31" />
               <folding>
                 <element signature="e#923#8350#0" expanded="false" />
                 <element signature="e#13089#14187#0" expanded="false" />
@@ -35,6 +35,16 @@
                 <element signature="e#32166#35488#0" expanded="false" />
                 <element signature="e#35540#35726#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="paymentBiletiki.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/paymentBiletiki.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -431,12 +441,12 @@
       <workItem from="1551937376265" duration="53058000" />
       <workItem from="1552296128410" duration="3625000" />
       <workItem from="1552369019574" duration="28340000" />
-      <workItem from="1552549331890" duration="30489000" />
+      <workItem from="1552549331890" duration="30698000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="750161000" />
+    <option name="totallyTimeSpent" value="750370000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -530,13 +540,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
           <caret line="274" column="9" lean-forward="false" selection-start-line="274" selection-start-column="9" selection-end-line="274" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/paymentBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -832,10 +835,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/paymentBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="759" column="14" lean-forward="false" selection-start-line="759" selection-start-column="14" selection-end-line="759" selection-end-column="14" />
+        <state relative-caret-position="204">
+          <caret line="717" column="31" lean-forward="false" selection-start-line="717" selection-start-column="31" selection-end-line="717" selection-end-column="31" />
           <folding>
             <element signature="e#923#8350#0" expanded="false" />
             <element signature="e#13089#14187#0" expanded="false" />

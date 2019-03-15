@@ -708,15 +708,14 @@ router.post('/tested', async (req, res, next) => {
 router.post('/visa/pay', async (req, res, next) => {
     try{
         let wallet = await PaymentBiletiki.findOne({wallet: req.body['ReturnOid']})
-        console.log(req.body)
         if(wallet!=null){
-            let hash = 'https://kassir.kg/visa/'+randomstring.generate({length: 12, charset: 'numeric'})+'.pdf';
-            while (!await ActionCheckVisaBiletiki.check(hash))
-                hash = 'https://kassir.kg/visa/'+randomstring.generate({length: 12, charset: 'numeric'})+'.pdf';
+            let hash = 'https://kassir.kg/visa/'+wallet.wallet+'.pdf';
             let pdfname = ''
             pdfname += hash
             pdfname.replace('https://kassir.kg/visa/', '');
+            console.log(pdfname)
             let pdfpath = path.join(app.dirname, 'public', 'visa', pdfname);
+            console.log(pdfpath)
             let doc = new PDFDocument();
             let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
             doc.registerFont('NotoSans', robotoBlack);
