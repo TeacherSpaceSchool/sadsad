@@ -1,6 +1,11 @@
 const CheckVisaBiletiki = require('../models/checkVisaBiletiki');
 const format = require('./const').stringifyDateTime ;
 
+const check = async (hash) => {
+    const new1 = await CheckVisaBiletiki.count({link: hash})===0;
+    return(new1)
+}
+
 const getCheckVisaBiletiki = async (search, sort, skip) => {
     try{
         let findResult = [], data = [], count;
@@ -46,3 +51,5 @@ const getCheckVisaBiletiki = async (search, sort, skip) => {
 }
 
 module.exports.getCheckVisaBiletiki = getCheckVisaBiletiki;
+module.exports.check = check;
+

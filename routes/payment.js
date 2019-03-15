@@ -7,8 +7,16 @@ const xml = require('xml');
 const https = require('https');
 const TicketBiletiki = require('../models/ticketBiletiki');
 const TicketCinemaBiletiki = require('../models/ticketCinemaBiletiki');
+const CheckVisaBiletiki = require('../models/checkVisaBiletiki');
+const ActionCheckVisaBiletiki = require('../module/checkVisaBiletiki');
 const nodemailer = require('nodemailer');
 const FormData = require('form-data');
+const randomstring = require('randomstring');
+const app = require('../app');
+const path = require('path');
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+const myConst = require('../module/const');
 
 /* GET home page. */
 router.get('/asisnur', async (req, res, next) => {
@@ -701,75 +709,122 @@ router.post('/visa/pay', async (req, res, next) => {
     try{
         let wallet = await PaymentBiletiki.findOne({wallet: req.body['ReturnOid']})
         console.log(req.body)
-      /*  if(wallet!=null){
-            let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
-            if(ticket!=null){
-                await PaymentBiletiki.findOneAndUpdate({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
-                await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
-                let mailingBiletiki = await MailingBiletiki.findOne();
-                let mailOptions = {
-                    from: mailingBiletiki.mailuser,
-                    to: wallet.email,
-                    subject: 'Ваш билет',
-                    text: 'Ссылка на ваш билет: ' + ticket.ticket
-                };
-                if (mailingBiletiki !== null) {
-                    const transporter = nodemailer.createTransport({
-                        service: 'gmail',
-                        auth: {
-                            user: mailingBiletiki.mailuser,
-                            pass: mailingBiletiki.mailpass
-                        }
-                    });
-                    transporter.sendMail(mailOptions, function (error, info) {
-                        if (error) {
-                            console.log(error);
-                        } else {
-                            console.log('Email sent: ' + info.response);
-                        }
-                    });
-                }
-                res.writeHead(301, { 'Location': 'https://kassir.kg/' });
-                res.end();
-            } else {
-                ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
-                if(ticket!=null){
-                    await PaymentBiletiki.findOneAndUpdate({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
-                    await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
-                    let mailingBiletiki = await MailingBiletiki.findOne();
-                    let mailOptions = {
-                        from: mailingBiletiki.mailuser,
-                        to: wallet.email,
-                        subject: 'Ваш билет',
-                        text: 'Ссылка на ваш билет: ' + ticket.ticket
-                    };
-                    if (mailingBiletiki !== null) {
-                        const transporter = nodemailer.createTransport({
-                            service: 'gmail',
-                            auth: {
-                                user: mailingBiletiki.mailuser,
-                                pass: mailingBiletiki.mailpass
-                            }
-                        });
-                        transporter.sendMail(mailOptions, function (error, info) {
-                            if (error) {
-                                console.log(error);
-                            } else {
-                                console.log('Email sent: ' + info.response);
-                            }
-                        });
-                    }
-                    res.writeHead(301, { 'Location': 'https://kassir.kg/' });
-                    res.end();
-                } else {
-                    res.status(501);
-                    res.end('error');
-                }
-            }
+        if(wallet!=null){
+            let hash = 'https://kassir.kg/visa/'+randomstring.generate({length: 12, charset: 'numeric'})+'.pdf';
+            while (!await ActionCheckVisaBiletiki.check(hash))
+                hash = 'https://kassir.kg/visa/'+randomstring.generate({length: 12, charset: 'numeric'})+'.pdf';
+            let pdfname = ''
+            pdfname += hash
+            pdfname.replace('https://kassir.kg/visa/', '');
+            let pdfpath = path.join(app.dirname, 'public', 'visa', pdfname);
+            let doc = new PDFDocument();
+            let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+            doc.registerFont('NotoSans', robotoBlack);
+            let fstream = fs.createWriteStream(pdfpath);
+            doc.pipe(fstream);
+            let datet = new Date()
+            datet = datet.toJSON()
+            let date = datet.split('T')[0].split('-')
+            let time = datet.split('T')[1].split(':')
+            let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+            doc
+                .font('NotoSans')
+                .fontSize(13)
+                .text('KASSIR.KG', {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(13)
+                .text('Адрес: Ул. Шопокова 93/2, 9 этаж, 903 офис.', {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(13)
+                .text('kassir.kg', {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(13)
+                .text('Документ №'+req.body['ReturnOid']+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(13)
+                .text('Код авторизации: '+req.body['AuthCode'], {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(13)
+                .text(req.body['EXTRA.CARDBRAND']+': '+req.body['MaskedPan'], {width: doc.page.width - 100, align: 'center'})
+            doc
+                .font('NotoSans')
+                .fontSize(12)
+                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
+            doc.end()
+
+            /* let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
+             if(ticket!=null){
+                 await PaymentBiletiki.findOneAndUpdate({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
+                 await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                 let mailingBiletiki = await MailingBiletiki.findOne();
+                 let mailOptions = {
+                     from: mailingBiletiki.mailuser,
+                     to: wallet.email,
+                     subject: 'Ваш билет',
+                     text: 'Ссылка на ваш билет: ' + ticket.ticket
+                 };
+                 if (mailingBiletiki !== null) {
+                     const transporter = nodemailer.createTransport({
+                         service: 'gmail',
+                         auth: {
+                             user: mailingBiletiki.mailuser,
+                             pass: mailingBiletiki.mailpass
+                         }
+                     });
+                     transporter.sendMail(mailOptions, function (error, info) {
+                         if (error) {
+                             console.log(error);
+                         } else {
+                             console.log('Email sent: ' + info.response);
+                         }
+                     });
+                 }
+                 res.writeHead(301, { 'Location': 'https://kassir.kg/' });
+                 res.end();
+             } else {
+                 ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                 if(ticket!=null){
+                     await PaymentBiletiki.findOneAndUpdate({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
+                     await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                     let mailingBiletiki = await MailingBiletiki.findOne();
+                     let mailOptions = {
+                         from: mailingBiletiki.mailuser,
+                         to: wallet.email,
+                         subject: 'Ваш билет',
+                         text: 'Ссылка на ваш билет: ' + ticket.ticket
+                     };
+                     if (mailingBiletiki !== null) {
+                         const transporter = nodemailer.createTransport({
+                             service: 'gmail',
+                             auth: {
+                                 user: mailingBiletiki.mailuser,
+                                 pass: mailingBiletiki.mailpass
+                             }
+                         });
+                         transporter.sendMail(mailOptions, function (error, info) {
+                             if (error) {
+                                 console.log(error);
+                             } else {
+                                 console.log('Email sent: ' + info.response);
+                             }
+                         });
+                     }
+                     res.writeHead(301, { 'Location': 'https://kassir.kg/' });
+                     res.end();
+                 } else {
+                     res.status(501);
+                     res.end('error');
+                 }
+             }*/
         } else {
             res.status(501);
             res.end('error');
-        }*/
+        }
     } catch(error) {
         console.error(error)
         res.status(501);
