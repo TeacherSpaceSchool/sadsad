@@ -7,8 +7,8 @@ const xml = require('xml');
 const https = require('https');
 const TicketBiletiki = require('../models/ticketBiletiki');
 const TicketCinemaBiletiki = require('../models/ticketCinemaBiletiki');
-var convert = require('xml-js');
 const nodemailer = require('nodemailer');
+const FormData = require('form-data');
 
 /* GET home page. */
 router.get('/asisnur', async (req, res, next) => {
@@ -577,22 +577,26 @@ router.post('/balance/generate', async (req, res, next) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
         console.log('balance')
-        let auth_token = await axios.post('http://umai.balance.kg/site-api/acquiring/auth?merchant=KASSIR_KG&password=Q3Rup+pE')
+        let data = new FormData();
+        data.append('merchant', 'KASSIR_KG');
+        data.append('password', 'Q3Rup+pE');
+        let auth_token = await axios.post('http://umai.balance.kg/site-api/acquiring/auth', data)
         console.log(auth_token.data)
         if(auth_token.data.status=='FAIL'){
             res.status(200);
             res.end('error');
         }
         auth_token = auth_token.data.details.auth_token
-        let payment_token = await axios.post('http://umai.balance.kg/site-api/acquiring/request-token?' +
-            'merchant: Наименование мерчанта ' +
-            'service_id: ID сервиса ' +
-            'amount:' + req.body.sum + ' ' +
-            'requisite: '+ req.body.wallet + ' ' +
-            'transaction_id: ' + req.body.wallet + ' ' +
-            'redirect_url: https://kassir.kg ' +
-            'hook_url: https://kassir.kg/balance/pay ' +
-            'auth_token: ' + auth_token)
+        data = new FormData();
+        data.append('merchant', 'KASSIR_KG');
+        data.append('service_id', '12');
+        data.append('amount', req.body.sum);
+        data.append('requisite', req.body.wallet);
+        data.append('transaction_id', req.body.wallet);
+        data.append('redirect_url', 'https://kassir.kg');
+        data.append('hook_url', 'https://kassir.kg/balance/pay');
+        data.append('auth_token', auth_token);
+        let payment_token = await axios.post('http://umai.balance.kg/site-api/acquiring/request-token?', data)
         console.log(payment_token.data)
         if(payment_token.data.status=='FAIL'){
             res.status(200);
@@ -696,7 +700,8 @@ router.post('/tested', async (req, res, next) => {
 router.post('/visa/pay', async (req, res, next) => {
     try{
         let wallet = await PaymentBiletiki.findOne({wallet: req.body['ReturnOid']})
-        if(wallet!=null){
+        console.log(req.body)
+      /*  if(wallet!=null){
             let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
             if(ticket!=null){
                 await PaymentBiletiki.findOneAndUpdate({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
@@ -764,7 +769,7 @@ router.post('/visa/pay', async (req, res, next) => {
         } else {
             res.status(501);
             res.end('error');
-        }
+        }*/
     } catch(error) {
         console.error(error)
         res.status(501);

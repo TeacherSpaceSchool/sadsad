@@ -24,6 +24,7 @@ const MovieBiletiki = require('../module/movieBiletiki');
 const SeanceBiletiki = require('../module/seanceBiletiki');
 const PaymentBiletiki = require('../module/paymentBiletiki');
 const TicketCinemaBiletiki = require('../module/ticketCinemaBiletiki');
+const CheckVisaBiletiki = require('../module/checkVisaBiletiki');
 const CashboxBiletiki = require('../module/cashboxBiletiki');
 const qr = require('qr-image');
 const myConst = require('../module/const');
@@ -130,6 +131,8 @@ router.post('/get', async (req, res) => {
                     await res.send(await MailingBiletiki.getMailingBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Кассы'){
                     await res.send(await CashboxBiletiki.getCashboxBiletiki(req.body.search, req.body.sort, req.body.skip))
+                } else if(req.body.name == 'Visa'){
+                    await res.send(await CheckVisaBiletiki.getCheckVisaBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'СеансДаты'){
                     let data = JSON.parse(req.body.data);
                     await res.send(await SeanceBiletiki.getSeanceTimes(data.movie, data.user))
