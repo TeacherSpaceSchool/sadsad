@@ -230,19 +230,6 @@ router.post('/elsom/generate', async (req, res, next) => {
                     rejectUnauthorized: false
                 })
             });
-            console.log({
-                'PartnerGenerateOTP': {
-                    'PartnerTrnID': req.body.wallet,
-                    'CultureInfo': 'ru-Ru',
-                    'MSISDN': '0909000009',
-                    'PartnerCode': '04108',
-                    'ChequeNo': '',
-                    'Amount': req.body.sum,
-                    'CashierNo': req.body.wallet,
-                    'UDF': req.body.wallet,
-                    'Password': '2ac9cb7dc02b3c0083eb70898e549b63'
-                }
-            })
             let result = await instance.post('https://mbgwt.elsom.kg:10690/MerchantAPI', {
                    'PartnerGenerateOTP': {
                        'PartnerTrnID': req.body.wallet,
@@ -405,6 +392,35 @@ router.post('/elsom/pay', async (req, res, next) => {
                     'ErrorMsg': 'Error server'
                 }
         });
+    }
+})
+
+router.post('/elsom/check', async (req, res, next) => {
+    try{
+        res.set('Content+Type', 'text/json; charset=utf-8');
+        const instance = axios.create({
+            httpsAgent: new https.Agent({
+                rejectUnauthorized: false
+            })
+        });
+        let result = await instance.post('https://mbgwt.elsom.kg:10690/MerchantAPI', {
+                'PartnerGetPaymentStatus': {
+                    'CultureInfo': 'ru-Ru',
+                    'MSISDN': '0909000009',
+                    'PartnerTrnID': req.body.wallet,
+                    'Password': '2ac9cb7dc02b3c0083eb70898e549b63'
+                }
+            }
+        );
+
+        let code = result.data.Response.Result.Message
+        res.status(200);
+        res.end(code);
+
+    } catch(error) {
+        console.error(error)
+        res.status(200);
+        res.end('error');
     }
 })
 
