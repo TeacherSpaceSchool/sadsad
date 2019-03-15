@@ -403,6 +403,7 @@ router.post('/elsom/check', async (req, res, next) => {
                 rejectUnauthorized: false
             })
         });
+        console.log(req.body.wallet)
         let result = await instance.post('https://mbgwt.elsom.kg:10690/MerchantAPI', {
                 'PartnerGetPaymentStatus': {
                     'CultureInfo': 'ru-Ru',
@@ -412,7 +413,7 @@ router.post('/elsom/check', async (req, res, next) => {
                 }
             }
         );
-
+        console.log(result.data)
         let code = result.data.Response.Result.Message
         res.status(200);
         res.end(code);
