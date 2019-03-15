@@ -712,7 +712,7 @@ router.post('/visa/pay', async (req, res, next) => {
             let hash = 'https://kassir.kg/visa/'+wallet.wallet+'.pdf';
             let pdfname = ''
             pdfname += hash
-            pdfname.replace('https://kassir.kg/visa/', '');
+            pdfname=pdfname.replace('https://kassir.kg/visa/', '');
             console.log(pdfname)
             let pdfpath = path.join(app.dirname, 'public', 'visa', pdfname);
             console.log(pdfpath)
