@@ -593,8 +593,8 @@ router.post('/balance/generate', async (req, res, next) => {
                 'content-type': `multipart/form-data; boundary=${data._boundary}`,
             },
         })
-        console.log(auth_token)
-        /*if(auth_token.data.status=='FAIL'){
+        console.log(auth_token.data.details.auth_token)
+        if(auth_token.data.status=='FAIL'){
             res.status(200);
             res.end('error');
         }
@@ -608,15 +608,22 @@ router.post('/balance/generate', async (req, res, next) => {
         data.append('redirect_url', 'https://kassir.kg');
         data.append('hook_url', 'https://kassir.kg/balance/pay');
         data.append('auth_token', auth_token);
-        let payment_token = await axios.post('https://umai.balance.kg/site-api/acquiring/request-token?', data)
+        let payment_token = await axios({
+            method: 'post',
+            url: 'https://umai.balance.kg/site-api/acquiring/request-token',
+            data: data,
+            headers: {
+                'content-type': `multipart/form-data; boundary=${data._boundary}`,
+            },
+        })
         console.log(payment_token.data)
         if(payment_token.data.status=='FAIL'){
             res.status(200);
             res.end('error');
         }
-        payment_token = payment_token.data.details.payment_token*/
+        payment_token = payment_token.data.details.payment_token
         res.status(200);
-        res.end('http://balance.kg/acquiring.html?payment_token=');
+        res.end('http://balance.kg/acquiring.html?payment_token='+payment_token);
     } catch(error) {
         console.error(error)
         res.status(200);
