@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/precache-manifest.0e04fb7b7b3c3ed3f4d8c5b669c48e30.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/18.4720e4ae.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/18.4720e4ae.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.eb915685.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.eb915685.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/asset-manifest.json" afterPath="$PROJECT_DIR$/aclient/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/index.html" afterPath="$PROJECT_DIR$/aclient/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/service-worker.js" afterPath="$PROJECT_DIR$/aclient/service-worker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/ticketBiletiki.js" afterPath="$PROJECT_DIR$/module/ticketBiletiki.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/payment.js" afterPath="$PROJECT_DIR$/routes/payment.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="714" column="61" lean-forward="false" selection-start-line="714" selection-start-column="36" selection-end-line="714" selection-end-column="61" />
+            <state relative-caret-position="534">
+              <caret line="774" column="34" lean-forward="false" selection-start-line="774" selection-start-column="34" selection-end-line="774" selection-end-column="34" />
               <folding>
                 <element signature="e#923#8350#0" expanded="false" />
                 <element signature="e#13089#14187#0" expanded="false" />
@@ -51,19 +45,26 @@
                 <element signature="e#30561#32109#0" expanded="false" />
                 <element signature="e#32166#35488#0" expanded="false" />
                 <element signature="e#35540#35726#0" expanded="false" />
-                <element signature="e#42061#42787#0" expanded="false" />
+                <element signature="e#42264#42990#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="137" column="45" lean-forward="false" selection-start-line="137" selection-start-column="45" selection-end-line="149" selection-end-column="46" />
+            <state relative-caret-position="1395">
+              <caret line="93" column="108" lean-forward="false" selection-start-line="93" selection-start-column="108" selection-end-line="93" selection-end-column="108" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="0JrSg5c80dcf43637771678e3d5ee5c80c935945e573174d55ea7.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/qr/0JrSg5c80dcf43637771678e3d5ee5c80c935945e573174d55ea7.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -110,7 +111,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>data</find>
       <find>buy1</find>
       <find>TicketBiletiki</find>
       <find>событие</find>
@@ -140,9 +140,9 @@
       <find>elsom</find>
       <find>center</find>
       <find>justify</find>
+      <find>12</find>
     </findStrings>
     <replaceStrings>
-      <replace>==</replace>
       <replace>Cinema</replace>
       <replace>Mailing</replace>
       <replace>CinemaHallBiletiki</replace>
@@ -172,6 +172,7 @@
       <replace>CheckVisa</replace>
       <replace>CheckVisaBiletiki</replace>
       <replace>justify</replace>
+      <replace>11</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -222,15 +223,15 @@
         <option value="$PROJECT_DIR$/module/userBiletiki.js" />
         <option value="$PROJECT_DIR$/module/vacancyBiletiki.js" />
         <option value="$PROJECT_DIR$/module/whereBiletiki.js" />
-        <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/module/ticketCinemaBiletiki.js" />
         <option value="$PROJECT_DIR$/routes/data123.js" />
         <option value="$PROJECT_DIR$/models/checkVisa.js" />
         <option value="$PROJECT_DIR$/models/checkVisaBiletiki.js" />
         <option value="$PROJECT_DIR$/routes/data.js" />
         <option value="$PROJECT_DIR$/module/checkVisaBiletiki.js" />
-        <option value="$PROJECT_DIR$/routes/payment.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/payment.js" />
+        <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
       </list>
     </option>
   </component>
@@ -296,6 +297,12 @@
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="qr" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
@@ -460,12 +467,12 @@
       <workItem from="1551937376265" duration="53058000" />
       <workItem from="1552296128410" duration="3625000" />
       <workItem from="1552369019574" duration="28340000" />
-      <workItem from="1552549331890" duration="33824000" />
+      <workItem from="1552549331890" duration="35802000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="753496000" />
+    <option name="totallyTimeSpent" value="755474000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -478,6 +485,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.77710843" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -486,7 +494,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18821293" sideWeight="0.22289157" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31224763" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -511,11 +519,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/thumbnail/TcsrG5Cheader.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/images/TcsrG5Cheader.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -831,14 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="137" column="45" lean-forward="false" selection-start-line="137" selection-start-column="45" selection-end-line="149" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/paymentBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -855,18 +850,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="70" column="148" lean-forward="false" selection-start-line="70" selection-start-column="148" selection-end-line="70" selection-end-column="148" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="714" column="61" lean-forward="false" selection-start-line="714" selection-start-column="36" selection-end-line="714" selection-end-column="61" />
+        <state relative-caret-position="534">
+          <caret line="774" column="34" lean-forward="false" selection-start-line="774" selection-start-column="34" selection-end-line="774" selection-end-column="34" />
           <folding>
             <element signature="e#923#8350#0" expanded="false" />
             <element signature="e#13089#14187#0" expanded="false" />
@@ -876,8 +863,29 @@
             <element signature="e#30561#32109#0" expanded="false" />
             <element signature="e#32166#35488#0" expanded="false" />
             <element signature="e#35540#35726#0" expanded="false" />
-            <element signature="e#42061#42787#0" expanded="false" />
+            <element signature="e#42264#42990#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="70" column="148" lean-forward="false" selection-start-line="70" selection-start-column="148" selection-end-line="70" selection-end-column="148" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/qr/0JrSg5c80dcf43637771678e3d5ee5c80c935945e573174d55ea7.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1395">
+          <caret line="93" column="108" lean-forward="false" selection-start-line="93" selection-start-column="108" selection-end-line="93" selection-end-column="108" />
+          <folding />
         </state>
       </provider>
     </entry>

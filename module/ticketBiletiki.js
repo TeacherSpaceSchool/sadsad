@@ -49,10 +49,6 @@ const buy = async (req, res, user) => {
             let date = datet.split('T')[0].split('-')
             let time = datet.split('T')[1].split(':')
             let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-            doc
-                .font('NotoSans')
-                .fontSize(12)
-                .text('Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
             let sum = 0
             for(let i = 0; i<data.seats.length; i++){
                 sum+=parseInt(data.seats[i][0]['price'])
@@ -60,67 +56,42 @@ const buy = async (req, res, user) => {
             doc.moveDown()
             doc
                 .font('NotoSans')
-                .fontSize(12)
-                .text('Сервис: '+data.service+' Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
+                .fontSize(11)
+                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
+            doc
+                .font('NotoSans')
+                .fontSize(11)
+                .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
+            doc
+                .font('NotoSans')
+                .fontSize(11)
+                .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
             doc.moveDown()
             doc
                 .font('NotoSans')
-                .fontSize(12)
-                .text('Площадка:', {width: doc.page.width - 100, align: 'center'})
-            doc
-                .font('NotoSans')
-                .fontSize(12)
-                .text(data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
-            doc.moveDown()
-            doc
-                .font('NotoSans')
-                .fontSize(12)
-                .text('Мероприятие:', {width: doc.page.width - 100, align: 'center'})
-            doc
-                .font('NotoSans')
-                .fontSize(12)
-                .text(data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
-            doc.moveDown()
-            doc
-                .font('NotoSans')
-                .fontSize(12)
-                .text('Места:', {width: doc.page.width - 100, align: 'center'})
+                .fontSize(11)
+                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
             for (let i = 0; i < data.seats.length; i++) {
-                doc
-                    .font('NotoSans')
-                    .fontSize(12)
-                    .text('Место ' + (i + 1), {width: doc.page.width - 100, align: 'justify'})
                 let date = data.seats[i][1].split('T')[0].split('-')
                 let time = data.seats[i][1].split('T')[1].split(':')
                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                 doc
                     .font('NotoSans')
-                    .fontSize(12)
-                    .text('        Дата: ' + dateTime, {width: doc.page.width - 100, align: 'justify'})
-                doc
-                    .font('NotoSans')
-                    .fontSize(12)
-                    .text('        Место: ' + data.seats[i][0]['name'], {width: doc.page.width - 100, align: 'justify'})
-                doc
-                    .font('NotoSans')
-                    .fontSize(12)
-                    .text('        Цена: ' + data.seats[i][0]['price'] + ' сом', {
-                        width: doc.page.width - 100,
-                        align: 'justify'
-                    })
+                    .fontSize(11)
+                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
             }
             doc.moveDown()
-            doc.addPage()
-            doc.moveDown()
-            doc.image(qrpath, (doc.page.width - 225) / 2)
+            //doc.addPage()
+            //doc.moveDown()
+            doc.image(qrpath, {width: doc.page.width - 145, align: 'center'})
             doc
                 .font('NotoSans')
-                .fontSize(12)
+                .fontSize(11)
                 .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
             doc
                 .font('NotoSans')
-                .fontSize(12)
-                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                .fontSize(11)
+                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
             doc.end()
         })
         await EventBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});

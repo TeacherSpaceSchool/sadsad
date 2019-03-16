@@ -768,6 +768,11 @@ router.post('/visa/pay', async (req, res, next) => {
                 .font('NotoSans')
                 .fontSize(12)
                 .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
+            doc.moveDown()
+            doc
+                .font('NotoSans')
+                .fontSize(12)
+                .text('Спасибо за покупку!!!', {width: doc.page.width - 100, align: 'justify'})
             doc.end()
             let mailingBiletiki = await MailingBiletiki.findOne();
             let mailOptions = {
