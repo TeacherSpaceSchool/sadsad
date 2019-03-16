@@ -83,7 +83,7 @@ const buy = async (req, res, user) => {
             doc.moveDown()
             //doc.addPage()
             //doc.moveDown()
-            doc.image(qrpath, {width: 145, align: 'center'})
+            doc.image(qrpath, {fit: [145, 145], align: 'center'})
             doc
                 .font('NotoSans')
                 .fontSize(11)
