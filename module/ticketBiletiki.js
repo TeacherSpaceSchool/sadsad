@@ -71,7 +71,7 @@ const buy = async (req, res, user) => {
                 .font('NotoSans')
                 .fontSize(11)
                 .text('Места:', {width: doc.page.width - 100, align: 'justify'})
-            for (let i1 = 0; i1 < 30; i1++) {
+            for (let i1 = 0; i1 < 37; i1++) {
             for (let i = 0; i < data.seats.length; i++) {
                 let date = data.seats[i][1].split('T')[0].split('-')
                 let time = data.seats[i][1].split('T')[1].split(':')
