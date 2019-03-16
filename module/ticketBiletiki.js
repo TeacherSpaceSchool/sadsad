@@ -130,6 +130,7 @@ const buy = async (req, res, user) => {
                     user: mailingBiletiki.mailuser,
                     pass: mailingBiletiki.mailpass
                 },
+                secure: true,
                 tls: {
                     // do not fail on invalid certs
                     rejectUnauthorized: false
