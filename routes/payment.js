@@ -586,17 +586,7 @@ router.post('/balance/generate', async (req, res, next) => {
         let data = new FormData();
         data.append('merchant', 'KASSIR_KG');
         data.append('password', 'Q3Rup+pE');
-
-        const instance = axios.create({
-            httpsAgent: new https.Agent({
-                rejectUnauthorized: false
-            })
-        });
-        let auth_token = await instance.post('http://umai.balance.kg/site-api/acquiring/auth', {
-            'merchant': 'KASSIR_KG',
-            'password': 'Q3Rup+pE'
-            }
-        );
+        let auth_token = await axios.post('https://umai.balance.kg/site-api/acquiring/auth', data)
         console.log(auth_token.data)
         if(auth_token.data.status=='FAIL'){
             res.status(200);
@@ -612,7 +602,7 @@ router.post('/balance/generate', async (req, res, next) => {
         data.append('redirect_url', 'https://kassir.kg');
         data.append('hook_url', 'https://kassir.kg/balance/pay');
         data.append('auth_token', auth_token);
-        let payment_token = await axios.post('http://umai.balance.kg/site-api/acquiring/request-token?', data)
+        let payment_token = await axios.post('https://umai.balance.kg/site-api/acquiring/request-token?', data)
         console.log(payment_token.data)
         if(payment_token.data.status=='FAIL'){
             res.status(200);
