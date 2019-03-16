@@ -53,7 +53,6 @@ const buy = async (req, res, user) => {
             for(let i = 0; i<data.seats.length; i++){
                 sum+=parseInt(data.seats[i][0]['price'])
             }
-            doc.moveDown()
             doc
                 .font('NotoSans')
                 .fontSize(11)
@@ -71,7 +70,6 @@ const buy = async (req, res, user) => {
                 .font('NotoSans')
                 .fontSize(11)
                 .text('Места:', {width: doc.page.width - 100, align: 'justify'})
-            for (let i1 = 0; i1 < 37; i1++) {
             for (let i = 0; i < data.seats.length; i++) {
                 let date = data.seats[i][1].split('T')[0].split('-')
                 let time = data.seats[i][1].split('T')[1].split(':')
@@ -80,15 +78,13 @@ const buy = async (req, res, user) => {
                     .font('NotoSans')
                     .fontSize(11)
                     .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
-            }}
+            }
             doc.moveDown()
-            //doc.addPage()
-            //doc.moveDown()
             doc.image(qrpath, {fit: [145, 145], align: 'center'})
             doc
                 .font('NotoSans')
                 .fontSize(11)
-                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
+                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
             doc
                 .font('NotoSans')
                 .fontSize(11)

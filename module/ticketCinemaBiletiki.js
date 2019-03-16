@@ -41,88 +41,58 @@ const buy = async (req, res, user) => {
             doc.pipe(fstream);
             doc
                 .font('NotoSans')
-                .fontSize(20)
+                .fontSize(13)
                 .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
             doc.moveDown()
             let datet = new Date()
-            datet = datet.toString()
+            datet = datet.toJSON()
             let date = datet.split('T')[0].split('-')
             let time = datet.split('T')[1].split(':')
             let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-            doc
-                .font('NotoSans')
-                .fontSize(12)
-                .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
-            doc.moveDown()
             let sum = 0
             for(let i = 0; i<data.seats.length; i++){
                 sum+=parseInt(data.seats[i][0]['price'])
             }
             doc
                 .font('NotoSans')
-                .fontSize(12)
-                .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
+                .fontSize(11)
+                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
             doc
                 .font('NotoSans')
-                .fontSize(20)
-                .text('Кино:', {width: doc.page.width - 100, align: 'center'})
+                .fontSize(11)
+                .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
             doc
                 .font('NotoSans')
-                .fontSize(15)
-                .text(data.movie, {width: doc.page.width - 100, align: 'justify'})
+                .fontSize(11)
+                .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
+            doc
+                .font('NotoSans')
+                .fontSize(11)
+                .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
             doc.moveDown()
             doc
                 .font('NotoSans')
-                .fontSize(20)
-                .text('Кинотеатр:', {width: doc.page.width - 100, align: 'center'})
-            doc
-                .font('NotoSans')
-                .fontSize(15)
-                .text(data.cinema, {width: doc.page.width - 100, align: 'justify'})
-            doc.moveDown()
-            doc
-                .font('NotoSans')
-                .fontSize(20)
-                .text('Зал:', {width: doc.page.width - 100, align: 'center'})
-            doc
-                .font('NotoSans')
-                .fontSize(15)
-                .text(data.hall, {width: doc.page.width - 100, align: 'justify'})
-            doc.moveDown()
-            doc
-                .font('NotoSans')
-                .fontSize(20)
-                .text('Места:', {width: doc.page.width - 100, align: 'center'})
+                .fontSize(11)
+                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
             for(let i = 0; i<data.seats.length; i++){
+                let date = data.seats[i][1].split('T')[0].split('-')
+                let time = data.seats[i][1].split('T')[1].split(':')
+                let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                 doc
                     .font('NotoSans')
-                    .fontSize(15)
-                    .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
-                doc
-                    .font('NotoSans')
-                    .fontSize(15)
-                    .text('        Дата: '+data.seats[i].date, {width: doc.page.width - 100, align: 'justify'})
-                doc
-                    .font('NotoSans')
-                    .fontSize(15)
-                    .text('        Место: '+data.seats[i].name, {width: doc.page.width - 100, align: 'justify'})
-                doc
-                    .font('NotoSans')
-                    .fontSize(15)
-                    .text('        Цена: '+data.seats[i].priceSelect+' сом', {width: doc.page.width - 100, align: 'justify'})
+                    .fontSize(11)
+                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
             }
             doc.moveDown()
-            doc.addPage()
-            doc.moveDown()
-            doc.image(qrpath, (doc.page.width - 225) /2 )
+            doc.image(qrpath, {fit: [145, 145], align: 'justify'})
             doc
                 .font('NotoSans')
-                .fontSize(12)
-                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
+                .fontSize(11)
+                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
             doc
                 .font('NotoSans')
-                .fontSize(12)
-                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                .fontSize(11)
+                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
             doc.end()
         })
         await SeanceBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
@@ -194,7 +164,7 @@ const buy = async (req, res, user) => {
                 await TicketCinemaBiletiki.deleteMany({_id: _object._id})
                 await PaymentBiletiki.deleteMany({ticket: _object._id})
             }
-        }, 10000);
+        }, 3600000);
     }
 }
 

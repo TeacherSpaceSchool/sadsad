@@ -711,7 +711,7 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(14)
+                                    .fontSize(13)
                                     .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
                                 doc.moveDown()
                             let datet = new Date()
@@ -719,74 +719,46 @@ router.post('/add', async (req, res) => {
                             let date = datet.split('T')[0].split('-')
                             let time = datet.split('T')[1].split(':')
                             let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                            doc
-                                .font('NotoSans')
-                                .fontSize(12)
-                                .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
-                            doc.moveDown()
                             let sum = 0
                             for(let i = 0; i<myNew.seats.length; i++){
                                 sum+=parseInt(myNew.seats[i][0]['price'])
                             }
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
-                            doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Площадка:', {width: doc.page.width - 100, align: 'center'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text(myNew.event.where.name, {width: doc.page.width - 100, align: 'justify'})
-                                doc.moveDown()
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Мероприятие:', {width: doc.page.width - 100, align: 'center'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text(myNew.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
-                                doc.moveDown()
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Места:', {width: doc.page.width - 100, align: 'center'})
-                                for(let i = 0; i<myNew.seats.length; i++){
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
-                                    let date = data.seats[i][1].split('T')[0].split('-')
-                                    let time = data.seats[i][1].split('T')[1].split(':')
-                                    let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('        Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('        Место: '+myNew.seats[i][0]['name'], {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('        Цена: '+myNew.seats[i][0]['price']+' сом', {width: doc.page.width - 100, align: 'justify'})
-                                }
-                                doc.moveDown()
-                                doc.addPage()
-                                doc.moveDown()
-                                doc.image(qrpath, (doc.page.width - 225) /2 )
+                                .fontSize(11)
+                                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
+                                .fontSize(11)
+                                .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                .fontSize(11)
+                                .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
+                            doc.moveDown()
+                            doc
+                                .font('NotoSans')
+                                .fontSize(11)
+                                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                            for(let i = 0; i<myNew.seats.length; i++){
+                                let date = data.seats[i][1].split('T')[0].split('-')
+                                let time = data.seats[i][1].split('T')[1].split(':')
+                                let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(11)
+                                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                            }
+                            doc.moveDown()
+                            doc.image(qrpath, {fit: [145, 145], align: 'center'})
+                            doc
+                                .font('NotoSans')
+                                .fontSize(11)
+                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
+                            doc
+                                .font('NotoSans')
+                                .fontSize(11)
+                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                             doc.end()
 
                         })
@@ -829,88 +801,58 @@ router.post('/add', async (req, res) => {
                                     doc.pipe(fstream);
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(14)
+                                        .fontSize(13)
                                         .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
                                     doc.moveDown()
                                      let datet = new Date()
-                                     datet = datet.toString()
+                                     datet = datet.toJSON()
                                      let date = datet.split('T')[0].split('-')
                                      let time = datet.split('T')[1].split(':')
                                      let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                     doc
-                                         .font('NotoSans')
-                                         .fontSize(12)
-                                         .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
-                                     doc.moveDown()
                                      let sum = 0
-                                     for(let i = 0; i<myNew.seats.length; i++){
-                                         sum+=parseInt(myNew.seats[i][0]['price'])
+                                     for(let i = 0; i<data.seats.length; i++){
+                                         sum+=parseInt(data.seats[i][0]['price'])
                                      }
                                      doc
                                          .font('NotoSans')
-                                         .fontSize(12)
-                                         .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
-                                     doc
-                                        .font('NotoSans')
-                                        .fontSize(14)
-                                        .text('Кино:', {width: doc.page.width - 100, align: 'center'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text(myNew.movie, {width: doc.page.width - 100, align: 'justify'})
-                                    doc.moveDown()
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(14)
-                                        .text('Кинотеатр:', {width: doc.page.width - 100, align: 'center'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text(myNew.cinema, {width: doc.page.width - 100, align: 'justify'})
-                                    doc.moveDown()
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(14)
-                                        .text('Зал:', {width: doc.page.width - 100, align: 'center'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text(myNew.hall, {width: doc.page.width - 100, align: 'justify'})
-                                    doc.moveDown()
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(14)
-                                        .text('Места:', {width: doc.page.width - 100, align: 'center'})
-                                    for(let i = 0; i<myNew.seats.length; i++){
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(12)
-                                            .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(12)
-                                            .text('        Дата: '+myNew.seats[i].date, {width: doc.page.width - 100, align: 'justify'})
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(12)
-                                            .text('        Место: '+myNew.seats[i].name, {width: doc.page.width - 100, align: 'justify'})
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(12)
-                                            .text('        Цена: '+myNew.seats[i].priceSelect+' сом', {width: doc.page.width - 100, align: 'justify'})
-                                    }
-                                    doc.moveDown()
-                                    doc.addPage()
-                                    doc.moveDown()
-                                    doc.image(qrpath, (doc.page.width - 225) /2 )
+                                         .fontSize(11)
+                                         .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
                                      doc
                                          .font('NotoSans')
-                                         .fontSize(12)
-                                         .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
+                                         .fontSize(11)
+                                         .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
                                      doc
                                          .font('NotoSans')
-                                         .fontSize(12)
-                                         .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                         .fontSize(11)
+                                         .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
+                                     doc
+                                         .font('NotoSans')
+                                         .fontSize(11)
+                                         .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
+                                     doc.moveDown()
+                                     doc
+                                         .font('NotoSans')
+                                         .fontSize(11)
+                                         .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                     for(let i = 0; i<myNew.seats.length; i++){
+                                         let date = data.seats[i][1].split('T')[0].split('-')
+                                         let time = data.seats[i][1].split('T')[1].split(':')
+                                         let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                         doc
+                                             .font('NotoSans')
+                                             .fontSize(11)
+                                             .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                     }
+                                     doc.moveDown()
+                                     doc.image(qrpath, {fit: [145, 145], align: 'justify'})
+                                     doc
+                                         .font('NotoSans')
+                                         .fontSize(11)
+                                         .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
+                                     doc
+                                         .font('NotoSans')
+                                         .fontSize(11)
+                                         .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                                      doc.end()
                             } catch(error) {
                                 console.error(error)
@@ -1040,97 +982,58 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(14)
+                                    .fontSize(13)
                                     .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
                                 doc.moveDown()
                                 let datet = new Date()
-                                datet = datet.toString()
+                                datet = datet.toJSON()
                                 let date = datet.split('T')[0].split('-')
                                 let time = datet.split('T')[1].split(':')
                                 let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
-                                doc.moveDown()
                                 let sum = 0
-                                for(let i = 0; i<myNew.seats.length; i++){
-                                    sum+=parseInt(myNew.seats[i][0]['price'])
+                                for(let i = 0; i<data.seats.length; i++){
+                                    sum+=parseInt(data.seats[i][0]['price'])
                                 }
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(12)
-                                    .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
+                                    .fontSize(11)
+                                    .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Кино:', {width: doc.page.width - 100, align: 'center'})
+                                    .fontSize(11)
+                                    .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(12)
-                                    .text(myNew.movie, {width: doc.page.width - 100, align: 'justify'})
+                                    .fontSize(11)
+                                    .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(11)
+                                    .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
                                 doc.moveDown()
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Кинотеатр:', {width: doc.page.width - 100, align: 'center'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text(myNew.cinema, {width: doc.page.width - 100, align: 'justify'})
-                                doc.moveDown()
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Зал:', {width: doc.page.width - 100, align: 'center'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text(myNew.hall, {width: doc.page.width - 100, align: 'justify'})
-                                doc.moveDown()
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Места:', {width: doc.page.width - 100, align: 'center'})
-                                for (let i = 0; i < myNew.seats.length; i++) {
+                                    .fontSize(11)
+                                    .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                for(let i = 0; i<data.seats.length; i++){
+                                    let date = data.seats[i][1].split('T')[0].split('-')
+                                    let time = data.seats[i][1].split('T')[1].split(':')
+                                    let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('Место ' + (i + 1), {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('        Дата: ' + myNew.seats[i].date, {
-                                            width: doc.page.width - 100,
-                                            align: 'justify'
-                                        })
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('        Место: ' + myNew.seats[i].name, {
-                                            width: doc.page.width - 100,
-                                            align: 'justify'
-                                        })
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('        Цена: ' + myNew.seats[i].price + ' сом', {
-                                            width: doc.page.width - 100,
-                                            align: 'justify'
-                                        })
+                                        .fontSize(11)
+                                        .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                 }
                                 doc.moveDown()
-                                doc.addPage()
-                                doc.moveDown()
-                                doc.image(qrpath, (doc.page.width - 225) / 2)
+                                doc.image(qrpath, {fit: [145, 145], align: 'justify'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(12)
-                                    .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
+                                    .fontSize(11)
+                                    .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(12)
-                                    .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                    .fontSize(11)
+                                    .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                                 doc.end()
                             } catch (error) {
                                 console.error(error)
@@ -1178,82 +1081,54 @@ router.post('/add', async (req, res) => {
                             doc.pipe(fstream);
                             doc
                                 .font('NotoSans')
-                                .fontSize(14)
+                                .fontSize(13)
                                 .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
                             doc.moveDown()
                             let datet = new Date()
-                            datet = datet.toString()
+                            datet = datet.toJSON()
                             let date = datet.split('T')[0].split('-')
                             let time = datet.split('T')[1].split(':')
                             let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                            doc
-                                .font('NotoSans')
-                                .fontSize(12)
-                                .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
-                            doc.moveDown()
                             let sum = 0
-                            for(let i = 0; i<myNew.seats.length; i++){
-                                sum+=parseInt(myNew.seats[i][0]['price'])
+                            for(let i = 0; i<data.seats.length; i++){
+                                sum+=parseInt(data.seats[i][0]['price'])
                             }
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
+                                .fontSize(11)
+                                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(14)
-                                .text('Площадка:', {width: doc.page.width - 100, align: 'center'})
+                                .fontSize(11)
+                                .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text(myNew.event.where.name, {width: doc.page.width - 100, align: 'justify'})
+                                .fontSize(11)
+                                .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
                             doc.moveDown()
                             doc
                                 .font('NotoSans')
-                                .fontSize(14)
-                                .text('Мероприятие:', {width: doc.page.width - 100, align: 'center'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(12)
-                                .text(myNew.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
-                            doc.moveDown()
-                            doc
-                                .font('NotoSans')
-                                .fontSize(14)
-                                .text('Места:', {width: doc.page.width - 100, align: 'center'})
-                            for(let i = 0; i<myNew.seats.length; i++){
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
+                                .fontSize(11)
+                                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                            for (let i = 0; i < data.seats.length; i++) {
                                 let date = data.seats[i][1].split('T')[0].split('-')
                                 let time = data.seats[i][1].split('T')[1].split(':')
-                                let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+                                let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(12)
-                                    .text('        Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text('        Место: '+myNew.seats[i][0]['name'], {width: doc.page.width - 100, align: 'justify'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text('        Цена: '+myNew.seats[i][0]['price']+' сом', {width: doc.page.width - 100, align: 'justify'})
+                                    .fontSize(11)
+                                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                             }
                             doc.moveDown()
-                            doc.addPage()
-                            doc.moveDown()
-                            doc.image(qrpath, (doc.page.width - 225) /2 )
+                            doc.image(qrpath, {fit: [145, 145], align: 'center'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
+                                .fontSize(11)
+                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                .fontSize(11)
+                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                             doc.end()
                             })
 
@@ -1294,90 +1169,60 @@ router.post('/add', async (req, res) => {
                                 doc.registerFont('NotoSans', robotoBlack);
                                 let fstream = fs.createWriteStream(pdfpath);
                                 doc.pipe(fstream);
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                                doc.moveDown()
+                            doc
+                                .font('NotoSans')
+                                .fontSize(13)
+                                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                            doc.moveDown()
                             let datet = new Date()
-                            datet = datet.toString()
+                            datet = datet.toJSON()
                             let date = datet.split('T')[0].split('-')
                             let time = datet.split('T')[1].split(':')
                             let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                            doc
-                                .font('NotoSans')
-                                .fontSize(12)
-                                .text('Номер билета: '+hash+' Дата: '+dateTime, {width: doc.page.width - 100, align: 'center'})
-                            doc.moveDown()
                             let sum = 0
-                            for(let i = 0; i<myNew.seats.length; i++){
-                                sum+=parseInt(myNew.seats[i][0]['price'])
+                            for(let i = 0; i<data.seats.length; i++){
+                                sum+=parseInt(data.seats[i][0]['price'])
                             }
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'center'})
-                            doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Кино:', {width: doc.page.width - 100, align: 'center'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text(myNew.movie, {width: doc.page.width - 100, align: 'justify'})
-                                doc.moveDown()
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Кинотеатр:', {width: doc.page.width - 100, align: 'center'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text(myNew.cinema, {width: doc.page.width - 100, align: 'justify'})
-                                doc.moveDown()
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Зал:', {width: doc.page.width - 100, align: 'center'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(12)
-                                    .text(myNew.hall, {width: doc.page.width - 100, align: 'justify'})
-                                doc.moveDown()
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(14)
-                                    .text('Места:', {width: doc.page.width - 100, align: 'center'})
-                                for(let i = 0; i<myNew.seats.length; i++){
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('Место '+(i+1), {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('        Дата: '+myNew.seats[i].date, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('        Место: '+myNew.seats[i].name, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(12)
-                                        .text('        Цена: '+myNew.seats[i].priceSelect+' сом', {width: doc.page.width - 100, align: 'justify'})
-                                }
-                                doc.moveDown()
-                                doc.addPage()
-                                doc.moveDown()
-                                doc.image(qrpath, (doc.page.width - 225) /2 )
+                                .fontSize(11)
+                                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'center'})
+                                .fontSize(11)
+                                .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(12)
-                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                .fontSize(11)
+                                .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
+                            doc
+                                .font('NotoSans')
+                                .fontSize(11)
+                                .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
+                            doc.moveDown()
+                            doc
+                                .font('NotoSans')
+                                .fontSize(11)
+                                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                            for(let i = 0; i<data.seats.length; i++){
+                                let date = data.seats[i][1].split('T')[0].split('-')
+                                let time = data.seats[i][1].split('T')[1].split(':')
+                                let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(11)
+                                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                            }
+                            doc.moveDown()
+                            doc.image(qrpath, {fit: [145, 145], align: 'justify'})
+                            doc
+                                .font('NotoSans')
+                                .fontSize(11)
+                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
+                            doc
+                                .font('NotoSans')
+                                .fontSize(11)
+                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                             doc.end()
                              })
 
