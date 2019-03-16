@@ -124,8 +124,13 @@ const buy = async (req, res, user) => {
             text: 'Ваш счет для оплаты: ' + data.wallet
         };
         if (mailingBiletiki !== null) {
+            console.log({
+                user: mailingBiletiki.mailuser,
+                pass: mailingBiletiki.mailpass
+            })
             const transporter = nodemailer.createTransport({
-                service: 'gmail',
+                type: 'SMTP',
+                host: 'smtp.gmail.com',
                 auth: {
                     user: mailingBiletiki.mailuser,
                     pass: mailingBiletiki.mailpass
