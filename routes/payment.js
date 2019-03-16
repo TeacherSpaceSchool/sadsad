@@ -583,12 +583,11 @@ router.post('/kcb', async (req, res, next) => {
 router.post('/balance/generate', async (req, res, next) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
-        console.log('lets')
-        let auth_token = await axios.post('https://umai.balance.kg/site-api/acquiring/auth', {
-            'merchant': 'KASSIR_KG',
-            'password': 'Q3Rup+pE'
-        })
-        console.log(auth_token.data)
+        let data = new FormData();
+        data.append('merchant', 'KASSIR_KG');
+        data.append('password', 'Q3Rup+pE');
+        let auth_token = await axios.post('https://umai.balance.kg/site-api/acquiring/auth', data)
+        console.log(auth_token)
         /*if(auth_token.data.status=='FAIL'){
             res.status(200);
             res.end('error');
