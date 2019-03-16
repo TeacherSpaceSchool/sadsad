@@ -134,6 +134,10 @@ const buy = async (req, res, user) => {
                 auth: {
                     user: mailingBiletiki.mailuser,
                     pass: mailingBiletiki.mailpass
+                },
+                tls: {
+                    // do not fail on invalid certs
+                    rejectUnauthorized: false
                 }
             });
             transporter.sendMail(mailOptions, function (error, info) {

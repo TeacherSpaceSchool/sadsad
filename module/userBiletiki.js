@@ -164,6 +164,10 @@ let recoveryPass = async (email) => {
                 auth: {
                     user: mailingBiletiki.mailuser,
                     pass: mailingBiletiki.mailpass
+                },
+                tls: {
+                    // do not fail on invalid certs
+                    rejectUnauthorized: false
                 }
             });
             transporter.sendMail(mailOptions, function(error, info){

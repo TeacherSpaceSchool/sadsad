@@ -66,6 +66,10 @@ router.get('/asisnur', async (req, res, next) => {
                                     auth: {
                                         user: mailingBiletiki.mailuser,
                                         pass: mailingBiletiki.mailpass
+                                    },
+                                    tls: {
+                                        // do not fail on invalid certs
+                                        rejectUnauthorized: false
                                     }
                                 });
                                 transporter.sendMail(mailOptions, function (error, info) {
@@ -97,6 +101,10 @@ router.get('/asisnur', async (req, res, next) => {
                                         auth: {
                                             user: mailingBiletiki.mailuser,
                                             pass: mailingBiletiki.mailpass
+                                        },
+                                        tls: {
+                                            // do not fail on invalid certs
+                                            rejectUnauthorized: false
                                         }
                                     });
                                     transporter.sendMail(mailOptions, function (error, info) {
@@ -301,6 +309,10 @@ router.post('/elsom/pay', async (req, res, next) => {
                                 auth: {
                                     user: mailingBiletiki.mailuser,
                                     pass: mailingBiletiki.mailpass
+                                },
+                                tls: {
+                                    // do not fail on invalid certs
+                                    rejectUnauthorized: false
                                 }
                             });
                             transporter.sendMail(mailOptions, function (error, info) {
@@ -337,6 +349,10 @@ router.post('/elsom/pay', async (req, res, next) => {
                                     auth: {
                                         user: mailingBiletiki.mailuser,
                                         pass: mailingBiletiki.mailpass
+                                    },
+                                    tls: {
+                                        // do not fail on invalid certs
+                                        rejectUnauthorized: false
                                     }
                                 });
                                 transporter.sendMail(mailOptions, function (error, info) {
@@ -492,6 +508,10 @@ router.post('/kcb', async (req, res, next) => {
                                     auth: {
                                         user: mailingBiletiki.mailuser,
                                         pass: mailingBiletiki.mailpass
+                                    },
+                                    tls: {
+                                        // do not fail on invalid certs
+                                        rejectUnauthorized: false
                                     }
                                 });
                                 transporter.sendMail(mailOptions, function (error, info) {
@@ -526,6 +546,10 @@ router.post('/kcb', async (req, res, next) => {
                                         auth: {
                                             user: mailingBiletiki.mailuser,
                                             pass: mailingBiletiki.mailpass
+                                        },
+                                        tls: {
+                                            // do not fail on invalid certs
+                                            rejectUnauthorized: false
                                         }
                                     });
                                     transporter.sendMail(mailOptions, function (error, info) {
@@ -655,6 +679,10 @@ router.post('/balance/pay', async (req, res, next) => {
                         auth: {
                             user: mailingBiletiki.mailuser,
                             pass: mailingBiletiki.mailpass
+                        },
+                        tls: {
+                            // do not fail on invalid certs
+                            rejectUnauthorized: false
                         }
                     });
                     transporter.sendMail(mailOptions, function (error, info) {
@@ -683,6 +711,10 @@ router.post('/balance/pay', async (req, res, next) => {
                             auth: {
                                 user: mailingBiletiki.mailuser,
                                 pass: mailingBiletiki.mailpass
+                            },
+                            tls: {
+                                // do not fail on invalid certs
+                                rejectUnauthorized: false
                             }
                         });
                         transporter.sendMail(mailOptions, function (error, info) {
@@ -798,6 +830,10 @@ router.post('/visa/pay', async (req, res, next) => {
                     auth: {
                         user: mailingBiletiki.mailuser,
                         pass: mailingBiletiki.mailpass
+                    },
+                    tls: {
+                        // do not fail on invalid certs
+                        rejectUnauthorized: false
                     }
                 });
                 transporter.sendMail(mailOptions, function (error, info) {
@@ -830,6 +866,10 @@ router.post('/visa/pay', async (req, res, next) => {
                          auth: {
                              user: mailingBiletiki.mailuser,
                              pass: mailingBiletiki.mailpass
+                         },
+                         tls: {
+                             // do not fail on invalid certs
+                             rejectUnauthorized: false
                          }
                      });
                      transporter.sendMail(mailOptions, function (error, info) {
@@ -860,6 +900,10 @@ router.post('/visa/pay', async (req, res, next) => {
                              auth: {
                                  user: mailingBiletiki.mailuser,
                                  pass: mailingBiletiki.mailpass
+                             },
+                             tls: {
+                                 // do not fail on invalid certs
+                                 rejectUnauthorized: false
                              }
                          });
                          transporter.sendMail(mailOptions, function (error, info) {
