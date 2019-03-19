@@ -410,11 +410,11 @@ router.post('/add', async (req, res) => {
                         image.push(myConst.url + 'images/' + filename)
                         imageThumbnail.push(myConst.url + 'thumbnail/' + filename)
                         stream.on('finish', async () => {
-                            let image = await Jimp.read(filepath)
-                            if(image.bitmap.width>1500||image.bitmap.height>1500) {
-                                await image.resize(1500, Jimp.AUTO).write(filepath);
+                            let image1 = await Jimp.read(filepath)
+                            if(image1.bitmap.width>1500||image1.bitmap.height>1500) {
+                                await image1.resize(1500, Jimp.AUTO).write(filepath);
                             }
-                            await image.resize(320, Jimp.AUTO).write(filepathThumbnail);
+                            await image1.resize(320, Jimp.AUTO).write(filepathThumbnail);
                             if(req.body.name == 'О нас'){
                                 data = {
                                     descriptionRu: myNew.descriptionRu,
@@ -929,11 +929,11 @@ router.post('/add', async (req, res) => {
                         image.push(myConst.url + 'images/' + filename)
                         imageThumbnail.push(myConst.url + 'thumbnail/' + filename)
                         stream.on('finish', async () => {
-                            let image = await Jimp.read(filepath)
-                            if (image.bitmap.width > 1500 || image.bitmap.height > 1500) {
-                                await image.resize(1500, Jimp.AUTO).write(filepath);
+                            let image1 = await Jimp.read(filepath)
+                            if (image1.bitmap.width > 1500 || image1.bitmap.height > 1500) {
+                                await image1.resize(1500, Jimp.AUTO).write(filepath);
                             }
-                            await image.resize(320, Jimp.AUTO).write(filepathThumbnail);
+                            await image1.resize(320, Jimp.AUTO).write(filepathThumbnail);
                             if (req.body.name == 'Кино') {
                                 data = {
                                     name: myNew.name,
