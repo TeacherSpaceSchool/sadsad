@@ -126,16 +126,10 @@ const buy = async (req, res, user) => {
         if (mailingBiletiki !== null) {
 
             const transporter = nodemailer.createTransport({
-                type: 'SMTP',
-                host: 'smtp.gmail.com',
+                service: 'gmail',
                 auth: {
                     user: mailingBiletiki.mailuser,
                     pass: mailingBiletiki.mailpass
-                },
-                secure: true,
-                tls: {
-                    // do not fail on invalid certs
-                    rejectUnauthorized: false
                 }
             });
             transporter.sendMail(mailOptions, function (error, info) {
