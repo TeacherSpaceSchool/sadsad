@@ -410,7 +410,7 @@ router.post('/add', async (req, res) => {
                         image.push(myConst.url + 'images/' + filename)
                         imageThumbnail.push(myConst.url + 'thumbnail/' + filename)
                         stream.on('finish', async () => {
-                            console.log('ready')
+                            console.log(imageThumbnail)
                             let image = await Jimp.read(filepath)
                             if(image.bitmap.width>1500||image.bitmap.height>1500) {
                                 await image.resize(1500, Jimp.AUTO).write(filepath);
