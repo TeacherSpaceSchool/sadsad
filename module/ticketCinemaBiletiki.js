@@ -123,7 +123,7 @@ const buy = async (req, res, user) => {
         await PaymentBiletiki.create(payment);
         let mailingBiletiki = await MailingBiletiki.findOne();
         let mailOptions = {
-            from: mailingBiletiki.mailuser,
+            from: 'info@kassir.kg',
             to: data.email,
             subject: 'Счет за билет',
             text: 'Ваш счет для оплаты: ' + data.wallet
@@ -132,8 +132,11 @@ const buy = async (req, res, user) => {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    user: mailingBiletiki.mailuser,
-                    pass: mailingBiletiki.mailpass
+                    type: 'oauth2',
+                    user: 'info@kassir.kg',
+                    clientId: '174186061721-hr1j74qarits3nj9pmts0o5763lajeh2.apps.googleusercontent.com',
+                    clientSecret: 'HXVHoy7mUGySAzW2oUKBLgKx',
+                    refreshToken: '1/8Y0uswg1tQdi2DCwQSTY14lvpZjKUW6kyR8DfgGr65c',
                 },
                 tls: {
                     // do not fail on invalid certs
