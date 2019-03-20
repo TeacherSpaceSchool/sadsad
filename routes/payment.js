@@ -692,8 +692,9 @@ router.post('/balance/pay', async (req, res, next) => {
 router.post('/tested', async (req, res, next) => {
     try{
         console.log(req.body, req.params)
-        res.status(501);
-        res.end('error');
+        res.writeHead(301, { 'Location': 'https://kassir.kg' });
+        res.end();
+
     } catch(error) {
         console.error(error)
         res.status(501);

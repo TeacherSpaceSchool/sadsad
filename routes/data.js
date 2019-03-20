@@ -401,7 +401,6 @@ router.post('/add', async (req, res) => {
                     image = []
                     imageThumbnail = []
                     for (let i = 0; i < parseInt(req.body.fileLength); i++) {
-
                         let filename = randomstring.generate(7) + req.body['fileName' + i];
                         let filepath = path.join(app.dirname, 'public', 'images', filename);
                         let filepathThumbnail = path.join(app.dirname, 'public', 'thumbnail', filename);
@@ -415,390 +414,392 @@ router.post('/add', async (req, res) => {
                                 await image1.resize(1500, Jimp.AUTO).write(filepath);
                             }
                             await image1.resize(320, Jimp.AUTO).write(filepathThumbnail);
-                            if(req.body.name == 'О нас'){
-                                data = {
-                                    descriptionRu: myNew.descriptionRu,
-                                    descriptionKg: myNew.descriptionKg
+                            if(i===parseInt(req.body.fileLength)-1){
+                                if(req.body.name == 'О нас'){
+                                    data = {
+                                        descriptionRu: myNew.descriptionRu,
+                                        descriptionKg: myNew.descriptionKg
+                                    }
+                                    if(req.body.id==undefined)
+                                        await AboutBiletiki.addAboutBiletiki(data)
+                                    else
+                                        await AboutBiletiki.setAboutBiletiki(data, req.body.id)
+                                    await res.send(await AboutBiletiki.getAboutBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await AboutBiletiki.addAboutBiletiki(data)
-                                else
-                                    await AboutBiletiki.setAboutBiletiki(data, req.body.id)
-                                await res.send(await AboutBiletiki.getAboutBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Платежи')
-                            {
-                                data = {
-                                    status: myNew.status
-                                };
-                                if(req.body.id!==undefined)
-                                    await PaymentBiletiki.setPaymentBiletiki(data, req.body.id)
-                                await res.send(await PaymentBiletiki.getPaymentBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Кассы')
-                            {
-                                data = {
-                                    name: myNew.name,
-                                    address: myNew.address,
-                                };
-                                if(req.body.id===undefined)
-                                    await CashboxBiletiki.addCashboxBiletiki(data)
-                                else
-                                    await CashboxBiletiki.setCashboxBiletiki(data, req.body.id)
-                                await res.send(await CashboxBiletiki.getCashboxBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Рассылка')
-                            {
-                                data = {
-                                    mailuser: myNew.mailuser,
-                                    mailpass: myNew.mailpass,
-                                    mailchimpInstance: myNew.mailchimpInstance,
-                                    listUniqueId: myNew.listUniqueId,
-                                    mailchimpApiKey: myNew.mailchimpApiKey
-                                };
-                                if(req.body.id===undefined)
-                                    await MailingBiletiki.addMailingBiletiki(data)
-                                else
-                                    await MailingBiletiki.setMailingBiletiki(data, req.body.id)
-                                await res.send(await MailingBiletiki.getMailingBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Биллборды')
-                            {
-                                data = {
-                                    name: myNew.name,
-                                    image: image,
-                                    imageThumbnail: imageThumbnail,
-                                    dateStart: new Date(myNew.dateStart+'Z'),
-                                    dateEnd: new Date(myNew.dateEnd+'Z'),
-                                    event: myNew.event
-                                };
-                                if(req.body.id===undefined)
-                                    await BilboardBiletiki.addBillboardBiletiki(data)
-                                else
-                                    await BilboardBiletiki.setBillboardBiletiki(data, req.body.id)
-                                await res.send(await BilboardBiletiki.getBillboardBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Кино')
-                            {
-                                data = {
-                                    name: myNew.name,
-                                    image: image,
-                                    imageThumbnail: imageThumbnail,
-                                    genre: myNew.genre,
-                                    type: myNew.type,
-                                    description: myNew.description,
-                                    duration: myNew.duration,
-                                    ageCategory: myNew.ageCategory,
-                                    premier: myNew.premier,
-                                    producers: myNew.producers,
-                                    actors: myNew.actors
+                                else if(req.body.name == 'Платежи') {
+                                    data = {
+                                        status: myNew.status
+                                    };
+                                    if(req.body.id!==undefined)
+                                        await PaymentBiletiki.setPaymentBiletiki(data, req.body.id)
+                                    await res.send(await PaymentBiletiki.getPaymentBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                console.log(data)
-                                if(req.body.id==undefined)
-                                    await MovieBiletiki.addMovieBiletiki(data)
-                                else
-                                    await MovieBiletiki.setMovieBiletiki(data, req.body.id)
-                                await res.send(await MovieBiletiki.getMovieBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Реклама')
-                            {
-                                data = {
-                                    type: myNew.type,
-                                    name: myNew.name,
-                                    image: image,
-                                    imageThumbnail: imageThumbnail,
-                                    link: myNew.link,
-                                    dateStart: new Date(myNew.dateStart+'Z'),
-                                    dateEnd: new Date(myNew.dateEnd+'Z'),
-                                    descriptionRu: myNew.descriptionRu,
-                                    descriptionKg: myNew.descriptionKg
+                                else if(req.body.name == 'Кассы') {
+                                    data = {
+                                        name: myNew.name,
+                                        address: myNew.address,
+                                    };
+                                    if(req.body.id===undefined)
+                                        await CashboxBiletiki.addCashboxBiletiki(data)
+                                    else
+                                        await CashboxBiletiki.setCashboxBiletiki(data, req.body.id)
+                                    await res.send(await CashboxBiletiki.getCashboxBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await AdsBiletiki.addAdsBiletiki(data)
-                                else
-                                    await AdsBiletiki.setAdsBiletiki(data, req.body.id)
-                                await res.send(await AdsBiletiki.getAdsBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Залы')
-                            {
-                                data = {
-                                    name: myNew.name,
-                                    user: myNew.user,
+                                else if(req.body.name == 'Рассылка') {
+                                    data = {
+                                        mailuser: myNew.mailuser,
+                                        mailpass: myNew.mailpass,
+                                        mailchimpInstance: myNew.mailchimpInstance,
+                                        listUniqueId: myNew.listUniqueId,
+                                        mailchimpApiKey: myNew.mailchimpApiKey
+                                    };
+                                    if(req.body.id===undefined)
+                                        await MailingBiletiki.addMailingBiletiki(data)
+                                    else
+                                        await MailingBiletiki.setMailingBiletiki(data, req.body.id)
+                                    await res.send(await MailingBiletiki.getMailingBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await CinemaHallBiletiki.addCinemaHallBiletiki(data)
-                                else
-                                    await CinemaHallBiletiki.setCinemaHallBiletiki(data, req.body.id)
-                                await res.send(await CinemaHallBiletiki.getCinemaHallBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Контакт')
-                            {
-                                data = {
-                                    coords: myNew.coords,
-                                    cashbox: myNew.cashbox,
-                                    address: myNew.address,
-                                    booking: myNew.booking,
-                                    connection: myNew.connection,
-                                    return1: myNew.return1,
-                                    general: myNew.general,
-                                    cooperation: myNew.cooperation
+                                else if(req.body.name == 'Биллборды') {
+                                    data = {
+                                        name: myNew.name,
+                                        image: image,
+                                        imageThumbnail: imageThumbnail,
+                                        dateStart: new Date(myNew.dateStart+'Z'),
+                                        dateEnd: new Date(myNew.dateEnd+'Z'),
+                                        event: myNew.event
+                                    };
+                                    if(req.body.id===undefined)
+                                        await BilboardBiletiki.addBillboardBiletiki(data)
+                                    else
+                                        await BilboardBiletiki.setBillboardBiletiki(data, req.body.id)
+                                    await res.send(await BilboardBiletiki.getBillboardBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await ContactBiletiki.addContactBiletiki(data)
-                                else
-                                    await ContactBiletiki.setContactBiletiki(data, req.body.id)
-                                await res.send(await ContactBiletiki.getContactBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Сеанс')
-                            {
-                                let realDate = new Date(myNew.realDate+':00.000Z');
-                                data = {
-                                    type: myNew.type,
-                                    realDate: realDate,
-                                    movie: myNew.movie,
-                                    price: myNew.price,
-                                    seats: JSON.parse(myNew.seats),
-                                    cinema:  myNew.cinema
+                                else if(req.body.name == 'Кино') {
+                                    data = {
+                                        name: myNew.name,
+                                        image: image,
+                                        imageThumbnail: imageThumbnail,
+                                        genre: myNew.genre,
+                                        type: myNew.type,
+                                        description: myNew.description,
+                                        duration: myNew.duration,
+                                        ageCategory: myNew.ageCategory,
+                                        premier: myNew.premier,
+                                        producers: myNew.producers,
+                                        actors: myNew.actors
+                                    }
+                                    console.log(data)
+                                    if(req.body.id==undefined)
+                                        await MovieBiletiki.addMovieBiletiki(data)
+                                    else
+                                        await MovieBiletiki.setMovieBiletiki(data, req.body.id)
+                                    await res.send(await MovieBiletiki.getMovieBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await SeanceBiletiki.addSeanceBiletiki(data)
-                                else
-                                    await SeanceBiletiki.setSeanceBiletiki(data, req.body.id)
-                                await res.send(await SeanceBiletiki.getSeanceBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Событие')
-                            {
-                                console.log(req.body.name)
-                                console.log(myNew)
-                                let realDate = []
-                                for(let i=0; i<myNew.date.length; i++){
-                                    realDate.push(new Date(myNew.date[i]+'Z'));
+                                else if(req.body.name == 'Реклама') {
+                                    data = {
+                                        type: myNew.type,
+                                        name: myNew.name,
+                                        image: image,
+                                        imageThumbnail: imageThumbnail,
+                                        link: myNew.link,
+                                        dateStart: new Date(myNew.dateStart+'Z'),
+                                        dateEnd: new Date(myNew.dateEnd+'Z'),
+                                        descriptionRu: myNew.descriptionRu,
+                                        descriptionKg: myNew.descriptionKg
+                                    }
+                                    if(req.body.id==undefined)
+                                        await AdsBiletiki.addAdsBiletiki(data)
+                                    else
+                                        await AdsBiletiki.setAdsBiletiki(data, req.body.id)
+                                    await res.send(await AdsBiletiki.getAdsBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                data = {
-                                    realDate: realDate,
-                                    popular: myNew.popular,
-                                    active: myNew.active,
-                                    nameRu: myNew.nameRu,
-                                    nameKg:  myNew.nameKg,
-                                    descriptionRu: myNew.descriptionRu,
-                                    descriptionKg: myNew.descriptionKg,
-                                    where: myNew.where,
-                                    price: myNew.price,
-                                    date: myNew.date,
-                                    video: myNew.video,
-                                    city: myNew.city,
-                                    image: image,
-                                    imageThumbnail: imageThumbnail,
-                                    ageCategory: myNew.ageCategory,
-                                    genre: myNew.genre,
+                                else if(req.body.name == 'Залы') {
+                                    data = {
+                                        name: myNew.name,
+                                        user: myNew.user,
+                                    }
+                                    if(req.body.id==undefined)
+                                        await CinemaHallBiletiki.addCinemaHallBiletiki(data)
+                                    else
+                                        await CinemaHallBiletiki.setCinemaHallBiletiki(data, req.body.id)
+                                    await res.send(await CinemaHallBiletiki.getCinemaHallBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await EventBiletiki.addEventBiletiki(data)
-                                else
-                                    await EventBiletiki.setEventBiletiki(data, req.body.id)
-                                await res.send(await EventBiletiki.getEventBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'FAQ')
-                            {
-                                data = {
-                                    questionRu: myNew.questionRu,
-                                    answerRu: myNew.answerRu,
-                                    questionKg: myNew.questionKg,
-                                    answerKg: myNew.answerKg
+                                else if(req.body.name == 'Контакт') {
+                                    data = {
+                                        coords: myNew.coords,
+                                        cashbox: myNew.cashbox,
+                                        address: myNew.address,
+                                        booking: myNew.booking,
+                                        connection: myNew.connection,
+                                        return1: myNew.return1,
+                                        general: myNew.general,
+                                        cooperation: myNew.cooperation
+                                    }
+                                    if(req.body.id==undefined)
+                                        await ContactBiletiki.addContactBiletiki(data)
+                                    else
+                                        await ContactBiletiki.setContactBiletiki(data, req.body.id)
+                                    await res.send(await ContactBiletiki.getContactBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await FAQBiletiki.addFAQBiletiki(data)
-                                else
-                                    await FAQBiletiki.setFAQBiletiki(data, req.body.id)
-                                await res.send(await FAQBiletiki.getFAQBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Логотип')
-                            {
-                                data = {
-                                    image: image,
-                                    imageThumbnail: imageThumbnail,
-                                    name: myNew.name
+                                else if(req.body.name == 'Сеанс') {
+                                    let realDate = new Date(myNew.realDate+':00.000Z');
+                                    data = {
+                                        type: myNew.type,
+                                        realDate: realDate,
+                                        movie: myNew.movie,
+                                        price: myNew.price,
+                                        seats: JSON.parse(myNew.seats),
+                                        cinema:  myNew.cinema
+                                    }
+                                    console.log(data)
+                                    if(req.body.id==undefined)
+                                        await SeanceBiletiki.addSeanceBiletiki(data)
+                                    else
+                                        await SeanceBiletiki.setSeanceBiletiki(data, req.body.id)
+                                    await res.send(await SeanceBiletiki.getSeanceBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                console.log(data)
-                                if(req.body.id==undefined)
-                                    await LogoBiletiki.addLogoBiletiki(data)
-                                else
-                                    await LogoBiletiki.setLogoBiletiki(data, req.body.id)
-                                await res.send(await LogoBiletiki.getLogoBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Персонал')
-                            {
-                                data = {
-                                    contact: myNew.contact,
-                                    whoRu: myNew.whoRu,
-                                    whoKg: myNew.whoKg
+                                else if(req.body.name == 'Событие') {
+                                    console.log(req.body.name)
+                                    console.log(myNew)
+                                    let realDate = []
+                                    for(let i=0; i<myNew.date.length; i++){
+                                        realDate.push(new Date(myNew.date[i]+'Z'));
+                                    }
+                                    data = {
+                                        realDate: realDate,
+                                        popular: myNew.popular,
+                                        active: myNew.active,
+                                        nameRu: myNew.nameRu,
+                                        nameKg:  myNew.nameKg,
+                                        descriptionRu: myNew.descriptionRu,
+                                        descriptionKg: myNew.descriptionKg,
+                                        where: myNew.where,
+                                        price: myNew.price,
+                                        date: myNew.date,
+                                        video: myNew.video,
+                                        city: myNew.city,
+                                        image: image,
+                                        imageThumbnail: imageThumbnail,
+                                        ageCategory: myNew.ageCategory,
+                                        genre: myNew.genre,
+                                    }
+                                    if(req.body.id==undefined)
+                                        await EventBiletiki.addEventBiletiki(data)
+                                    else
+                                        await EventBiletiki.setEventBiletiki(data, req.body.id)
+                                    await res.send(await EventBiletiki.getEventBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await PersonalBiletiki.addPersonalBiletiki(data)
-                                else
-                                    await PersonalBiletiki.setPersonalBiletiki(data, req.body.id)
-                                await res.send(await PersonalBiletiki.getPersonalBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Телефон')
-                            {
-                                data = {
-                                    phone: myNew.phone
+                                else if(req.body.name == 'FAQ') {
+                                    data = {
+                                        questionRu: myNew.questionRu,
+                                        answerRu: myNew.answerRu,
+                                        questionKg: myNew.questionKg,
+                                        answerKg: myNew.answerKg
+                                    }
+                                    if(req.body.id==undefined)
+                                        await FAQBiletiki.addFAQBiletiki(data)
+                                    else
+                                        await FAQBiletiki.setFAQBiletiki(data, req.body.id)
+                                    await res.send(await FAQBiletiki.getFAQBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await PhoneBiletiki.addPhoneBiletiki(data)
-                                else
-                                    await PhoneBiletiki.setPhoneBiletiki(data, req.body.id)
-                                await res.send(await PhoneBiletiki.getPhoneBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Email')
-                            {
-                                data = {
-                                    email: myNew.email
+                                else if(req.body.name == 'Логотип') {
+                                    data = {
+                                        image: image,
+                                        imageThumbnail: imageThumbnail,
+                                        name: myNew.name
+                                    }
+                                    console.log(data)
+                                    if(req.body.id==undefined)
+                                        await LogoBiletiki.addLogoBiletiki(data)
+                                    else
+                                        await LogoBiletiki.setLogoBiletiki(data, req.body.id)
+                                    await res.send(await LogoBiletiki.getLogoBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await EmailBiletiki.addEmailBiletiki(data)
-                                else
-                                    await EmailBiletiki.setEmailBiletiki(data, req.body.id)
-                                await res.send(await EmailBiletiki.getEmailBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Социалки')
-                            {
-                                data = {
-                                    name: myNew.name,
-                                    image: image,
-                                    imageThumbnail: imageThumbnail,
-                                    url: myNew.url
+                                else if(req.body.name == 'Персонал') {
+                                    data = {
+                                        contact: myNew.contact,
+                                        whoRu: myNew.whoRu,
+                                        whoKg: myNew.whoKg
+                                    }
+                                    if(req.body.id==undefined)
+                                        await PersonalBiletiki.addPersonalBiletiki(data)
+                                    else
+                                        await PersonalBiletiki.setPersonalBiletiki(data, req.body.id)
+                                    await res.send(await PersonalBiletiki.getPersonalBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await SocialBiletiki.addSocialBiletiki(data)
-                                else
-                                    await SocialBiletiki.setSocialBiletiki(data, req.body.id)
-                                await res.send(await SocialBiletiki.getSocialBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Пользователи')
-                            {
-                                data = {
-                                    email: myNew.email,
-                                    name: myNew.name,
-                                    surname: myNew.surname,
-                                    phonenumber: myNew.phonenumber,
-                                    role: myNew.role,
-                                    password: myNew.password,
-                                    status: myNew.status
+                                else if(req.body.name == 'Телефон') {
+                                    data = {
+                                        phone: myNew.phone
+                                    }
+                                    if(req.body.id==undefined)
+                                        await PhoneBiletiki.addPhoneBiletiki(data)
+                                    else
+                                        await PhoneBiletiki.setPhoneBiletiki(data, req.body.id)
+                                    await res.send(await PhoneBiletiki.getPhoneBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined){
-                                    await UserBiletiki.addUserBiletiki(data)
-                                } else {
-                                    await UserBiletiki.setUserBiletiki(data, req.body.id)
+                                else if(req.body.name == 'Email') {
+                                    data = {
+                                        email: myNew.email
+                                    }
+                                    if(req.body.id==undefined)
+                                        await EmailBiletiki.addEmailBiletiki(data)
+                                    else
+                                        await EmailBiletiki.setEmailBiletiki(data, req.body.id)
+                                    await res.send(await EmailBiletiki.getEmailBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                await res.send(await UserBiletiki.getUserBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Вакансии')
-                            {
-                                data = {
-                                    nameRu: myNew.nameRu,
-                                    requirementsRu: myNew.requirementsRu,
-                                    dutiesRu: myNew.dutiesRu,
-                                    conditionsRu: myNew.conditionsRu,
-                                    nameKg: myNew.nameKg,
-                                    requirementsKg: myNew.requirementsKg,
-                                    dutiesKg: myNew.dutiesKg,
-                                    conditionsKg: myNew.conditionsKg
+                                else if(req.body.name == 'Социалки') {
+                                    data = {
+                                        name: myNew.name,
+                                        image: image,
+                                        imageThumbnail: imageThumbnail,
+                                        url: myNew.url
+                                    }
+                                    if(req.body.id==undefined)
+                                        await SocialBiletiki.addSocialBiletiki(data)
+                                    else
+                                        await SocialBiletiki.setSocialBiletiki(data, req.body.id)
+                                    await res.send(await SocialBiletiki.getSocialBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await VacancyBiletiki.addVacancyBiletiki(data)
-                                else
-                                    await VacancyBiletiki.setVacancyBiletiki(data, req.body.id)
-                                await res.send(await VacancyBiletiki.getVacancyBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Площадка')
-                            {
-                                data = {
-                                    nameRu: myNew.nameRu,
-                                    nameKg:  myNew.nameKg,
-                                    image: image,
-                                    imageThumbnail: imageThumbnail,
-                                    address: myNew.address,
-                                    city: myNew.city,
-                                    coords: myNew.coords
+                                else if(req.body.name == 'Пользователи') {
+                                    data = {
+                                        email: myNew.email,
+                                        name: myNew.name,
+                                        surname: myNew.surname,
+                                        phonenumber: myNew.phonenumber,
+                                        role: myNew.role,
+                                        password: myNew.password,
+                                        status: myNew.status
+                                    }
+                                    if(req.body.id==undefined){
+                                        await UserBiletiki.addUserBiletiki(data)
+                                    } else {
+                                        await UserBiletiki.setUserBiletiki(data, req.body.id)
+                                    }
+                                    await res.send(await UserBiletiki.getUserBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                if(req.body.id==undefined)
-                                    await WhereBiletiki.addWhereBiletiki(data)
-                                else
-                                    await WhereBiletiki.setWhereBiletiki(data, req.body.id)
-                                await res.send(await WhereBiletiki.getWhereBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Билеты')
-                            {
-                                if(req.body.id==undefined){
-                                    let hash = randomstring.generate({length: 12, charset: 'numeric'});
-                                    while (!await TicketBiletiki.checkHash(hash))
-                                        hash = randomstring.generate({length: 12, charset: 'numeric'});
-                                    let qrname = randomstring.generate(5) + myNew.user + myNew.event._id+'.png';
-                                    let pdfname = qrname.replace('.png','.pdf');
-                                    let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
-                                    let fstream = fs.createWriteStream(qrpath);
-                                    let qrTicket = await qr.image(hash, { type: 'png' });
-                                    let stream = qrTicket.pipe(fstream)
-                                    stream.on('finish', async () => {
-                                        let doc = new PDFDocument();
-                                        let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
-                                        let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
-                                        doc.registerFont('NotoSans', robotoBlack);
-                                        let fstream = fs.createWriteStream(pdfpath);
-                                        doc.pipe(fstream);
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(13)
-                                            .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                                        doc.moveDown()
-                                        let datet = new Date()
-                                        datet = datet.toString()
-                                        let date = datet.split('T')[0].split('-')
-                                        let time = datet.split('T')[1].split(':')
-                                        let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                        let sum = 0
-                                        for(let i = 0; i<myNew.seats.length; i++){
-                                            sum+=parseInt(myNew.seats[i][0]['price'])
-                                        }
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(11)
-                                            .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(11)
-                                            .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(11)
-                                            .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
-                                        doc.moveDown()
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(11)
-                                            .text('Места:', {width: doc.page.width - 100, align: 'justify'})
-                                        for(let i = 0; i<myNew.seats.length; i++){
-                                            let date = data.seats[i][1].split('T')[0].split('-')
-                                            let time = data.seats[i][1].split('T')[1].split(':')
-                                            let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                else if(req.body.name == 'Вакансии') {
+                                    data = {
+                                        nameRu: myNew.nameRu,
+                                        requirementsRu: myNew.requirementsRu,
+                                        dutiesRu: myNew.dutiesRu,
+                                        conditionsRu: myNew.conditionsRu,
+                                        nameKg: myNew.nameKg,
+                                        requirementsKg: myNew.requirementsKg,
+                                        dutiesKg: myNew.dutiesKg,
+                                        conditionsKg: myNew.conditionsKg
+                                    }
+                                    if(req.body.id==undefined)
+                                        await VacancyBiletiki.addVacancyBiletiki(data)
+                                    else
+                                        await VacancyBiletiki.setVacancyBiletiki(data, req.body.id)
+                                    await res.send(await VacancyBiletiki.getVacancyBiletiki(req.body.search, req.body.sort, req.body.skip))
+                                }
+                                else if(req.body.name == 'Площадка') {
+                                    data = {
+                                        nameRu: myNew.nameRu,
+                                        nameKg:  myNew.nameKg,
+                                        image: image,
+                                        imageThumbnail: imageThumbnail,
+                                        address: myNew.address,
+                                        city: myNew.city,
+                                        coords: myNew.coords
+                                    }
+                                    if(req.body.id==undefined)
+                                        await WhereBiletiki.addWhereBiletiki(data)
+                                    else
+                                        await WhereBiletiki.setWhereBiletiki(data, req.body.id)
+                                    await res.send(await WhereBiletiki.getWhereBiletiki(req.body.search, req.body.sort, req.body.skip))
+                                }
+                                else if(req.body.name == 'Билеты') {
+                                    if(req.body.id==undefined){
+                                        let hash = randomstring.generate({length: 12, charset: 'numeric'});
+                                        while (!await TicketBiletiki.checkHash(hash))
+                                            hash = randomstring.generate({length: 12, charset: 'numeric'});
+                                        let qrname = randomstring.generate(5) + myNew.user + myNew.event._id+'.png';
+                                        let pdfname = qrname.replace('.png','.pdf');
+                                        let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
+                                        let fstream = fs.createWriteStream(qrpath);
+                                        let qrTicket = await qr.image(hash, { type: 'png' });
+                                        let stream = qrTicket.pipe(fstream)
+                                        stream.on('finish', async () => {
+                                            let doc = new PDFDocument();
+                                            let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
+                                            let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+                                            doc.registerFont('NotoSans', robotoBlack);
+                                            let fstream = fs.createWriteStream(pdfpath);
+                                            doc.pipe(fstream);
+                                            doc
+                                                .font('NotoSans')
+                                                .fontSize(13)
+                                                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                            doc.moveDown()
+                                            let datet = new Date()
+                                            datet = datet.toString()
+                                            let date = datet.split('T')[0].split('-')
+                                            let time = datet.split('T')[1].split(':')
+                                            let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+                                            let sum = 0
+                                            for(let i = 0; i<myNew.seats.length; i++){
+                                                sum+=parseInt(myNew.seats[i][0]['price'])
+                                            }
                                             doc
                                                 .font('NotoSans')
                                                 .fontSize(11)
-                                                .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
-                                        }
-                                        doc.moveDown()
-                                        doc.image(qrpath, {fit: [145, 145], align: 'center'})
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(11)
-                                            .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
-                                        doc
-                                            .font('NotoSans')
-                                            .fontSize(11)
-                                            .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
-                                        doc.end()
+                                                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
+                                            doc
+                                                .font('NotoSans')
+                                                .fontSize(11)
+                                                .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
+                                            doc
+                                                .font('NotoSans')
+                                                .fontSize(11)
+                                                .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
+                                            doc.moveDown()
+                                            doc
+                                                .font('NotoSans')
+                                                .fontSize(11)
+                                                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                            for(let i = 0; i<myNew.seats.length; i++){
+                                                let date = data.seats[i][1].split('T')[0].split('-')
+                                                let time = data.seats[i][1].split('T')[1].split(':')
+                                                let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                                doc
+                                                    .font('NotoSans')
+                                                    .fontSize(11)
+                                                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                            }
+                                            doc.moveDown()
+                                            doc.image(qrpath, {fit: [145, 145], align: 'center'})
+                                            doc
+                                                .font('NotoSans')
+                                                .fontSize(11)
+                                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
+                                            doc
+                                                .font('NotoSans')
+                                                .fontSize(11)
+                                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
+                                            doc.end()
 
-                                    })
-                                    data = {
-                                        seats: myNew.seats,
-                                        hash: hash,
-                                        where: myNew.event.where.name,
-                                        user: myNew.user,
-                                        genre: myNew.event.genre,
-                                        image: myNew.event.image,
-                                        event: myNew.event.nameRu,
-                                        ticket: myConst.url + 'ticket/' + pdfname,
-                                        status: myNew.status,
+                                        })
+                                        data = {
+                                            seats: myNew.seats,
+                                            hash: hash,
+                                            where: myNew.event.where.name,
+                                            user: myNew.user,
+                                            genre: myNew.event.genre,
+                                            image: myNew.event.image,
+                                            event: myNew.event.nameRu,
+                                            ticket: myConst.url + 'ticket/' + pdfname,
+                                            status: myNew.status,
+                                        }
+                                        await TicketBiletiki.addTicketBiletiki(data);
+                                        await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                                    } else {
+                                        await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
                                     }
-                                    await TicketBiletiki.addTicketBiletiki(data);
-                                    await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
-                                } else {
-                                    await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
+                                    await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
-                                await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if(req.body.name == 'Билеты кино')
-                            {
+                                else if(req.body.name == 'Билеты кино') {
                                 if(req.body.id==undefined){
                                     let hash = randomstring.generate({length: 12, charset: 'numeric'});
                                     while (!await TicketBiletiki.checkHash(hash))
@@ -894,11 +895,494 @@ router.post('/add', async (req, res) => {
                                 }
                                 await res.send(await TicketCinemaBiletiki.getTicketCinemaBiletiki(req.body.search, req.body.sort, req.body.skip))
                             }
+                            }
                         })
+                    }
+                } else {
+                    if(req.body.name == 'О нас'){
+                        data = {
+                            descriptionRu: myNew.descriptionRu,
+                            descriptionKg: myNew.descriptionKg
+                        }
+                        if(req.body.id==undefined)
+                            await AboutBiletiki.addAboutBiletiki(data)
+                        else
+                            await AboutBiletiki.setAboutBiletiki(data, req.body.id)
+                        await res.send(await AboutBiletiki.getAboutBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Платежи') {
+                        data = {
+                            status: myNew.status
+                        };
+                        if(req.body.id!==undefined)
+                            await PaymentBiletiki.setPaymentBiletiki(data, req.body.id)
+                        await res.send(await PaymentBiletiki.getPaymentBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Кассы') {
+                        data = {
+                            name: myNew.name,
+                            address: myNew.address,
+                        };
+                        if(req.body.id===undefined)
+                            await CashboxBiletiki.addCashboxBiletiki(data)
+                        else
+                            await CashboxBiletiki.setCashboxBiletiki(data, req.body.id)
+                        await res.send(await CashboxBiletiki.getCashboxBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Рассылка') {
+                        data = {
+                            mailuser: myNew.mailuser,
+                            mailpass: myNew.mailpass,
+                            mailchimpInstance: myNew.mailchimpInstance,
+                            listUniqueId: myNew.listUniqueId,
+                            mailchimpApiKey: myNew.mailchimpApiKey
+                        };
+                        if(req.body.id===undefined)
+                            await MailingBiletiki.addMailingBiletiki(data)
+                        else
+                            await MailingBiletiki.setMailingBiletiki(data, req.body.id)
+                        await res.send(await MailingBiletiki.getMailingBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Биллборды') {
+                        data = {
+                            name: myNew.name,
+                            image: image,
+                            imageThumbnail: imageThumbnail,
+                            dateStart: new Date(myNew.dateStart+'Z'),
+                            dateEnd: new Date(myNew.dateEnd+'Z'),
+                            event: myNew.event
+                        };
+                        if(req.body.id===undefined)
+                            await BilboardBiletiki.addBillboardBiletiki(data)
+                        else
+                            await BilboardBiletiki.setBillboardBiletiki(data, req.body.id)
+                        await res.send(await BilboardBiletiki.getBillboardBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Кино') {
+                        data = {
+                            name: myNew.name,
+                            image: image,
+                            imageThumbnail: imageThumbnail,
+                            genre: myNew.genre,
+                            type: myNew.type,
+                            description: myNew.description,
+                            duration: myNew.duration,
+                            ageCategory: myNew.ageCategory,
+                            premier: myNew.premier,
+                            producers: myNew.producers,
+                            actors: myNew.actors
+                        }
+                        console.log(data)
+                        if(req.body.id==undefined)
+                            await MovieBiletiki.addMovieBiletiki(data)
+                        else
+                            await MovieBiletiki.setMovieBiletiki(data, req.body.id)
+                        await res.send(await MovieBiletiki.getMovieBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Реклама') {
+                        data = {
+                            type: myNew.type,
+                            name: myNew.name,
+                            image: image,
+                            imageThumbnail: imageThumbnail,
+                            link: myNew.link,
+                            dateStart: new Date(myNew.dateStart+'Z'),
+                            dateEnd: new Date(myNew.dateEnd+'Z'),
+                            descriptionRu: myNew.descriptionRu,
+                            descriptionKg: myNew.descriptionKg
+                        }
+                        if(req.body.id==undefined)
+                            await AdsBiletiki.addAdsBiletiki(data)
+                        else
+                            await AdsBiletiki.setAdsBiletiki(data, req.body.id)
+                        await res.send(await AdsBiletiki.getAdsBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Залы') {
+                        data = {
+                            name: myNew.name,
+                            user: myNew.user,
+                        }
+                        if(req.body.id==undefined)
+                            await CinemaHallBiletiki.addCinemaHallBiletiki(data)
+                        else
+                            await CinemaHallBiletiki.setCinemaHallBiletiki(data, req.body.id)
+                        await res.send(await CinemaHallBiletiki.getCinemaHallBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Контакт') {
+                        data = {
+                            coords: myNew.coords,
+                            cashbox: myNew.cashbox,
+                            address: myNew.address,
+                            booking: myNew.booking,
+                            connection: myNew.connection,
+                            return1: myNew.return1,
+                            general: myNew.general,
+                            cooperation: myNew.cooperation
+                        }
+                        if(req.body.id==undefined)
+                            await ContactBiletiki.addContactBiletiki(data)
+                        else
+                            await ContactBiletiki.setContactBiletiki(data, req.body.id)
+                        await res.send(await ContactBiletiki.getContactBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Сеанс') {
+                        let realDate = new Date(myNew.realDate+':00.000Z');
+                        data = {
+                            type: myNew.type,
+                            realDate: realDate,
+                            movie: myNew.movie,
+                            price: myNew.price,
+                            seats: JSON.parse(myNew.seats),
+                            cinema:  myNew.cinema
+                        }
+                        console.log(data)
+                        if(req.body.id==undefined)
+                            await SeanceBiletiki.addSeanceBiletiki(data)
+                        else
+                            await SeanceBiletiki.setSeanceBiletiki(data, req.body.id)
+                        await res.send(await SeanceBiletiki.getSeanceBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Событие') {
+                        console.log(req.body.name)
+                        console.log(myNew)
+                        let realDate = []
+                        for(let i=0; i<myNew.date.length; i++){
+                            realDate.push(new Date(myNew.date[i]+'Z'));
+                        }
+                        data = {
+                            realDate: realDate,
+                            popular: myNew.popular,
+                            active: myNew.active,
+                            nameRu: myNew.nameRu,
+                            nameKg:  myNew.nameKg,
+                            descriptionRu: myNew.descriptionRu,
+                            descriptionKg: myNew.descriptionKg,
+                            where: myNew.where,
+                            price: myNew.price,
+                            date: myNew.date,
+                            video: myNew.video,
+                            city: myNew.city,
+                            image: image,
+                            imageThumbnail: imageThumbnail,
+                            ageCategory: myNew.ageCategory,
+                            genre: myNew.genre,
+                        }
+                        if(req.body.id==undefined)
+                            await EventBiletiki.addEventBiletiki(data)
+                        else
+                            await EventBiletiki.setEventBiletiki(data, req.body.id)
+                        await res.send(await EventBiletiki.getEventBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'FAQ') {
+                        data = {
+                            questionRu: myNew.questionRu,
+                            answerRu: myNew.answerRu,
+                            questionKg: myNew.questionKg,
+                            answerKg: myNew.answerKg
+                        }
+                        if(req.body.id==undefined)
+                            await FAQBiletiki.addFAQBiletiki(data)
+                        else
+                            await FAQBiletiki.setFAQBiletiki(data, req.body.id)
+                        await res.send(await FAQBiletiki.getFAQBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Логотип') {
+                        data = {
+                            image: image,
+                            imageThumbnail: imageThumbnail,
+                            name: myNew.name
+                        }
+                        console.log(data)
+                        if(req.body.id==undefined)
+                            await LogoBiletiki.addLogoBiletiki(data)
+                        else
+                            await LogoBiletiki.setLogoBiletiki(data, req.body.id)
+                        await res.send(await LogoBiletiki.getLogoBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Персонал') {
+                        data = {
+                            contact: myNew.contact,
+                            whoRu: myNew.whoRu,
+                            whoKg: myNew.whoKg
+                        }
+                        if(req.body.id==undefined)
+                            await PersonalBiletiki.addPersonalBiletiki(data)
+                        else
+                            await PersonalBiletiki.setPersonalBiletiki(data, req.body.id)
+                        await res.send(await PersonalBiletiki.getPersonalBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Телефон') {
+                        data = {
+                            phone: myNew.phone
+                        }
+                        if(req.body.id==undefined)
+                            await PhoneBiletiki.addPhoneBiletiki(data)
+                        else
+                            await PhoneBiletiki.setPhoneBiletiki(data, req.body.id)
+                        await res.send(await PhoneBiletiki.getPhoneBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Email') {
+                        data = {
+                            email: myNew.email
+                        }
+                        if(req.body.id==undefined)
+                            await EmailBiletiki.addEmailBiletiki(data)
+                        else
+                            await EmailBiletiki.setEmailBiletiki(data, req.body.id)
+                        await res.send(await EmailBiletiki.getEmailBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Социалки') {
+                        data = {
+                            name: myNew.name,
+                            image: image,
+                            imageThumbnail: imageThumbnail,
+                            url: myNew.url
+                        }
+                        if(req.body.id==undefined)
+                            await SocialBiletiki.addSocialBiletiki(data)
+                        else
+                            await SocialBiletiki.setSocialBiletiki(data, req.body.id)
+                        await res.send(await SocialBiletiki.getSocialBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Пользователи') {
+                        data = {
+                            email: myNew.email,
+                            name: myNew.name,
+                            surname: myNew.surname,
+                            phonenumber: myNew.phonenumber,
+                            role: myNew.role,
+                            password: myNew.password,
+                            status: myNew.status
+                        }
+                        if(req.body.id==undefined){
+                            await UserBiletiki.addUserBiletiki(data)
+                        } else {
+                            await UserBiletiki.setUserBiletiki(data, req.body.id)
+                        }
+                        await res.send(await UserBiletiki.getUserBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Вакансии') {
+                        data = {
+                            nameRu: myNew.nameRu,
+                            requirementsRu: myNew.requirementsRu,
+                            dutiesRu: myNew.dutiesRu,
+                            conditionsRu: myNew.conditionsRu,
+                            nameKg: myNew.nameKg,
+                            requirementsKg: myNew.requirementsKg,
+                            dutiesKg: myNew.dutiesKg,
+                            conditionsKg: myNew.conditionsKg
+                        }
+                        if(req.body.id==undefined)
+                            await VacancyBiletiki.addVacancyBiletiki(data)
+                        else
+                            await VacancyBiletiki.setVacancyBiletiki(data, req.body.id)
+                        await res.send(await VacancyBiletiki.getVacancyBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Площадка') {
+                        data = {
+                            nameRu: myNew.nameRu,
+                            nameKg:  myNew.nameKg,
+                            image: image,
+                            imageThumbnail: imageThumbnail,
+                            address: myNew.address,
+                            city: myNew.city,
+                            coords: myNew.coords
+                        }
+                        if(req.body.id==undefined)
+                            await WhereBiletiki.addWhereBiletiki(data)
+                        else
+                            await WhereBiletiki.setWhereBiletiki(data, req.body.id)
+                        await res.send(await WhereBiletiki.getWhereBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Билеты') {
+                        if(req.body.id==undefined){
+                            let hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            while (!await TicketBiletiki.checkHash(hash))
+                                hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            let qrname = randomstring.generate(5) + myNew.user + myNew.event._id+'.png';
+                            let pdfname = qrname.replace('.png','.pdf');
+                            let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
+                            let fstream = fs.createWriteStream(qrpath);
+                            let qrTicket = await qr.image(hash, { type: 'png' });
+                            let stream = qrTicket.pipe(fstream)
+                            stream.on('finish', async () => {
+                                let doc = new PDFDocument();
+                                let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
+                                let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+                                doc.registerFont('NotoSans', robotoBlack);
+                                let fstream = fs.createWriteStream(pdfpath);
+                                doc.pipe(fstream);
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(13)
+                                    .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                doc.moveDown()
+                                let datet = new Date()
+                                datet = datet.toString()
+                                let date = datet.split('T')[0].split('-')
+                                let time = datet.split('T')[1].split(':')
+                                let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+                                let sum = 0
+                                for(let i = 0; i<myNew.seats.length; i++){
+                                    sum+=parseInt(myNew.seats[i][0]['price'])
+                                }
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(11)
+                                    .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(11)
+                                    .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(11)
+                                    .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
+                                doc.moveDown()
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(11)
+                                    .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                for(let i = 0; i<myNew.seats.length; i++){
+                                    let date = data.seats[i][1].split('T')[0].split('-')
+                                    let time = data.seats[i][1].split('T')[1].split(':')
+                                    let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                }
+                                doc.moveDown()
+                                doc.image(qrpath, {fit: [145, 145], align: 'center'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(11)
+                                    .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(11)
+                                    .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
+                                doc.end()
+
+                            })
+                            data = {
+                                seats: myNew.seats,
+                                hash: hash,
+                                where: myNew.event.where.name,
+                                user: myNew.user,
+                                genre: myNew.event.genre,
+                                image: myNew.event.image,
+                                event: myNew.event.nameRu,
+                                ticket: myConst.url + 'ticket/' + pdfname,
+                                status: myNew.status,
+                            }
+                            await TicketBiletiki.addTicketBiletiki(data);
+                            await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                        } else {
+                            await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
+                        }
+                        await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if(req.body.name == 'Билеты кино') {
+                        if(req.body.id==undefined){
+                            let hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            while (!await TicketBiletiki.checkHash(hash))
+                                hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            let qrname = randomstring.generate(5) + myNew.user + myNew.seance._id+'.png';
+                            let pdfname = qrname.replace('.png','.pdf');
+                            let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
+                            let fstream = fs.createWriteStream(qrpath);
+                            let qrTicket = await qr.image(hash, { type: 'png' });
+                            let stream = qrTicket.pipe(fstream)
+                            stream.on('finish', async () => {
+                                try{
+                                    let doc = new PDFDocument();
+                                    let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
+                                    let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+                                    doc.registerFont('NotoSans', robotoBlack);
+                                    let fstream = fs.createWriteStream(pdfpath);
+                                    doc.pipe(fstream);
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(13)
+                                        .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                    doc.moveDown()
+                                    let datet = new Date()
+                                    datet = datet.toJSON()
+                                    let date = datet.split('T')[0].split('-')
+                                    let time = datet.split('T')[1].split(':')
+                                    let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+                                    let sum = 0
+                                    for(let i = 0; i<data.seats.length; i++){
+                                        sum+=parseInt(data.seats[i][0]['price'])
+                                    }
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
+                                    doc.moveDown()
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                    for(let i = 0; i<myNew.seats.length; i++){
+                                        let date = data.seats[i][1].split('T')[0].split('-')
+                                        let time = data.seats[i][1].split('T')[1].split(':')
+                                        let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                        doc
+                                            .font('NotoSans')
+                                            .fontSize(11)
+                                            .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                    }
+                                    doc.moveDown()
+                                    doc.image(qrpath, {fit: [145, 145], align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
+                                    doc.end()
+                                } catch(error) {
+                                    console.error(error)
+                                }})
+
+                            data = {
+                                seats: myNew.seats,
+                                hash: hash,
+                                user: myNew.user,
+                                movie: myNew.movie,
+                                cinema: myNew.cinema,
+                                image: 'null',
+                                hall: myNew.hall,
+                                ticket: myConst.url + 'ticket/' + pdfname,
+                                status: myNew.status,
+                            }
+                            await TicketCinemaBiletiki.addTicketCinemaBiletiki(data);
+                            await SeanceBiletiki.setSeanceBiletiki(myNew.seance, myNew.seance._id);
+                        } else {
+                            await TicketCinemaBiletiki.setTicketCinemaBiletiki({status: myNew.status}, req.body.id)
+                        }
+                        await res.send(await TicketCinemaBiletiki.getTicketCinemaBiletiki(req.body.search, req.body.sort, req.body.skip))
                     }
                 }
             });
-        } else if(role==='cinema'){
+        }
+        else if(role==='cinema') {
             await passportEngine.verifydcinema(req, res, async (cinema)=> {
                 let data, myNew = JSON.parse(req.body.new), image = [], imageThumbnail = [];
                 if (req.body.oldFile != undefined) {
@@ -934,7 +1418,9 @@ router.post('/add', async (req, res) => {
                                 await image1.resize(1500, Jimp.AUTO).write(filepath);
                             }
                             await image1.resize(320, Jimp.AUTO).write(filepathThumbnail);
-                            if (req.body.name == 'Кино') {
+                            if(i===parseInt(req.body.fileLength)-1)
+                            {
+                                if (req.body.name == 'Кино') {
                                 data = {
                                     name: myNew.name,
                                     image: image,
@@ -954,8 +1440,8 @@ router.post('/add', async (req, res) => {
                                 else
                                     await MovieBiletiki.setMovieBiletiki(data, req.body.id)
                                 await res.send(await MovieBiletiki.getMovieBiletiki(req.body.search, req.body.sort, req.body.skip))
-                            } else if (req.body.name == 'Залы')
-                            {
+                            }
+                                else if (req.body.name == 'Залы') {
                                 data = {
                                     name: myNew.name,
                                     user: myNew.user,
@@ -965,8 +1451,8 @@ router.post('/add', async (req, res) => {
                                 else
                                     await CinemaHallBiletiki.setCinemaHallBiletiki(data, req.body.id)
                                 await res.send(await CinemaHallBiletiki.getCinemaHallBiletiki1(req.body.search, req.body.sort, req.body.skip, cinema))
-                            } else if (req.body.name == 'Сеанс')
-                            {
+                            }
+                                else if (req.body.name == 'Сеанс') {
                                 let realDate = new Date(myNew.realDate);
                                 data = {
                                     realDate: realDate,
@@ -980,8 +1466,8 @@ router.post('/add', async (req, res) => {
                                 else
                                     await SeanceBiletiki.setSeanceBiletiki(data, req.body.id)
                                 await res.send(await SeanceBiletiki.getSeanceBiletiki1(req.body.search, req.body.sort, req.body.skip, cinema.name))
-                            } else if (req.body.name == 'Билеты кино')
-                            {
+                            }
+                                else if (req.body.name == 'Билеты кино') {
                                 if (req.body.id == undefined) {
                                     console.log(myNew.seats)
                                     let hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
@@ -1078,12 +1564,158 @@ router.post('/add', async (req, res) => {
                                 }
                                 await res.send(await TicketCinemaBiletiki.getTicketCinemaBiletiki1(req.body.search, req.body.sort, req.body.skip, cinema))
                             }
+                            }
                         })
+                    }
+                } else {
+                    if (req.body.name == 'Кино') {
+                        data = {
+                            name: myNew.name,
+                            image: image,
+                            imageThumbnail: imageThumbnail,
+                            genre: myNew.genre,
+                            type: myNew.type,
+                            description: myNew.description,
+                            duration: myNew.duration,
+                            ageCategory: myNew.ageCategory,
+                            premier: myNew.premier,
+                            producers: myNew.producers,
+                            actors: myNew.actors,
+                            video: myNew.video,
+                        }
+                        if (req.body.id == undefined)
+                            await MovieBiletiki.addMovieBiletiki(data)
+                        else
+                            await MovieBiletiki.setMovieBiletiki(data, req.body.id)
+                        await res.send(await MovieBiletiki.getMovieBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
+                    else if (req.body.name == 'Залы') {
+                        data = {
+                            name: myNew.name,
+                            user: myNew.user,
+                        }
+                        if (req.body.id == undefined)
+                            await CinemaHallBiletiki.addCinemaHallBiletiki(data)
+                        else
+                            await CinemaHallBiletiki.setCinemaHallBiletiki(data, req.body.id)
+                        await res.send(await CinemaHallBiletiki.getCinemaHallBiletiki1(req.body.search, req.body.sort, req.body.skip, cinema))
+                    }
+                    else if (req.body.name == 'Сеанс') {
+                        let realDate = new Date(myNew.realDate);
+                        data = {
+                            realDate: realDate,
+                            movie: myNew.movie,
+                            price: myNew.price,
+                            seats: JSON.parse(myNew.seats),
+                            cinema: myNew.cinema
+                        }
+                        if (req.body.id == undefined)
+                            await SeanceBiletiki.addSeanceBiletiki(data)
+                        else
+                            await SeanceBiletiki.setSeanceBiletiki(data, req.body.id)
+                        await res.send(await SeanceBiletiki.getSeanceBiletiki1(req.body.search, req.body.sort, req.body.skip, cinema.name))
+                    }
+                    else if (req.body.name == 'Билеты кино') {
+                        if (req.body.id == undefined) {
+                            console.log(myNew.seats)
+                            let hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
+                            while (!await TicketBiletiki.checkHash(hash))
+                                hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
+                            let qrname = randomstring.generate(7) + myNew.user + myNew.seance._id + '.png';
+                            let pdfname = qrname.replace('.png', '.pdf');
+                            let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
+                            let fstream = fs.createWriteStream(qrpath);
+                            let qrTicket = await qr.image(hash, {type: 'png'});
+                            let stream = qrTicket.pipe(fstream)
+                            stream.on('finish', async () => {
+                                try {
+                                    let doc = new PDFDocument();
+                                    let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
+                                    let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+                                    doc.registerFont('NotoSans', robotoBlack);
+                                    let fstream = fs.createWriteStream(pdfpath);
+                                    doc.pipe(fstream);
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(13)
+                                        .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                                    doc.moveDown()
+                                    let datet = new Date()
+                                    datet = datet.toJSON()
+                                    let date = datet.split('T')[0].split('-')
+                                    let time = datet.split('T')[1].split(':')
+                                    let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
+                                    let sum = 0
+                                    for(let i = 0; i<data.seats.length; i++){
+                                        sum+=parseInt(data.seats[i][0]['price'])
+                                    }
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
+                                    doc.moveDown()
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                    for(let i = 0; i<data.seats.length; i++){
+                                        let date = data.seats[i][1].split('T')[0].split('-')
+                                        let time = data.seats[i][1].split('T')[1].split(':')
+                                        let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                        doc
+                                            .font('NotoSans')
+                                            .fontSize(11)
+                                            .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                    }
+                                    doc.moveDown()
+                                    doc.image(qrpath, {fit: [145, 145], align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(11)
+                                        .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
+                                    doc.end()
+                                } catch (error) {
+                                    console.error(error)
+                                }
+                            })
+
+                            data = {
+                                seats: myNew.seats,
+                                hash: hash,
+                                user: myNew.user,
+                                movie: myNew.movie,
+                                cinema: myNew.cinema,
+                                hall: myNew.hall,
+                                ticket: myConst.url + 'ticket/' + pdfname,
+                                status: myNew.status,
+                            }
+                            await TicketCinemaBiletiki.addTicketCinemaBiletiki(data);
+                            await SeanceBiletiki.setSeanceBiletiki(myNew.seance, myNew.seance._id);
+                        } else {
+                            await TicketCinemaBiletiki.setTicketCinemaBiletiki({status: myNew.status}, req.body.id)
+                        }
+                        await res.send(await TicketCinemaBiletiki.getTicketCinemaBiletiki1(req.body.search, req.body.sort, req.body.skip, cinema))
                     }
                 }
             })
-        } else if(role==='cashier') 
-        {
+        }
+        else if(role==='cashier') {
             await passportEngine.verifydcashier(req, res, async ()=>{
                 let data, myNew = JSON.parse(req.body.new);
                 if(req.body.name == 'Билеты'){
