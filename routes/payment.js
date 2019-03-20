@@ -218,7 +218,7 @@ router.post('/elsom/generate', async (req, res, next) => {
                    }
                }
            );
-        console.log(res)
+        console.log(res.data)
         let code = result.data.Response.Result.OTP
            res.status(200);
             res.end(code);
