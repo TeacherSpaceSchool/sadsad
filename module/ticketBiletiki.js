@@ -118,7 +118,7 @@ const buy = async (req, res, user) => {
         await PaymentBiletiki.create(payment);
         let mailingBiletiki = await MailingBiletiki.findOne();
         let mailOptions = {
-            from: mailingBiletiki.mailuser,
+            from: 'info@kassir.kg',
             to: data.email,
             subject: 'Счет за билет',
             text: 'Ваш счет для оплаты: ' + data.wallet
