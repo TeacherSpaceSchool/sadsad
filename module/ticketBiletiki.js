@@ -127,8 +127,11 @@ const buy = async (req, res, user) => {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
+                    type: 'oauth2',
                     user: 'info@kassir.kg',
-                    pass: 'Kassirkg12'
+                    clientId: '174186061721-hr1j74qarits3nj9pmts0o5763lajeh2.apps.googleusercontent.com',
+                    clientSecret: 'HXVHoy7mUGySAzW2oUKBLgKx',
+                    refreshToken: '1/8Y0uswg1tQdi2DCwQSTY14lvpZjKUW6kyR8DfgGr65c',
                 },
             });
             transporter.sendMail(mailOptions, function (error, info) {
