@@ -125,13 +125,13 @@ const buy = async (req, res, user) => {
         };
         if (mailingBiletiki !== null) {
             const transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 465,
-                secure: true,
+                service: 'gmail',
                 auth: {
-                    type: 'OAuth2',
-                    clientId: '174186061721-e2vhdqs6uk975foo4c7vq1nk9g7rm3eo.apps.googleusercontent.com',
-                    clientSecret: 'eVOLmg8z5PRH1UbY7w3cntGZ'
+                    type: 'oauth2',
+                    user: 'info@kassir.kg',
+                    clientId: '174186061721-hr1j74qarits3nj9pmts0o5763lajeh2.apps.googleusercontent.com',
+                    clientSecret: 'HXVHoy7mUGySAzW2oUKBLgKx',
+                    refreshToken: '1/8Y0uswg1tQdi2DCwQSTY14lvpZjKUW6kyR8DfgGr65c',
                 }
             });
             transporter.sendMail(mailOptions, function (error, info) {
