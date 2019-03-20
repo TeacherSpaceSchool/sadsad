@@ -414,6 +414,7 @@ router.post('/kcb', async (req, res, next) => {
         if(true){
             let responce = req.body.elements[0].elements
             console.log(ip)
+            console.log(responce)
             if(responce[0]['attributes']['OP']=='QE11'){
                 let wallet = await PaymentBiletiki.findOne({wallet: responce[1]['attributes']['PARAM1']})
                 if(wallet!=null){
@@ -437,7 +438,7 @@ router.post('/kcb', async (req, res, next) => {
                     if(wallet.status=='совершен'){
                         result = [ { XML: [
                             { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
-                            { BODY: { _attr: { STATUS: '250', ERR_MSG: 'Платеж проведен' }}}
+                            { BODY: { _attr: { STATUS: '420', ERR_MSG: 'Указанный лицевой счет не найден' }}}
                         ] } ];
                         res.status(200);
                         res.end(xml(result, true));
