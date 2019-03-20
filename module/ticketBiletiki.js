@@ -124,15 +124,14 @@ const buy = async (req, res, user) => {
             text: 'Ваш счет для оплаты: ' + data.wallet
         };
         if (mailingBiletiki !== null) {
-            console.log({
-                user: mailingBiletiki.mailuser,
-                pass: mailingBiletiki.mailpass
-            })
             const transporter = nodemailer.createTransport({
-                service: 'gmail',
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
                 auth: {
-                    user: mailingBiletiki.mailuser,
-                    pass: mailingBiletiki.mailpass
+                    type: 'OAuth2',
+                    clientId: '174186061721-e2vhdqs6uk975foo4c7vq1nk9g7rm3eo.apps.googleusercontent.com',
+                    clientSecret: 'eVOLmg8z5PRH1UbY7w3cntGZ'
                 }
             });
             transporter.sendMail(mailOptions, function (error, info) {

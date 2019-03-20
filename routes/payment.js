@@ -413,7 +413,7 @@ router.post('/kcb', async (req, res, next) => {
         let result = {}
         if(true){
             let responce = req.body.elements[0].elements
-            console.log(responce)
+            console.log(ip)
             if(responce[0]['attributes']['OP']=='QE11'){
                 let wallet = await PaymentBiletiki.findOne({wallet: responce[1]['attributes']['PARAM1']})
                 if(wallet!=null){
@@ -437,14 +437,7 @@ router.post('/kcb', async (req, res, next) => {
                     if(wallet.status=='совершен'){
                         result = [ { XML: [
                             { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
-                            { BODY: { _attr: { STATUS: '400', ERR_MSG: 'Платеж находится в обработке' }}}
-                        ] } ];
-                        res.status(200);
-                        res.end(xml(result, true));
-                    } else if(wallet.status!='обработка'&&wallet.status!='ошибка'){
-                        result = [ { XML: [
-                            { HEAD: { _attr: { DTS: responce[0]['attributes']['DTS'], QM: responce[0]['attributes']['QM'], QID: responce[1]['attributes']['PARAM1'], OP: responce[0]['attributes']['OP'],  }}},
-                            { BODY: { _attr: { STATUS: '424', ERR_MSG: 'Сервис временно недоступен' }}}
+                            { BODY: { _attr: { STATUS: '250', ERR_MSG: 'Платеж проведен' }}}
                         ] } ];
                         res.status(200);
                         res.end(xml(result, true));
