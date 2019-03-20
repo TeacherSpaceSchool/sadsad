@@ -66,7 +66,7 @@ window.initBanner = function initBanner(banner, data) {
         closeBtn.className = "scroll-banner__close-btn";
         closeBtn.addEventListener("click", closeBanner);
         banner.appendChild(closeBtn);
-
+        stopBannerMove()
         startBannerMove();
     }
 
