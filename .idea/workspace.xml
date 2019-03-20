@@ -83,17 +83,17 @@
       <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="400" column="65" lean-forward="false" selection-start-line="400" selection-start-column="65" selection-end-line="400" selection-end-column="65" />
+            <state relative-caret-position="387">
+              <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
               <folding>
                 <element signature="e#960#8843#0" expanded="false" />
-                <element signature="e#12686#19308#0" expanded="false" />
-                <element signature="e#20302#29290#0" expanded="false" />
-                <element signature="e#29353#31186#0" expanded="false" />
-                <element signature="e#31243#34953#0" expanded="false" />
-                <element signature="e#35005#35191#0" expanded="false" />
-                <element signature="e#35246#43410#0" expanded="false" />
-                <element signature="e#42061#42979#0" expanded="false" />
+                <element signature="e#12389#19011#0" expanded="false" />
+                <element signature="e#20005#28993#0" expanded="false" />
+                <element signature="e#29056#30889#0" expanded="false" />
+                <element signature="e#30946#34656#0" expanded="false" />
+                <element signature="e#34708#34894#0" expanded="false" />
+                <element signature="e#34949#43113#0" expanded="false" />
+                <element signature="e#41764#42682#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -529,12 +529,12 @@
       <workItem from="1552731869610" duration="11167000" />
       <workItem from="1552747328751" duration="4029000" />
       <workItem from="1552919703560" duration="2599000" />
-      <workItem from="1552980224074" duration="14209000" />
+      <workItem from="1552980224074" duration="14357000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="791779000" />
+    <option name="totallyTimeSpent" value="791927000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -554,7 +554,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.1539823" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31090176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -955,17 +955,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="400" column="65" lean-forward="false" selection-start-line="400" selection-start-column="65" selection-end-line="400" selection-end-column="65" />
+        <state relative-caret-position="387">
+          <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
           <folding>
             <element signature="e#960#8843#0" expanded="false" />
-            <element signature="e#12686#19308#0" expanded="false" />
-            <element signature="e#20302#29290#0" expanded="false" />
-            <element signature="e#29353#31186#0" expanded="false" />
-            <element signature="e#31243#34953#0" expanded="false" />
-            <element signature="e#35005#35191#0" expanded="false" />
-            <element signature="e#35246#43410#0" expanded="false" />
-            <element signature="e#42061#42979#0" expanded="false" />
+            <element signature="e#12389#19011#0" expanded="false" />
+            <element signature="e#20005#28993#0" expanded="false" />
+            <element signature="e#29056#30889#0" expanded="false" />
+            <element signature="e#30946#34656#0" expanded="false" />
+            <element signature="e#34708#34894#0" expanded="false" />
+            <element signature="e#34949#43113#0" expanded="false" />
+            <element signature="e#41764#42682#0" expanded="false" />
           </folding>
         </state>
       </provider>
