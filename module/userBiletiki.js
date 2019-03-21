@@ -4,6 +4,7 @@ const format = require('./const').stringifyDateTime
 const mailchimp = require('../module/mailchimp');
 const nodemailer = require('nodemailer');
 const randomstring = require('randomstring');
+const mongoose = require('mongoose');
 
 const getCinemaUser = async () => {
     return(await UserBiletiki.find({status: 'active', role: 'cinema'}))
@@ -60,12 +61,12 @@ const getUserBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('name surname email phonenumber role status updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await UserBiletiki.count({
                 $and: [
                     {
                         $or: [
-                            {_id: {'$regex': search, '$options': 'i'}},
+                            {_id: search},
                             {name: {'$regex': search, '$options': 'i'}},
                             {surname: {'$regex': search, '$options': 'i'}},
                             {email: {'$regex': search, '$options': 'i'}},
@@ -81,7 +82,42 @@ const getUserBiletiki = async (search, sort, skip) => {
                 $and: [
                     {
                         $or: [
-                            {_id: {'$regex': search, '$options': 'i'}},
+                            {_id: search},
+                            {name: {'$regex': search, '$options': 'i'}},
+                            {surname: {'$regex': search, '$options': 'i'}},
+                            {email: {'$regex': search, '$options': 'i'}},
+                            {phonenumber: {'$regex': search, '$options': 'i'}},
+                            {role: {'$regex': search, '$options': 'i'}},
+                            {status: {'$regex': search, '$options': 'i'}},
+                        ]}, {
+                        role:
+                            {$ne: 'admin'}
+                    }]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('name surname email phonenumber role status updatedAt _id');
+        } else {
+            count = await UserBiletiki.count({
+                $and: [
+                    {
+                        $or: [
+                            {name: {'$regex': search, '$options': 'i'}},
+                            {surname: {'$regex': search, '$options': 'i'}},
+                            {email: {'$regex': search, '$options': 'i'}},
+                            {phonenumber: {'$regex': search, '$options': 'i'}},
+                            {role: {'$regex': search, '$options': 'i'}},
+                            {status: {'$regex': search, '$options': 'i'}},
+                        ]}, {
+                        role:
+                            {$ne: 'admin'}
+                    }]
+            });
+            findResult = await UserBiletiki.find({
+                $and: [
+                    {
+                        $or: [
                             {name: {'$regex': search, '$options': 'i'}},
                             {surname: {'$regex': search, '$options': 'i'}},
                             {email: {'$regex': search, '$options': 'i'}},

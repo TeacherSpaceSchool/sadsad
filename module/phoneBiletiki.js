@@ -1,5 +1,6 @@
 const PhoneBiletiki = require('../models/phoneBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     return await PhoneBiletiki.find();
@@ -31,16 +32,31 @@ const getPhoneBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('phone updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await PhoneBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {phone: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await PhoneBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {phone: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('phone updatedAt _id');
+        } else {
+            count = await PhoneBiletiki.count({
+                $or: [
+                    {phone: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await PhoneBiletiki.find({
+                $or: [
                     {phone: {'$regex': search, '$options': 'i'}},
                 ]
             })

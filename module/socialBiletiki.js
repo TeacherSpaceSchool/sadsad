@@ -1,5 +1,6 @@
 const SocialBiletiki = require('../models/socialBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     return await SocialBiletiki.find();
@@ -33,16 +34,31 @@ const getSocialBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('image name url updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await SocialBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await SocialBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('image name url updatedAt _id');
+        } else {
+            count = await SocialBiletiki.count({
+                $or: [
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await SocialBiletiki.find({
+                $or: [
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             })

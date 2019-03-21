@@ -1,5 +1,6 @@
 const VacancyBiletiki = require('../models/vacancyBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     return await VacancyBiletiki.find();
@@ -66,10 +67,10 @@ const getVacancyBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('nameRu requirementsRu dutiesRu conditionsRu nameKg requirementsKg dutiesKg conditionsKg updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await VacancyBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {requirementsRu: {'$regex': search, '$options': 'i'}},
                     {dutiesRu: {'$regex': search, '$options': 'i'}},
@@ -82,7 +83,36 @@ const getVacancyBiletiki = async (search, sort, skip) => {
             });
             findResult = await VacancyBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {nameRu: {'$regex': search, '$options': 'i'}},
+                    {requirementsRu: {'$regex': search, '$options': 'i'}},
+                    {dutiesRu: {'$regex': search, '$options': 'i'}},
+                    {conditionsRu: {'$regex': search, '$options': 'i'}},
+                    {nameKg: {'$regex': search, '$options': 'i'}},
+                    {requirementsKg: {'$regex': search, '$options': 'i'}},
+                    {dutiesKg: {'$regex': search, '$options': 'i'}},
+                    {conditionsKg: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('nameRu requirementsRu dutiesRu conditionsRu nameKg requirementsKg dutiesKg conditionsKg updatedAt _id');
+        } else {
+            count = await VacancyBiletiki.count({
+                $or: [
+                    {nameRu: {'$regex': search, '$options': 'i'}},
+                    {requirementsRu: {'$regex': search, '$options': 'i'}},
+                    {dutiesRu: {'$regex': search, '$options': 'i'}},
+                    {conditionsRu: {'$regex': search, '$options': 'i'}},
+                    {nameKg: {'$regex': search, '$options': 'i'}},
+                    {requirementsKg: {'$regex': search, '$options': 'i'}},
+                    {dutiesKg: {'$regex': search, '$options': 'i'}},
+                    {conditionsKg: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await VacancyBiletiki.find({
+                $or: [
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {requirementsRu: {'$regex': search, '$options': 'i'}},
                     {dutiesRu: {'$regex': search, '$options': 'i'}},

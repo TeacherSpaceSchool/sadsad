@@ -1,6 +1,6 @@
 const CinemaHallBiletiki = require('../models/cinemaHallBiletiki')
 const format = require('./const').stringifyDateTime
-
+const mongoose = require('mongoose');
 
 const getCinemaHallBiletiki1 = async (search, sort, skip, user) => {
     try{
@@ -37,13 +37,13 @@ const getCinemaHallBiletiki1 = async (search, sort, skip, user) => {
                     path: 'user',
                     select: 'name'
                 });
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await CinemaHallBiletiki.count({
                 $and: [
                     {user: user._id},
                     {
                         $or: [
-                            {_id: {'$regex': search, '$options': 'i'}},
+                            {_id: search},
                             {name: {'$regex': search, '$options': 'i'}},
                         ]
                     }
@@ -62,7 +62,44 @@ const getCinemaHallBiletiki1 = async (search, sort, skip, user) => {
                     {user: user._id},
                     {
                         $or: [
-                            {_id: {'$regex': search, '$options': 'i'}},
+                            {_id: search},
+                            {name: {'$regex': search, '$options': 'i'}},
+                        ]
+                    }
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('user updatedAt name _id')
+                .populate({
+                    path: 'user',
+                    select: 'name'
+                });
+        } else {
+            count = await CinemaHallBiletiki.count({
+                $and: [
+                    {user: user._id},
+                    {
+                        $or: [
+                            {name: {'$regex': search, '$options': 'i'}},
+                        ]
+                    }
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('user updatedAt name _id')
+                .populate({
+                    path: 'user',
+                    select: 'name'
+                });
+            findResult = await CinemaHallBiletiki.find({
+                $and: [
+                    {user: user._id},
+                    {
+                        $or: [
                             {name: {'$regex': search, '$options': 'i'}},
                         ]
                     }
@@ -125,12 +162,56 @@ const getCinemaHallBiletiki = async (search, sort, skip) => {
                     path: 'user',
                     select: 'name'
                 });
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
+            count = await CinemaHallBiletiki.count({
+
+                        $or: [
+                            {_id: search},
+                            {name: {'$regex': search, '$options': 'i'}},
+                        ]
+
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('user updatedAt name _id')
+                .populate({
+                    path: 'user',
+                    select: 'name'
+                });
             findResult = await CinemaHallBiletiki.find({
-                $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
-                    {name: {'$regex': search, '$options': 'i'}},
-                ]
+                        $or: [
+                            {_id: search},
+                            {name: {'$regex': search, '$options': 'i'}},
+                        ]
+
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('user updatedAt name _id')
+                .populate({
+                    path: 'user',
+                    select: 'name'
+                });
+        } else {
+            count = await CinemaHallBiletiki.count({
+                        $or: [
+                            {name: {'$regex': search, '$options': 'i'}},
+                        ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('user updatedAt name _id')
+                .populate({
+                    path: 'user',
+                    select: 'name'
+                });
+            findResult = await CinemaHallBiletiki.find({
+                        $or: [
+                            {name: {'$regex': search, '$options': 'i'}},
+                        ]
             })
                 .sort(sort)
                 .skip(parseInt(skip))

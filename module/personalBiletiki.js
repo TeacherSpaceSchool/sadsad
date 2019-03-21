@@ -1,5 +1,6 @@
 const PersonalBiletiki = require('../models/personalBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     return await PersonalBiletiki.find();
@@ -37,17 +38,34 @@ const getPersonalBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('contact whoRu whoKg updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await PersonalBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {whoRu: {'$regex': search, '$options': 'i'}},
                     {whoKg: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await PersonalBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {whoRu: {'$regex': search, '$options': 'i'}},
+                    {whoKg: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('contact whoRu whoKg updatedAt _id');
+        } else {
+            count = await PersonalBiletiki.count({
+                $or: [
+                    {whoRu: {'$regex': search, '$options': 'i'}},
+                    {whoKg: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await PersonalBiletiki.find({
+                $or: [
                     {whoRu: {'$regex': search, '$options': 'i'}},
                     {whoKg: {'$regex': search, '$options': 'i'}},
                 ]

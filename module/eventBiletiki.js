@@ -1,6 +1,7 @@
 const EventBiletiki = require('../models/eventBiletiki');
 const BillboardBiletiki = require('../models/billboardBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getIds = async () => {
     return await EventBiletiki.find().select('nameRu _id');
@@ -107,10 +108,10 @@ const getEventBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('active image nameRu city descriptionRu nameKg descriptionKg popular where date price video ageCategory genre updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await EventBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {nameKg: {'$regex': search, '$options': 'i'}},
                     {descriptionRu: {'$regex': search, '$options': 'i'}},
@@ -121,7 +122,32 @@ const getEventBiletiki = async (search, sort, skip) => {
             });
             findResult = await EventBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {nameRu: {'$regex': search, '$options': 'i'}},
+                    {nameKg: {'$regex': search, '$options': 'i'}},
+                    {descriptionRu: {'$regex': search, '$options': 'i'}},
+                    {descriptionKg: {'$regex': search, '$options': 'i'}},
+                    {popular: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}}
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('active image nameRu popular city descriptionRu nameKg descriptionKg where date price video ageCategory genre updatedAt _id');
+        } else {
+            count = await EventBiletiki.count({
+                $or: [
+                    {nameRu: {'$regex': search, '$options': 'i'}},
+                    {nameKg: {'$regex': search, '$options': 'i'}},
+                    {descriptionRu: {'$regex': search, '$options': 'i'}},
+                    {descriptionKg: {'$regex': search, '$options': 'i'}},
+                    {popular: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}}
+                ]
+            });
+            findResult = await EventBiletiki.find({
+                $or: [
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {nameKg: {'$regex': search, '$options': 'i'}},
                     {descriptionRu: {'$regex': search, '$options': 'i'}},

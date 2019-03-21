@@ -1,5 +1,6 @@
 const ContactBiletiki = require('../models/contactBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     return await ContactBiletiki.findOne();
@@ -66,10 +67,10 @@ const getContactBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('coords cashbox address booking connection return1 general cooperation updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await ContactBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {coords: {'$regex': search, '$options': 'i'}},
                     {cashbox: {'$regex': search, '$options': 'i'}},
                     {address: {'$regex': search, '$options': 'i'}},
@@ -82,7 +83,36 @@ const getContactBiletiki = async (search, sort, skip) => {
             });
             findResult = await ContactBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {coords: {'$regex': search, '$options': 'i'}},
+                    {cashbox: {'$regex': search, '$options': 'i'}},
+                    {address: {'$regex': search, '$options': 'i'}},
+                    {booking: {'$regex': search, '$options': 'i'}},
+                    {connection: {'$regex': search, '$options': 'i'}},
+                    {return1: {'$regex': search, '$options': 'i'}},
+                    {general: {'$regex': search, '$options': 'i'}},
+                    {cooperation: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('coords cashbox address booking connection return1 general cooperation updatedAt _id');
+        } else {
+            count = await ContactBiletiki.count({
+                $or: [
+                    {coords: {'$regex': search, '$options': 'i'}},
+                    {cashbox: {'$regex': search, '$options': 'i'}},
+                    {address: {'$regex': search, '$options': 'i'}},
+                    {booking: {'$regex': search, '$options': 'i'}},
+                    {connection: {'$regex': search, '$options': 'i'}},
+                    {return1: {'$regex': search, '$options': 'i'}},
+                    {general: {'$regex': search, '$options': 'i'}},
+                    {cooperation: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await ContactBiletiki.find({
+                $or: [
                     {coords: {'$regex': search, '$options': 'i'}},
                     {cashbox: {'$regex': search, '$options': 'i'}},
                     {address: {'$regex': search, '$options': 'i'}},

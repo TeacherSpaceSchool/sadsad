@@ -1,6 +1,6 @@
 const AdsBiletiki = require('../models/adsBiletiki');
 const format = require('./const').stringifyDateTime ;
-
+const mongoose = require('mongoose');
 
 const getRandomTop = async () => {
     let today = new Date();
@@ -63,17 +63,34 @@ const getAdsBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('image name link type dateStart dateEnd updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await AdsBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {type: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await AdsBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {type: {'$regex': search, '$options': 'i'}},
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('image name link dateStart type dateEnd updatedAt _id');
+        } else {
+            count = await AdsBiletiki.count({
+                $or: [
+                    {type: {'$regex': search, '$options': 'i'}},
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await AdsBiletiki.find({
+                $or: [
                     {type: {'$regex': search, '$options': 'i'}},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]

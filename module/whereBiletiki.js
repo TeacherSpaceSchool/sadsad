@@ -1,5 +1,6 @@
 const WhereBiletiki = require('../models/whereBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getClientByName = async (name) => {
     return await WhereBiletiki.findOne({nameRu: name});
@@ -71,10 +72,10 @@ const getWhereBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('nameRu city nameKg image address coords updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await WhereBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {nameKg: {'$regex': search, '$options': 'i'}},
                     {city: {'$regex': search, '$options': 'i'}},
@@ -85,7 +86,32 @@ const getWhereBiletiki = async (search, sort, skip) => {
             });
             findResult = await WhereBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {city: {'$regex': search, '$options': 'i'}},
+                    {nameRu: {'$regex': search, '$options': 'i'}},
+                    {nameKg: {'$regex': search, '$options': 'i'}},
+                    {descriptionRu: {'$regex': search, '$options': 'i'}},
+                    {descriptionKg: {'$regex': search, '$options': 'i'}},
+                    {address: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('city nameRu nameKg image address coords updatedAt _id');
+        } else {
+            count = await WhereBiletiki.count({
+                $or: [
+                    {nameRu: {'$regex': search, '$options': 'i'}},
+                    {nameKg: {'$regex': search, '$options': 'i'}},
+                    {city: {'$regex': search, '$options': 'i'}},
+                    {descriptionRu: {'$regex': search, '$options': 'i'}},
+                    {descriptionKg: {'$regex': search, '$options': 'i'}},
+                    {address: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await WhereBiletiki.find({
+                $or: [
                     {city: {'$regex': search, '$options': 'i'}},
                     {nameRu: {'$regex': search, '$options': 'i'}},
                     {nameKg: {'$regex': search, '$options': 'i'}},

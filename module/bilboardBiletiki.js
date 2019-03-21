@@ -1,6 +1,6 @@
 const BillboardBiletiki = require('../models/billboardBiletiki');
 const format = require('./const').stringifyDateTime ;
-
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     let today = new Date();
@@ -38,16 +38,32 @@ const getBillboardBiletiki = async (search, sort, skip) => {
                 .limit(10)
                 .select('image name event dateStart dateEnd updatedAt _id')
                 .populate({path: 'event', select: 'nameRu'});
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await BillboardBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await BillboardBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('image name event dateStart dateEnd updatedAt _id')
+                .populate({path: 'event', select: 'nameRu'});
+        } else {
+            count = await BillboardBiletiki.count({
+                $or: [
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await BillboardBiletiki.find({
+                $or: [
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             })

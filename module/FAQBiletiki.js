@@ -1,5 +1,6 @@
 const FAQBiletiki = require('../models/FAQBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     return await FAQBiletiki.find();
@@ -46,10 +47,10 @@ const getFAQBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('questionRu answerRu questionKg answerKg updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await FAQBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {questionRu: {'$regex': search, '$options': 'i'}},
                     {answerRu: {'$regex': search, '$options': 'i'}},
                     {questionKg: {'$regex': search, '$options': 'i'}},
@@ -58,7 +59,28 @@ const getFAQBiletiki = async (search, sort, skip) => {
             });
             findResult = await FAQBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {questionRu: {'$regex': search, '$options': 'i'}},
+                    {answerRu: {'$regex': search, '$options': 'i'}},
+                    {questionKg: {'$regex': search, '$options': 'i'}},
+                    {answerKg: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('questionRu answerRu questionKg answerKg updatedAt _id');
+        } else {
+            count = await FAQBiletiki.count({
+                $or: [
+                    {questionRu: {'$regex': search, '$options': 'i'}},
+                    {answerRu: {'$regex': search, '$options': 'i'}},
+                    {questionKg: {'$regex': search, '$options': 'i'}},
+                    {answerKg: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await FAQBiletiki.find({
+                $or: [
                     {questionRu: {'$regex': search, '$options': 'i'}},
                     {answerRu: {'$regex': search, '$options': 'i'}},
                     {questionKg: {'$regex': search, '$options': 'i'}},

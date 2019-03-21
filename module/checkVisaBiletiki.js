@@ -1,5 +1,6 @@
 const CheckVisaBiletiki = require('../models/checkVisaBiletiki');
 const format = require('./const').stringifyDateTime ;
+const mongoose = require('mongoose');
 
 const check = async (hash) => {
     const new1 = await CheckVisaBiletiki.count({link: hash})===0;
@@ -21,6 +22,23 @@ const getCheckVisaBiletiki = async (search, sort, skip) => {
             count = await CheckVisaBiletiki.count();
             findResult = await CheckVisaBiletiki
                 .find()
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('wallet link updatedAt _id');
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
+            count = await CheckVisaBiletiki.count({
+                $or: [
+                    {_id: search},
+                    {wallet: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await CheckVisaBiletiki.find({
+                $or: [
+                    {_id: search},
+                    {wallet: {'$regex': search, '$options': 'i'}},
+                ]
+            })
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)

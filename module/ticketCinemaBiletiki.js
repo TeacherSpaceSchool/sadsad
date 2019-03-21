@@ -12,6 +12,7 @@ const PaymentBiletiki = require('../models/paymentBiletiki');
 const checkEmail = require('./const').validMail
 const checkPhone = require('./const').validPhone
 const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
 
 const buy = async (req, res, user) => {
     let data = JSON.parse(req.body.data);
@@ -250,13 +251,13 @@ const getTicketCinemaBiletiki1 = async (search, sort, skip, user) => {
                     path: 'user',
                     select: 'name email'
                 });
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await TicketCinemaBiletiki.count({
                 $and: [
                     {user: user._id},
                     {
                         $or: [
-                            {_id: {'$regex': search, '$options': 'i'}},
+                            {_id: search},
                             {hash: {'$regex': search, '$options': 'i'}},
                             {status: {'$regex': search, '$options': 'i'}},
                         ]
@@ -268,7 +269,38 @@ const getTicketCinemaBiletiki1 = async (search, sort, skip, user) => {
                     {user: user._id},
                     {
                         $or: [
-                            {_id: {'$regex': search, '$options': 'i'}},
+                            {_id: search},
+                            {hash: {'$regex': search, '$options': 'i'}},
+                            {status: {'$regex': search, '$options': 'i'}},
+                        ]
+                    }
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('hash user movie cinema hall status ticket seats updatedAt image _id')
+                .populate({
+                    path: 'user',
+                    select: 'name email'
+                });
+        } else {
+            count = await TicketCinemaBiletiki.count({
+                $and: [
+                    {user: user._id},
+                    {
+                        $or: [
+                            {hash: {'$regex': search, '$options': 'i'}},
+                            {status: {'$regex': search, '$options': 'i'}},
+                        ]
+                    }
+                ]
+            });
+            findResult = await TicketCinemaBiletiki.find({
+                $and: [
+                    {user: user._id},
+                    {
+                        $or: [
                             {hash: {'$regex': search, '$options': 'i'}},
                             {status: {'$regex': search, '$options': 'i'}},
                         ]
@@ -345,17 +377,38 @@ const getTicketCinemaBiletiki = async (search, sort, skip) => {
                     path: 'user',
                     select: 'name email'
                 });
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await TicketCinemaBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await TicketCinemaBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {hash: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('hash user movie cinema hall status ticket seats updatedAt image _id')
+                .populate({
+                    path: 'user',
+                    select: 'name email'
+                });
+        } else {
+            count = await TicketCinemaBiletiki.count({
+                $or: [
+                    {hash: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await TicketCinemaBiletiki.find({
+                $or: [
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                 ]

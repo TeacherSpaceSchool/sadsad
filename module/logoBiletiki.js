@@ -1,5 +1,6 @@
 const LogoBiletiki = require('../models/logoBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getOther = async () => {
     return {vertical: (await LogoBiletiki.findOne({name: 'vertical'})).image, square: (await LogoBiletiki.findOne({name: 'square'})).image, horizontal: (await LogoBiletiki.findOne({name: 'horizontal'})).image};
@@ -40,16 +41,31 @@ const getLogoBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('image name updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await LogoBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await LogoBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('image name updatedAt _id');
+        } else {
+            count = await LogoBiletiki.count({
+                $or: [
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await LogoBiletiki.find({
+                $or: [
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             })

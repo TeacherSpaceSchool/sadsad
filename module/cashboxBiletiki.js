@@ -1,5 +1,6 @@
 const CashboxBiletiki = require('../models/cashboxBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     return await CashboxBiletiki.find();
@@ -36,17 +37,34 @@ const getCashboxBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('name address updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await CashboxBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {name: {'$regex': search, '$options': 'i'}},
                     {address: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await CashboxBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {name: {'$regex': search, '$options': 'i'}},
+                    {address: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('name address updatedAt _id');
+        } else {
+            count = await CashboxBiletiki.count({
+                $or: [
+                    {name: {'$regex': search, '$options': 'i'}},
+                    {address: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await CashboxBiletiki.find({
+                $or: [
                     {name: {'$regex': search, '$options': 'i'}},
                     {address: {'$regex': search, '$options': 'i'}},
                 ]

@@ -17,6 +17,8 @@ const url = 'https://kassir.kg/',
 
 }
 const stringifyDateTime = (dateTime) => {
+    dateTime = new Date(dateTime)
+    dateTime.setHours(dateTime.getHours() + 6);
     dateTime = JSON.stringify(dateTime)
     let date = dateTime.split('T')[0].split('-')
     let time = dateTime.split('T')[1].split(':')

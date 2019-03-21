@@ -12,6 +12,7 @@ const PaymentBiletiki = require('../models/paymentBiletiki');
 const checkEmail = require('./const').validMail
 const checkPhone = require('./const').validPhone
 const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
 
 const buy = async (req, res, user) => {
     let data = JSON.parse(req.body.data);
@@ -254,17 +255,38 @@ const getTicketBiletiki = async (search, sort, skip) => {
                     path: 'user',
                     select: 'name email'
                 });
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await TicketBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await TicketBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {hash: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('genre hash user event status  ticket seats where updatedAt image _id')
+                .populate({
+                    path: 'user',
+                    select: 'name email'
+                });
+        } else {
+            count = await TicketBiletiki.count({
+                $or: [
+                    {hash: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await TicketBiletiki.find({
+                $or: [
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                 ]

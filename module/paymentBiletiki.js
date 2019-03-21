@@ -1,7 +1,7 @@
 const PaymentBiletiki = require('../models/paymentBiletiki');
-const TicketBiletiki = require('../models/ticketBiletiki');
 const format = require('./const').stringifyDateTime
 const randomstring = require('randomstring');
+const mongoose = require('mongoose');
 
 const generateWallet = async () => {
     let check = {}
@@ -73,10 +73,39 @@ const getPaymentBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('wallet status ammount service updatedAt _id meta ticket name email phone');
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
+            count = await PaymentBiletiki.count({
+                    $or: [
+                        {_id: search},
+                        {wallet: {'$regex': search, '$options': 'i'}},
+                        {payment: {'$regex': search, '$options': 'i'}},
+                        {status: {'$regex': search, '$options': 'i'}},
+                        {ticket: {'$regex': search, '$options': 'i'}},
+                        {name: {'$regex': search, '$options': 'i'}},
+                        {email: {'$regex': search, '$options': 'i'}},
+                        {phone: {'$regex': search, '$options': 'i'}},
+                    ]
+                }
+            );
+            findResult = await PaymentBiletiki.find({
+                $or: [
+                    {_id: search},
+                    {wallet: {'$regex': search, '$options': 'i'}},
+                    {payment: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
+                    {ticket: {'$regex': search, '$options': 'i'}},
+                    {name: {'$regex': search, '$options': 'i'}},
+                    {email: {'$regex': search, '$options': 'i'}},
+                    {phone: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('wallet status ammount service updatedAt _id meta ticket name email phone');
         } else {
             count = await PaymentBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
                     {wallet: {'$regex': search, '$options': 'i'}},
                     {payment: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
@@ -89,7 +118,6 @@ const getPaymentBiletiki = async (search, sort, skip) => {
             );
             findResult = await PaymentBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
                     {wallet: {'$regex': search, '$options': 'i'}},
                     {payment: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},

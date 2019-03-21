@@ -1,5 +1,6 @@
 const AboutBiletiki = require('../models/aboutBiletiki');
 const format = require('./const').stringifyDateTime ;
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     return await AboutBiletiki.findOne();
@@ -36,17 +37,34 @@ const getAboutBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('descriptionRu descriptionKg updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await AboutBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {descriptionRu: {'$regex': search, '$options': 'i'}},
                     {descriptionKg: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await AboutBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {descriptionRu: {'$regex': search, '$options': 'i'}},
+                    {descriptionKg: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('descriptionRu descriptionKg updatedAt _id');
+        } else {
+            count = await AboutBiletiki.count({
+                $or: [
+                    {descriptionRu: {'$regex': search, '$options': 'i'}},
+                    {descriptionKg: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await AboutBiletiki.find({
+                $or: [
                     {descriptionRu: {'$regex': search, '$options': 'i'}},
                     {descriptionKg: {'$regex': search, '$options': 'i'}},
                 ]

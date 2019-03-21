@@ -1,5 +1,6 @@
 const EmailBiletiki = require('../models/emailBiletiki');
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getClient = async () => {
     return await EmailBiletiki.find();
@@ -31,16 +32,31 @@ const getEmailBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('email updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await EmailBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {email: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await EmailBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {email: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('email updatedAt _id');
+        } else {
+            count = await EmailBiletiki.count({
+                $or: [
+                    {email: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await EmailBiletiki.find({
+                $or: [
                     {email: {'$regex': search, '$options': 'i'}},
                 ]
             })

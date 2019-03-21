@@ -1,5 +1,6 @@
 const MovieBiletiki = require('../models/movieBiletiki'), SeanceBiletiki = require('../models/seanceBiletiki')
 const format = require('./const').stringifyDateTime
+const mongoose = require('mongoose');
 
 const getMovieByName = async (name) => {
     return await MovieBiletiki
@@ -68,16 +69,31 @@ const getMovieBiletiki = async (search, sort, skip) => {
                 .skip(parseInt(skip))
                 .limit(10)
                 .select('name typeVideo type genre description duration ageCategory premier producers actors video image updatedAt _id');
-        } else {
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await MovieBiletiki.count({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await MovieBiletiki.find({
                 $or: [
-                    {_id: {'$regex': search, '$options': 'i'}},
+                    {_id: search},
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('name typeVideo type genre description duration ageCategory premier producers actors video image updatedAt _id');
+        } else {
+            count = await MovieBiletiki.count({
+                $or: [
+                    {name: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await MovieBiletiki.find({
+                $or: [
                     {name: {'$regex': search, '$options': 'i'}},
                 ]
             })
