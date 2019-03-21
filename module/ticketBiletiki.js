@@ -15,8 +15,8 @@ const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 const oauth2Client = new OAuth2(
-    '174186061721-hr1j74qarits3nj9pmts0o5763lajeh2.apps.googleusercontent.com',
-    'HXVHoy7mUGySAzW2oUKBLgKx',
+    '119756210963-d5oai8cr88pvo9velrj2osva9vpouv3m.apps.googleusercontent.com',
+    'UuSpilxsd7khNw0EmR_Mwr5J',
     'https://developers.google.com/oauthplayground'
 );
 
@@ -132,9 +132,11 @@ const buy = async (req, res, user) => {
         };
         if (mailingBiletiki !== null) {
             oauth2Client.setCredentials({
-                refresh_token: '1/8Y0uswg1tQdi2DCwQSTY14lvpZjKUW6kyR8DfgGr65c'
+                refresh_token: '1/m6yGIJF-NmOBo6WhsXCcnChqGe5BkDiyOnetBFRTTTI'
             });
+
             const tokens = await oauth2Client.refreshAccessToken()
+            console.log(tokens)
             const accessToken = tokens.credentials.access_token
             console.log(accessToken)
             const transporter = nodemailer.createTransport({
@@ -146,7 +148,7 @@ const buy = async (req, res, user) => {
                     user: 'info@kassir.kg',
                     clientId: '174186061721-hr1j74qarits3nj9pmts0o5763lajeh2.apps.googleusercontent.com',
                     clientSecret: 'HXVHoy7mUGySAzW2oUKBLgKx',
-                    refreshToken: '1/8Y0uswg1tQdi2DCwQSTY14lvpZjKUW6kyR8DfgGr65c',
+                    refreshToken: '1/m6yGIJF-NmOBo6WhsXCcnChqGe5BkDiyOnetBFRTTTI',
                 },
             });
             transporter.sendMail(mailOptions, function (error, info) {
