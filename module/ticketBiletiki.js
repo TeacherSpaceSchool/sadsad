@@ -136,9 +136,9 @@ const buy = async (req, res, user) => {
             });
 
             const tokens = await oauth2Client.refreshAccessToken()
-            console.log(tokens)
+            console.log('tokens' + tokens)
             const accessToken = tokens.credentials.access_token
-            console.log(accessToken)
+            console.log('accessToken' + accessToken)
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
