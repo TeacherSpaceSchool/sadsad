@@ -12,6 +12,13 @@ const PaymentBiletiki = require('../models/paymentBiletiki');
 const checkEmail = require('./const').validMail
 const checkPhone = require('./const').validPhone
 const nodemailer = require('nodemailer');
+const { google } = require('googleapis');
+const OAuth2 = google.auth.OAuth2;
+const oauth2Client = new OAuth2(
+    '174186061721-hr1j74qarits3nj9pmts0o5763lajeh2.apps.googleusercontent.com',
+    'HXVHoy7mUGySAzW2oUKBLgKx',
+    'https://developers.google.com/oauthplayground'
+);
 
 const buy = async (req, res, user) => {
     let data = JSON.parse(req.body.data);
@@ -124,9 +131,15 @@ const buy = async (req, res, user) => {
             text: 'Ваш счет для оплаты: ' + data.wallet
         };
         if (mailingBiletiki !== null) {
+            oauth2Client.setCredentials({
+                refresh_token: '1/8Y0uswg1tQdi2DCwQSTY14lvpZjKUW6kyR8DfgGr65c'
+            });
+            const tokens = await oauth2Client.refreshAccessToken()
+            const accessToken = tokens.credentials.access_token
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
+                    accessToken: accessToken,
                     pass: 'Kassirkg12',
                     type: 'oauth2',
                     user: 'info@kassir.kg',

@@ -20,6 +20,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-form-data": "^2.0.7",
+    "googleapis": "^38.0.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "jimp": "^0.6.0",
