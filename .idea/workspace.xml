@@ -20,10 +20,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="144" column="8" lean-forward="false" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="8" />
+              <folding>
+                <element signature="e#1408#4561#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/payment.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="474" column="23" lean-forward="true" selection-start-line="456" selection-start-column="31" selection-end-line="474" selection-end-column="23" />
+              <folding>
+                <element signature="e#960#8843#0" expanded="false" />
+                <element signature="e#8846#11208#0" expanded="false" />
+                <element signature="e#11268#12334#0" expanded="false" />
+                <element signature="e#12389#19011#0" expanded="false" />
+                <element signature="e#19068#19956#0" expanded="false" />
+                <element signature="e#30946#34656#0" expanded="false" />
+                <element signature="e#34708#34928#0" expanded="false" />
+                <element signature="e#34983#43147#0" expanded="false" />
+                <element signature="e#41798#42716#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ticketCinemaBiletiki.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/ticketCinemaBiletiki.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
+            <state relative-caret-position="1821">
               <caret line="138" column="80" lean-forward="false" selection-start-line="138" selection-start-column="80" selection-end-line="138" selection-end-column="80" />
               <folding />
             </state>
@@ -99,25 +131,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/payment.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="593" column="20" lean-forward="false" selection-start-line="593" selection-start-column="20" selection-end-line="593" selection-end-column="20" />
-              <folding>
-                <element signature="e#960#8843#0" expanded="false" />
-                <element signature="e#11268#12334#0" expanded="false" />
-                <element signature="e#12389#19011#0" expanded="false" />
-                <element signature="e#19068#19956#0" expanded="false" />
-                <element signature="e#30946#34656#0" expanded="false" />
-                <element signature="e#34708#34928#0" expanded="false" />
-                <element signature="e#34983#43147#0" expanded="false" />
-                <element signature="e#41798#42716#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="data123.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/data123.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -134,18 +147,6 @@
             <state relative-caret-position="170">
               <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="140" column="36" lean-forward="false" selection-start-line="140" selection-start-column="36" selection-end-line="140" selection-end-column="36" />
-              <folding>
-                <element signature="e#1685#4838#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -557,12 +558,12 @@
       <workItem from="1552731869610" duration="11167000" />
       <workItem from="1552747328751" duration="4029000" />
       <workItem from="1552919703560" duration="2599000" />
-      <workItem from="1552980224074" duration="25888000" />
+      <workItem from="1552980224074" duration="28751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="803458000" />
+    <option name="totallyTimeSpent" value="806321000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -917,14 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/ticketCinemaBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="138" column="80" lean-forward="false" selection-start-line="138" selection-start-column="80" selection-end-line="138" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-393">
@@ -1008,12 +1001,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/module/ticketCinemaBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1821">
+          <caret line="138" column="80" lean-forward="false" selection-start-line="138" selection-start-column="80" selection-end-line="138" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="593" column="20" lean-forward="false" selection-start-line="593" selection-start-column="20" selection-end-line="593" selection-end-column="20" />
+        <state relative-caret-position="408">
+          <caret line="474" column="23" lean-forward="true" selection-start-line="456" selection-start-column="31" selection-end-line="474" selection-end-column="23" />
           <folding>
             <element signature="e#960#8843#0" expanded="false" />
+            <element signature="e#8846#11208#0" expanded="false" />
             <element signature="e#11268#12334#0" expanded="false" />
             <element signature="e#12389#19011#0" expanded="false" />
             <element signature="e#19068#19956#0" expanded="false" />
@@ -1027,10 +1029,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="140" column="36" lean-forward="false" selection-start-line="140" selection-start-column="36" selection-end-line="140" selection-end-column="36" />
+        <state relative-caret-position="323">
+          <caret line="144" column="8" lean-forward="false" selection-start-line="144" selection-start-column="8" selection-end-line="144" selection-end-column="8" />
           <folding>
-            <element signature="e#1685#4838#0" expanded="false" />
+            <element signature="e#1408#4561#0" expanded="false" />
           </folding>
         </state>
       </provider>
