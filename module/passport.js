@@ -324,8 +324,6 @@ const signupuser = async (req, res) => {
             password: req.query.password,
         });
         const user = await UserBiletiki.create(_user);
-        _user = new WalletBiletiki({user: _user._id, wallet: await WalletBiletikiAction.generateWallet(), balance: 0});
-        await WalletBiletiki.create(_user);
         const payload = {
             id: user._id,
             email: user.email,
