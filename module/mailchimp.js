@@ -3,7 +3,6 @@ const MailingBiletiki = require('../models/mailingBiletiki');
 
 const send = async (email) => {
     let mailingBiletiki = await MailingBiletiki.findOne();
-    console.log(mailingBiletiki)
     if(mailingBiletiki!==null)
         await request
             .post('https://' + mailingBiletiki.mailchimpInstance + '.api.mailchimp.com/3.0/lists/' + mailingBiletiki.listUniqueId)
