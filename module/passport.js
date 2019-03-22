@@ -245,9 +245,7 @@ const getProfile = async (req, res) => {
                 res.status(200);
                 res.end(JSON.stringify(await UserBiletiki.findOne({_id: user._id})));
             } else {
-                console.error('No such user1git add --a\n' +
-                    'git commit -m "check"\n' +
-                    'git push origin master\n')
+                console.error('No such user')
                 res.status(401);
                 res.end('No such user');
             }
