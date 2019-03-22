@@ -1867,12 +1867,13 @@ input[type="button"].button-primary {
 .event .event-content_info .event-content-info_price:before {
   content: '';
   display: inline-block;
-  width: 24px;
+  width: 30px;
   height: 24px;
   margin-right: 10px;
-  background-image: url(../img/ticket-card/wallet.svg);
+  background-image: url(../img/ticket-card/KGS.png);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
 }
 
 .event .event-content_info .event-content-info_date {
@@ -1942,7 +1943,7 @@ input[type="button"].button-primary {
   height: 28px;
   margin-right: 10px;
   margin-top: -3px;
-  background-image: url(../img/ticket-card/IkonaNaKupitbilet.svg);
+  background-image: url(../img/ticket-card/tickets.svg);
   background-repeat: no-repeat;
   background-size: cover;
 }
