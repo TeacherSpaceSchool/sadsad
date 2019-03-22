@@ -8,6 +8,7 @@ const TicketBiletiki = require('../models/ticketBiletiki');
 const TicketBiletikiAction = require('../module/ticketBiletiki');
 const TicketCinemaBiletiki = require('../models/ticketCinemaBiletiki');
 const TicketCinemaBiletikiAction = require('../module/ticketCinemaBiletiki');
+const MailChimp = require('../module/mailchimp');
 const jwt = require('jsonwebtoken');
 
 let start = () => {
@@ -330,6 +331,7 @@ const signupuser = async (req, res) => {
             status: user.status,
             role: user.role
         };
+        MailChimp.send(user.email)
         const token = jwt.sign(payload, jwtsecret); //здесь создается JWT*/
         res.status(200);
         res.end(token)
