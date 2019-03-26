@@ -804,7 +804,7 @@
   -webkit-box-pack: end;
   -ms-flex-pack: end;
   justify-content: flex-end;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .user .switch-lanquage span {
