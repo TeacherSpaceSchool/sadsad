@@ -172,7 +172,7 @@ const buy = async (req, res, user) => {
                 await TicketCinemaBiletiki.deleteMany({_id: _object._id})
                 await PaymentBiletiki.deleteMany({ticket: _object._id})
             }
-        }, 3600000);
+        }, 1800000);
     }
 }
 

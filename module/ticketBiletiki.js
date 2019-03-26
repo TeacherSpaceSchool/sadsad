@@ -144,7 +144,7 @@ const buy = async (req, res, user) => {
                 }
             });
         }
-      /*  setTimeout(async () => {
+        setTimeout(async () => {
             let ticket = await TicketBiletiki.findOne({_id: _object._id})
             if (ticket.status === 'ожидается оплата') {
                 let _event_ = await EventBiletiki.findOne({_id: data.event._id})
@@ -172,7 +172,7 @@ const buy = async (req, res, user) => {
                 await TicketBiletiki.deleteMany({_id: _object._id})
                 await PaymentBiletiki.deleteMany({ticket: _object._id})
             }
-        }, 1800000);*/
+        }, 1800000);
     }
 }
 

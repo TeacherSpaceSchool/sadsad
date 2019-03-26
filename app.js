@@ -68,7 +68,7 @@ app.use(formData.stream());
 // union body and files
 app.use(formData.union());
 app.set('trust proxy', true)
-app.use(/^\/(faq|about|logo|cashboxes|offer|return|delivery|contacts|vacancies|halls|profile|historycinema|historyevent|events|search|check\/[\s\S]+|hall\/[\s\S]+|event\/[\s\S]+|selectplace\/[\s\S]+|cinema|movie\/[\s\S]+)?/, indexRouter);
+app.use(/^\/(faq|about|logo|cashboxes|offer|return|delivery|contacts|vacancies|halls|profile|historycinema|historyevent|events\/[\s\S]+|search|check\/[\s\S]+|hall\/[\s\S]+|event\/[\s\S]+|selectplace\/[\s\S]+|cinema|movie\/[\s\S]+)?/, indexRouter);
 app.use('/admin', adminRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
