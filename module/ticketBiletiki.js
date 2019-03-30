@@ -76,11 +76,14 @@ const buy = async (req, res, user) => {
                 let date = data.seats[i][1].split('T')[0].split('-')
                 let time = data.seats[i][1].split('T')[1].split(':')
                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                let place = data.seats[i][0]['name']
+                if(data.seats[i][0]['name'].split(':')[0]!==undefined)
+                    place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                 doc
                     .font('NotoSans')
                     .fontSize(11)
-                    .text((i + 1)+') Дата: '+dateTime+
-                        ' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
+                    .text((i + 1)+') Дата: '+dateTime+' '+
+                        place
                         +' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
             }
             doc.moveDown()

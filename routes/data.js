@@ -762,10 +762,15 @@ router.post('/add', async (req, res) => {
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
                                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                                let place = data.seats[i][0]['name']
+                                                if(data.seats[i][0]['name'].split(':')[0]!==undefined)
+                                                    place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                                 doc
                                                     .font('NotoSans')
                                                     .fontSize(11)
-                                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                                    .text((i + 1)+') Дата: '+dateTime+' ' +
+                                                        place
+                                                        +' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
                                             doc.moveDown()
                                             doc.image(qrpath, {fit: [145, 145], align: 'center'})
@@ -801,7 +806,7 @@ router.post('/add', async (req, res) => {
                                 else if(req.body.name == 'Билеты кино') {
                                 if(req.body.id==undefined){
                                     let hash = randomstring.generate({length: 12, charset: 'numeric'});
-                                    while (!await TicketBiletiki.checkHash(hash))
+                                    while (!await TicketCinemaBiletiki.checkHash(hash))
                                         hash = randomstring.generate({length: 12, charset: 'numeric'});
                                     let qrname = randomstring.generate(5) + myNew.user + myNew.seance._id+'.png';
                                     let pdfname = qrname.replace('.png','.pdf');
@@ -1247,10 +1252,15 @@ router.post('/add', async (req, res) => {
                                     let date = data.seats[i][1].split('T')[0].split('-')
                                     let time = data.seats[i][1].split('T')[1].split(':')
                                     let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                    let place = data.seats[i][0]['name']
+                                    if(data.seats[i][0]['name'].split(':')[0]!==undefined)
+                                        place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                     doc
                                         .font('NotoSans')
                                         .fontSize(11)
-                                        .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                        .text((i + 1)+') Дата: '+dateTime+' ' +
+                                            place
+                                            +' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                 }
                                 doc.moveDown()
                                 doc.image(qrpath, {fit: [145, 145], align: 'center'})
@@ -1286,7 +1296,7 @@ router.post('/add', async (req, res) => {
                     else if(req.body.name == 'Билеты кино') {
                         if(req.body.id==undefined){
                             let hash = randomstring.generate({length: 12, charset: 'numeric'});
-                            while (!await TicketBiletiki.checkHash(hash))
+                            while (!await TicketCinemaBiletiki.checkHash(hash))
                                 hash = randomstring.generate({length: 12, charset: 'numeric'});
                             let qrname = randomstring.generate(5) + myNew.user + myNew.seance._id+'.png';
                             let pdfname = qrname.replace('.png','.pdf');
@@ -1471,7 +1481,7 @@ router.post('/add', async (req, res) => {
                                 if (req.body.id == undefined) {
                                     console.log(myNew.seats)
                                     let hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
-                                    while (!await TicketBiletiki.checkHash(hash))
+                                    while (!await TicketCinemaBiletiki.checkHash(hash))
                                         hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
                                     let qrname = randomstring.generate(7) + myNew.user + myNew.seance._id + '.png';
                                     let pdfname = qrname.replace('.png', '.pdf');
@@ -1619,7 +1629,7 @@ router.post('/add', async (req, res) => {
                         if (req.body.id == undefined) {
                             console.log(myNew.seats)
                             let hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
-                            while (!await TicketBiletiki.checkHash(hash))
+                            while (!await TicketCinemaBiletiki.checkHash(hash))
                                 hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
                             let qrname = randomstring.generate(7) + myNew.user + myNew.seance._id + '.png';
                             let pdfname = qrname.replace('.png', '.pdf');
@@ -1771,10 +1781,15 @@ router.post('/add', async (req, res) => {
                                 let date = data.seats[i][1].split('T')[0].split('-')
                                 let time = data.seats[i][1].split('T')[1].split(':')
                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                let place = data.seats[i][0]['name']
+                                if(data.seats[i][0]['name'].split(':')[0]!==undefined)
+                                    place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                 doc
                                     .font('NotoSans')
                                     .fontSize(11)
-                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                    .text((i + 1)+') Дата: '+dateTime+' ' +
+                                        place
+                                        +' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                             }
                             doc.moveDown()
                             doc.image(qrpath, {fit: [145, 145], align: 'center'})
@@ -1811,7 +1826,7 @@ router.post('/add', async (req, res) => {
                 else if(req.body.name == 'Билеты кино'){
                     if(req.body.id==undefined){
                         let hash = randomstring.generate({length: 12, charset: 'numeric'});
-                        while (!await TicketBiletiki.checkHash(hash))
+                        while (!await TicketCinemaBiletiki.checkHash(hash))
                             hash = randomstring.generate({length: 12, charset: 'numeric'});
                         let qrname = randomstring.generate(5) + myNew.user + myNew.seance._id+'.png';
                         let pdfname = qrname.replace('.png','.pdf');
