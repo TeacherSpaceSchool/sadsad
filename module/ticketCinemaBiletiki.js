@@ -82,7 +82,7 @@ const buy = async (req, res, user) => {
                 doc
                     .font('NotoSans')
                     .fontSize(11)
-                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
             }
             doc.moveDown()
             doc.image(qrpath, {fit: [145, 145], align: 'justify'})
@@ -123,21 +123,21 @@ const buy = async (req, res, user) => {
         });
         await PaymentBiletiki.create(payment);
         let mailingBiletiki = await MailingBiletiki.findOne();
+        let wallet1 = data.wallet
+        if(data.service=='ЭЛСОМ')
+            wallet1 = data.elsomCode
         let mailOptions = {
-            from: 'info@kassir.kg',
+            from: mailingBiletiki.mailuser,
             to: data.email,
-            subject: 'Счет за билет',
-            text: 'Ваш счет для оплаты: ' + data.wallet
+            subject: 'Kassir.kg - Счет за билет',
+            text: 'Ваш счет для оплаты: ' + wallet1
         };
         if (mailingBiletiki !== null) {
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
                 auth: {
-                    type: 'oauth2',
-                    user: 'info@kassir.kg',
-                    clientId: '174186061721-hr1j74qarits3nj9pmts0o5763lajeh2.apps.googleusercontent.com',
-                    clientSecret: 'HXVHoy7mUGySAzW2oUKBLgKx',
-                    refreshToken: '1/8Y0uswg1tQdi2DCwQSTY14lvpZjKUW6kyR8DfgGr65c',
+                    user: mailingBiletiki.mailuser,
+                    pass: mailingBiletiki.mailpass
                 },
                 tls: {
                     // do not fail on invalid certs

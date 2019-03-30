@@ -78,7 +78,6 @@ router.post('/getclient', async (req, res) => {
         let data = JSON.parse(req.body.data);
         await res.send({events: await EventBiletiki.getEvents(data.city, data.date, data.genre, data.skip), ads: (await AdsBiletiki.getRandomTop())[0]})
     } else if(req.body.name == 'БегущаяСтрока'){
-        console.log(await AdsBiletiki.getBottom())
         await res.send(await AdsBiletiki.getBottom())
     } else if(req.body.name == 'Реклама'){
         await res.send((await AdsBiletiki.getRandomTop())[0])
@@ -766,7 +765,7 @@ router.post('/add', async (req, res) => {
                                                 doc
                                                     .font('NotoSans')
                                                     .fontSize(11)
-                                                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
                                             doc.moveDown()
                                             doc.image(qrpath, {fit: [145, 145], align: 'center'})
@@ -860,7 +859,7 @@ router.post('/add', async (req, res) => {
                                                 doc
                                                     .font('NotoSans')
                                                     .fontSize(11)
-                                                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
                                             doc.moveDown()
                                             doc.image(qrpath, {fit: [145, 145], align: 'justify'})
@@ -922,6 +921,7 @@ router.post('/add', async (req, res) => {
                         data = {
                             name: myNew.name,
                             address: myNew.address,
+                            geo: myNew.geo,
                         };
                         if(req.body.id===undefined)
                             await CashboxBiletiki.addCashboxBiletiki(data)
@@ -1250,7 +1250,7 @@ router.post('/add', async (req, res) => {
                                     doc
                                         .font('NotoSans')
                                         .fontSize(11)
-                                        .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                        .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                 }
                                 doc.moveDown()
                                 doc.image(qrpath, {fit: [145, 145], align: 'center'})
@@ -1344,7 +1344,7 @@ router.post('/add', async (req, res) => {
                                         doc
                                             .font('NotoSans')
                                             .fontSize(11)
-                                            .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                            .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                     }
                                     doc.moveDown()
                                     doc.image(qrpath, {fit: [145, 145], align: 'justify'})
@@ -1529,7 +1529,7 @@ router.post('/add', async (req, res) => {
                                                 doc
                                                     .font('NotoSans')
                                                     .fontSize(11)
-                                                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
                                             doc.moveDown()
                                             doc.image(qrpath, {fit: [145, 145], align: 'justify'})
@@ -1677,7 +1677,7 @@ router.post('/add', async (req, res) => {
                                         doc
                                             .font('NotoSans')
                                             .fontSize(11)
-                                            .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                            .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                     }
                                     doc.moveDown()
                                     doc.image(qrpath, {fit: [145, 145], align: 'justify'})
@@ -1774,7 +1774,7 @@ router.post('/add', async (req, res) => {
                                 doc
                                     .font('NotoSans')
                                     .fontSize(11)
-                                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                             }
                             doc.moveDown()
                             doc.image(qrpath, {fit: [145, 145], align: 'center'})
@@ -1868,7 +1868,7 @@ router.post('/add', async (req, res) => {
                                 doc
                                     .font('NotoSans')
                                     .fontSize(11)
-                                    .text((i + 1)+') Дата: '+dateTime+' Место: '+data.seats[i][0]['name']+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                             }
                             doc.moveDown()
                             doc.image(qrpath, {fit: [145, 145], align: 'justify'})

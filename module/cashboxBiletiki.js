@@ -12,6 +12,7 @@ const getCashboxBiletiki = async (search, sort, skip) => {
         const row = [
             'название',
             'адрес',
+            'геолокация',
             'создан',
             '_id'
         ];
@@ -36,7 +37,6 @@ const getCashboxBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('name address updatedAt _id');
         } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await CashboxBiletiki.count({
                 $or: [
@@ -55,7 +55,6 @@ const getCashboxBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('name address updatedAt _id');
         } else {
             count = await CashboxBiletiki.count({
                 $or: [
@@ -72,10 +71,12 @@ const getCashboxBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('name address updatedAt _id');
         }
         for (let i=0; i<findResult.length; i++){
-            data.push([findResult[i].name, findResult[i].address, format(findResult[i].updatedAt), findResult[i]._id]);
+            let geo = ''
+            if(findResult[i].geo!=undefined)
+                geo = findResult[i].geo
+            data.push([findResult[i].name, findResult[i].address, geo, format(findResult[i].updatedAt), findResult[i]._id]);
         }
         return {data: data, count: count, row: row}
     } catch(error) {
