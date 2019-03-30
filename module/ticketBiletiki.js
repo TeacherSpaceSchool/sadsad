@@ -72,7 +72,7 @@ const buy = async (req, res, user) => {
                 .fontSize(11)
                 .text('Места:', {width: doc.page.width - 100, align: 'justify'})
             for (let i = 0; i < data.seats.length; i++) {
-                console.log(data.seats[i])
+                console.log(data.seats[i][0]['name'].split(':')[0])
                 let date = data.seats[i][1].split('T')[0].split('-')
                 let time = data.seats[i][1].split('T')[1].split(':')
                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
