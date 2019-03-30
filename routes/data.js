@@ -763,7 +763,7 @@ router.post('/add', async (req, res) => {
                                                 let time = data.seats[i][1].split('T')[1].split(':')
                                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                                 let place = data.seats[i][0]['name']
-                                                if(data.seats[i][0]['name'].split(':')[0]!==undefined)
+                                                if(data.seats[i][0]['name'].split(':')[1]!==undefined)
                                                     place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                                 doc
                                                     .font('NotoSans')
@@ -1253,7 +1253,7 @@ router.post('/add', async (req, res) => {
                                     let time = data.seats[i][1].split('T')[1].split(':')
                                     let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                     let place = data.seats[i][0]['name']
-                                    if(data.seats[i][0]['name'].split(':')[0]!==undefined)
+                                    if(data.seats[i][0]['name'].split(':')[1]!==undefined)
                                         place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                     doc
                                         .font('NotoSans')
@@ -1782,7 +1782,7 @@ router.post('/add', async (req, res) => {
                                 let time = data.seats[i][1].split('T')[1].split(':')
                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                 let place = data.seats[i][0]['name']
-                                if(data.seats[i][0]['name'].split(':')[0]!==undefined)
+                                if(data.seats[i][0]['name'].split(':')[1]!==undefined)
                                     place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                 doc
                                     .font('NotoSans')
