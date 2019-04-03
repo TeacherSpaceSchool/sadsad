@@ -62,7 +62,7 @@ router.get('/asisnur', async (req, res, next) => {
                                 to: wallet.email,
                                 subject: 'Kassir.kg - Билет на '+ticket.event,
                                 text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                             };
                             if (mailingBiletiki !== null) {
                                 const transporter = nodemailer.createTransport({
@@ -98,7 +98,7 @@ router.get('/asisnur', async (req, res, next) => {
                                     to: wallet.email,
                                     subject: 'Kassir.kg - Билет на '+ticket.movie,
                                     text: 'Спасибо за покупку билета на '+ticket.movie+'. Место проведения события: '+ticket.cinema+' '+ticket.hall+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                                    attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                                    attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                                 };
                                 if (mailingBiletiki !== null) {
                                     const transporter = nodemailer.createTransport({
@@ -263,7 +263,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                             to: wallet.email,
                             subject: 'Kassir.kg - Билет на '+ticket.event,
                             text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                            attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                            attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                         };
                         if (mailingBiletiki !== null) {
                             const transporter = nodemailer.createTransport({
@@ -304,7 +304,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                                 to: wallet.email,
                                 subject: 'Kassir.kg - Билет на '+ticket.movie,
                                 text: 'Спасибо за покупку билета на '+ticket.movie+'. Место проведения события: '+ticket.cinema+' '+ticket.hall+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                             };
                             if (mailingBiletiki !== null) {
                                 const transporter = nodemailer.createTransport({
@@ -458,7 +458,7 @@ router.post('/kcb', async (req, res, next) => {
                                 to: wallet.email,
                                 subject: 'Kassir.kg - Билет на '+ticket.event,
                                 text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                             };
                             if (mailingBiletiki !== null) {
                                 const transporter = nodemailer.createTransport({
@@ -497,7 +497,7 @@ router.post('/kcb', async (req, res, next) => {
                                     to: wallet.email,
                                     subject: 'Kassir.kg - Билет на '+ticket.movie,
                                     text: 'Спасибо за покупку билета на '+ticket.movie+'. Место проведения события: '+ticket.cinema+' '+ticket.hall+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                                    attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                                    attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                                 };
                                 if (mailingBiletiki !== null) {
                                     const transporter = nodemailer.createTransport({
@@ -632,7 +632,7 @@ router.post('/balance/pay', async (req, res, next) => {
                     to: wallet.email,
                     subject: 'Kassir.kg - Билет на '+ticket.event,
                     text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                    attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                    attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                 };
                 if (mailingBiletiki !== null) {
                     const transporter = nodemailer.createTransport({
@@ -665,7 +665,7 @@ router.post('/balance/pay', async (req, res, next) => {
                         to: wallet.email,
                         subject: 'Kassir.kg - Билет на '+ticket.movie,
                         text: 'Спасибо за покупку билета на '+ticket.movie+'. Место проведения события: '+ticket.cinema+' '+ticket.hall+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                        attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                        attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                     };
                     if (mailingBiletiki !== null) {
                         const transporter = nodemailer.createTransport({
@@ -822,7 +822,7 @@ router.post('/visa/pay', async (req, res, next) => {
                      to: wallet.email,
                      subject: 'Kassir.kg - Билет на '+ticket.event,
                      text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                     attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                     attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                  };
                  if (mailingBiletiki !== null) {
                      const transporter = nodemailer.createTransport({
@@ -857,7 +857,7 @@ router.post('/visa/pay', async (req, res, next) => {
                          to: wallet.email,
                          subject: 'Kassir.kg - Билет на '+ticket.movie,
                          text: 'Спасибо за покупку билета на '+ticket.movie+'. Место проведения события: '+ticket.cinema+' '+ticket.hall+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                         attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event,}]
+                         attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
                      };
                      if (mailingBiletiki !== null) {
                          const transporter = nodemailer.createTransport({
