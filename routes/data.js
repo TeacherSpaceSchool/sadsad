@@ -218,7 +218,8 @@ router.post('/get', async (req, res) => {
                     await res.send(await TicketCinemaBiletiki.approveTicketCinemaBiletiki(JSON.parse(req.body.data).hash))
                 }
             });
-        } else if(role==='accountant'){
+        }
+        else if(role==='accountant'){
             await passportEngine.verifydaccountant(req, res, async ()=>{
                 if(req.body.name == 'Статистика событий'){
                     await res.send(await StatisticBiletiki.getEventStatisticBiletiki(req.body.search, req.body.sort, req.body.skip))
@@ -232,7 +233,8 @@ router.post('/get', async (req, res) => {
                     await res.send(await StatisticBiletiki.getCinemaStatisticMovieBiletiki())
                 }
             });
-        } else if(role==='cashier'){
+        }
+        else if(role==='cashier'){
             await passportEngine.verifydcashier(req, res, async ()=>{
                 if(req.body.name == 'Города'){
                     await res.send(await WhereBiletiki.getCity())
@@ -244,7 +246,8 @@ router.post('/get', async (req, res) => {
                     await res.send(await TicketCinemaBiletiki.getByHash(JSON.parse(req.body.data).hash))
                 }
             });
-        } else if(role==='cinema'){
+        }
+        else if(role==='cinema'){
             await passportEngine.verifydcinema(req, res, async (cinema)=>{
                 console.log(cinema)
                 if(req.body.name == 'БилетыКиноHash'){
