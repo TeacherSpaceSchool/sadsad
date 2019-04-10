@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/payment.js" afterPath="$PROJECT_DIR$/routes/payment.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,30 +20,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="data.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="47" column="43" lean-forward="false" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
+            <state relative-caret-position="425">
+              <caret line="750" column="45" lean-forward="false" selection-start-line="750" selection-start-column="45" selection-end-line="750" selection-end-column="45" />
               <folding>
+                <element signature="e#1906#5481#0" expanded="false" />
                 <element signature="e#6345#17677#0" expanded="false" />
                 <element signature="e#13615#14085#0" expanded="false" />
                 <element signature="e#14122#15158#0" expanded="false" />
                 <element signature="e#15192#15902#0" expanded="false" />
                 <element signature="e#15935#17668#0" expanded="false" />
                 <element signature="e#17724#25529#0" expanded="false" />
-                <element signature="e#27945#62619#0" expanded="false" />
-                <element signature="e#92038#114508#0" expanded="false" />
-                <element signature="e#114543#126730#0" expanded="false" />
+                <element signature="e#81588#98595#0" expanded="false" />
+                <element signature="e#98630#106410#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
+            <state relative-caret-position="1700">
               <caret line="100" column="198" lean-forward="false" selection-start-line="100" selection-start-column="198" selection-end-line="100" selection-end-column="198" />
               <folding />
             </state>
@@ -88,7 +98,6 @@
       <find>12</find>
       <find>new PDFDocument();</find>
       <find>elsom</find>
-      <find>new PDFDocument</find>
       <find>nodemailer.createTransport</find>
       <find>Рассылка</find>
       <find>await Jimp</find>
@@ -114,6 +123,7 @@
       <find>if(data.seats[i][0]['name'].split(':')[0]!==undefined)</find>
       <find>filename: 'Билет на '+ticket.event</find>
       <find>filename: 'Билет на '+ticket.event,</find>
+      <find>new PDFDocument</find>
     </findStrings>
     <replaceStrings>
       <replace>CinemaHallBiletiki</replace>
@@ -203,8 +213,8 @@
         <option value="$PROJECT_DIR$/module/cashboxBiletiki.js" />
         <option value="$PROJECT_DIR$/module/ticketCinemaBiletiki.js" />
         <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
-        <option value="$PROJECT_DIR$/routes/data.js" />
         <option value="$PROJECT_DIR$/routes/payment.js" />
+        <option value="$PROJECT_DIR$/routes/data.js" />
       </list>
     </option>
   </component>
@@ -270,17 +280,18 @@
             <path>
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
-              <item name="module" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
               <item name="php" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="ticket" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
@@ -461,12 +472,15 @@
       <workItem from="1553777909715" duration="5945000" />
       <workItem from="1553922144702" duration="8062000" />
       <workItem from="1554100655618" duration="715000" />
-      <workItem from="1554191903100" duration="1742000" />
+      <workItem from="1554191903100" duration="2397000" />
+      <workItem from="1554473220105" duration="609000" />
+      <workItem from="1554817362941" duration="1069000" />
+      <workItem from="1554876557724" duration="4596000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="847743000" />
+    <option name="totallyTimeSpent" value="854672000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -479,13 +493,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.8141593" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.7787611" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.18584071" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.22123894" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31090176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -679,13 +692,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="70" column="29" lean-forward="false" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/paymentBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
@@ -858,29 +864,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/payment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1700">
+          <caret line="100" column="198" lean-forward="false" selection-start-line="100" selection-start-column="198" selection-end-line="100" selection-end-column="198" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="47" column="43" lean-forward="false" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
+        <state relative-caret-position="425">
+          <caret line="750" column="45" lean-forward="false" selection-start-line="750" selection-start-column="45" selection-end-line="750" selection-end-column="45" />
           <folding>
+            <element signature="e#1906#5481#0" expanded="false" />
             <element signature="e#6345#17677#0" expanded="false" />
             <element signature="e#13615#14085#0" expanded="false" />
             <element signature="e#14122#15158#0" expanded="false" />
             <element signature="e#15192#15902#0" expanded="false" />
             <element signature="e#15935#17668#0" expanded="false" />
             <element signature="e#17724#25529#0" expanded="false" />
-            <element signature="e#27945#62619#0" expanded="false" />
-            <element signature="e#92038#114508#0" expanded="false" />
-            <element signature="e#114543#126730#0" expanded="false" />
+            <element signature="e#81588#98595#0" expanded="false" />
+            <element signature="e#98630#106410#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/payment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="100" column="198" lean-forward="false" selection-start-line="100" selection-start-column="198" selection-end-line="100" selection-end-column="198" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,5 @@
 window.scrollBannerItems =
-    {"items":
+    {'items':
         []
     }
 
@@ -11,7 +11,7 @@ window.scrollBannerItems =
 
 
 
-var banner = document.getElementById("js-scroll-banner");
+let banner = document.getElementById('js-scroll-banner');
 window.onload = function() {
     setTimeout(function () {
         initBanner(banner, {
@@ -24,36 +24,36 @@ window.onload = function() {
 
 window.initBanner = function initBanner(banner, data) {
 
-    var resizeTimeout = null;
-    var resetBannerMoveTimeout = null;
-    var movingBanner = null;
+    let resizeTimeout = null;
+    let resetBannerMoveTimeout = null;
+    let movingBanner = null;
 
-    window.addEventListener("resize", function () {
+    window.addEventListener('resize', function () {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(fillBanner, 100);
     });
 
-    banner.addEventListener("mouseenter", stopBannerMove);
-    banner.addEventListener("mouseleave", startBannerMove);
+    banner.addEventListener('mouseenter', stopBannerMove);
+    banner.addEventListener('mouseleave', startBannerMove);
     fillBanner();
 
 
     function fillBanner() {
-        var screenWidth = banner.getBoundingClientRect().width;
-        var curItems = 0;
+        let screenWidth = banner.getBoundingClientRect().width;
+        let curItems = 0;
 
-        var i = 0;
+        let i = 0;
         data.curWidth = 0;
         data.singleLineWidth = data.width * data.items.length;
-        banner.innerHTML = "";
-        movingBanner = document.createElement("div");
+        banner.innerHTML = '';
+        movingBanner = document.createElement('div');
         banner.appendChild(movingBanner);
         while (data.curWidth <= screenWidth * 2 || curItems < data.items.length * 2) {
-            var bannerItem = document.createElement("a");
-            bannerItem.setAttribute("href", data.items[i].link);
-            bannerItem.className = "scroll-banner__item";
-            var bannerImage = document.createElement("img");
-            bannerImage.setAttribute("src", data.items[i].img);
+            let bannerItem = document.createElement('a');
+            bannerItem.setAttribute('href', data.items[i].link);
+            bannerItem.className = 'scroll-banner__item';
+            let bannerImage = document.createElement('img');
+            bannerImage.setAttribute('src', data.items[i].img);
             bannerItem.appendChild(bannerImage);
             movingBanner.appendChild(bannerItem);
 
@@ -62,9 +62,9 @@ window.initBanner = function initBanner(banner, data) {
             curItems++;
         }
 
-        closeBtn = document.createElement("div");
-        closeBtn.className = "scroll-banner__close-btn";
-        closeBtn.addEventListener("click", closeBanner);
+        let closeBtn = document.createElement('div');
+        closeBtn.className = 'scroll-banner__close-btn';
+        closeBtn.addEventListener('click', closeBanner);
         banner.appendChild(closeBtn);
         stopBannerMove()
         startBannerMove();
@@ -72,51 +72,52 @@ window.initBanner = function initBanner(banner, data) {
 
     function startBannerMove() {
         clearTimeout(resetBannerMoveTimeout);
-        var curLeftMargin = movingBanner.getBoundingClientRect().left;
-        var newLeftMargin = data.singleLineWidth;
-        var ms = parseInt((newLeftMargin + curLeftMargin) * 15);
+        let curLeftMargin = movingBanner.getBoundingClientRect().left;
+        let newLeftMargin = data.singleLineWidth;
+        let ms = parseInt((newLeftMargin + curLeftMargin) * 15);
 
-        $(movingBanner).animate({marginLeft: -newLeftMargin}, ms, "linear");
+        $(movingBanner).animate({marginLeft: -newLeftMargin}, ms, 'linear');
         resetBannerMoveTimeout = setTimeout(resetBannerMove, ms);
     }
 
+
     function resetBannerMove() {
         stopBannerMove()
-        var curLeftMargin = movingBanner.getBoundingClientRect().left;
-        var newLeftMargin = parseInt(curLeftMargin + data.singleLineWidth);
+        let curLeftMargin = movingBanner.getBoundingClientRect().left;
+        let newLeftMargin = parseInt(curLeftMargin + data.singleLineWidth);
         if (newLeftMargin > 0) {
             newLeftMargin = 0;
         }
 
-        $(movingBanner).stop(true).animate({marginLeft: newLeftMargin}, 0, "linear");
+        $(movingBanner).stop(true).animate({marginLeft: newLeftMargin}, 0, 'linear');
         startBannerMove();
     }
 
     function stopBannerMove() {
         clearTimeout(resetBannerMoveTimeout);
-        var marginLeft = parseInt(movingBanner.getBoundingClientRect().left);
+        let marginLeft = parseInt(movingBanner.getBoundingClientRect().left);
 
-        $(movingBanner).stop().animate({marginLeft: marginLeft}, 0, "linear");
+        $(movingBanner).stop().animate({marginLeft: marginLeft}, 0, 'linear');
     }
 
     function closeBanner() {
         stopBannerMove();
-        setCookie("SCROLL_BANNER_CLOSED", true, {
-            path: "/",
+        setCookie('SCROLL_BANNER_CLOSED', true, {
+            path: '/',
             expires: 60 * 60
         });
-        banner.innerHTML = "";
-        banner.removeEventListener("mouseenter", stopBannerMove);
-        banner.removeEventListener("mouseleave", startBannerMove);
+        banner.innerHTML = '';
+        banner.removeEventListener('mouseenter', stopBannerMove);
+        banner.removeEventListener('mouseleave', startBannerMove);
     }
 
     function setCookie(name, value, options) {
         options = options || {};
 
-        var expires = options.expires;
+        let expires = options.expires;
 
-        if (typeof expires === "number" && expires) {
-            var d = new Date();
+        if (typeof expires === 'number' && expires) {
+            let d = new Date();
             d.setTime(d.getTime() + expires * 1000);
             expires = options.expires = d;
         }
@@ -126,14 +127,14 @@ window.initBanner = function initBanner(banner, data) {
 
         value = encodeURIComponent(value);
 
-        var updatedCookie = name + "=" + value;
+        let updatedCookie = name + '=' + value;
 
-        for (var propName in options) {
+        for (let propName in options) {
             if (options.hasOwnProperty(propName)) {
-                updatedCookie += "; " + propName;
-                var propValue = options[propName];
+                updatedCookie += '; ' + propName;
+                let propValue = options[propName];
                 if (propValue !== true) {
-                    updatedCookie += "=" + propValue;
+                    updatedCookie += '=' + propValue;
                 }
             }
         }
@@ -143,17 +144,17 @@ window.initBanner = function initBanner(banner, data) {
     }
 
     function getCookie(name) {
-        var matches = document.cookie.match(new RegExp(
-            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        let matches = document.cookie.match(new RegExp(
+            '(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'
         ));
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
 
     function extractHostname(url) {
-        var hostname;
+        let hostname;
         // find & remove protocol (http, ftp, etc.) and get hostname
 
-        if (url.indexOf("//") > -1) {
+        if (url.indexOf('//') > -1) {
             hostname = url.split('/')[2];
         }
         else {
@@ -162,14 +163,14 @@ window.initBanner = function initBanner(banner, data) {
 
         // find & remove port number
         hostname = hostname.split(':')[0];
-        // find & remove "?"
+        // find & remove '?'
         hostname = hostname.split('?')[0];
 
         return hostname;
     }
 
     function extractRootDomain(url) {
-        var domain = extractHostname(url),
+        let domain = extractHostname(url),
             splitArr = domain.split('.'),
             arrLen = splitArr.length;
 

@@ -732,35 +732,11 @@ router.post('/add', async (req, res) => {
                                             doc.pipe(fstream);
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(13)
-                                                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                                            doc.moveDown()
-                                            let datet = new Date()
-                                            datet = datet.toString()
-                                            let date = datet.split('T')[0].split('-')
-                                            let time = datet.split('T')[1].split(':')
-                                            let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                            let sum = 0
-                                            for(let i = 0; i<myNew.seats.length; i++){
-                                                sum+=parseInt(myNew.seats[i][0]['price'])
-                                            }
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
-                                            doc.moveDown()
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                                .fontSize(14)
+                                                .text(data.event.nameRu, 60, 60) // the text and the position where the it should come
+                                            doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
+                                            doc.fontSize(12)
+                                                .text(data.event.where.name, 50, 130) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
@@ -770,21 +746,9 @@ router.post('/add', async (req, res) => {
                                                     place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                                 doc
                                                     .font('NotoSans')
-                                                    .fontSize(11)
-                                                    .text((i + 1)+') Дата: '+dateTime+' ' +
-                                                        place
-                                                        +' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                                    .fontSize(12)
+                                                    .text(dateTime+' '+place, {width: doc.page.width - 100, align: 'justify'})
                                             }
-                                            doc.moveDown()
-                                            doc.image(qrpath, {fit: [145, 145], align: 'center'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                                             doc.end()
 
                                         })
@@ -827,39 +791,11 @@ router.post('/add', async (req, res) => {
                                             doc.pipe(fstream);
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(13)
-                                                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                                            doc.moveDown()
-                                            let datet = new Date()
-                                            datet = datet.toJSON()
-                                            let date = datet.split('T')[0].split('-')
-                                            let time = datet.split('T')[1].split(':')
-                                            let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                            let sum = 0
-                                            for(let i = 0; i<data.seats.length; i++){
-                                                sum+=parseInt(data.seats[i][0]['price'])
-                                            }
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
-                                            doc.moveDown()
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                                .fontSize(14)
+                                                .text(data.movie, 60, 60) // the text and the position where the it should come
+                                            doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
+                                            doc.fontSize(12)
+                                                .text(data.cinema+' '+data.hall, 50, 130) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
@@ -867,18 +803,8 @@ router.post('/add', async (req, res) => {
                                                 doc
                                                     .font('NotoSans')
                                                     .fontSize(11)
-                                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                                    .text(dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
-                                            doc.moveDown()
-                                            doc.image(qrpath, {fit: [145, 145], align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                                             doc.end()
                                         } catch(error) {
                                             console.error(error)
@@ -1222,35 +1148,11 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(13)
-                                    .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                                doc.moveDown()
-                                let datet = new Date()
-                                datet = datet.toString()
-                                let date = datet.split('T')[0].split('-')
-                                let time = datet.split('T')[1].split(':')
-                                let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                let sum = 0
-                                for(let i = 0; i<myNew.seats.length; i++){
-                                    sum+=parseInt(myNew.seats[i][0]['price'])
-                                }
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(11)
-                                    .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(11)
-                                    .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(11)
-                                    .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
-                                doc.moveDown()
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(11)
-                                    .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                    .fontSize(14)
+                                    .text(data.event.nameRu, 60, 60) // the text and the position where the it should come
+                                doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
+                                doc.fontSize(12)
+                                    .text(data.event.where.name, 50, 130) // the text and the position where the it should come
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     let date = data.seats[i][1].split('T')[0].split('-')
                                     let time = data.seats[i][1].split('T')[1].split(':')
@@ -1260,21 +1162,9 @@ router.post('/add', async (req, res) => {
                                         place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(11)
-                                        .text((i + 1)+') Дата: '+dateTime+' ' +
-                                            place
-                                            +' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                        .fontSize(12)
+                                        .text(dateTime+' '+place, {width: doc.page.width - 100, align: 'justify'})
                                 }
-                                doc.moveDown()
-                                doc.image(qrpath, {fit: [145, 145], align: 'center'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(11)
-                                    .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
-                                doc
-                                    .font('NotoSans')
-                                    .fontSize(11)
-                                    .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                                 doc.end()
 
                             })
@@ -1317,39 +1207,11 @@ router.post('/add', async (req, res) => {
                                     doc.pipe(fstream);
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(13)
-                                        .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                                    doc.moveDown()
-                                    let datet = new Date()
-                                    datet = datet.toJSON()
-                                    let date = datet.split('T')[0].split('-')
-                                    let time = datet.split('T')[1].split(':')
-                                    let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                    let sum = 0
-                                    for(let i = 0; i<data.seats.length; i++){
-                                        sum+=parseInt(data.seats[i][0]['price'])
-                                    }
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
-                                    doc.moveDown()
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Места:', {width: doc.page.width - 100, align: 'justify'})
+                                        .fontSize(14)
+                                        .text(data.movie, 60, 60) // the text and the position where the it should come
+                                    doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
+                                    doc.fontSize(12)
+                                        .text(data.cinema+' '+data.hall, 50, 130) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
                                         let date = data.seats[i][1].split('T')[0].split('-')
                                         let time = data.seats[i][1].split('T')[1].split(':')
@@ -1357,18 +1219,8 @@ router.post('/add', async (req, res) => {
                                         doc
                                             .font('NotoSans')
                                             .fontSize(11)
-                                            .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                            .text(dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                     }
-                                    doc.moveDown()
-                                    doc.image(qrpath, {fit: [145, 145], align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                                     doc.end()
                                 } catch(error) {
                                     console.error(error)
@@ -1482,7 +1334,6 @@ router.post('/add', async (req, res) => {
                             }
                                 else if (req.body.name == 'Билеты кино') {
                                 if (req.body.id == undefined) {
-                                    console.log(myNew.seats)
                                     let hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
                                     while (!await TicketCinemaBiletiki.checkHash(hash))
                                         hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
@@ -1502,58 +1353,20 @@ router.post('/add', async (req, res) => {
                                             doc.pipe(fstream);
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(13)
-                                                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                                            doc.moveDown()
-                                            let datet = new Date()
-                                            datet = datet.toJSON()
-                                            let date = datet.split('T')[0].split('-')
-                                            let time = datet.split('T')[1].split(':')
-                                            let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                            let sum = 0
-                                            for(let i = 0; i<data.seats.length; i++){
-                                                sum+=parseInt(data.seats[i][0]['price'])
-                                            }
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
-                                            doc.moveDown()
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
-                                            for(let i = 0; i<data.seats.length; i++){
+                                                .fontSize(14)
+                                                .text(data.movie, 60, 60) // the text and the position where the it should come
+                                            doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
+                                            doc.fontSize(12)
+                                                .text(data.cinema+' '+data.hall, 50, 130) // the text and the position where the it should come
+                                            for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
                                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                                 doc
                                                     .font('NotoSans')
                                                     .fontSize(11)
-                                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                                    .text(dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
-                                            doc.moveDown()
-                                            doc.image(qrpath, {fit: [145, 145], align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
-                                            doc
-                                                .font('NotoSans')
-                                                .fontSize(11)
-                                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                                             doc.end()
                                         } catch (error) {
                                             console.error(error)
@@ -1650,58 +1463,20 @@ router.post('/add', async (req, res) => {
                                     doc.pipe(fstream);
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(13)
-                                        .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                                    doc.moveDown()
-                                    let datet = new Date()
-                                    datet = datet.toJSON()
-                                    let date = datet.split('T')[0].split('-')
-                                    let time = datet.split('T')[1].split(':')
-                                    let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                                    let sum = 0
-                                    for(let i = 0; i<data.seats.length; i++){
-                                        sum+=parseInt(data.seats[i][0]['price'])
-                                    }
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
-                                    doc.moveDown()
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Места:', {width: doc.page.width - 100, align: 'justify'})
-                                    for(let i = 0; i<data.seats.length; i++){
+                                        .fontSize(14)
+                                        .text(data.movie, 60, 60) // the text and the position where the it should come
+                                    doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
+                                    doc.fontSize(12)
+                                        .text(data.cinema+' '+data.hall, 50, 130) // the text and the position where the it should come
+                                    for(let i = 0; i<myNew.seats.length; i++){
                                         let date = data.seats[i][1].split('T')[0].split('-')
                                         let time = data.seats[i][1].split('T')[1].split(':')
                                         let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                         doc
                                             .font('NotoSans')
                                             .fontSize(11)
-                                            .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                            .text(dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                     }
-                                    doc.moveDown()
-                                    doc.image(qrpath, {fit: [145, 145], align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
-                                    doc
-                                        .font('NotoSans')
-                                        .fontSize(11)
-                                        .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                                     doc.end()
                                 } catch (error) {
                                     console.error(error)
@@ -1751,36 +1526,12 @@ router.post('/add', async (req, res) => {
                             doc.pipe(fstream);
                             doc
                                 .font('NotoSans')
-                                .fontSize(13)
-                                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                            doc.moveDown()
-                            let datet = new Date()
-                            datet = datet.toJSON()
-                            let date = datet.split('T')[0].split('-')
-                            let time = datet.split('T')[1].split(':')
-                            let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                            let sum = 0
-                            for(let i = 0; i<data.seats.length; i++){
-                                sum+=parseInt(data.seats[i][0]['price'])
-                            }
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
-                            doc.moveDown()
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
-                            for (let i = 0; i < data.seats.length; i++) {
+                                .fontSize(14)
+                                .text(data.event.nameRu, 60, 60) // the text and the position where the it should come
+                            doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
+                            doc.fontSize(12)
+                                .text(data.event.where.name, 50, 130) // the text and the position where the it should come
+                            for(let i = 0; i<myNew.seats.length; i++){
                                 let date = data.seats[i][1].split('T')[0].split('-')
                                 let time = data.seats[i][1].split('T')[1].split(':')
                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
@@ -1789,21 +1540,9 @@ router.post('/add', async (req, res) => {
                                     place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(11)
-                                    .text((i + 1)+') Дата: '+dateTime+' ' +
-                                        place
-                                        +' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                    .fontSize(12)
+                                    .text(dateTime+' '+place, {width: doc.page.width - 100, align: 'justify'})
                             }
-                            doc.moveDown()
-                            doc.image(qrpath, {fit: [145, 145], align: 'center'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                             doc.end()
                             })
 
@@ -1846,58 +1585,20 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                             doc
                                 .font('NotoSans')
-                                .fontSize(13)
-                                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
-                            doc.moveDown()
-                            let datet = new Date()
-                            datet = datet.toJSON()
-                            let date = datet.split('T')[0].split('-')
-                            let time = datet.split('T')[1].split(':')
-                            let dateTime = date[2]+' '+myConst.month[date[1]]+' '+date[0]+', '+time[0]+':'+time[1];
-                            let sum = 0
-                            for(let i = 0; i<data.seats.length; i++){
-                                sum+=parseInt(data.seats[i][0]['price'])
-                            }
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Кино: '+data.movie, {width: doc.page.width - 100, align: 'justify'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Кинотеатр: '+data.cinema, {width: doc.page.width - 100, align: 'justify'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Зал: '+data.hall, {width: doc.page.width - 100, align: 'justify'})
-                            doc.moveDown()
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Места:', {width: doc.page.width - 100, align: 'justify'})
-                            for(let i = 0; i<data.seats.length; i++){
+                                .fontSize(14)
+                                .text(data.movie, 60, 60) // the text and the position where the it should come
+                            doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
+                            doc.fontSize(12)
+                                .text(data.cinema+' '+data.hall, 50, 130) // the text and the position where the it should come
+                            for(let i = 0; i<myNew.seats.length; i++){
                                 let date = data.seats[i][1].split('T')[0].split('-')
                                 let time = data.seats[i][1].split('T')[1].split(':')
                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                 doc
                                     .font('NotoSans')
                                     .fontSize(11)
-                                    .text((i + 1)+') Дата: '+dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                    .text(dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                             }
-                            doc.moveDown()
-                            doc.image(qrpath, {fit: [145, 145], align: 'justify'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
-                            doc
-                                .font('NotoSans')
-                                .fontSize(11)
-                                .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
                             doc.end()
                              })
 
