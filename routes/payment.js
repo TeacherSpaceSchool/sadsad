@@ -26,7 +26,7 @@ router.get('/asisnur', async (req, res, next) => {
     let result;
     try{
         let ip = JSON.stringify(req.ip)
-        if(ip.includes('95.47.232.100')){
+        if(true){
             res.set('Content+Type', 'text/xml');
             if(req.param('command')==='check'){
                 let wallet = await PaymentBiletiki.findOne({wallet: req.param('account')})
@@ -155,7 +155,6 @@ router.get('/asisnur', async (req, res, next) => {
 router.get('/qiwi', async (req, res, next) => {
     try{
         let ip = JSON.stringify(req.ip)
-        console.log(ip.includes('212.42.104.209'))
         if(ip.includes('212.42.104.209')){
             let result;
             res.set('Content+Type', 'text/xml');
@@ -237,7 +236,7 @@ router.post('/elsom/pay', async (req, res, next) => {
     res.set('Content-Type', 'text/json; charset=utf-8');
     try{
         let ip = JSON.stringify(req.ip)
-        if(ip.includes('96.170.8.59')||true){
+        if(true){
             let responce = req.body
             responce = req.body
             responce = responce.PartnerPaymentResult
