@@ -151,6 +151,135 @@ router.get('/asisnur', async (req, res, next) => {
         res.end(xml(result, true));
     }
 });
+router.get('/quickpay', async (req, res, next) => {
+    let result;
+    try{
+        let ip = JSON.stringify(req.ip)
+        if(true){
+            res.set('Content+Type', 'text/xml');
+            if(req.param('command')==='check'){
+                let wallet = await PaymentBiletiki.findOne({wallet: req.param('account')})
+                if(wallet!=null){
+                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { result: 0 }, {comment: 'ok'} ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
+                } else {
+                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { result: 5 }, {comment: 'Идентификатора абонента не найден'} ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
+                }
+            } else if(req.param('command')==='pay'){
+                let wallet = await PaymentBiletiki.findOne({wallet: req.param('account')})
+                if(wallet!=null){
+                    if(wallet.status=='совершен'){
+                        result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 8 } , { comment: 'Прием платежей запрещен по техническим причинам' } ] } ];
+                        res.status(200);
+                        res.end(xml(result, true));
+                    } else if(wallet.ammount>parseInt(req.param('sum'))){
+                        await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'ошибка'})
+                        result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 241 } , { comment: 'Сумма слишком мала' } ] } ];
+                        res.status(200);
+                        res.end(xml(result, true));
+                    } else {
+                        let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
+                        if(ticket!=null){
+                            await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
+                            await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                            let mailingBiletiki = await MailingBiletiki.findOne();
+                            let mailOptions = {
+                                from: mailingBiletiki.mailuser,
+                                to: wallet.email,
+                                subject: 'Kassir.kg - Билет на '+ticket.event,
+                                text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
+                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
+                            };
+                            if (mailingBiletiki !== null) {
+                                const transporter = nodemailer.createTransport({
+                                    service: 'gmail',
+                                    auth: {
+                                        user: mailingBiletiki.mailuser,
+                                        pass: mailingBiletiki.mailpass
+                                    },
+                                    tls: {
+                                        // do not fail on invalid certs
+                                        rejectUnauthorized: false
+                                    }
+                                });
+                                transporter.sendMail(mailOptions, function (error, info) {
+                                    if (error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log('Email sent: ' + info.response);
+                                    }
+                                });
+                            }
+                            result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: wallet._id } , { sum: req.param('sum') } , { result: 0 } , { comment: 'ok' } ] } ];
+                            res.status(200);
+                            res.end(xml(result, true));
+                        } else {
+                            ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                            if(ticket!=null){
+                                await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
+                                await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                                let mailingBiletiki = await MailingBiletiki.findOne();
+                                let mailOptions = {
+                                    from: mailingBiletiki.mailuser,
+                                    to: wallet.email,
+                                    subject: 'Kassir.kg - Билет на '+ticket.movie,
+                                    text: 'Спасибо за покупку билета на '+ticket.movie+'. Место проведения события: '+ticket.cinema+' '+ticket.hall+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
+                                    attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
+                                };
+                                if (mailingBiletiki !== null) {
+                                    const transporter = nodemailer.createTransport({
+                                        service: 'gmail',
+                                        auth: {
+                                            user: mailingBiletiki.mailuser,
+                                            pass: mailingBiletiki.mailpass
+                                        },
+                                        tls: {
+                                            // do not fail on invalid certs
+                                            rejectUnauthorized: false
+                                        }
+                                    });
+                                    transporter.sendMail(mailOptions, function (error, info) {
+                                        if (error) {
+                                            console.log(error);
+                                        } else {
+                                            console.log('Email sent: ' + info.response);
+                                        }
+                                    });
+                                }
+                                result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: payment._id } , { sum: req.param('sum') } , { result: 0 } , { comment: 'ok' } ] } ];
+                                res.status(200);
+                                res.end(xml(result, true));
+                            } else {
+                                result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 5 } , { comment: 'Идентификатора абонента не найден' } ] } ];
+                                res.status(200);
+                                res.end(xml(result, true));
+                            }
+                        }
+                    }
+                } else {
+                    result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 5 } , { comment: 'Идентификатора абонента не найден' } ] } ];
+                    res.status(200);
+                    res.end(xml(result, true));
+                }
+            }
+        } else {
+            res.set('Content+Type', 'text/xml');
+            console.error(req.ip)
+            res.status(501);
+            result = [ { response: [ { result: 501 } , { comment: 'IP адресс не разрешен' } ] } ];
+            res.end(xml(result, true));
+        }
+    } catch(error) {
+        res.status(200);
+        res.set('Content+Type', 'text/xml');
+        console.error(error)
+        result = [ { response: [ { result: 1 } , { comment: 'Временная ошибка, повторите запрос позже' } ] } ];
+        res.end(xml(result, true));
+    }
+});
 /*
 router.get('/qiwi', async (req, res, next) => {
     try{

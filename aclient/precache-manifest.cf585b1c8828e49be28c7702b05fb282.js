@@ -32,20 +32,20 @@ self.__precacheManifest = [
     "url": "/static/js/6.7069d9a6.chunk.js"
   },
   {
-    "revision": "13a80191ae204786b926",
+    "revision": "70dd740da0d02bb10c64",
     "url": "/static/css/7.dd9b1b63.chunk.css"
   },
   {
-    "revision": "13a80191ae204786b926",
-    "url": "/static/js/7.13a80191.chunk.js"
+    "revision": "70dd740da0d02bb10c64",
+    "url": "/static/js/7.70dd740d.chunk.js"
   },
   {
-    "revision": "4571fa0b8100ddc2f2f5",
+    "revision": "c74eeaa89331d98bc15b",
     "url": "/static/css/8.d69b42b2.chunk.css"
   },
   {
-    "revision": "4571fa0b8100ddc2f2f5",
-    "url": "/static/js/8.4571fa0b.chunk.js"
+    "revision": "c74eeaa89331d98bc15b",
+    "url": "/static/js/8.c74eeaa8.chunk.js"
   },
   {
     "revision": "7cb03a526fd405590ddb",
@@ -120,8 +120,8 @@ self.__precacheManifest = [
     "url": "/static/js/26.986ac2bf.chunk.js"
   },
   {
-    "revision": "e9226261c15098419119",
-    "url": "/static/js/runtime~main.e9226261.js"
+    "revision": "a768fa852ab5f4e48d52",
+    "url": "/static/js/runtime~main.a768fa85.js"
   },
   {
     "revision": "e905f3329daec8840d7423e9ca5c3218",
@@ -148,7 +148,7 @@ self.__precacheManifest = [
     "url": "/static/media/oplata.15cddd07.png"
   },
   {
-    "revision": "ed724cdfb7041898ba23d4a3856e6b39",
+    "revision": "d752806373f6ac145cfc782f038f9177",
     "url": "/index.html"
   }
 ];
