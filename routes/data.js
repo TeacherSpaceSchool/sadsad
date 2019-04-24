@@ -731,11 +731,11 @@ router.post('/add', async (req, res) => {
                                             doc.pipe(fstream);
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(14)
+                                                .fontSize(20)
                                                 .text(data.event.nameRu, 60, 60) // the text and the position where the it should come
-                                            doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
-                                            doc.fontSize(12)
-                                                .text(data.event.where, 50, 130) // the text and the position where the it should come
+                                            doc.moveTo(320, 60).image(qrpath, {fit: [150, 150]})
+                                            doc.fontSize(14)
+                                                .text(data.event.where, 50, 100) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
@@ -745,7 +745,7 @@ router.post('/add', async (req, res) => {
                                                     place = 'Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                                 doc
                                                     .font('NotoSans')
-                                                    .fontSize(12)
+                                                    .fontSize(14)
                                                     .text(dateTime+' '+place, {width: doc.page.width - 100, align: 'justify'})
                                             }
                                             doc.end()
@@ -790,18 +790,18 @@ router.post('/add', async (req, res) => {
                                             doc.pipe(fstream);
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(14)
+                                                .fontSize(20)
                                                 .text(data.movie, 60, 60) // the text and the position where the it should come
-                                            doc.moveTo(320, 60).image(qrpath, {fit: [50, 50]})
-                                            doc.fontSize(12)
-                                                .text(data.cinema+' '+data.hall, 50, 130) // the text and the position where the it should come
+                                            doc.moveTo(320, 60).image(qrpath, {fit: [150, 150]})
+                                            doc.fontSize(14)
+                                                .text(data.cinema+' '+data.hall, 50, 100) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
                                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                                 doc
                                                     .font('NotoSans')
-                                                    .fontSize(11)
+                                                    .fontSize(14)
                                                     .text(dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
                                             doc.end()
@@ -1147,11 +1147,11 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(14)
+                                    .fontSize(20)
                                     .text(myNew.event.nameRu, 60, 60)
-                                doc.image(qrpath, 320, 60, {fit: [50, 50]})
-                                doc.fontSize(12)
-                                    .text(myNew.event.where.name, 50, 130)
+                                doc.image(qrpath, 320, 60, {fit: [150, 150]})
+                                doc.fontSize(14)
+                                    .text(myNew.event.where.name, 50, 100)
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     let date = myNew.seats[i][1].split('T')[0].split('-')
                                     let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1161,7 +1161,7 @@ router.post('/add', async (req, res) => {
                                         place = 'Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(12)
+                                        .fontSize(14)
                                         .text(dateTime+' '+place, {width: doc.page.width - 100, align: 'justify'})
                                 }
                                 doc.end()
@@ -1206,18 +1206,18 @@ router.post('/add', async (req, res) => {
                                     doc.pipe(fstream);
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(14)
+                                        .fontSize(20)
                                         .text(myNew.movie, 60, 60) // the text and the position where the it should come
-                                    doc.image(qrpath, 320, 60, {fit: [50, 50]})
-                                    doc.fontSize(12)
-                                        .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
+                                    doc.image(qrpath, 320, 60, {fit: [150, 150]})
+                                    doc.fontSize(14)
+                                        .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
                                         let date = myNew.seats[i][1].split('T')[0].split('-')
                                         let time = myNew.seats[i][1].split('T')[1].split(':')
                                         let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                         doc
                                             .font('NotoSans')
-                                            .fontSize(11)
+                                            .fontSize(14)
                                             .text(dateTime+' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+myNew.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                     }
                                     doc.end()
@@ -1352,18 +1352,18 @@ router.post('/add', async (req, res) => {
                                             doc.pipe(fstream);
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(14)
+                                                .fontSize(20)
                                                 .text(myNew.movie, 60, 60) // the text and the position where the it should come
-                                            doc.image(qrpath, 320, 60, {fit: [50, 50]})
-                                            doc.fontSize(12)
-                                                .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
+                                            doc.image(qrpath, 320, 60, {fit: [150, 150]})
+                                            doc.fontSize(14)
+                                                .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                                 let time = myNew.seats[i][1].split('T')[1].split(':')
                                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                                 doc
                                                     .font('NotoSans')
-                                                    .fontSize(11)
+                                                    .fontSize(14)
                                                     .text(dateTime+' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+myNew.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
                                             doc.end()
@@ -1462,18 +1462,18 @@ router.post('/add', async (req, res) => {
                                     doc.pipe(fstream);
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(14)
+                                        .fontSize(20)
                                         .text(myNew.movie, 60, 60) // the text and the position where the it should come
-                                    doc.image(qrpath, 320, 60, {fit: [50, 50]})
-                                    doc.fontSize(12)
-                                        .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
+                                    doc.image(qrpath, 320, 60, {fit: [150, 150]})
+                                    doc.fontSize(14)
+                                        .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
                                         let date = myNew.seats[i][1].split('T')[0].split('-')
                                         let time = myNew.seats[i][1].split('T')[1].split(':')
                                         let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                         doc
                                             .font('NotoSans')
-                                            .fontSize(11)
+                                            .fontSize(14)
                                             .text(dateTime+' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+myNew.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                     }
                                     doc.end()
@@ -1525,11 +1525,11 @@ router.post('/add', async (req, res) => {
                             doc.pipe(fstream);
                             doc
                                 .font('NotoSans')
-                                .fontSize(14)
+                                .fontSize(20)
                                 .text(myNew.event.nameRu, 60, 60) // the text and the position where the it should come
-                            doc.image(qrpath, 320, 60, {fit: [50, 50]})
-                            doc.fontSize(12)
-                                .text(myNew.event.where, 50, 130) // the text and the position where the it should come
+                            doc.image(qrpath, 320, 60, {fit: [150, 150]})
+                            doc.fontSize(14)
+                                .text(myNew.event.where, 50, 100) // the text and the position where the it should come
                             for(let i = 0; i<myNew.seats.length; i++){
                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                 let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1539,7 +1539,7 @@ router.post('/add', async (req, res) => {
                                     place = 'Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(12)
+                                    .fontSize(14)
                                     .text(dateTime+' '+place, {width: doc.page.width - 100, align: 'justify'})
                             }
                             doc.end()
@@ -1584,18 +1584,18 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                             doc
                                 .font('NotoSans')
-                                .fontSize(14)
+                                .fontSize(20)
                                 .text(myNew.movie, 60, 60) // the text and the position where the it should come
-                            doc.image(qrpath, 320, 60, {fit: [50, 50]})
-                            doc.fontSize(12)
-                                .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
+                            doc.image(qrpath, 320, 60, {fit: [150, 150]})
+                            doc.fontSize(14)
+                                .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                             for(let i = 0; i<myNew.seats.length; i++){
                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                 let time = myNew.seats[i][1].split('T')[1].split(':')
                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(11)
+                                    .fontSize(14)
                                     .text(dateTime+' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+myNew.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                             }
                             doc.end()
