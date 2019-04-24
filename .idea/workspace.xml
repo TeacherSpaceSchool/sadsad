@@ -23,8 +23,8 @@
       <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="725" column="69" lean-forward="false" selection-start-line="725" selection-start-column="54" selection-end-line="725" selection-end-column="69" />
+            <state relative-caret-position="205">
+              <caret line="794" column="65" lean-forward="false" selection-start-line="794" selection-start-column="54" selection-end-line="794" selection-end-column="65" />
               <folding>
                 <element signature="e#1906#5481#0" expanded="false" />
                 <element signature="e#5537#6301#0" expanded="false" />
@@ -147,8 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>wallet.status!='обработка'&amp;&amp;wallet.status!='ошибка'</find>
-      <find>сеанс</find>
       <find>format</find>
       <find>mongoose</find>
       <find>sign</find>
@@ -176,10 +174,11 @@
       <find>130)</find>
       <find>320</find>
       <find>doc.moveTo(330</find>
+      <find>doc.image(qrpath</find>
       <find>new PDFDocument</find>
+      <find>qrpath, 320</find>
     </findStrings>
     <replaceStrings>
-      <replace>TicketCinema</replace>
       <replace>Билеты кино</replace>
       <replace>movie</replace>
       <replace>===</replace>
@@ -209,6 +208,7 @@
       <replace>data.</replace>
       <replace>image</replace>
       <replace>myNew</replace>
+      <replace>doc.moveTo(330</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -543,12 +543,12 @@
       <workItem from="1556000646369" duration="534000" />
       <workItem from="1556003897558" duration="4215000" />
       <workItem from="1556086515672" duration="1933000" />
-      <workItem from="1556088642906" duration="691000" />
+      <workItem from="1556088642906" duration="1047000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="871397000" />
+    <option name="totallyTimeSpent" value="871753000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -568,7 +568,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.32743362" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31090176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -960,8 +960,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="725" column="69" lean-forward="false" selection-start-line="725" selection-start-column="54" selection-end-line="725" selection-end-column="69" />
+        <state relative-caret-position="205">
+          <caret line="794" column="65" lean-forward="false" selection-start-line="794" selection-start-column="54" selection-end-line="794" selection-end-column="65" />
           <folding>
             <element signature="e#1906#5481#0" expanded="false" />
             <element signature="e#5537#6301#0" expanded="false" />
