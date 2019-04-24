@@ -733,9 +733,9 @@ router.post('/add', async (req, res) => {
                                                 .font('NotoSans')
                                                 .fontSize(20)
                                                 .text(data.event.nameRu, 60, 60) // the text and the position where the it should come
-                                            doc.moveTo(320, 60).image(qrpath, {fit: [80, 80]})
+                                            doc.moveTo(330, 60).image(qrpath, {fit: [80, 80]})
                                             doc.fontSize(14)
-                                                .text(data.event.where, 50, 110) // the text and the position where the it should come
+                                                .text(data.event.where, 50, 130) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
@@ -792,9 +792,9 @@ router.post('/add', async (req, res) => {
                                                 .font('NotoSans')
                                                 .fontSize(20)
                                                 .text(data.movie, 60, 60) // the text and the position where the it should come
-                                            doc.moveTo(320, 60).image(qrpath, {fit: [80, 80]})
+                                            doc.moveTo(330, 60).image(qrpath, {fit: [80, 80]})
                                             doc.fontSize(14)
-                                                .text(data.cinema+' '+data.hall, 50, 110) // the text and the position where the it should come
+                                                .text(data.cinema+' '+data.hall, 50, 130) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
@@ -1151,7 +1151,7 @@ router.post('/add', async (req, res) => {
                                     .text(myNew.event.nameRu, 60, 60)
                                 doc.image(qrpath, 320, 60, {fit: [80, 80]})
                                 doc.fontSize(14)
-                                    .text(myNew.event.where.name, 50, 110)
+                                    .text(myNew.event.where.name, 50, 130)
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     let date = myNew.seats[i][1].split('T')[0].split('-')
                                     let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1210,7 +1210,7 @@ router.post('/add', async (req, res) => {
                                         .text(myNew.movie, 60, 60) // the text and the position where the it should come
                                     doc.image(qrpath, 320, 60, {fit: [80, 80]})
                                     doc.fontSize(14)
-                                        .text(myNew.cinema+' '+myNew.hall, 50, 110) // the text and the position where the it should come
+                                        .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
                                         let date = myNew.seats[i][1].split('T')[0].split('-')
                                         let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1356,7 +1356,7 @@ router.post('/add', async (req, res) => {
                                                 .text(myNew.movie, 60, 60) // the text and the position where the it should come
                                             doc.image(qrpath, 320, 60, {fit: [80, 80]})
                                             doc.fontSize(14)
-                                                .text(myNew.cinema+' '+myNew.hall, 50, 110) // the text and the position where the it should come
+                                                .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                                 let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1466,7 +1466,7 @@ router.post('/add', async (req, res) => {
                                         .text(myNew.movie, 60, 60) // the text and the position where the it should come
                                     doc.image(qrpath, 320, 60, {fit: [80, 80]})
                                     doc.fontSize(14)
-                                        .text(myNew.cinema+' '+myNew.hall, 50, 110) // the text and the position where the it should come
+                                        .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
                                         let date = myNew.seats[i][1].split('T')[0].split('-')
                                         let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1529,7 +1529,7 @@ router.post('/add', async (req, res) => {
                                 .text(myNew.event.nameRu, 60, 60) // the text and the position where the it should come
                             doc.image(qrpath, 320, 60, {fit: [80, 80]})
                             doc.fontSize(14)
-                                .text(myNew.event.where, 50, 110) // the text and the position where the it should come
+                                .text(myNew.event.where, 50, 130) // the text and the position where the it should come
                             for(let i = 0; i<myNew.seats.length; i++){
                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                 let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1588,7 +1588,7 @@ router.post('/add', async (req, res) => {
                                 .text(myNew.movie, 60, 60) // the text and the position where the it should come
                             doc.image(qrpath, 320, 60, {fit: [80, 80]})
                             doc.fontSize(14)
-                                .text(myNew.cinema+' '+myNew.hall, 50, 110) // the text and the position where the it should come
+                                .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
                             for(let i = 0; i<myNew.seats.length; i++){
                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                 let time = myNew.seats[i][1].split('T')[1].split(':')

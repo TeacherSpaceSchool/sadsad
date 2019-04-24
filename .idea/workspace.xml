@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,8 +22,8 @@
       <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="725" column="69" lean-forward="false" selection-start-line="725" selection-start-column="54" selection-end-line="725" selection-end-column="69" />
+            <state relative-caret-position="14655">
+              <caret line="1590" column="75" lean-forward="false" selection-start-line="1590" selection-start-column="75" selection-end-line="1590" selection-end-column="75" />
               <folding>
                 <element signature="e#1906#5481#0" expanded="false" />
                 <element signature="e#5537#6301#0" expanded="false" />
@@ -147,7 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>await Jimp</find>
       <find>image</find>
       <find>wallet.status!='обработка'&amp;&amp;wallet.status!='ошибка'</find>
       <find>сеанс</find>
@@ -177,6 +175,7 @@
       <find>event.</find>
       <find>130)</find>
       <find>new PDFDocument</find>
+      <find>320</find>
     </findStrings>
     <replaceStrings>
       <replace>TicketCinema</replace>
@@ -543,12 +542,12 @@
       <workItem from="1556000646369" duration="534000" />
       <workItem from="1556003897558" duration="4215000" />
       <workItem from="1556086515672" duration="1933000" />
-      <workItem from="1556088642906" duration="142000" />
+      <workItem from="1556088642906" duration="334000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="870848000" />
+    <option name="totallyTimeSpent" value="871040000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -960,8 +959,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="725" column="69" lean-forward="false" selection-start-line="725" selection-start-column="54" selection-end-line="725" selection-end-column="69" />
+        <state relative-caret-position="14655">
+          <caret line="1590" column="75" lean-forward="false" selection-start-line="1590" selection-start-column="75" selection-end-line="1590" selection-end-column="75" />
           <folding>
             <element signature="e#1906#5481#0" expanded="false" />
             <element signature="e#5537#6301#0" expanded="false" />
