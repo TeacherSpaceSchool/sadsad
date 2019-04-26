@@ -86,8 +86,307 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.878229, 74.587594',
                 city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Национальная Библиотека Кыргызской Республики'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Национальная Библиотека Кыргызской Республики',
+                nameKg:  'Национальная Библиотека Кыргызской Республики',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.881552, 74.610975',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Республиканская Библиотека имени К. Баялинова'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Республиканская Библиотека имени К. Баялинова',
+                nameKg:  'Республиканская Библиотека имени К. Баялинова',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.877526, 74.610815',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Национальный музей изобразительных искусств имени Гапара Айтиева'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Национальный музей изобразительных искусств имени Гапара Айтиева',
+                nameKg:  'Национальный музей изобразительных искусств имени Гапара Айтиева',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.878699, 74.610927',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кыргызский Государственный театр юных зрителей имени Б.Кыдыкеевой'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кыргызский Государственный театр юных зрителей имени Б.Кыдыкеевой',
+                nameKg:  'Кыргызский Государственный театр юных зрителей имени Б.Кыдыкеевойч',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.886422, 74.609594',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кыргызский государственный театр имени М. Жангазиева'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кыргызский государственный театр имени М. Жангазиева',
+                nameKg:  'Кыргызский государственный театр имени М. Жангазиева',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.886543, 74.609707',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Бишкекский Городской Драматический Театр им. Умуралиева'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Бишкекский Городской Драматический Театр им. Умуралиева',
+                nameKg:  'Бишкекский Городской Драматический Театр им. Умуралиева',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.874544, 74.633893',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Космо Парк"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Космо Парк"',
+                nameKg:  'Кинотеатр "Космо Парк"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.837082, 74.615442',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Бродвей"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Бродвей"',
+                nameKg:  'Кинотеатр "Бродвей"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.855597, 74.584980',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Дордой Плаза imax"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Дордой Плаза imax"',
+                nameKg:  'Кинотеатр "Дордой Плаза imax"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.874976, 74.618084',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Манас"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Манас"',
+                nameKg:  'Кинотеатр "Манас"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.844360, 74.584270',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Россия"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Россия"',
+                nameKg:  'Кинотеатр "Россия"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.844360, 74.584270',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Ала –Тоо"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Ала –Тоо"',
+                nameKg:  'Кинотеатр "Ала –Тоо"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.876187, 74.607600',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Бишкек Парк"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Бишкек Парк"',
+                nameKg:  'Кинотеатр "Бишкек Парк"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.874681, 74.590262',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Вефа"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Вефа"',
+                nameKg:  'Кинотеатр "Вефа"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.857428, 74.609702',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Октябрь"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Октябрь"',
+                nameKg:  'Кинотеатр "Октябрь"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.876604, 74.576850',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Кино-Бокс"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Кино-Бокс"',
+                nameKg:  'Кинотеатр "Кино-Бокс"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '40.564154, 72.804016',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Нур"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Нур"',
+                nameKg:  'Кинотеатр "Нур"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '40.514914, 72.808369',
+                city: 'Ош'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Ак – Буура"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Ак – Буура"',
+                nameKg:  'Кинотеатр "Ак – Буура"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '40.549843, 72.787016',
+                city: 'Ош'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кинотеатр "Мэрлин"'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кинотеатр "Мэрлин"',
+                nameKg:  'Кинотеатр "Мэрлин"',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '40.529101, 72.797380',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Таласский областной музыкально-драматический театр имени К. Медетова'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Таласский областной музыкально-драматический театр имени К. Медетова',
+                nameKg:  'Таласский областной музыкально-драматический театр имени К. Медетова',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '40.529101, 72.797380',
+                city: 'Талас'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Нарынский областной музыкально-драматический театр имени М. Рыскулова'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Нарынский областной музыкально-драматический театр имени М. Рыскулова',
+                nameKg:  'Нарынский областной музыкально-драматический театр имени М. Рыскулова',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '41.428710, 75.992850',
+                city: 'Нарын'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Жалал-Абадская областная филармония имени Т. Тыныбекова'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Жалал-Абадская областная филармония имени Т. Тыныбекова',
+                nameKg:  'Жалал-Абадская областная филармония имени Т. Тыныбекова',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '41.428710, 75.992850',
+                city: 'Жалал-Абад'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Рух Ордо им. Ч. Айтматова, культурный центр'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Рух Ордо им. Ч. Айтматова, культурный центр',
+                nameKg:  'Рух Ордо им. Ч. Айтматова, культурный центр',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.648005, 77.095157',
+                city: 'Иссык–Куль'
             });
             await WhereBiletiki.create(_user);
         }
@@ -99,7 +398,7 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.878084, 74.612549',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -112,7 +411,7 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.877936, 74.587614',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -125,7 +424,7 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.877936, 74.587614',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -138,7 +437,7 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.877568, 74.608947',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -151,7 +450,7 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.882437, 74.613106',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -177,7 +476,7 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.880956, 74.596573',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -190,7 +489,7 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.878374, 74.595275',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -203,7 +502,7 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.877727, 74.603827',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -216,7 +515,7 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.878891, 74.602820',
                 city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
@@ -234,6 +533,19 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Ошский областной театр кукол имени  Н. Шамурзаева'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Ошский областной театр кукол имени  Н. Шамурзаева',
+                nameKg:  'Ошский областной театр кукол имени  Н. Шамурзаева',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '*',
+                city: 'Ош'
+            });
+            await WhereBiletiki.create(_user);
+        }
         findAdmin = await WhereBiletiki.findOne({nameRu: 'Ош улуттук драма театры'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
@@ -242,7 +554,20 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '40.519911, 72.801272',
+                city: 'Ош'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Сулайман-Тоо Национальный историко-археологический музейный комплекс'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Сулайман-Тоо Национальный историко-археологический музейный комплекс',
+                nameKg:  'Сулайман-Тоо Национальный историко-археологический музейный комплекс',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '40.528597, 72.782674',
                 city: 'Ош'
             });
             await WhereBiletiki.create(_user);
@@ -255,7 +580,36 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '42.650019, 77.127227',
+                city: 'Иссык–Куль'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Амфитеатр Dordoi Nomad'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Амфитеатр Dordoi Nomad',
+                nameKg:  'Амфитеатр Dordoi Nomad',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.659139, 77.245868',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Иссык-Кульский областной кыргызский музыкально-драматический театр имени \n' +
+        'К. Жантошева'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Иссык-Кульский областной кыргызский музыкально-драматический театр имени \n' +
+                'К. Жантошева',
+                nameKg:  'Иссык-Кульский областной кыргызский музыкально-драматический театр имени \n' +
+                'К. Жантошева',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.659139, 77.245868',
                 city: 'Иссык–Куль'
             });
             await WhereBiletiki.create(_user);
@@ -268,8 +622,21 @@ let createAdmin = async () => {
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
-                coords: '*',
+                coords: '40.929586, 73.007207',
                 city: 'Джалал-Абад'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Ошский государственный академический, музыкально-драматический театр имени Бабура'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Ошский государственный академический, музыкально-драматический театр имени Бабура',
+                nameKg:  'Ошский государственный академический, музыкально-драматический театр имени Бабура',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '40.533022, 72.796783 ',
+                city: 'Ош'
             });
             await WhereBiletiki.create(_user);
         }

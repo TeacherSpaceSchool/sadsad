@@ -2,7 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/precache-manifest.a9f9f955e813a350697dd6f217157f73.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/7.dd9b1b63.chunk.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/7.dd9b1b63.chunk.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/8.d69b42b2.chunk.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/8.d69b42b2.chunk.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/15.f4a6c522.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/15.f4a6c522.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/25.1ffe3fdd.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/25.1ffe3fdd.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/3.7258de36.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/3.7258de36.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/5.e5454f47.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/5.e5454f47.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/7.05bd4f3b.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/7.05bd4f3b.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.9b2f67ef.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.9b2f67ef.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.0193e4ff.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.0193e4ff.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.17ba3094.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.17ba3094.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/asset-manifest.json" afterPath="$PROJECT_DIR$/aclient/asset-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/css/style.css" afterPath="$PROJECT_DIR$/aclient/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/index.html" afterPath="$PROJECT_DIR$/aclient/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/service-worker.js" afterPath="$PROJECT_DIR$/aclient/service-worker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/user.js" afterPath="$PROJECT_DIR$/module/user.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -23,8 +49,8 @@
       <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="794" column="65" lean-forward="false" selection-start-line="794" selection-start-column="54" selection-end-line="794" selection-end-column="65" />
+            <state relative-caret-position="392">
+              <caret line="760" column="110" lean-forward="false" selection-start-line="738" selection-start-column="44" selection-end-line="760" selection-end-column="110" />
               <folding>
                 <element signature="e#1906#5481#0" expanded="false" />
                 <element signature="e#5537#6301#0" expanded="false" />
@@ -39,21 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="passport.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module/passport.js">
+      <file leaf-file-name="whereBiletiki.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/whereBiletiki.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5593">
-              <caret line="329" column="29" lean-forward="false" selection-start-line="329" selection-start-column="29" selection-end-line="329" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userBiletiki.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module/userBiletiki.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2788">
-              <caret line="164" column="8" lean-forward="false" selection-start-line="164" selection-start-column="8" selection-end-line="177" selection-end-column="9" />
+            <state relative-caret-position="2057">
+              <caret line="122" column="27" lean-forward="false" selection-start-line="122" selection-start-column="27" selection-end-line="122" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -62,75 +78,9 @@
       <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+            <state relative-caret-position="264">
+              <caret line="361" column="31" lean-forward="false" selection-start-line="361" selection-start-column="31" selection-end-line="361" selection-end-column="31" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/payment.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="201" column="37" lean-forward="false" selection-start-line="201" selection-start-column="37" selection-end-line="205" selection-end-column="37" />
-              <folding>
-                <element signature="e#1053#9747#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ticketCinemaBiletiki.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/ticketCinemaBiletiki.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cinemaHallBiletiki.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/cinemaHallBiletiki.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2618">
-              <caret line="324" column="6" lean-forward="false" selection-start-line="324" selection-start-column="6" selection-end-line="324" selection-end-column="6" />
-              <folding>
-                <element signature="e#751#9049#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ticketCinemaBiletiki.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/module/ticketCinemaBiletiki.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
-              <folding>
-                <element signature="e#765#7930#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -147,10 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>format</find>
-      <find>mongoose</find>
-      <find>sign</find>
-      <find>_id</find>
       <find>signup</find>
       <find>signupuser</find>
       <find>signin</find>
@@ -169,7 +115,6 @@
       <find>data.event.where.name</find>
       <find>data.event.where</find>
       <find>body.name == 'Билеты'</find>
-      <find>data</find>
       <find>event.</find>
       <find>130)</find>
       <find>320</find>
@@ -177,6 +122,11 @@
       <find>doc.image(qrpath</find>
       <find>new PDFDocument</find>
       <find>qrpath, 320</find>
+      <find>фила</find>
+      <find>Жалал-Абад</find>
+      <find>Билеты</find>
+      <find>'Билеты'</find>
+      <find>data</find>
     </findStrings>
     <replaceStrings>
       <replace>Билеты кино</replace>
@@ -207,8 +157,8 @@
       <replace>event</replace>
       <replace>data.</replace>
       <replace>image</replace>
-      <replace>myNew</replace>
       <replace>doc.moveTo(330</replace>
+      <replace>myNew</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -227,7 +177,6 @@
         <option value="$PROJECT_DIR$/views/error.jade" />
         <option value="$PROJECT_DIR$/models/walletBiletiki.js" />
         <option value="$PROJECT_DIR$/models/paymentBiletiki.js" />
-        <option value="$PROJECT_DIR$/module/user.js" />
         <option value="$PROJECT_DIR$/models/eventBiletiki.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -267,6 +216,7 @@
         <option value="$PROJECT_DIR$/module/ticketCinemaBiletiki.js" />
         <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/routes/payment.js" />
+        <option value="$PROJECT_DIR$/module/user.js" />
         <option value="$PROJECT_DIR$/routes/data.js" />
       </list>
     </option>
@@ -312,8 +262,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -366,6 +314,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -543,12 +493,14 @@
       <workItem from="1556000646369" duration="534000" />
       <workItem from="1556003897558" duration="4215000" />
       <workItem from="1556086515672" duration="1933000" />
-      <workItem from="1556088642906" duration="1047000" />
+      <workItem from="1556088642906" duration="1653000" />
+      <workItem from="1556187699467" duration="2202000" />
+      <workItem from="1556261303302" duration="5738000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="871753000" />
+    <option name="totallyTimeSpent" value="880299000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -561,16 +513,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.67256635" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.65309733" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18821293" sideWeight="0.32743362" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15589353" sideWeight="0.34690267" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31090176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23149395" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -803,13 +754,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/whereBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-268">
-          <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/mailchimp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -890,14 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2618">
@@ -958,10 +894,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/module/whereBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2057">
+          <caret line="122" column="27" lean-forward="false" selection-start-line="122" selection-start-column="27" selection-end-line="122" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="361" column="31" lean-forward="false" selection-start-line="361" selection-start-column="31" selection-end-line="361" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="794" column="65" lean-forward="false" selection-start-line="794" selection-start-column="54" selection-end-line="794" selection-end-column="65" />
+        <state relative-caret-position="392">
+          <caret line="760" column="110" lean-forward="false" selection-start-line="738" selection-start-column="44" selection-end-line="760" selection-end-column="110" />
           <folding>
             <element signature="e#1906#5481#0" expanded="false" />
             <element signature="e#5537#6301#0" expanded="false" />
