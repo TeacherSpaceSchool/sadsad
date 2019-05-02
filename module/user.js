@@ -347,7 +347,7 @@ let createAdmin = async () => {
                 imageThumbnail: '*',
                 address: '*',
                 coords: '40.529101, 72.797380',
-                city: 'Талас'
+                city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
         }
@@ -360,7 +360,7 @@ let createAdmin = async () => {
                 imageThumbnail: '*',
                 address: '*',
                 coords: '41.428710, 75.992850',
-                city: 'Нарын'
+                city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
         }
@@ -373,7 +373,7 @@ let createAdmin = async () => {
                 imageThumbnail: '*',
                 address: '*',
                 coords: '41.428710, 75.992850',
-                city: 'Жалал-Абад'
+                city: 'Бишкек'
             });
             await WhereBiletiki.create(_user);
         }

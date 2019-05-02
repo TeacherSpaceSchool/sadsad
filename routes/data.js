@@ -712,6 +712,7 @@ router.post('/add', async (req, res) => {
                                     await res.send(await WhereBiletiki.getWhereBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
                                 else if(req.body.name == 'Билеты') {
+                                    console.log('билет')
                                     if(req.body.id==undefined){
                                         let hash = randomstring.generate({length: 12, charset: 'numeric'});
                                         while (!await TicketBiletiki.checkHash(hash))
@@ -738,14 +739,19 @@ router.post('/add', async (req, res) => {
                                                 .text(myNew.event.where.name, 50, 80) // the text and the position where the it should come
                                             let dateTime;
                                             let place1 = '';
+                                            let ryad = ''
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                                 let time = myNew.seats[i][1].split('T')[1].split(':')
                                                 dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                                 let place = myNew.seats[i][0]['name']
                                                 if(myNew.seats[i][0]['name'].split(':')[1]!==undefined){
-                                                    if(i===0){
-                                                        place1+='Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                    if(i===0||ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
+                                                        ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                        if(ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1])
+                                                            place1+=', Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                        else
+                                                            place1+='Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                                     }
                                                     place = ' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                                 }
@@ -759,6 +765,9 @@ router.post('/add', async (req, res) => {
                                                 .font('NotoSans')
                                                 .fontSize(14)
                                                 .text(place1, {width: doc.page.width - 100, align: 'justify'})
+                                            doc.save()
+                                            doc.rotate(90, {origin: [doc.x, doc.y]});
+                                            doc.restore()
                                             doc.end()
 
                                         })
@@ -1140,6 +1149,7 @@ router.post('/add', async (req, res) => {
                     }
                     else if(req.body.name == 'Билеты') {
                         if(req.body.id==undefined){
+                            console.log('lol')
                             let hash = randomstring.generate({length: 12, charset: 'numeric'});
                             while (!await TicketBiletiki.checkHash(hash))
                                 hash = randomstring.generate({length: 12, charset: 'numeric'});
@@ -1165,6 +1175,7 @@ router.post('/add', async (req, res) => {
                                     .text(myNew.event.where.name, 50, 130)
                                 let dateTime;
                                 let place1 = '';
+                                let ryad = ''
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     let date = data.seats[i][1].split('T')[0].split('-')
                                     let time = data.seats[i][1].split('T')[1].split(':')
@@ -1172,7 +1183,11 @@ router.post('/add', async (req, res) => {
                                     let place = data.seats[i][0]['name']
                                     if(data.seats[i][0]['name'].split(':')[1]!==undefined){
                                         if(i===0){
+                                            ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                             place1+='Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                        } else if(ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
+                                            ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                            place1+=', Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                         }
                                         place = ' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                     }
@@ -1186,6 +1201,9 @@ router.post('/add', async (req, res) => {
                                     .font('NotoSans')
                                     .fontSize(14)
                                     .text(place1, {width: doc.page.width - 100, align: 'justify'})
+                                doc.save()
+                                doc.rotate(90, {origin: [doc.x, doc.y]});
+                                doc.restore()
                                 doc.end()
                             })
                             data = {
@@ -1553,13 +1571,15 @@ router.post('/add', async (req, res) => {
                                 .text(myNew.event.where, 50, 130) // the text and the position where the it should come
                             let dateTime;
                             let place1 = '';
+                            let ryad = ''
                             for(let i = 0; i<myNew.seats.length; i++){
                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                 let time = myNew.seats[i][1].split('T')[1].split(':')
                                 dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                 let place = myNew.seats[i][0]['name']
                                 if(myNew.seats[i][0]['name'].split(':')[1]!==undefined){
-                                    if(i===0){
+                                    if(i===0||ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
+                                        ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                         place1+='Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                     }
                                     place = ' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]

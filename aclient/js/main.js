@@ -133,7 +133,8 @@ $(document).ready(function(){
             sync1.find('.active').find('.item_info-block').addClass('show');
         }
         sync1.find('.center').find('.item_info-block').addClass('show');
-    }).owlCarousel({
+    })
+        .owlCarousel({
         items : 1,
         slideSpeed : 5000,
         center : true,
@@ -160,13 +161,16 @@ $(document).ready(function(){
             }
 
         }
-    }).on('changed.owl.carousel', syncPosition).on('translated.owl.carousel',(e)=>{
+    })
+        .on('changed.owl.carousel', syncPosition)
+        .on('translated.owl.carousel',(e)=>{
         sync1.find('.item_info-block').removeClass('show');
         sync1.find('.center').find('.item_info-block').addClass('show');
         if(e.relatedTarget._width <= 992){
             sync1.find('.active').find('.item_info-block').addClass('show');
         }
-    }).on('resize.owl.carousel',(e)=>{
+    })
+        .on('resize.owl.carousel',(e)=>{
         console.log('resize', e.relatedTarget._width);
     });
 
@@ -182,7 +186,8 @@ $(document).ready(function(){
             slideSpeed : 500,
             slideBy: slidesPerPage,
             responsiveRefreshRate : 100
-        }).on('changed.owl.carousel', syncPosition2);
+        })
+        .on('changed.owl.carousel', syncPosition2);
 
     function syncPosition(el) {
         var count = el.item.count-1;
