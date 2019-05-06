@@ -745,6 +745,7 @@ router.post('/balance/generate', async (req, res, next) => {
 router.post('/balance/pay', async (req, res, next) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
+        console.log(req.param('payment_state_token'))
         let payment_state_token = jwt.verify(req.param('payment_state_token'), 'x23#-09%ke');
 
         let wallet = await PaymentBiletiki.findOne({wallet: payment_state_token.transaction_id})

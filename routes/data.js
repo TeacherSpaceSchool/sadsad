@@ -724,7 +724,15 @@ router.post('/add', async (req, res) => {
                                         let qrTicket = await qr.image(hash, { type: 'png' });
                                         let stream = qrTicket.pipe(fstream)
                                         stream.on('finish', async () => {
-                                            let doc = new PDFDocument();
+                                            let doc = new PDFDocument({
+                                                size: [600, 200],
+                                                margins : { // by default, all are 72
+                                                    top: 10,
+                                                    bottom:10,
+                                                    left: 10,
+                                                    right: 10
+                                                }
+                                            });
                                             let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                             let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                                             doc.registerFont('NotoSans', robotoBlack);
@@ -733,10 +741,10 @@ router.post('/add', async (req, res) => {
                                             doc
                                                 .font('NotoSans')
                                                 .fontSize(20)
-                                                .text(myNew.event.nameRu, 60, 60) // the text and the position where the it should come
-                                            doc.image(qrpath, 330, 60, {fit: [80, 80]})
+                                                .text(myNew.event.nameRu, 60, 30) // the text and the position where the it should come
+                                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
                                             doc.fontSize(14)
-                                                .text(myNew.event.where.name, 50, 80) // the text and the position where the it should come
+                                                .text(myNew.event.where.name, 50, 100) // the text and the position where the it should come
                                             let dateTime;
                                             let place1 = '';
                                             let ryad = ''
@@ -802,7 +810,15 @@ router.post('/add', async (req, res) => {
                                     let stream = qrTicket.pipe(fstream)
                                     stream.on('finish', async () => {
                                         try{
-                                            let doc = new PDFDocument();
+                                            let doc = new PDFDocument({
+                                                size: [600, 200],
+                                                margins : { // by default, all are 72
+                                                    top: 10,
+                                                    bottom:10,
+                                                    left: 10,
+                                                    right: 10
+                                                }
+                                            });
                                             let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                             let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                                             doc.registerFont('NotoSans', robotoBlack);
@@ -811,10 +827,10 @@ router.post('/add', async (req, res) => {
                                             doc
                                                 .font('NotoSans')
                                                 .fontSize(20)
-                                                .text(data.movie, 60, 60) // the text and the position where the it should come
-                                            doc.image(qrpath, 330, 60, {fit: [80, 80]})
+                                                .text(data.movie, 60, 30) // the text and the position where the it should come
+                                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
                                             doc.fontSize(14)
-                                                .text(data.cinema+' '+data.hall, 50, 130) // the text and the position where the it should come
+                                                .text(data.cinema+' '+data.hall, 50, 100) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
@@ -1160,7 +1176,15 @@ router.post('/add', async (req, res) => {
                             let qrTicket = await qr.image(hash, { type: 'png' });
                             let stream = qrTicket.pipe(fstream)
                             stream.on('finish', async () => {
-                                let doc = new PDFDocument();
+                                let doc = new PDFDocument({
+                                    size: [600, 200],
+                                    margins : { // by default, all are 72
+                                        top: 10,
+                                        bottom:10,
+                                        left: 10,
+                                        right: 10
+                                    }
+                                });
                                 let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                 let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                                 doc.registerFont('NotoSans', robotoBlack);
@@ -1169,10 +1193,10 @@ router.post('/add', async (req, res) => {
                                 doc
                                     .font('NotoSans')
                                     .fontSize(20)
-                                    .text(myNew.event.nameRu, 60, 60)
-                                doc.image(qrpath, 330, 60, {fit: [80, 80]})
+                                    .text(myNew.event.nameRu, 60, 30)
+                                doc.image(qrpath, 330, 30, {fit: [80, 80]})
                                 doc.fontSize(14)
-                                    .text(myNew.event.where.name, 50, 130)
+                                    .text(myNew.event.where.name, 50, 100)
                                 let dateTime;
                                 let place1 = '';
                                 let ryad = ''
@@ -1237,7 +1261,15 @@ router.post('/add', async (req, res) => {
                             let stream = qrTicket.pipe(fstream)
                             stream.on('finish', async () => {
                                 try{
-                                    let doc = new PDFDocument();
+                                    let doc = new PDFDocument({
+                                        size: [600, 200],
+                                        margins : { // by default, all are 72
+                                            top: 10,
+                                            bottom:10,
+                                            left: 10,
+                                            right: 10
+                                        }
+                                    });
                                     let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                     let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                                     doc.registerFont('NotoSans', robotoBlack);
@@ -1246,10 +1278,10 @@ router.post('/add', async (req, res) => {
                                     doc
                                         .font('NotoSans')
                                         .fontSize(20)
-                                        .text(myNew.movie, 60, 60) // the text and the position where the it should come
-                                    doc.image(qrpath, 330, 60, {fit: [80, 80]})
+                                        .text(myNew.movie, 60, 30) // the text and the position where the it should come
+                                    doc.image(qrpath, 330, 30, {fit: [80, 80]})
                                     doc.fontSize(14)
-                                        .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
+                                        .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
                                         let date = myNew.seats[i][1].split('T')[0].split('-')
                                         let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1383,7 +1415,15 @@ router.post('/add', async (req, res) => {
                                     let stream = qrTicket.pipe(fstream)
                                     stream.on('finish', async () => {
                                         try {
-                                            let doc = new PDFDocument();
+                                            let doc = new PDFDocument({
+                                                size: [600, 200],
+                                                margins : { // by default, all are 72
+                                                    top: 10,
+                                                    bottom:10,
+                                                    left: 10,
+                                                    right: 10
+                                                }
+                                            });
                                             let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                             let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                                             doc.registerFont('NotoSans', robotoBlack);
@@ -1392,10 +1432,10 @@ router.post('/add', async (req, res) => {
                                             doc
                                                 .font('NotoSans')
                                                 .fontSize(20)
-                                                .text(myNew.movie, 60, 60) // the text and the position where the it should come
-                                            doc.image(qrpath, 330, 60, {fit: [80, 80]})
+                                                .text(myNew.movie, 60, 30) // the text and the position where the it should come
+                                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
                                             doc.fontSize(14)
-                                                .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
+                                                .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                                 let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1493,7 +1533,15 @@ router.post('/add', async (req, res) => {
                             let stream = qrTicket.pipe(fstream)
                             stream.on('finish', async () => {
                                 try {
-                                    let doc = new PDFDocument();
+                                    let doc = new PDFDocument({
+                                        size: [600, 200],
+                                        margins : { // by default, all are 72
+                                            top: 10,
+                                            bottom:10,
+                                            left: 10,
+                                            right: 10
+                                        }
+                                    });
                                     let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                     let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                                     doc.registerFont('NotoSans', robotoBlack);
@@ -1502,10 +1550,10 @@ router.post('/add', async (req, res) => {
                                     doc
                                         .font('NotoSans')
                                         .fontSize(20)
-                                        .text(myNew.movie, 60, 60) // the text and the position where the it should come
-                                    doc.image(qrpath, 330, 60, {fit: [80, 80]})
+                                        .text(myNew.movie, 60, 30) // the text and the position where the it should come
+                                    doc.image(qrpath, 330, 30, {fit: [80, 80]})
                                     doc.fontSize(14)
-                                        .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
+                                        .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
                                         let date = myNew.seats[i][1].split('T')[0].split('-')
                                         let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1556,7 +1604,15 @@ router.post('/add', async (req, res) => {
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
-                                 let doc = new PDFDocument();
+                                 let doc = new PDFDocument({
+                                     size: [600, 200],
+                                     margins : { // by default, all are 72
+                                         top: 10,
+                                         bottom:10,
+                                         left: 10,
+                                         right: 10
+                                     }
+                                 });
                             let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                             let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                             doc.registerFont('NotoSans', robotoBlack);
@@ -1565,10 +1621,10 @@ router.post('/add', async (req, res) => {
                             doc
                                 .font('NotoSans')
                                 .fontSize(20)
-                                .text(myNew.event.nameRu, 60, 60) // the text and the position where the it should come
-                            doc.image(qrpath, 330, 60, {fit: [80, 80]})
+                                .text(myNew.event.nameRu, 60, 30) // the text and the position where the it should come
+                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
                             doc.fontSize(14)
-                                .text(myNew.event.where, 50, 130) // the text and the position where the it should come
+                                .text(myNew.event.where, 50, 100) // the text and the position where the it should come
                             let dateTime;
                             let place1 = '';
                             let ryad = ''
@@ -1628,7 +1684,15 @@ router.post('/add', async (req, res) => {
                         let qrTicket = await qr.image(hash, { type: 'png' });
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
-                                 let doc = new PDFDocument();
+                                 let doc = new PDFDocument({
+                                     size: [600, 200],
+                                     margins : { // by default, all are 72
+                                         top: 10,
+                                         bottom:10,
+                                         left: 10,
+                                         right: 10
+                                     }
+                                 });
                                 let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
                                 let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
                                 doc.registerFont('NotoSans', robotoBlack);
@@ -1637,10 +1701,10 @@ router.post('/add', async (req, res) => {
                             doc
                                 .font('NotoSans')
                                 .fontSize(20)
-                                .text(myNew.movie, 60, 60) // the text and the position where the it should come
-                            doc.image(qrpath, 330, 60, {fit: [80, 80]})
+                                .text(myNew.movie, 60, 30) // the text and the position where the it should come
+                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
                             doc.fontSize(14)
-                                .text(myNew.cinema+' '+myNew.hall, 50, 130) // the text and the position where the it should come
+                                .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                             for(let i = 0; i<myNew.seats.length; i++){
                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                 let time = myNew.seats[i][1].split('T')[1].split(':')
