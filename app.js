@@ -16,6 +16,7 @@ const user = require('./module/user');
 const formData = require('express-form-data');
 const os = require('os');
 const compression = require('compression');
+const expressAMP = require('express-amp');
 const nocache = require('nocache')
 const bodyParser = require('body-parser');
 require('body-parser-xml-json')(bodyParser);
@@ -39,6 +40,11 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 //app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
+app.use(compression());
+app.use(expressAMP({
+    override: true,
+    //staticsPath: path.join(__dirname, 'public')
+}));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
 app.use(function(req, res, next){
@@ -57,8 +63,7 @@ app.use(express.static(path.join(__dirname, 'aclient')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'admin')));
 app.use(cors());
-app.use(compression());
-app.use(nocache())
+//app.use(nocache())
 // parse data with connect-multiparty.
 app.use(formData.parse(options));
 // clear from the request and delete all empty files (size == 0)

@@ -19,6 +19,7 @@
     "date-format": "^2.0.0",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "express-amp": "^1.0.8",
     "express-form-data": "^2.0.7",
     "gmail-send": "^1.2.14",
     "googleapis": "^38.0.0",

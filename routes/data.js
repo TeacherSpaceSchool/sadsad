@@ -725,9 +725,9 @@ router.post('/add', async (req, res) => {
                                         let stream = qrTicket.pipe(fstream)
                                         stream.on('finish', async () => {
                                             let doc = new PDFDocument({
-                                                size: [600, 200],
+                                                size: [600, 300],
                                                 margins : { // by default, all are 72
-                                                    top: 10,
+                                                    top: 30,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -811,9 +811,9 @@ router.post('/add', async (req, res) => {
                                     stream.on('finish', async () => {
                                         try{
                                             let doc = new PDFDocument({
-                                                size: [600, 200],
+                                                size: [600, 300],
                                                 margins : { // by default, all are 72
-                                                    top: 10,
+                                                    top: 30,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -1177,9 +1177,9 @@ router.post('/add', async (req, res) => {
                             let stream = qrTicket.pipe(fstream)
                             stream.on('finish', async () => {
                                 let doc = new PDFDocument({
-                                    size: [600, 200],
+                                    size: [600, 300],
                                     margins : { // by default, all are 72
-                                        top: 10,
+                                        top: 30,
                                         bottom:10,
                                         left: 10,
                                         right: 10
@@ -1262,9 +1262,9 @@ router.post('/add', async (req, res) => {
                             stream.on('finish', async () => {
                                 try{
                                     let doc = new PDFDocument({
-                                        size: [600, 200],
+                                        size: [600, 300],
                                         margins : { // by default, all are 72
-                                            top: 10,
+                                            top: 30,
                                             bottom:10,
                                             left: 10,
                                             right: 10
@@ -1416,9 +1416,9 @@ router.post('/add', async (req, res) => {
                                     stream.on('finish', async () => {
                                         try {
                                             let doc = new PDFDocument({
-                                                size: [600, 200],
+                                                size: [600, 300],
                                                 margins : { // by default, all are 72
-                                                    top: 10,
+                                                    top: 30,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -1534,9 +1534,9 @@ router.post('/add', async (req, res) => {
                             stream.on('finish', async () => {
                                 try {
                                     let doc = new PDFDocument({
-                                        size: [600, 200],
+                                        size: [600, 300],
                                         margins : { // by default, all are 72
-                                            top: 10,
+                                            top: 30,
                                             bottom:10,
                                             left: 10,
                                             right: 10
@@ -1605,9 +1605,9 @@ router.post('/add', async (req, res) => {
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
                                  let doc = new PDFDocument({
-                                     size: [600, 200],
+                                     size: [600, 300],
                                      margins : { // by default, all are 72
-                                         top: 10,
+                                         top: 30,
                                          bottom:10,
                                          left: 10,
                                          right: 10
@@ -1685,9 +1685,9 @@ router.post('/add', async (req, res) => {
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
                                  let doc = new PDFDocument({
-                                     size: [600, 200],
+                                     size: [600, 300],
                                      margins : { // by default, all are 72
-                                         top: 10,
+                                         top: 30,
                                          bottom:10,
                                          left: 10,
                                          right: 10
