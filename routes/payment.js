@@ -716,8 +716,8 @@ router.post('/balance/generate', async (req, res, next) => {
         data.append('amount', req.body.sum);
         data.append('requisite', req.body.wallet);
         data.append('transaction_id', req.body.wallet);
-        data.append('redirect_url', 'https://kassir.kg/balance/pay');
-        data.append('hook_url', 'https://kassir.kg/balance/pay');
+        data.append('redirect_url', 'https://kassir.kg/payment/balance/pay');
+        data.append('hook_url', 'https://kassir.kg/payment/balance/pay');
         data.append('auth_token', auth_token);
         let payment_token = await axios({
             method: 'post',
@@ -745,6 +745,7 @@ router.post('/balance/generate', async (req, res, next) => {
 router.get('/balance/pay', async (req, res, next) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
+        console.log(req.param('payment_state_token'))
         console.log('lol')
         let wallet = await PaymentBiletiki.findOne({wallet: req.param('transaction_id')})
 
