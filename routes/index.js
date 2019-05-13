@@ -11,4 +11,10 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.get('/balance/pay', function(req, res, next) {
+    console.log('client')
+    res.end();
+
+});
+
 module.exports = router;
