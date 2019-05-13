@@ -716,7 +716,7 @@ router.post('/balance/generate', async (req, res, next) => {
         data.append('amount', req.body.sum);
         data.append('requisite', req.body.wallet);
         data.append('transaction_id', req.body.wallet);
-        data.append('redirect_url', 'https://kassir.kg');
+        data.append('redirect_url', 'https://kassir.kg/balance/pay');
         data.append('hook_url', 'https://kassir.kg/balance/pay');
         data.append('auth_token', auth_token);
         let payment_token = await axios({
@@ -742,18 +742,16 @@ router.post('/balance/generate', async (req, res, next) => {
     }
 })
 
-router.post('/balance/pay', async (req, res, next) => {
+router.get('/balance/pay', async (req, res, next) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
-        console.log(req.param('payment_state_token'))
-        let payment_state_token = jwt.verify(req.param('payment_state_token'), 'x23#-09%ke');
 
-        let wallet = await PaymentBiletiki.findOne({wallet: payment_state_token.transaction_id})
+        let wallet = await PaymentBiletiki.findOne({wallet: req.param('transaction_id')})
 
-        if(payment_state_token.payment_state == 'SUCCESS'){
+        if(req.param('status') == 'SUCCESS'){
             let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
             if(ticket!=null){
-                    await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'*'})
+                    await PaymentBiletiki.findOneAndUpdate({wallet: req.param('transaction_id')}, {status: 'совершен', meta:'*'})
                     await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
                 let mailingBiletiki = await MailingBiletiki.findOne();
                 let mailOptions = {
@@ -786,7 +784,7 @@ router.post('/balance/pay', async (req, res, next) => {
             } else {
                 ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                 if(ticket!=null){
-                    await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'*'})
+                    await PaymentBiletiki.findOneAndUpdate({wallet: req.param('transaction_id')}, {status: 'совершен', meta:'*'})
                     await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
                     let mailingBiletiki = await MailingBiletiki.findOne();
                     let mailOptions = {
@@ -819,7 +817,7 @@ router.post('/balance/pay', async (req, res, next) => {
                 }
             }
         }
-        res.status(200);
+        res.writeHead(301, { 'Location': 'https://kassir.kg/' });
         res.end();
     } catch(error) {
         console.error(error)

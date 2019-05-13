@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/precache-manifest.35c8c618d7b1b29b35ec234b2f55767d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.0f2ab59c.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.0f2ab59c.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.84d80440.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.84d80440.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.138defa9.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.138defa9.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/payment.js" afterPath="$PROJECT_DIR$/routes/payment.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -62,9 +53,19 @@
       <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="750" column="40" lean-forward="false" selection-start-line="750" selection-start-column="40" selection-end-line="750" selection-end-column="40" />
-              <folding />
+            <state relative-caret-position="241">
+              <caret line="819" column="61" lean-forward="false" selection-start-line="819" selection-start-column="61" selection-end-line="819" selection-end-column="61" />
+              <folding>
+                <element signature="e#1053#9747#0" expanded="false" />
+                <element signature="e#9800#18493#0" expanded="false" />
+                <element signature="e#18496#20807#0" expanded="false" />
+                <element signature="e#20867#21933#0" expanded="false" />
+                <element signature="e#21988#29415#0" expanded="false" />
+                <element signature="e#29472#30360#0" expanded="false" />
+                <element signature="e#30409#40232#0" expanded="false" />
+                <element signature="e#40295#42140#0" expanded="false" />
+                <marker date="1557744496600" expanded="false" signature="46984:55973" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -111,7 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>await TicketBiletiki.checkHash</find>
       <find>TicketBiletiki.checkHash</find>
       <find>if(data.seats[i][0]['name'].split(':')[0]!==undefined)</find>
       <find>filename: 'Билет на '+ticket.event</find>
@@ -141,9 +141,9 @@
       <find>image(qrpath</find>
       <find>body-parser</find>
       <find>bodyParser</find>
+      <find>account</find>
     </findStrings>
     <replaceStrings>
-      <replace>movie</replace>
       <replace>===</replace>
       <replace>Wallet</replace>
       <replace>Payment</replace>
@@ -173,6 +173,7 @@
       <replace>doc.moveTo(330</replace>
       <replace>myNew</replace>
       <replace>'Бишкек'</replace>
+      <replace>transaction_id</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -228,10 +229,10 @@
         <option value="$PROJECT_DIR$/module/ticketCinemaBiletiki.js" />
         <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/module/user.js" />
-        <option value="$PROJECT_DIR$/routes/payment.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/module/paymentBiletiki.js" />
         <option value="$PROJECT_DIR$/routes/data.js" />
+        <option value="$PROJECT_DIR$/routes/payment.js" />
       </list>
     </option>
   </component>
@@ -518,12 +519,12 @@
       <workItem from="1557391637762" duration="124000" />
       <workItem from="1557468158025" duration="26000" />
       <workItem from="1557719704732" duration="3465000" />
-      <workItem from="1557735661967" duration="2731000" />
+      <workItem from="1557735661967" duration="3490000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="905840000" />
+    <option name="totallyTimeSpent" value="906599000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -536,15 +537,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.75778544" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.7575221" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.24221453" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.24247788" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -934,9 +936,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="750" column="40" lean-forward="false" selection-start-line="750" selection-start-column="40" selection-end-line="750" selection-end-column="40" />
-          <folding />
+        <state relative-caret-position="241">
+          <caret line="819" column="61" lean-forward="false" selection-start-line="819" selection-start-column="61" selection-end-line="819" selection-end-column="61" />
+          <folding>
+            <element signature="e#1053#9747#0" expanded="false" />
+            <element signature="e#9800#18493#0" expanded="false" />
+            <element signature="e#18496#20807#0" expanded="false" />
+            <element signature="e#20867#21933#0" expanded="false" />
+            <element signature="e#21988#29415#0" expanded="false" />
+            <element signature="e#29472#30360#0" expanded="false" />
+            <element signature="e#30409#40232#0" expanded="false" />
+            <element signature="e#40295#42140#0" expanded="false" />
+            <marker date="1557744496600" expanded="false" signature="46984:55973" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
