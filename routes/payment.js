@@ -745,7 +745,7 @@ router.post('/balance/generate', async (req, res, next) => {
 router.get('/balance/pay', async (req, res, next) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
-
+        console.log('lol')
         let wallet = await PaymentBiletiki.findOne({wallet: req.param('transaction_id')})
 
         if(req.param('status') == 'SUCCESS'){
