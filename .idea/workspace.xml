@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/paymentBiletiki.js" afterPath="$PROJECT_DIR$/module/paymentBiletiki.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,19 +24,49 @@
       <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="918" column="42" lean-forward="false" selection-start-line="918" selection-start-column="28" selection-end-line="918" selection-end-column="42" />
+            <state relative-caret-position="-42">
+              <caret line="1539" column="52" lean-forward="false" selection-start-line="1539" selection-start-column="40" selection-end-line="1539" selection-end-column="52" />
               <folding>
                 <element signature="e#1906#5481#0" expanded="false" />
                 <element signature="e#5537#6301#0" expanded="false" />
-                <element signature="e#6345#17677#0" expanded="false" />
+                <element signature="e#6345#17641#0" expanded="false" />
                 <element signature="e#13615#14085#0" expanded="false" />
                 <element signature="e#14122#15158#0" expanded="false" />
                 <element signature="e#15192#15902#0" expanded="false" />
-                <element signature="e#15935#17668#0" expanded="false" />
-                <element signature="e#17724#25529#0" expanded="false" />
-                <element signature="e#26161#59520#0" expanded="false" />
+                <element signature="e#15935#17632#0" expanded="false" />
+                <element signature="e#17688#25493#0" expanded="false" />
+                <element signature="e#26125#59147#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="const.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/const.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/payment.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="341">
+              <caret line="757" column="31" lean-forward="false" selection-start-line="757" selection-start-column="31" selection-end-line="757" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="paymentBiletiki.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/paymentBiletiki.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -42,7 +74,7 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="782">
               <caret line="46" column="4" lean-forward="false" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
               <folding />
             </state>
@@ -61,9 +93,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getProfile</find>
-      <find>subject</find>
-      <find>Место:</find>
       <find>' Место: '+data.seats[i][0]['name']</find>
       <find>nodemailer</find>
       <find>await TicketBiletiki.checkHash</find>
@@ -90,7 +119,10 @@
       <find>'Иссык–Куль'</find>
       <find>Билеты кино'</find>
       <find>Билеты'</find>
+      <find>console.log</find>
       <find>new PDFDocument</find>
+      <find>qrpath</find>
+      <find>image(qrpath</find>
     </findStrings>
     <replaceStrings>
       <replace>movie</replace>
@@ -163,7 +195,6 @@
         <option value="$PROJECT_DIR$/module/logoBiletiki.js" />
         <option value="$PROJECT_DIR$/module/mailingBiletiki.js" />
         <option value="$PROJECT_DIR$/module/movieBiletiki.js" />
-        <option value="$PROJECT_DIR$/module/paymentBiletiki.js" />
         <option value="$PROJECT_DIR$/module/personalBiletiki.js" />
         <option value="$PROJECT_DIR$/module/phoneBiletiki.js" />
         <option value="$PROJECT_DIR$/module/seanceBiletiki.js" />
@@ -180,8 +211,9 @@
         <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/module/user.js" />
         <option value="$PROJECT_DIR$/routes/payment.js" />
-        <option value="$PROJECT_DIR$/routes/data.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/module/paymentBiletiki.js" />
+        <option value="$PROJECT_DIR$/routes/data.js" />
       </list>
     </option>
   </component>
@@ -226,8 +258,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -280,6 +310,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -462,12 +494,17 @@
       <workItem from="1556261303302" duration="5808000" />
       <workItem from="1556782145459" duration="5797000" />
       <workItem from="1557118023323" duration="10157000" />
-      <workItem from="1557227859599" duration="2462000" />
+      <workItem from="1557227859599" duration="2545000" />
+      <workItem from="1557237651903" duration="37000" />
+      <workItem from="1557382688033" duration="589000" />
+      <workItem from="1557391637762" duration="124000" />
+      <workItem from="1557468158025" duration="26000" />
+      <workItem from="1557719704732" duration="3196000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="898785000" />
+    <option name="totallyTimeSpent" value="902840000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -481,14 +518,14 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.8200692" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.76814157" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.17993079" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.2318584" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -655,13 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="986">
           <caret line="80" column="33" lean-forward="false" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/paymentBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="91" column="32" lean-forward="false" selection-start-line="91" selection-start-column="32" selection-end-line="91" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -840,42 +870,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="4" lean-forward="false" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/module/const.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/payment.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="753" column="33" lean-forward="true" selection-start-line="753" selection-start-column="33" selection-end-line="753" selection-end-column="33" />
+        <state relative-caret-position="341">
+          <caret line="757" column="31" lean-forward="false" selection-start-line="757" selection-start-column="31" selection-end-line="757" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/module/paymentBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="46" column="4" lean-forward="false" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+        <state relative-caret-position="157">
+          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="918" column="42" lean-forward="false" selection-start-line="918" selection-start-column="28" selection-end-line="918" selection-end-column="42" />
+        <state relative-caret-position="-42">
+          <caret line="1539" column="52" lean-forward="false" selection-start-line="1539" selection-start-column="40" selection-end-line="1539" selection-end-column="52" />
           <folding>
             <element signature="e#1906#5481#0" expanded="false" />
             <element signature="e#5537#6301#0" expanded="false" />
-            <element signature="e#6345#17677#0" expanded="false" />
+            <element signature="e#6345#17641#0" expanded="false" />
             <element signature="e#13615#14085#0" expanded="false" />
             <element signature="e#14122#15158#0" expanded="false" />
             <element signature="e#15192#15902#0" expanded="false" />
-            <element signature="e#15935#17668#0" expanded="false" />
-            <element signature="e#17724#25529#0" expanded="false" />
-            <element signature="e#26161#59520#0" expanded="false" />
+            <element signature="e#15935#17632#0" expanded="false" />
+            <element signature="e#17688#25493#0" expanded="false" />
+            <element signature="e#26125#59147#0" expanded="false" />
           </folding>
         </state>
       </provider>

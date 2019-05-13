@@ -249,7 +249,6 @@ router.post('/get', async (req, res) => {
         }
         else if(role==='cinema'){
             await passportEngine.verifydcinema(req, res, async (cinema)=>{
-                console.log(cinema)
                 if(req.body.name == 'БилетыКиноHash'){
                     await res.send(await TicketCinemaBiletiki.getByHash(JSON.parse(req.body.data).hash))
                 } else if(req.body.name == 'СеансДаты'){
@@ -489,7 +488,6 @@ router.post('/add', async (req, res) => {
                                         producers: myNew.producers,
                                         actors: myNew.actors
                                     }
-                                    console.log(data)
                                     if(req.body.id==undefined)
                                         await MovieBiletiki.addMovieBiletiki(data)
                                     else
@@ -552,7 +550,6 @@ router.post('/add', async (req, res) => {
                                         seats: JSON.parse(myNew.seats),
                                         cinema:  myNew.cinema
                                     }
-                                    console.log(data)
                                     if(req.body.id==undefined)
                                         await SeanceBiletiki.addSeanceBiletiki(data)
                                     else
@@ -560,8 +557,6 @@ router.post('/add', async (req, res) => {
                                     await res.send(await SeanceBiletiki.getSeanceBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
                                 else if(req.body.name == 'Событие') {
-                                    console.log(req.body.name)
-                                    console.log(myNew)
                                     let realDate = []
                                     for(let i=0; i<myNew.date.length; i++){
                                         realDate.push(new Date(myNew.date[i]+'Z'));
@@ -609,7 +604,6 @@ router.post('/add', async (req, res) => {
                                         imageThumbnail: imageThumbnail,
                                         name: myNew.name
                                     }
-                                    console.log(data)
                                     if(req.body.id==undefined)
                                         await LogoBiletiki.addLogoBiletiki(data)
                                     else
@@ -712,7 +706,6 @@ router.post('/add', async (req, res) => {
                                     await res.send(await WhereBiletiki.getWhereBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
                                 else if(req.body.name == 'Билеты') {
-                                    console.log('билет')
                                     if(req.body.id==undefined){
                                         let hash = randomstring.generate({length: 12, charset: 'numeric'});
                                         while (!await TicketBiletiki.checkHash(hash))
@@ -725,9 +718,9 @@ router.post('/add', async (req, res) => {
                                         let stream = qrTicket.pipe(fstream)
                                         stream.on('finish', async () => {
                                             let doc = new PDFDocument({
-                                                size: [600, 300],
+                                                size: [600, 320],
                                                 margins : { // by default, all are 72
-                                                    top: 30,
+                                                    top: 50,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -742,7 +735,7 @@ router.post('/add', async (req, res) => {
                                                 .font('NotoSans')
                                                 .fontSize(20)
                                                 .text(myNew.event.nameRu, 60, 30) // the text and the position where the it should come
-                                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
+                                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
                                             doc.fontSize(14)
                                                 .text(myNew.event.where.name, 50, 100) // the text and the position where the it should come
                                             let dateTime;
@@ -811,9 +804,9 @@ router.post('/add', async (req, res) => {
                                     stream.on('finish', async () => {
                                         try{
                                             let doc = new PDFDocument({
-                                                size: [600, 300],
+                                                size: [600, 320],
                                                 margins : { // by default, all are 72
-                                                    top: 30,
+                                                    top: 50,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -828,7 +821,7 @@ router.post('/add', async (req, res) => {
                                                 .font('NotoSans')
                                                 .fontSize(20)
                                                 .text(data.movie, 60, 30) // the text and the position where the it should come
-                                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
+                                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
                                             doc.fontSize(14)
                                                 .text(data.cinema+' '+data.hall, 50, 100) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
@@ -941,7 +934,6 @@ router.post('/add', async (req, res) => {
                             producers: myNew.producers,
                             actors: myNew.actors
                         }
-                        console.log(data)
                         if(req.body.id==undefined)
                             await MovieBiletiki.addMovieBiletiki(data)
                         else
@@ -1004,7 +996,6 @@ router.post('/add', async (req, res) => {
                             seats: JSON.parse(myNew.seats),
                             cinema:  myNew.cinema
                         }
-                        console.log(data)
                         if(req.body.id==undefined)
                             await SeanceBiletiki.addSeanceBiletiki(data)
                         else
@@ -1012,8 +1003,6 @@ router.post('/add', async (req, res) => {
                         await res.send(await SeanceBiletiki.getSeanceBiletiki(req.body.search, req.body.sort, req.body.skip))
                     }
                     else if(req.body.name == 'Событие') {
-                        console.log(req.body.name)
-                        console.log(myNew)
                         let realDate = []
                         for(let i=0; i<myNew.date.length; i++){
                             realDate.push(new Date(myNew.date[i]+'Z'));
@@ -1061,7 +1050,6 @@ router.post('/add', async (req, res) => {
                             imageThumbnail: imageThumbnail,
                             name: myNew.name
                         }
-                        console.log(data)
                         if(req.body.id==undefined)
                             await LogoBiletiki.addLogoBiletiki(data)
                         else
@@ -1165,7 +1153,6 @@ router.post('/add', async (req, res) => {
                     }
                     else if(req.body.name == 'Билеты') {
                         if(req.body.id==undefined){
-                            console.log('lol')
                             let hash = randomstring.generate({length: 12, charset: 'numeric'});
                             while (!await TicketBiletiki.checkHash(hash))
                                 hash = randomstring.generate({length: 12, charset: 'numeric'});
@@ -1177,9 +1164,9 @@ router.post('/add', async (req, res) => {
                             let stream = qrTicket.pipe(fstream)
                             stream.on('finish', async () => {
                                 let doc = new PDFDocument({
-                                    size: [600, 300],
+                                    size: [600, 320],
                                     margins : { // by default, all are 72
-                                        top: 30,
+                                        top: 50,
                                         bottom:10,
                                         left: 10,
                                         right: 10
@@ -1194,7 +1181,7 @@ router.post('/add', async (req, res) => {
                                     .font('NotoSans')
                                     .fontSize(20)
                                     .text(myNew.event.nameRu, 60, 30)
-                                doc.image(qrpath, 330, 30, {fit: [80, 80]})
+                                doc.image(qrpath, 360, 30, {fit: [80, 80]})
                                 doc.fontSize(14)
                                     .text(myNew.event.where.name, 50, 100)
                                 let dateTime;
@@ -1262,9 +1249,9 @@ router.post('/add', async (req, res) => {
                             stream.on('finish', async () => {
                                 try{
                                     let doc = new PDFDocument({
-                                        size: [600, 300],
+                                        size: [600, 320],
                                         margins : { // by default, all are 72
-                                            top: 30,
+                                            top: 50,
                                             bottom:10,
                                             left: 10,
                                             right: 10
@@ -1279,7 +1266,7 @@ router.post('/add', async (req, res) => {
                                         .font('NotoSans')
                                         .fontSize(20)
                                         .text(myNew.movie, 60, 30) // the text and the position where the it should come
-                                    doc.image(qrpath, 330, 30, {fit: [80, 80]})
+                                    doc.image(qrpath, 360, 30, {fit: [80, 80]})
                                     doc.fontSize(14)
                                         .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
@@ -1416,9 +1403,9 @@ router.post('/add', async (req, res) => {
                                     stream.on('finish', async () => {
                                         try {
                                             let doc = new PDFDocument({
-                                                size: [600, 300],
+                                                size: [600, 320],
                                                 margins : { // by default, all are 72
-                                                    top: 30,
+                                                    top: 50,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -1433,7 +1420,7 @@ router.post('/add', async (req, res) => {
                                                 .font('NotoSans')
                                                 .fontSize(20)
                                                 .text(myNew.movie, 60, 30) // the text and the position where the it should come
-                                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
+                                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
                                             doc.fontSize(14)
                                                 .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
@@ -1521,7 +1508,6 @@ router.post('/add', async (req, res) => {
                     }
                     else if (req.body.name == 'Билеты кино') {
                         if (req.body.id == undefined) {
-                            console.log(myNew.seats)
                             let hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
                             while (!await TicketCinemaBiletiki.checkHash(hash))
                                 hash = randomstring.generate(20) + myNew.user + myNew.seance._id;
@@ -1534,9 +1520,9 @@ router.post('/add', async (req, res) => {
                             stream.on('finish', async () => {
                                 try {
                                     let doc = new PDFDocument({
-                                        size: [600, 300],
+                                        size: [600, 320],
                                         margins : { // by default, all are 72
-                                            top: 30,
+                                            top: 50,
                                             bottom:10,
                                             left: 10,
                                             right: 10
@@ -1551,7 +1537,7 @@ router.post('/add', async (req, res) => {
                                         .font('NotoSans')
                                         .fontSize(20)
                                         .text(myNew.movie, 60, 30) // the text and the position where the it should come
-                                    doc.image(qrpath, 330, 30, {fit: [80, 80]})
+                                    doc.image(qrpath, 360, 30, {fit: [80, 80]})
                                     doc.fontSize(14)
                                         .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
@@ -1605,9 +1591,9 @@ router.post('/add', async (req, res) => {
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
                                  let doc = new PDFDocument({
-                                     size: [600, 300],
+                                     size: [600, 320],
                                      margins : { // by default, all are 72
-                                         top: 30,
+                                         top: 50,
                                          bottom:10,
                                          left: 10,
                                          right: 10
@@ -1622,7 +1608,7 @@ router.post('/add', async (req, res) => {
                                 .font('NotoSans')
                                 .fontSize(20)
                                 .text(myNew.event.nameRu, 60, 30) // the text and the position where the it should come
-                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
+                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
                             doc.fontSize(14)
                                 .text(myNew.event.where, 50, 100) // the text and the position where the it should come
                             let dateTime;
@@ -1685,9 +1671,9 @@ router.post('/add', async (req, res) => {
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
                                  let doc = new PDFDocument({
-                                     size: [600, 300],
+                                     size: [600, 320],
                                      margins : { // by default, all are 72
-                                         top: 30,
+                                         top: 50,
                                          bottom:10,
                                          left: 10,
                                          right: 10
@@ -1702,7 +1688,7 @@ router.post('/add', async (req, res) => {
                                 .font('NotoSans')
                                 .fontSize(20)
                                 .text(myNew.movie, 60, 30) // the text and the position where the it should come
-                            doc.image(qrpath, 330, 30, {fit: [80, 80]})
+                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
                             doc.fontSize(14)
                                 .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
                             for(let i = 0; i<myNew.seats.length; i++){
