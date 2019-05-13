@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="" />
+    <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/precache-manifest.35c8c618d7b1b29b35ec234b2f55767d.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.0f2ab59c.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.0f2ab59c.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.84d80440.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.84d80440.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.138defa9.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.138defa9.js.map" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -47,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="payment.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="payment.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/payment.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="755" column="68" lean-forward="false" selection-start-line="755" selection-start-column="68" selection-end-line="755" selection-end-column="88" />
+            <state relative-caret-position="222">
+              <caret line="750" column="40" lean-forward="false" selection-start-line="750" selection-start-column="40" selection-end-line="750" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -67,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="76">
-              <caret line="20" column="42" lean-forward="true" selection-start-line="20" selection-start-column="42" selection-end-line="21" selection-end-column="44" />
+              <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="21" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -99,7 +111,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nodemailer</find>
       <find>await TicketBiletiki.checkHash</find>
       <find>TicketBiletiki.checkHash</find>
       <find>if(data.seats[i][0]['name'].split(':')[0]!==undefined)</find>
@@ -129,6 +140,7 @@
       <find>qrpath</find>
       <find>image(qrpath</find>
       <find>body-parser</find>
+      <find>bodyParser</find>
     </findStrings>
     <replaceStrings>
       <replace>movie</replace>
@@ -506,12 +518,12 @@
       <workItem from="1557391637762" duration="124000" />
       <workItem from="1557468158025" duration="26000" />
       <workItem from="1557719704732" duration="3465000" />
-      <workItem from="1557735661967" duration="1945000" />
+      <workItem from="1557735661967" duration="2731000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="905054000" />
+    <option name="totallyTimeSpent" value="905840000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -904,14 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/payment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="755" column="68" lean-forward="false" selection-start-line="755" selection-start-column="68" selection-end-line="755" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-77">
@@ -923,7 +927,15 @@
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
-          <caret line="20" column="42" lean-forward="true" selection-start-line="20" selection-start-column="42" selection-end-line="21" selection-end-column="44" />
+          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="21" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/payment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="750" column="40" lean-forward="false" selection-start-line="750" selection-start-column="40" selection-end-line="750" selection-end-column="40" />
           <folding />
         </state>
       </provider>
