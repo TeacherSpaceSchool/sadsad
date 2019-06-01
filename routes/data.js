@@ -741,6 +741,10 @@ router.post('/add', async (req, res) => {
                                             let dateTime;
                                             let place1 = '';
                                             let ryad = ''
+                                            let sum = 0
+                                            for(let i = 0; i<data.seats.length; i++){
+                                                sum+=parseInt(data.seats[i][0]['price'])
+                                            }
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                                 let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -766,6 +770,10 @@ router.post('/add', async (req, res) => {
                                                 .font('NotoSans')
                                                 .fontSize(14)
                                                 .text(place1, {width: doc.page.width - 100, align: 'justify'})
+                                            doc
+                                                .font('NotoSans')
+                                                .fontSize(14)
+                                                .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
                                             doc.save()
                                             doc.rotate(90, {origin: [doc.x, doc.y]});
                                             doc.restore()
@@ -1187,6 +1195,10 @@ router.post('/add', async (req, res) => {
                                 let dateTime;
                                 let place1 = '';
                                 let ryad = ''
+                                let sum = 0
+                                for(let i = 0; i<data.seats.length; i++){
+                                    sum+=parseInt(data.seats[i][0]['price'])
+                                }
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     let date = data.seats[i][1].split('T')[0].split('-')
                                     let time = data.seats[i][1].split('T')[1].split(':')
@@ -1212,6 +1224,10 @@ router.post('/add', async (req, res) => {
                                     .font('NotoSans')
                                     .fontSize(14)
                                     .text(place1, {width: doc.page.width - 100, align: 'justify'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(14)
+                                    .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
                                 doc.save()
                                 doc.rotate(90, {origin: [doc.x, doc.y]});
                                 doc.restore()
@@ -1614,6 +1630,10 @@ router.post('/add', async (req, res) => {
                             let dateTime;
                             let place1 = '';
                             let ryad = ''
+                            let sum = 0
+                            for(let i = 0; i<data.seats.length; i++){
+                                sum+=parseInt(data.seats[i][0]['price'])
+                            }
                             for(let i = 0; i<myNew.seats.length; i++){
                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                 let time = myNew.seats[i][1].split('T')[1].split(':')
@@ -1636,6 +1656,14 @@ router.post('/add', async (req, res) => {
                                 .font('NotoSans')
                                 .fontSize(14)
                                 .text(place1, {width: doc.page.width - 100, align: 'justify'})
+                            doc
+                                .font('NotoSans')
+                                .fontSize(14)
+                                .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
+                            doc.save()
+                            doc.rotate(90, {origin: [doc.x, doc.y]});
+                            doc.restore()
+                            doc.end()
                             doc.end()
                             })
 
