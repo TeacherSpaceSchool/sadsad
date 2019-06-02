@@ -720,7 +720,7 @@ router.post('/add', async (req, res) => {
                                             let doc = new PDFDocument({
                                                 size: [500, 200],
                                                 margins : { // by default, all are 72
-                                                    top: 70,
+                                                    top: 80,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -814,7 +814,7 @@ router.post('/add', async (req, res) => {
                                             let doc = new PDFDocument({
                                                 size: [500, 200],
                                                 margins : { // by default, all are 72
-                                                    top: 70,
+                                                    top: 80,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -1174,7 +1174,7 @@ router.post('/add', async (req, res) => {
                                 let doc = new PDFDocument({
                                     size: [500, 200],
                                     margins : { // by default, all are 72
-                                        top: 70,
+                                        top: 80,
                                         bottom:10,
                                         left: 10,
                                         right: 10
@@ -1267,7 +1267,7 @@ router.post('/add', async (req, res) => {
                                     let doc = new PDFDocument({
                                         size: [500, 200],
                                         margins : { // by default, all are 72
-                                            top: 70,
+                                            top: 80,
                                             bottom:10,
                                             left: 10,
                                             right: 10
@@ -1421,7 +1421,7 @@ router.post('/add', async (req, res) => {
                                             let doc = new PDFDocument({
                                                 size: [500, 200],
                                                 margins : { // by default, all are 72
-                                                    top: 70,
+                                                    top: 80,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -1538,7 +1538,7 @@ router.post('/add', async (req, res) => {
                                     let doc = new PDFDocument({
                                         size: [500, 200],
                                         margins : { // by default, all are 72
-                                            top: 70,
+                                            top: 80,
                                             bottom:10,
                                             left: 10,
                                             right: 10
@@ -1609,7 +1609,7 @@ router.post('/add', async (req, res) => {
                                  let doc = new PDFDocument({
                                      size: [500, 200],
                                      margins : { // by default, all are 72
-                                         top: 70,
+                                         top: 80,
                                          bottom:10,
                                          left: 10,
                                          right: 10
@@ -1701,7 +1701,7 @@ router.post('/add', async (req, res) => {
                                  let doc = new PDFDocument({
                                      size: [500, 200],
                                      margins : { // by default, all are 72
-                                         top: 70,
+                                         top: 80,
                                          bottom:10,
                                          left: 10,
                                          right: 10
