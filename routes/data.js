@@ -718,9 +718,9 @@ router.post('/add', async (req, res) => {
                                         let stream = qrTicket.pipe(fstream)
                                         stream.on('finish', async () => {
                                             let doc = new PDFDocument({
-                                                size: [600, 320],
+                                                size: [500, 200],
                                                 margins : { // by default, all are 72
-                                                    top: 50,
+                                                    top: 70,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -733,11 +733,11 @@ router.post('/add', async (req, res) => {
                                             doc.pipe(fstream);
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(20)
+                                                .fontSize(18)
                                                 .text(myNew.event.nameRu, 60, 30) // the text and the position where the it should come
-                                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
-                                            doc.fontSize(14)
-                                                .text(myNew.event.where.name, 50, 100) // the text and the position where the it should come
+                                            doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                                            doc.fontSize(12)
+                                                .text(myNew.event.where.name, 50, 70) // the text and the position where the it should come
                                             let dateTime;
                                             let place1 = '';
                                             let ryad = ''
@@ -764,15 +764,15 @@ router.post('/add', async (req, res) => {
                                             }
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(14)
+                                                .fontSize(12)
                                                 .text(dateTime, {width: doc.page.width - 100, align: 'justify'})
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(14)
+                                                .fontSize(12)
                                                 .text(place1, {width: doc.page.width - 100, align: 'justify'})
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(14)
+                                                .fontSize(12)
                                                 .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
                                             doc.save()
                                             doc.rotate(90, {origin: [doc.x, doc.y]});
@@ -812,9 +812,9 @@ router.post('/add', async (req, res) => {
                                     stream.on('finish', async () => {
                                         try{
                                             let doc = new PDFDocument({
-                                                size: [600, 320],
+                                                size: [500, 200],
                                                 margins : { // by default, all are 72
-                                                    top: 50,
+                                                    top: 70,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -827,18 +827,18 @@ router.post('/add', async (req, res) => {
                                             doc.pipe(fstream);
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(20)
+                                                .fontSize(18)
                                                 .text(data.movie, 60, 30) // the text and the position where the it should come
-                                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
-                                            doc.fontSize(14)
-                                                .text(data.cinema+' '+data.hall, 50, 100) // the text and the position where the it should come
+                                            doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                                            doc.fontSize(12)
+                                                .text(data.cinema+' '+data.hall, 50, 70) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = data.seats[i][1].split('T')[0].split('-')
                                                 let time = data.seats[i][1].split('T')[1].split(':')
                                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                                 doc
                                                     .font('NotoSans')
-                                                    .fontSize(14)
+                                                    .fontSize(12)
                                                     .text(dateTime+' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
                                             doc.end()
@@ -1172,9 +1172,9 @@ router.post('/add', async (req, res) => {
                             let stream = qrTicket.pipe(fstream)
                             stream.on('finish', async () => {
                                 let doc = new PDFDocument({
-                                    size: [600, 320],
+                                    size: [500, 200],
                                     margins : { // by default, all are 72
-                                        top: 50,
+                                        top: 70,
                                         bottom:10,
                                         left: 10,
                                         right: 10
@@ -1187,11 +1187,11 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(20)
+                                    .fontSize(18)
                                     .text(myNew.event.nameRu, 60, 30)
-                                doc.image(qrpath, 360, 30, {fit: [80, 80]})
-                                doc.fontSize(14)
-                                    .text(myNew.event.where.name, 50, 100)
+                                doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                                doc.fontSize(12)
+                                    .text(myNew.event.where.name, 50, 70)
                                 let dateTime;
                                 let place1 = '';
                                 let ryad = ''
@@ -1218,15 +1218,15 @@ router.post('/add', async (req, res) => {
                                 }
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(14)
+                                    .fontSize(12)
                                     .text(dateTime, {width: doc.page.width - 100, align: 'justify'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(14)
+                                    .fontSize(12)
                                     .text(place1, {width: doc.page.width - 100, align: 'justify'})
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(14)
+                                    .fontSize(12)
                                     .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
                                 doc.save()
                                 doc.rotate(90, {origin: [doc.x, doc.y]});
@@ -1265,9 +1265,9 @@ router.post('/add', async (req, res) => {
                             stream.on('finish', async () => {
                                 try{
                                     let doc = new PDFDocument({
-                                        size: [600, 320],
+                                        size: [500, 200],
                                         margins : { // by default, all are 72
-                                            top: 50,
+                                            top: 70,
                                             bottom:10,
                                             left: 10,
                                             right: 10
@@ -1280,18 +1280,18 @@ router.post('/add', async (req, res) => {
                                     doc.pipe(fstream);
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(20)
+                                        .fontSize(18)
                                         .text(myNew.movie, 60, 30) // the text and the position where the it should come
-                                    doc.image(qrpath, 360, 30, {fit: [80, 80]})
-                                    doc.fontSize(14)
-                                        .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
+                                    doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                                    doc.fontSize(12)
+                                        .text(myNew.cinema+' '+myNew.hall, 50, 70) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
                                         let date = myNew.seats[i][1].split('T')[0].split('-')
                                         let time = myNew.seats[i][1].split('T')[1].split(':')
                                         let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                         doc
                                             .font('NotoSans')
-                                            .fontSize(14)
+                                            .fontSize(12)
                                             .text(dateTime+' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+myNew.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                     }
                                     doc.end()
@@ -1419,9 +1419,9 @@ router.post('/add', async (req, res) => {
                                     stream.on('finish', async () => {
                                         try {
                                             let doc = new PDFDocument({
-                                                size: [600, 320],
+                                                size: [500, 200],
                                                 margins : { // by default, all are 72
-                                                    top: 50,
+                                                    top: 70,
                                                     bottom:10,
                                                     left: 10,
                                                     right: 10
@@ -1434,18 +1434,18 @@ router.post('/add', async (req, res) => {
                                             doc.pipe(fstream);
                                             doc
                                                 .font('NotoSans')
-                                                .fontSize(20)
+                                                .fontSize(18)
                                                 .text(myNew.movie, 60, 30) // the text and the position where the it should come
-                                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
-                                            doc.fontSize(14)
-                                                .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
+                                            doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                                            doc.fontSize(12)
+                                                .text(myNew.cinema+' '+myNew.hall, 50, 70) // the text and the position where the it should come
                                             for(let i = 0; i<myNew.seats.length; i++){
                                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                                 let time = myNew.seats[i][1].split('T')[1].split(':')
                                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                                 doc
                                                     .font('NotoSans')
-                                                    .fontSize(14)
+                                                    .fontSize(12)
                                                     .text(dateTime+' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+myNew.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                             }
                                             doc.end()
@@ -1536,9 +1536,9 @@ router.post('/add', async (req, res) => {
                             stream.on('finish', async () => {
                                 try {
                                     let doc = new PDFDocument({
-                                        size: [600, 320],
+                                        size: [500, 200],
                                         margins : { // by default, all are 72
-                                            top: 50,
+                                            top: 70,
                                             bottom:10,
                                             left: 10,
                                             right: 10
@@ -1551,18 +1551,18 @@ router.post('/add', async (req, res) => {
                                     doc.pipe(fstream);
                                     doc
                                         .font('NotoSans')
-                                        .fontSize(20)
+                                        .fontSize(18)
                                         .text(myNew.movie, 60, 30) // the text and the position where the it should come
-                                    doc.image(qrpath, 360, 30, {fit: [80, 80]})
-                                    doc.fontSize(14)
-                                        .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
+                                    doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                                    doc.fontSize(12)
+                                        .text(myNew.cinema+' '+myNew.hall, 50, 70) // the text and the position where the it should come
                                     for(let i = 0; i<myNew.seats.length; i++){
                                         let date = myNew.seats[i][1].split('T')[0].split('-')
                                         let time = myNew.seats[i][1].split('T')[1].split(':')
                                         let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                         doc
                                             .font('NotoSans')
-                                            .fontSize(14)
+                                            .fontSize(12)
                                             .text(dateTime+' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+myNew.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                                     }
                                     doc.end()
@@ -1607,9 +1607,9 @@ router.post('/add', async (req, res) => {
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
                                  let doc = new PDFDocument({
-                                     size: [600, 320],
+                                     size: [500, 200],
                                      margins : { // by default, all are 72
-                                         top: 50,
+                                         top: 70,
                                          bottom:10,
                                          left: 10,
                                          right: 10
@@ -1622,11 +1622,11 @@ router.post('/add', async (req, res) => {
                             doc.pipe(fstream);
                             doc
                                 .font('NotoSans')
-                                .fontSize(20)
+                                .fontSize(18)
                                 .text(myNew.event.nameRu, 60, 30) // the text and the position where the it should come
-                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
-                            doc.fontSize(14)
-                                .text(myNew.event.where, 50, 100) // the text and the position where the it should come
+                            doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                            doc.fontSize(12)
+                                .text(myNew.event.where, 50, 70) // the text and the position where the it should come
                             let dateTime;
                             let place1 = '';
                             let ryad = ''
@@ -1650,15 +1650,15 @@ router.post('/add', async (req, res) => {
                             }
                             doc
                                 .font('NotoSans')
-                                .fontSize(14)
+                                .fontSize(12)
                                 .text(dateTime, {width: doc.page.width - 100, align: 'justify'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(14)
+                                .fontSize(12)
                                 .text(place1, {width: doc.page.width - 100, align: 'justify'})
                             doc
                                 .font('NotoSans')
-                                .fontSize(14)
+                                .fontSize(12)
                                 .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
                             doc.save()
                             doc.rotate(90, {origin: [doc.x, doc.y]});
@@ -1699,9 +1699,9 @@ router.post('/add', async (req, res) => {
                         let stream = qrTicket.pipe(fstream)
                         stream.on('finish', async () => {
                                  let doc = new PDFDocument({
-                                     size: [600, 320],
+                                     size: [500, 200],
                                      margins : { // by default, all are 72
-                                         top: 50,
+                                         top: 70,
                                          bottom:10,
                                          left: 10,
                                          right: 10
@@ -1714,18 +1714,18 @@ router.post('/add', async (req, res) => {
                                 doc.pipe(fstream);
                             doc
                                 .font('NotoSans')
-                                .fontSize(20)
+                                .fontSize(18)
                                 .text(myNew.movie, 60, 30) // the text and the position where the it should come
-                            doc.image(qrpath, 360, 30, {fit: [80, 80]})
-                            doc.fontSize(14)
-                                .text(myNew.cinema+' '+myNew.hall, 50, 100) // the text and the position where the it should come
+                            doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                            doc.fontSize(12)
+                                .text(myNew.cinema+' '+myNew.hall, 50, 70) // the text and the position where the it should come
                             for(let i = 0; i<myNew.seats.length; i++){
                                 let date = myNew.seats[i][1].split('T')[0].split('-')
                                 let time = myNew.seats[i][1].split('T')[1].split(':')
                                 let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                 doc
                                     .font('NotoSans')
-                                    .fontSize(14)
+                                    .fontSize(12)
                                     .text(dateTime+' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+myNew.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                             }
                             doc.end()
