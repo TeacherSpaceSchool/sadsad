@@ -631,6 +631,13 @@
   fill: #000;
 }
 
+@media screen and (min-width: 768px) {
+  .header .top {
+    height: 154px !important;
+  }
+}
+
+
 .header .top {
   padding: 21px 0 13px;
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.5)), to(rgba(214, 214, 214, 0.5)));
