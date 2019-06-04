@@ -494,6 +494,19 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'MMA Дворец спорта им. К. Кожомкула'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'MMA Дворец спорта им. К. Кожомкула',
+                nameKg:  'MMA Дворец спорта им. К. Кожомкула',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.878374, 74.595275',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
         findAdmin = await WhereBiletiki.findOne({nameRu: 'Киргизский государственный исторический музей'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
