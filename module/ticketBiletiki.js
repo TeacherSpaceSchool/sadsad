@@ -97,7 +97,6 @@ const buy = async (req, res, user) => {
                 .fontSize(11)
                 .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
             doc.end()
-            console.log('end')
         })
         await EventBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
         let _object = new TicketBiletiki({
