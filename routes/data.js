@@ -740,6 +740,7 @@ router.post('/add', async (req, res) => {
                                                 .text(myNew.event.where.name, 50, 70) // the text and the position where the it should come
                                             let dateTime;
                                             let place1 = '';
+                                            let sector = ''
                                             let ryad = ''
                                             let sum = 0
                                             for(let i = 0; i<data.seats.length; i++){
@@ -750,13 +751,20 @@ router.post('/add', async (req, res) => {
                                                 let time = myNew.seats[i][1].split('T')[1].split(':')
                                                 dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                                 let place = myNew.seats[i][0]['name']
+                                                if(i===0||sector != myNew.seats[i][2]){
+                                                    sector = myNew.seats[i][2]
+                                                    if(i!==0)
+                                                        place1+=', Сектор '+sector
+                                                    else
+                                                        place1+='Сектор '+sector
+                                                }
                                                 if(myNew.seats[i][0]['name'].split(':')[1]!==undefined){
-                                                    if(i===0||ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
+                                                     if(i===0||ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
                                                         ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                                         if(ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1])
                                                             place1+=', Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                                         else
-                                                            place1+='Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                            place1+=', Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                                     }
                                                     place = ' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                                 }
@@ -1194,6 +1202,7 @@ router.post('/add', async (req, res) => {
                                     .text(myNew.event.where.name, 50, 70)
                                 let dateTime;
                                 let place1 = '';
+                                let sector = ''
                                 let ryad = ''
                                 let sum = 0
                                 for(let i = 0; i<data.seats.length; i++){
@@ -1204,10 +1213,17 @@ router.post('/add', async (req, res) => {
                                     let time = data.seats[i][1].split('T')[1].split(':')
                                     dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                     let place = data.seats[i][0]['name']
+                                    if(i===0||sector != myNew.seats[i][2]){
+                                        sector = myNew.seats[i][2]
+                                        if(i!==0)
+                                            place1+=', Сектор '+sector
+                                        else
+                                            place1+='Сектор '+sector
+                                    }
                                     if(data.seats[i][0]['name'].split(':')[1]!==undefined){
                                         if(i===0){
                                             ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
-                                            place1+='Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                            place1+=', Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                         } else if(ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
                                             ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                             place1+=', Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]
@@ -1629,6 +1645,7 @@ router.post('/add', async (req, res) => {
                                 .text(myNew.event.where, 50, 70) // the text and the position where the it should come
                             let dateTime;
                             let place1 = '';
+                            let sector = ''
                             let ryad = ''
                             let sum = 0
                             for(let i = 0; i<data.seats.length; i++){
@@ -1639,10 +1656,20 @@ router.post('/add', async (req, res) => {
                                 let time = myNew.seats[i][1].split('T')[1].split(':')
                                 dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                 let place = myNew.seats[i][0]['name']
+                                if(i===0||sector != myNew.seats[i][2]){
+                                    sector = myNew.seats[i][2]
+                                    if(i != 0)
+                                        place1+=', Сектор '+sector
+                                    else
+                                        place1+='Сектор '+sector
+                                }
                                 if(myNew.seats[i][0]['name'].split(':')[1]!==undefined){
-                                    if(i===0||ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
+                                    if(i===0){
                                         ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
-                                        place1+='Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                        place1+=' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                    } else if(ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
+                                        ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                        place1+=', Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                     }
                                     place = ' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                 }
