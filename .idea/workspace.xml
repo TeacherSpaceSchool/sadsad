@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/precache-manifest.29748cfb6f7c4ce308200f1f49b08e1b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/11.273d4f7e.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/11.273d4f7e.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.70d8e7e5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.70d8e7e5.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -499,12 +491,12 @@
       <workItem from="1560010773299" duration="3036000" />
       <workItem from="1560153303534" duration="25000" />
       <workItem from="1561107454158" duration="992000" />
-      <workItem from="1561229148968" duration="1046000" />
+      <workItem from="1561229148968" duration="1104000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="949083000" />
+    <option name="totallyTimeSpent" value="949141000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
