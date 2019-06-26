@@ -801,10 +801,11 @@ router.post('/add', async (req, res) => {
                                         }
                                         await TicketBiletiki.addTicketBiletiki(data);
                                         await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                                        await res.send(myConst.url + 'ticket/' + pdfname)
                                     } else {
                                         await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
+                                        await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
                                     }
-                                    await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
                                 }
                                 else if(req.body.name == 'Билеты кино') {
                                 if(req.body.id==undefined){
@@ -1262,10 +1263,11 @@ router.post('/add', async (req, res) => {
                             }
                             await TicketBiletiki.addTicketBiletiki(data);
                             await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                            await res.send(myConst.url + 'ticket/' + pdfname)
                         } else {
                             await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
+                            await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
                         }
-                        await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
                     }
                     else if(req.body.name == 'Билеты кино') {
                         if(req.body.id==undefined){
@@ -1708,10 +1710,11 @@ router.post('/add', async (req, res) => {
                         }
                         await TicketBiletiki.addTicketBiletiki(data);
                         await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                        await res.send(myConst.url + 'ticket/' + pdfname)
                     } else {
                         await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
+                        await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
                     }
-                    await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
                 }
                 else if(req.body.name == 'Билеты кино'){
                     if(req.body.id==undefined){

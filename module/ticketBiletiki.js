@@ -227,7 +227,7 @@ const getTicketBiletiki = async (search, sort, skip) => {
             '_id'
         ];
         if(sort == undefined||sort=='')
-            sort = '-updatedAt';
+            sort = '-createdAt';
         else if(sort[0]=='hash'&&sort[1]=='descending')
             sort = '-hash';
         else if(sort[0]=='hash'&&sort[1]=='ascending')
@@ -245,9 +245,9 @@ const getTicketBiletiki = async (search, sort, skip) => {
         else if(sort[0]=='статус'&&sort[1]=='ascending')
             sort = 'status';
         else if(sort[0]=='создан'&&sort[1]=='descending')
-            sort = '-updatedAt';
+            sort = '-createdAt';
         else if(sort[0]=='создан'&&sort[1]=='ascending')
-            sort = 'updatedAt';
+            sort = 'createdAt';
         else if(sort[0]=='жанр'&&sort[1]=='descending')
             sort = '-genre';
         else if(sort[0]=='жанр'&&sort[1]=='ascending')
@@ -259,7 +259,7 @@ const getTicketBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('genre hash user event status ticket seats where updatedAt image _id')
+                .select('genre hash user event status ticket seats where createdAt image _id')
                 .populate({
                     path: 'user',
                     select: 'name email'
@@ -282,7 +282,7 @@ const getTicketBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('genre hash user event status  ticket seats where updatedAt image _id')
+                .select('genre hash user event status  ticket seats where createdAt image _id')
                 .populate({
                     path: 'user',
                     select: 'name email'
@@ -303,7 +303,7 @@ const getTicketBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('genre hash user event status  ticket seats where updatedAt image _id')
+                .select('genre hash user event status  ticket seats where createdAt image _id')
                 .populate({
                     path: 'user',
                     select: 'name email'
@@ -313,7 +313,7 @@ const getTicketBiletiki = async (search, sort, skip) => {
             let user = '';
             if(findResult[i].user !=undefined)
                 user = findResult[i].user.name+'\n'+findResult[i].user.email+'\n'+findResult[i].user._id
-            data.push([findResult[i].ticket, findResult[i].hash, user, findResult[i].event, findResult[i].where, findResult[i].status, JSON.stringify(findResult[i].seats), findResult[i].genre, format(findResult[i].updatedAt), findResult[i]._id]);
+            data.push([findResult[i].ticket, findResult[i].hash, user, findResult[i].event, findResult[i].where, findResult[i].status, JSON.stringify(findResult[i].seats), findResult[i].genre, format(findResult[i].createdAt), findResult[i]._id]);
         }
         return {data: data, count: count, row: row}
     } catch(error) {
