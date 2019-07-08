@@ -46,7 +46,7 @@ const buy = async (req, res, user) => {
             doc
                 .font('NotoSans')
                 .fontSize(13)
-                .text('Kassir.kg', {width: doc.page.width - 100, align: 'center'})
+                .text('Kassir.kg', {width: doc.page.width - 100, align: 'justify'})
             doc.moveDown()
             let datet = new Date()
             datet = datet.toJSON()
@@ -59,20 +59,20 @@ const buy = async (req, res, user) => {
             }
             doc
                 .font('NotoSans')
-                .fontSize(11)
+                .fontSize(10)
                 .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
             doc
                 .font('NotoSans')
-                .fontSize(11)
+                .fontSize(10)
                 .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
             doc
                 .font('NotoSans')
-                .fontSize(11)
+                .fontSize(10)
                 .text('Мероприятие: '+data.event.nameRu, {width: doc.page.width - 100, align: 'justify'})
             doc.moveDown()
             doc
                 .font('NotoSans')
-                .fontSize(11)
+                .fontSize(10)
                 .text('Места:', {width: doc.page.width - 100, align: 'justify'})
             for (let i = 0; i < data.seats.length; i++) {
                 let date = data.seats[i][1].split('T')[0].split('-')
@@ -84,7 +84,7 @@ const buy = async (req, res, user) => {
                 }
                 doc
                     .font('NotoSans')
-                    .fontSize(11)
+                    .fontSize(10)
                     .text((i + 1)+') Дата: '+dateTime+' '+
                         place
                         +' Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
@@ -92,15 +92,15 @@ const buy = async (req, res, user) => {
             doc.moveDown()
             doc
                 .font('NotoSans')
-                .fontSize(11)
+                .fontSize(10)
                 .text('Код проверки: '+hash, {width: doc.page.width - 100, align: 'justify'})
             doc
                 .font('NotoSans')
-                .fontSize(11)
+                .fontSize(10)
                 .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
             doc
                 .font('NotoSans')
-                .fontSize(11)
+                .fontSize(10)
                 .text('Телефоный номер: +996 (312 / 559 / 777 / 500) 988 477', {width: doc.page.width - 100, align: 'justify'})
             doc.moveDown()
             doc
@@ -113,7 +113,7 @@ const buy = async (req, res, user) => {
                     '4. Билетти сатып алууда, Сиз Kassir.kg сайтында толук нускасы жарыяланган эрежелер менен макулдашасыз. \n' +
                     '5. Иш-чарага белгиленген убакыттан 15 минутага ашык кечиккен көрөрмандар типтүү билети бар болгон жагдайда да киргизилбейт. \n' +
                     '6. Мас абалында жана өзү менен бирге спирттик суусундуктарды алып келген жарандар типтүү билети бар болгон жагдайда иш-чарага киргизилбейт. \n' +
-                    '7. Билет, билет кассаларынан башка жерлерден, өкүлдөрдөн жана тараптардан сатып алынган билеттер, алардын түп нускасына шайкеш келбеген жагдайда, жасалма деп таанылат. Мындай жагдайда ушундай билеттин ээси аны пайдаланууга жана таркаткан болсо кылмыш жана административдик жоопкерчиликке тартыларын эскертет. \n' +
+                    '7. Билет, билет кассаларынан башка жерлерден, өкүлдөрдөн жана тараптардан сатып алынган билеттер, алардын түп нускасына шайкеш келбеген жагдайда, жасалма деп таанылат. Мындай жагдайда ушундай билеттин ээси аны пайдаланууга жана таркаткан болсо кылмыш жана административдик жоопкерчиликке тартыларын эскертет. \n\n' +
                     'Правила использования билета \n' +
                     '1. Настоящий электронный билет дает право на посещение мероприятия. \n' +
                     '2. Настоящий электронный билет запрещается копировать и передавать копии третьим лицам. Уникальный идентификатор (штрих-код), содержащийся на настоящем электронном билете, гарантирует вам право на однократное посещение мероприятия. Предъявление третьими лицами электронного билета с идентичным идентификатором лишает вас права на посещение мероприятия. \n' +
@@ -124,7 +124,7 @@ const buy = async (req, res, user) => {
                     '7. Билеты, приобретенные в иных местах, нежели в билетных кассах, у уполномоченных представителей и распространителей могут быть признаны поддельными при несоответствии с их оригинальными билетами. В этом случае владелец такого билета несет риск уголовной, административной ответственности, при попытке его использования, наряду с распространителями этих билетов.',
                     {columns: 2,
                         columnGap: 15,
-                        height: 300,
+                        height: 200,
                         width: 465,
                         align: 'justify'})
             doc.end()
