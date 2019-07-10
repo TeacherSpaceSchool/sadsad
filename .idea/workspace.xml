@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/precache-manifest.d444718e474bf8c0173fdc8a552715f3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.3140a6fa.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.3140a6fa.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.73a3c3d3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.73a3c3d3.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,10 +30,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
+            <state relative-caret-position="1510">
               <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
               <folding />
             </state>
@@ -117,12 +110,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12920">
-              <caret line="760" column="56" lean-forward="false" selection-start-line="760" selection-start-column="56" selection-end-line="760" selection-end-column="56" />
-              <folding />
+            <state relative-caret-position="162">
+              <caret line="1712" column="24" lean-forward="false" selection-start-line="1712" selection-start-column="24" selection-end-line="1712" selection-end-column="24" />
+              <folding>
+                <element signature="e#48284#53787#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,7 +134,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>doc.moveTo(330</find>
       <find>doc.image(qrpath</find>
       <find>qrpath, 320</find>
       <find>фила</find>
@@ -169,6 +163,7 @@
       <find>qr</find>
       <find>yes</find>
       <find>kassir.kz</find>
+      <find>res.send(myConst.url + 'ticket/' + pdfname</find>
     </findStrings>
     <replaceStrings>
       <replace>(</replace>
@@ -255,11 +250,11 @@
         <option value="$PROJECT_DIR$/module/paymentBiletiki.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/module/user.js" />
-        <option value="$PROJECT_DIR$/routes/data.js" />
         <option value="$PROJECT_DIR$/routes/test" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/payment.js" />
         <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
+        <option value="$PROJECT_DIR$/routes/data.js" />
       </list>
     </option>
   </component>
@@ -575,12 +570,12 @@
       <workItem from="1562650343437" duration="69000" />
       <workItem from="1562651762075" duration="6004000" />
       <workItem from="1562673569125" duration="5830000" />
-      <workItem from="1562755384847" duration="2254000" />
+      <workItem from="1562755384847" duration="2968000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="988939000" />
+    <option name="totallyTimeSpent" value="989653000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -928,14 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12920">
-          <caret line="760" column="56" lean-forward="false" selection-start-line="760" selection-start-column="56" selection-end-line="760" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/pdfkit/js/document.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1394">
@@ -996,9 +983,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
+        <state relative-caret-position="1510">
           <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="1712" column="24" lean-forward="false" selection-start-line="1712" selection-start-column="24" selection-end-line="1712" selection-end-column="24" />
+          <folding>
+            <element signature="e#48284#53787#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

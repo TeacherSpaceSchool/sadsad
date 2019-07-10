@@ -799,9 +799,9 @@ router.post('/add', async (req, res) => {
                                             ticket: myConst.url + 'ticket/' + pdfname,
                                             status: myNew.status,
                                         }
-                                        await TicketBiletiki.addTicketBiletiki(data);
-                                        await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
-                                        await res.send(myConst.url + 'ticket/' + pdfname)
+                                        TicketBiletiki.addTicketBiletiki(data);
+                                        EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                                        res.send(myConst.url + 'ticket/' + pdfname)
                                     } else {
                                         await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
                                         await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
@@ -1261,9 +1261,9 @@ router.post('/add', async (req, res) => {
                                 ticket: myConst.url + 'ticket/' + pdfname,
                                 status: myNew.status,
                             }
-                            await TicketBiletiki.addTicketBiletiki(data);
-                            await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
-                            await res.send(myConst.url + 'ticket/' + pdfname)
+                             TicketBiletiki.addTicketBiletiki(data);
+                             EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                             res.send(myConst.url + 'ticket/' + pdfname)
                         } else {
                             await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
                             await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
@@ -1708,9 +1708,9 @@ router.post('/add', async (req, res) => {
                             ticket: myConst.url + 'ticket/' + pdfname,
                             status: myNew.status,
                         }
-                        await TicketBiletiki.addTicketBiletiki(data);
-                        await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
-                        await res.send(myConst.url + 'ticket/' + pdfname)
+                         TicketBiletiki.addTicketBiletiki(data);
+                         EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                         res.send(myConst.url + 'ticket/' + pdfname)
                     } else {
                         await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
                         await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
