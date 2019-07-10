@@ -60,7 +60,15 @@ const buy = async (req, res, user) => {
             doc
                 .font('NotoSans')
                 .fontSize(10)
-                .text('Сервис: '+data.service+' Сумма: '+sum+' сом Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
+                .text('Сервис: '+data.service, {width: doc.page.width - 100, align: 'justify'})
+            doc
+                .font('NotoSans')
+                .fontSize(10)
+                .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
+            doc
+                .font('NotoSans')
+                .fontSize(10)
+                .text('Дата: '+dateTime, {width: doc.page.width - 100, align: 'justify'})
             doc
                 .font('NotoSans')
                 .fontSize(10)
