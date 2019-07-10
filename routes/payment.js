@@ -1011,12 +1011,14 @@ router.post('/visa/pay', async (req, res, next) => {
                      res.end();
                  } else {
                      res.status(501);
-                     res.end('кошелек не найден');
+                     console.log('кошелек не найден');
+                     res.end();
                  }
              }
         } else {
             res.status(501);
-            res.end('кошелек не найден');
+            console.log('кошелек не найден');
+            res.end();
         }
     } catch(error) {
         console.error(error)
