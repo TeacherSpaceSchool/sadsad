@@ -841,6 +841,7 @@ router.post('/tested', async (req, res, next) => {
 
 router.post('/visa/pay', async (req, res, next) => {
     try{
+        console.log(req.body['ReturnOid'])
         let wallet = await PaymentBiletiki.findOne({wallet: req.body['ReturnOid']})
         console.log(wallet)
         if(wallet!=null){
@@ -1012,13 +1013,13 @@ router.post('/visa/pay', async (req, res, next) => {
                      res.end();
                  } else {
                      res.status(501);
-                     console.log('кошелек не найден');
+                     console.log('кошелек не найден2');
                      res.end();
                  }
              }
         } else {
             res.status(501);
-            console.log('кошелек не найден');
+            console.log('кошелек не найден1');
             res.end();
         }
     } catch(error) {
