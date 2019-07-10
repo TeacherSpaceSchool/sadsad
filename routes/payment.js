@@ -842,6 +842,7 @@ router.post('/tested', async (req, res, next) => {
 router.post('/visa/pay', async (req, res, next) => {
     try{
         let wallet = await PaymentBiletiki.findOne({wallet: req.body['ReturnOid']})
+        console.log(wallet)
         if(wallet!=null){
             let hash = 'https://kassir.kg/visa/'+wallet.wallet+'.pdf';
             let pdfname = ''
