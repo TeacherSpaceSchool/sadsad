@@ -94,8 +94,8 @@ const buy = async (req, res, user) => {
                     .font('NotoSans')
                     .fontSize(10)
                     .text('    Дата: '+dateTime+'\n'+
-                        '    '+place
-                        +'    Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                        '    '+place+'\n'+
+                        '    Цена: '+data.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
             }
             doc.moveDown()
             doc
