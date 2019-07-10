@@ -841,7 +841,7 @@ router.post('/tested', async (req, res, next) => {
 
 router.post('/visa/pay', async (req, res, next) => {
     try{
-        console.log(req.body, req.body['ReturnOid'])
+        console.log(req.body, req.params)
         let wallet = await PaymentBiletiki.findOne({wallet: req.body['ReturnOid']})
         console.log(wallet)
         if(wallet!=null){
