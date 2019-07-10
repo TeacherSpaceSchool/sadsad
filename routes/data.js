@@ -787,21 +787,22 @@ router.post('/add', async (req, res) => {
                                             doc.restore()
                                             doc.end()
 
+
+                                            data = {
+                                                seats: myNew.seats,
+                                                hash: hash,
+                                                where: myNew.event.where.name,
+                                                user: myNew.user,
+                                                genre: myNew.event.genre,
+                                                image: myNew.event.image,
+                                                event: myNew.event.nameRu,
+                                                ticket: myConst.url + 'ticket/' + pdfname,
+                                                status: myNew.status,
+                                            }
+                                            TicketBiletiki.addTicketBiletiki(data);
+                                            EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                                            res.send(myConst.url + 'ticket/' + pdfname)
                                         })
-                                        data = {
-                                            seats: myNew.seats,
-                                            hash: hash,
-                                            where: myNew.event.where.name,
-                                            user: myNew.user,
-                                            genre: myNew.event.genre,
-                                            image: myNew.event.image,
-                                            event: myNew.event.nameRu,
-                                            ticket: myConst.url + 'ticket/' + pdfname,
-                                            status: myNew.status,
-                                        }
-                                        TicketBiletiki.addTicketBiletiki(data);
-                                        EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
-                                        res.send(myConst.url + 'ticket/' + pdfname)
                                     } else {
                                         await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
                                         await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
@@ -1249,21 +1250,23 @@ router.post('/add', async (req, res) => {
                                 doc.rotate(90, {origin: [doc.x, doc.y]});
                                 doc.restore()
                                 doc.end()
+
+
+                                data = {
+                                    seats: myNew.seats,
+                                    hash: hash,
+                                    where: myNew.event.where.name,
+                                    user: myNew.user,
+                                    genre: myNew.event.genre,
+                                    image: myNew.event.image,
+                                    event: myNew.event.nameRu,
+                                    ticket: myConst.url + 'ticket/' + pdfname,
+                                    status: myNew.status,
+                                }
+                                TicketBiletiki.addTicketBiletiki(data);
+                                EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                                res.send(myConst.url + 'ticket/' + pdfname)
                             })
-                            data = {
-                                seats: myNew.seats,
-                                hash: hash,
-                                where: myNew.event.where.name,
-                                user: myNew.user,
-                                genre: myNew.event.genre,
-                                image: myNew.event.image,
-                                event: myNew.event.nameRu,
-                                ticket: myConst.url + 'ticket/' + pdfname,
-                                status: myNew.status,
-                            }
-                             TicketBiletiki.addTicketBiletiki(data);
-                             EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
-                             res.send(myConst.url + 'ticket/' + pdfname)
                         } else {
                             await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
                             await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
@@ -1694,23 +1697,25 @@ router.post('/add', async (req, res) => {
                             doc.restore()
                             doc.end()
                             doc.end()
-                            })
 
 
-                        data = {
-                            seats: myNew.seats,
-                            hash: hash,
-                            where: myNew.event.where.name,
-                            user: myNew.user,
-                            genre: myNew.event.genre,
-                            image: myNew.event.image,
-                            event: myNew.event.nameRu,
-                            ticket: myConst.url + 'ticket/' + pdfname,
-                            status: myNew.status,
-                        }
-                         TicketBiletiki.addTicketBiletiki(data);
-                         EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
-                         res.send(myConst.url + 'ticket/' + pdfname)
+                            data = {
+                                seats: myNew.seats,
+                                hash: hash,
+                                where: myNew.event.where.name,
+                                user: myNew.user,
+                                genre: myNew.event.genre,
+                                image: myNew.event.image,
+                                event: myNew.event.nameRu,
+                                ticket: myConst.url + 'ticket/' + pdfname,
+                                status: myNew.status,
+                            }
+                            TicketBiletiki.addTicketBiletiki(data);
+                            EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                            res.send(myConst.url + 'ticket/' + pdfname)
+                        })
+
+
                     } else {
                         await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
                         await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
