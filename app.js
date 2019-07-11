@@ -52,8 +52,22 @@ app.use(function(req, res, next){
         if (req.is('text/*')) {
             req.text = '';
             req.setEncoding('utf8');
-            req.on('data', function(chunk){ req.text += chunk });
-            req.on('end', function(){ req.body = JSON.parse(req.text); next() });
+            req.on('data', function(chunk){
+                try{
+                    req.text += chunk
+                } catch(error) {
+                    console.error(error)
+                    res.status(501);
+                }
+            });
+            req.on('end', function(){
+                try{
+                    req.body = JSON.parse(req.text); next()
+                } catch(error) {
+                    console.error(error)
+                    res.status(501);
+                }
+            });
         } else {
             next();
         }
