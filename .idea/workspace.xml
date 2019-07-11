@@ -9,6 +9,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.e2c9fc8c.chunk.js.map" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.ac11f9ca.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.ac11f9ca.js.map" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
@@ -566,12 +567,12 @@
       <workItem from="1562755384847" duration="3527000" />
       <workItem from="1562760450640" duration="778000" />
       <workItem from="1562818709735" duration="5961000" />
-      <workItem from="1562837731102" duration="2143000" />
+      <workItem from="1562837731102" duration="2164000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="999094000" />
+    <option name="totallyTimeSpent" value="999115000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
