@@ -181,7 +181,7 @@ const verifydcashier = async (req, res, func) => {
     await passport.authenticate('jwt', async function (err, user) {
         try{
             if (user&&user.status==='active'&&(user.role==='admin'||user.role==='manager'||user.role==='cashier')) {
-                await func()
+                await func(user)
             }
         } catch (err) {
             console.error(err)

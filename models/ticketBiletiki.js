@@ -30,6 +30,10 @@ const TicketBiletikiSchema = mongoose.Schema({
     ticket: String,
     seats: mongoose.Schema.Types.Mixed,
     status: String,
+    cashier: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'UserBiletiki'
+    },
 }, {
     timestamps: true
 });

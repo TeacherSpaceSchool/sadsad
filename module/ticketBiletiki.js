@@ -250,6 +250,120 @@ const getByHash = async (hash) => {
     return(await TicketBiletiki.findOne({hash: hash}).populate({path: 'user', select: 'name email'}))
 }
 
+const getTicketBiletiki1 = async (search, sort, skip, user) => {
+    try{
+        let findResult = [], data = [], count;
+        const row = [
+            'билет',
+            'hash',
+            'пользователь',
+            'событие',
+            'место',
+            'статус',
+            'места',
+            'жанр',
+            'создан',
+            '_id'
+        ];
+        if(sort == undefined||sort=='')
+            sort = '-createdAt';
+        else if(sort[0]=='hash'&&sort[1]=='descending')
+            sort = '-hash';
+        else if(sort[0]=='hash'&&sort[1]=='ascending')
+            sort = 'hash';
+        else if(sort[0]=='пользователь'&&sort[1]=='descending')
+            sort = '-user';
+        else if(sort[0]=='пользователь'&&sort[1]=='ascending')
+            sort = 'user';
+        else if(sort[0]=='событие'&&sort[1]=='descending')
+            sort = '-event';
+        else if(sort[0]=='событие'&&sort[1]=='ascending')
+            sort = 'event';
+        else if(sort[0]=='статус'&&sort[1]=='descending')
+            sort = '-status';
+        else if(sort[0]=='статус'&&sort[1]=='ascending')
+            sort = 'status';
+        else if(sort[0]=='создан'&&sort[1]=='descending')
+            sort = '-createdAt';
+        else if(sort[0]=='создан'&&sort[1]=='ascending')
+            sort = 'createdAt';
+        else if(sort[0]=='жанр'&&sort[1]=='descending')
+            sort = '-genre';
+        else if(sort[0]=='жанр'&&sort[1]=='ascending')
+            sort = 'genre';
+        if(search == ''){
+            count = await TicketBiletiki.count({cashier: user});
+            findResult = await TicketBiletiki
+                .find({cashier: user})
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('genre hash user event status ticket seats where createdAt image _id')
+                .populate({
+                    path: 'user',
+                    select: 'name email'
+                });
+        } else if (mongoose.Types.ObjectId.isValid(search)) {
+            count = await TicketBiletiki.count({
+                cashier: user,
+                $or: [
+                    {_id: search},
+                    {hash: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await TicketBiletiki.find({
+                cashier: user,
+                $or: [
+                    {_id: search},
+                    {hash: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('genre hash user event status  ticket seats where createdAt image _id')
+                .populate({
+                    path: 'user',
+                    select: 'name email'
+                });
+        } else {
+            count = await TicketBiletiki.count({
+                cashier: user,
+                $or: [
+                    {hash: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
+                ]
+            });
+            findResult = await TicketBiletiki.find({
+                cashier: user,
+                $or: [
+                    {hash: {'$regex': search, '$options': 'i'}},
+                    {status: {'$regex': search, '$options': 'i'}},
+                ]
+            })
+                .sort(sort)
+                .skip(parseInt(skip))
+                .limit(10)
+                .select('genre hash user event status  ticket seats where createdAt image _id')
+                .populate({
+                    path: 'user',
+                    select: 'name email'
+                });
+        }
+        for (let i=0; i<findResult.length; i++){
+            let user = '';
+            if(findResult[i].user !=undefined)
+                user = findResult[i].user.name+'\n'+findResult[i].user.email+'\n'+findResult[i].user._id
+            data.push([findResult[i].ticket, findResult[i].hash, user, findResult[i].event, findResult[i].where, findResult[i].status, JSON.stringify(findResult[i].seats), findResult[i].genre, format(findResult[i].createdAt), findResult[i]._id]);
+        }
+        return {data: data, count: count, row: row}
+    } catch(error) {
+        console.error(error)
+    }
+}
+
 const getTicketBiletiki = async (search, sort, skip) => {
     try{
         let findResult = [], data = [], count;
@@ -389,6 +503,7 @@ module.exports.getByHash = getByHash;
 module.exports.checkHash = checkHash;
 module.exports.deleteTicketBiletiki = deleteTicketBiletiki;
 module.exports.getTicketBiletiki = getTicketBiletiki;
+module.exports.getTicketBiletiki1 = getTicketBiletiki1;
 module.exports.setTicketBiletiki = setTicketBiletiki;
 module.exports.addTicketBiletiki = addTicketBiletiki;
 module.exports.getById = getById;
