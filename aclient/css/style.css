@@ -2573,7 +2573,7 @@ input[type="button"].button-primary {
 }
 
 .content-stage {
-  margin-top: 50px;
+  padding-top: 50px;
   overflow-x: auto;
 }
 
