@@ -2573,12 +2573,15 @@ input[type="button"].button-primary {
 }
 
 .content-stage {
-  padding-top: 50px;
   overflow-x: auto;
 }
 
 .main-buy .order-first-stage .content-stage .stage-sector {
   padding-top: 20px;
+}
+
+.stage-sector {
+  padding-top: 50px;
 }
 
 .main-buy .order-first-stage .content-stage .sector-info {
