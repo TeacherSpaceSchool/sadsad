@@ -14,7 +14,7 @@ const getByCity = async (city) => {
 
 const getPopular = async (city) => {
     let today = new Date();
-    return await EventBiletiki.findRandom({city: city, popular: 'on', active: 'on', realDate: {$elemMatch: { $gte: today }}}).limit(20);
+    return await EventBiletiki.findRandom({city: {'$regex': city, '$options': 'i'}, popular: 'on', active: 'on', realDate: {$elemMatch: { $gte: today }}}).limit(20);
 };
 
 const getEventsByName = async (city, date, search) => {
