@@ -246,10 +246,11 @@ router.post('/get', async (req, res) => {
                 } else if(req.body.name == 'БилетыКиноHash'){
                     await res.send(await TicketCinemaBiletiki.getByHash(JSON.parse(req.body.data).hash))
                 } else if(req.body.name == 'Билеты'){
-
                     await res.send(await TicketBiletiki.getTicketBiletiki1(req.body.search, req.body.sort, req.body.skip, user._id))
                 } else if(req.body.name == 'Событие'){
                     await res.send(await EventBiletiki.getEventBiletiki(req.body.search, req.body.sort, req.body.skip))
+                } else if(req.body.name == 'ГдеID'){
+                    await res.send(await WhereBiletiki.getIds(JSON.parse(req.body.data).city))
                 }
             });
         }
