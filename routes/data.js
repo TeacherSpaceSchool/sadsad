@@ -246,6 +246,7 @@ router.post('/get', async (req, res) => {
                 } else if(req.body.name == 'БилетыКиноHash'){
                     await res.send(await TicketCinemaBiletiki.getByHash(JSON.parse(req.body.data).hash))
                 } else if(req.body.name == 'Билеты'){
+
                     await res.send(await TicketBiletiki.getTicketBiletiki1(req.body.search, req.body.sort, req.body.skip, user._id))
                 } else if(req.body.name == 'Событие'){
                     await res.send(await EventBiletiki.getEventBiletiki(req.body.search, req.body.sort, req.body.skip))
@@ -791,8 +792,8 @@ router.post('/add', async (req, res) => {
                                                 .fontSize(12)
                                                 .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
                                             doc.save()
-                                            doc.rotate(90, {origin: [doc.x, doc.y]});
-                                            doc.restore()
+                                            
+                                            
                                             doc.end()
                                             res.send(myConst.url + 'ticket/' + pdfname)
 
@@ -1254,8 +1255,8 @@ router.post('/add', async (req, res) => {
                                     .fontSize(12)
                                     .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
                                 doc.save()
-                                doc.rotate(90, {origin: [doc.x, doc.y]});
-                                doc.restore()
+                                
+                                
                                 doc.end()
                                 res.send(myConst.url + 'ticket/' + pdfname)
                             })
@@ -1761,8 +1762,8 @@ router.post('/add', async (req, res) => {
                                     .fontSize(12)
                                     .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
                                 doc.save()
-                                doc.rotate(90, {origin: [doc.x, doc.y]});
-                                doc.restore()
+                                
+                                
                                 doc.end()
                                 res.send(myConst.url + 'ticket/' + pdfname)
 
