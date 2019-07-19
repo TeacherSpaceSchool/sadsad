@@ -23,7 +23,7 @@ const options = {
 let port = normalizePort(process.env.PORT || '443');
 app.set('port', port);
 
-let port1 = normalizePort(process.env.PORT || '1000');
+let port1 = normalizePort(process.env.PORT || '80');
 app1.set('port', port1);
 /**
  * Create HTTP server.
@@ -133,8 +133,3 @@ function onListening1() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
-
-http.createServer(function (req, res) {
-    res.writeHead(301, { 'Location': 'https://' + req.headers['host'] + req.url });
-    res.end();
-}).listen(80);
