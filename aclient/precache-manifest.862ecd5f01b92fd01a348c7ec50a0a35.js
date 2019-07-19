@@ -152,7 +152,7 @@ self.__precacheManifest = [
     "url": "/static/media/oplata.15cddd07.png"
   },
   {
-    "revision": "159560f0f61652662ee4c0baf14ad690",
+    "revision": "602552b7e7137a3b445cceef989b4565",
     "url": "/index.html"
   }
 ];
