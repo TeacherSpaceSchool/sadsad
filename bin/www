@@ -14,9 +14,13 @@ const path = require('path');
 const options = {
     key: fs.readFileSync(path.join(__dirname, 'private.key')),
     cert: fs.readFileSync(path.join(__dirname, 'certificate.crt')),
-    requestCert: true,
+    ca: [
+        fs.readFileSync(path.join(__dirname, 's1.crt')),
+        fs.readFileSync(path.join(__dirname, 's2.crt'))
+    ],
+    //requestCert: true,
     //ca: fs.readFileSync('/etc/ssl/certs/ca.crt'),
-    rejectUnauthorized: false
+    //rejectUnauthorized: false
 };
 
 /**
