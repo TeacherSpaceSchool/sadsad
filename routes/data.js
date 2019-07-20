@@ -339,6 +339,7 @@ router.post('/delete', async (req, res) => {
                     await SocialBiletiki.deleteSocialBiletiki(JSON.parse(req.body.deleted))
                     await res.send(await SocialBiletiki.getSocialBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Билеты'){
+                    await TicketBiletiki.deleteTicketBiletiki(JSON.parse(req.body.deleted))
                     await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Пользователи'){
                     await UserBiletiki.deleteUserBiletiki(JSON.parse(req.body.deleted))
@@ -355,6 +356,10 @@ router.post('/delete', async (req, res) => {
                 } else if(req.body.name == 'Сеанс'){
                     await SeanceBiletiki.deleteSeanceBiletiki(JSON.parse(req.body.deleted))
                     await res.send(await SeanceBiletiki.getSeanceBiletiki(req.body.search, req.body.sort, req.body.skip))
+                }
+                else if(req.body.name == 'Платежи') {
+                    await PaymentBiletiki.deletePaymentBiletiki(JSON.parse(req.body.deleted))
+                    await res.send(await PaymentBiletiki.getPaymentBiletiki(req.body.search, req.body.sort, req.body.skip))
                 }
             });
         }

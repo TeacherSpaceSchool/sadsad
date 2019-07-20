@@ -162,7 +162,16 @@ const setPaymentBiletiki = async (object, id) => {
     }
 }
 
+const deletePaymentBiletiki = async (id) => {
+    try{
+        await PaymentBiletiki.deleteMany({_id: {$in: id}});
+    } catch(error) {
+        console.error(error)
+    }
+}
+
 module.exports.setPaymentBiletiki = setPaymentBiletiki;
+module.exports.deletePaymentBiletiki = deletePaymentBiletiki;
 module.exports.getPaymentBiletiki = getPaymentBiletiki;
 module.exports.addPaymentBiletiki = addPaymentBiletiki;
 module.exports.generateWallet = generateWallet;
