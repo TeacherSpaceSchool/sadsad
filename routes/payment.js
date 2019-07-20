@@ -330,6 +330,7 @@ router.get('/qiwi', async (req, res, next) => {
 
 router.post('/elsom/generate', async (req, res, next) => {
     try{
+        console.log('lol')
         res.set('Content+Type', 'text/json; charset=utf-8');
             const instance = axios.create({
                 httpsAgent: new https.Agent({
@@ -364,7 +365,7 @@ router.post('/elsom/generate', async (req, res, next) => {
 router.post('/elsom/pay', async (req, res, next) => {
     res.set('Content-Type', 'text/json; charset=utf-8');
     try{
-        console.log(req, res)
+        console.log('lol')
         let ip = JSON.stringify(req.ip)
         if(true){
             let responce = req.body
