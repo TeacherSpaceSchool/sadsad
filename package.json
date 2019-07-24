@@ -26,6 +26,7 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "jimp": "^0.6.0",
+    "jsonpack": "^1.1.5",
     "mongoose": "^5.4.0",
     "mongoose-random": "^0.1.1",
     "mongoose-unique-validator": "^2.0.2",
