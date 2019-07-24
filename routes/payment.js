@@ -151,6 +151,7 @@ router.get('/asisnur', async (req, res, next) => {
         res.end(xml(result, true));
     }
 });
+
 router.get('/quickpay', async (req, res, next) => {
     let result;
     try{
