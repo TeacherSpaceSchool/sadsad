@@ -196,7 +196,26 @@ const addEventBiletiki = async (object) => {
 
 const setEventBiletiki = async (object, id) => {
     try{
-        await EventBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        let event = await EventBiletiki.findById({_id: id});
+        event.realDate = object.realDate
+        event.popular = object.popular
+        event.active = object.active
+        event.nameRu = object.nameRu
+        event.nameKg =  object.nameKg
+        event.descriptionRu = object.descriptionRu
+        event.descriptionKg = object.descriptionKg
+        event.where = object.where
+        event.price = object.price
+        event.date = object.date
+        event.video = object.video
+        event.city = object.city
+        event.image = object.image
+        event.imageThumbnail = object.imageThumbnail
+        event.ageCategory = object.ageCategory
+        event.genre = object.genre
+
+        await event.save();
+        //await EventBiletiki.findOneAndUpdate({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

@@ -137,7 +137,28 @@ const buy = async (req, res, user) => {
                         align: 'justify'})
             doc.end()
         })
-        await EventBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
+
+        let event = await EventBiletiki.findById({_id: data.event._id});
+        event.realDate = data.event.realDate
+        event.popular = data.event.popular
+        event.active = data.event.active
+        event.nameRu = data.event.nameRu
+        event.nameKg =  data.event.nameKg
+        event.descriptionRu = data.event.descriptionRu
+        event.descriptionKg = data.event.descriptionKg
+        event.where = data.event.where
+        event.price = data.event.price
+        event.date = data.event.date
+        event.video = data.event.video
+        event.city = data.event.city
+        event.image = data.event.image
+        event.imageThumbnail = data.event.imageThumbnail
+        event.ageCategory = data.event.ageCategory
+        event.genre = data.event.genre
+
+        await event.save();
+
+        //await EventBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
         let _object = new TicketBiletiki({
             seats: data.seats,
             hash: hash,
