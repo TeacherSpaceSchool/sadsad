@@ -155,7 +155,6 @@ const buy = async (req, res, user) => {
         event.imageThumbnail = data.event.imageThumbnail
         event.ageCategory = data.event.ageCategory
         event.genre = data.event.genre
-
         await event.save();
 
         //await EventBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
