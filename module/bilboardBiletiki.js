@@ -99,7 +99,7 @@ const addBillboardBiletiki = async (object) => {
 
 const setBillboardBiletiki = async (object, id) => {
     try{
-        await BillboardBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await BillboardBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

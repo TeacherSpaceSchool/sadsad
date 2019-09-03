@@ -96,7 +96,7 @@ const buy = async (req, res, user) => {
                 .text('Техническая поддержка: info@kassir.kg', {width: doc.page.width - 100, align: 'justify'})
             doc.end()
         })
-        await SeanceBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
+        await SeanceBiletiki.updateOne({_id: data.event._id}, {$set: data.event});
         let _object = new TicketCinemaBiletiki({
             seats: data.seats,
             image: data.image,
@@ -168,7 +168,7 @@ const buy = async (req, res, user) => {
                 }
 
 
-                await SeanceBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: _seance});
+                await SeanceBiletiki.updateOne({_id: data.event._id}, {$set: _seance});
                 await TicketCinemaBiletiki.deleteMany({_id: _object._id})
                 await PaymentBiletiki.deleteMany({ticket: _object._id})
             }
@@ -192,7 +192,7 @@ const getByHash = async (hash) => {
 const approveTicketCinemaBiletiki = async (object, hash) => {
     try{
         if(await TicketCinemaBiletiki.count({hash: hash, status: 'продан'})!==0){
-            await TicketCinemaBiletiki.findOneAndUpdate({hash: hash}, {$set: {status: 'использован'}});
+            await TicketCinemaBiletiki.updateOne({hash: hash}, {$set: {status: 'использован'}});
             return('ok')
         } else {
             return('error')
@@ -445,7 +445,7 @@ const addTicketCinemaBiletiki = async (object) => {
 
 const setTicketCinemaBiletiki = async (object, id) => {
     try{
-        await TicketCinemaBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await TicketCinemaBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

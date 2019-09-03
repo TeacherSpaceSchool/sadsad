@@ -85,7 +85,7 @@ const addEmailBiletiki = async (object) => {
 
 const setEmailBiletiki = async (object, id) => {
     try{
-        await EmailBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await EmailBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

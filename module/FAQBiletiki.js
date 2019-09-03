@@ -112,7 +112,7 @@ const addFAQBiletiki = async (object) => {
 
 const setFAQBiletiki = async (object, id) => {
     try{
-        await FAQBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await FAQBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

@@ -174,7 +174,7 @@ const setUserBiletiki = async (object, id) => {
             user.password = object.password;
             await user.save();
         } else {
-            await UserBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+            await UserBiletiki.updateOne({_id: id}, {$set: object});
         }
     } catch(error) {
         console.error(error)

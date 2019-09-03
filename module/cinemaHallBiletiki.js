@@ -246,7 +246,7 @@ const addCinemaHallBiletiki = async (object) => {
 
 const setCinemaHallBiletiki = async (object, id) => {
     try{
-        await CinemaHallBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await CinemaHallBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

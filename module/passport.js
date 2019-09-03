@@ -222,7 +222,7 @@ const setProfile = async (req, res) => {
                     user.password = data.password;
                     await user.save();
                 } else {
-                    await UserBiletiki.findOneAndUpdate({_id: user._id}, {$set: {email: data.email, name: data.name, surname: data.surname, phonenumber: data.phonenumber}});
+                    await UserBiletiki.updateOne({_id: user._id}, {$set: {email: data.email, name: data.name, surname: data.surname, phonenumber: data.phonenumber}});
                 }
                 res.status(200);
                 res.end(JSON.stringify(await UserBiletiki.findOne({_id: user._id})));

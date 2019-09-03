@@ -16,6 +16,7 @@ const mongoose = require('mongoose');
 
 const buy = async (req, res, user) => {
     let data = JSON.parse(req.body.data);
+    let number = 0;
     if(checkEmail(data.email)&&checkPhone(data.phone)) {
         let hash = randomstring.generate({length: 12, charset: 'numeric'});
         while (!await checkHash(hash))
@@ -156,8 +157,7 @@ const buy = async (req, res, user) => {
         event.ageCategory = data.event.ageCategory
         event.genre = data.event.genre
         await event.save();
-
-        //await EventBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: data.event});
+        //await EventBiletiki.updateOne({_id: data.event._id}, {$set: data.event});
         let _object = new TicketBiletiki({
             seats: data.seats,
             hash: hash,
@@ -236,7 +236,7 @@ const buy = async (req, res, user) => {
                         }
                     }
                 }
-                await EventBiletiki.findOneAndUpdate({_id: data.event._id}, {$set: _event_});
+                await EventBiletiki.updateOne({_id: data.event._id}, {$set: _event_});
                 await TicketBiletiki.deleteMany({_id: _object._id})
                 await PaymentBiletiki.deleteMany({ticket: _object._id})
             }
@@ -252,7 +252,7 @@ const checkHash = async (hash) => {
 const approveTicketBiletiki = async (object, hash) => {
     try{
         if(await TicketBiletiki.count({hash: hash, status: 'продан'})!==0){
-            await TicketBiletiki.findOneAndUpdate({hash: hash}, {$set: {status: 'использован'}});
+            await TicketBiletiki.updateOne({hash: hash}, {$set: {status: 'использован'}});
             return('ok')
         } else {
             return('error')
@@ -513,7 +513,7 @@ const addTicketBiletiki = async (object) => {
 
 const setTicketBiletiki = async (object, id) => {
     try{
-        await TicketBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await TicketBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

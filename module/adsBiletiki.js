@@ -123,7 +123,7 @@ const addAdsBiletiki = async (object) => {
 
 const setAdsBiletiki = async (object, id) => {
     try{
-        await AdsBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await AdsBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

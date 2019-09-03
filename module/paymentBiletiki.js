@@ -156,7 +156,7 @@ const addPaymentBiletiki = async (object) => {
 
 const setPaymentBiletiki = async (object, id) => {
     try{
-        await PaymentBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await PaymentBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

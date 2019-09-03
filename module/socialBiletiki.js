@@ -90,7 +90,7 @@ const addSocialBiletiki = async (object) => {
 
 const setSocialBiletiki = async (object, id) => {
     try{
-        await SocialBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await SocialBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

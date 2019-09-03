@@ -215,7 +215,7 @@ const setEventBiletiki = async (object, id) => {
         event.genre = object.genre
 
         await event.save();
-        //await EventBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        //await EventBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

@@ -126,7 +126,7 @@ const addMovieBiletiki = async (object) => {
 
 const setMovieBiletiki = async (object, id) => {
     try{
-        await MovieBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await MovieBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

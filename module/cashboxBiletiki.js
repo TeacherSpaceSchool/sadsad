@@ -95,7 +95,7 @@ const addCashboxBiletiki = async (object) => {
 
 const setCashboxBiletiki = async (object, id) => {
     try{
-        await CashboxBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await CashboxBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

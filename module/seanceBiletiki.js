@@ -168,7 +168,7 @@ const addSeanceBiletiki = async (object) => {
 
 const setSeanceBiletiki = async (object, id) => {
     try{
-        await SeanceBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await SeanceBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

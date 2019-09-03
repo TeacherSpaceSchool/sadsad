@@ -151,7 +151,7 @@ const addWhereBiletiki = async (object) => {
 
 const setWhereBiletiki = async (object, id) => {
     try{
-        await WhereBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await WhereBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

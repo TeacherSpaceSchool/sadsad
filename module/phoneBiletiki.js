@@ -85,7 +85,7 @@ const addPhoneBiletiki = async (object) => {
 
 const setPhoneBiletiki = async (object, id) => {
     try{
-        await PhoneBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await PhoneBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

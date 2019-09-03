@@ -47,15 +47,15 @@ router.get('/asisnur', async (req, res, next) => {
                         res.status(200);
                         res.end(xml(result, true));
                     } else if(wallet.ammount>parseInt(req.param('sum'))){
-                        await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'ошибка'})
+                        await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'ошибка'})
                         result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 241 } , { comment: 'Сумма слишком мала' } ] } ];
                         res.status(200);
                         res.end(xml(result, true));
                     } else {
                          let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
                         if(ticket!=null){
-                            await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
-                            await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                            await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
+                            await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
                                 from: mailingBiletiki.mailuser,
@@ -90,8 +90,8 @@ router.get('/asisnur', async (req, res, next) => {
                         } else {
                             ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                             if(ticket!=null){
-                                await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
-                                await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                                await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
+                                await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                                 let mailingBiletiki = await MailingBiletiki.findOne();
                                 let mailOptions = {
                                     from: mailingBiletiki.mailuser,
@@ -177,15 +177,15 @@ router.get('/quickpay', async (req, res, next) => {
                         res.status(200);
                         res.end(xml(result, true));
                     } else if(wallet.ammount>parseInt(req.param('sum'))){
-                        await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'ошибка'})
+                        await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'ошибка'})
                         result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: '' } , { sum: req.param('sum') } , { result: 241 } , { comment: 'Сумма слишком мала' } ] } ];
                         res.status(200);
                         res.end(xml(result, true));
                     } else {
                         let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
                         if(ticket!=null){
-                            await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
-                            await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                            await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
+                            await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
                                 from: mailingBiletiki.mailuser,
@@ -220,8 +220,8 @@ router.get('/quickpay', async (req, res, next) => {
                         } else {
                             ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                             if(ticket!=null){
-                                await PaymentBiletiki.findOneAndUpdate({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
-                                await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                                await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
+                                await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                                 let mailingBiletiki = await MailingBiletiki.findOne();
                                 let mailOptions = {
                                     from: mailingBiletiki.mailuser,
@@ -304,7 +304,7 @@ router.get('/qiwi', async (req, res, next) => {
                 console.log(wallet)
                 if(wallet!=null){
                     wallet.balance = wallet.balance+parseInt(req.param('sum'))
-                    await WalletBiletiki.findOneAndUpdate({_id: wallet._id}, {$set: wallet});
+                    await WalletBiletiki.updateOne({_id: wallet._id}, {$set: wallet});
                     let payment = new PaymentBiletiki({status: 'совершен', user: wallet.user, ammount: parseInt(req.param('sum')), service: 'QIWI', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')});
                     await PaymentBiletiki.create(payment);
                     result = [ { response: [ { osmp_txn_id: req.param('txn_id') } , { prv_txn: payment._id } , { sum: req.param('sum') } , { result: 0 } , { comment: 'ok' } ] } ];
@@ -385,8 +385,8 @@ router.post('/elsom/pay', async (req, res, next) => {
                 } else {
                     let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
                     if(ticket!=null){
-                        await PaymentBiletiki.findOneAndUpdate({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
-                        await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                        await PaymentBiletiki.updateOne({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
+                        await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                         let mailingBiletiki = await MailingBiletiki.findOne();
                         let mailOptions = {
                             from: mailingBiletiki.mailuser,
@@ -426,8 +426,8 @@ router.post('/elsom/pay', async (req, res, next) => {
                     } else {
                         ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                         if(ticket!=null){
-                            await PaymentBiletiki.findOneAndUpdate({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
-                            await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                            await PaymentBiletiki.updateOne({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
+                            await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
                                 from: mailingBiletiki.mailuser,
@@ -578,8 +578,8 @@ router.post('/kcb', async (req, res, next) => {
                     } else {
                         let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
                         if(ticket!=null){
-                            await PaymentBiletiki.findOneAndUpdate({wallet: responce[1]['attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce[0]['attributes']['DTS']+' \nID: '+responce[0]['attributes']['QID']})
-                            await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                            await PaymentBiletiki.updateOne({wallet: responce[1]['attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce[0]['attributes']['DTS']+' \nID: '+responce[0]['attributes']['QID']})
+                            await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
                                 from: mailingBiletiki.mailuser,
@@ -617,8 +617,8 @@ router.post('/kcb', async (req, res, next) => {
                         } else {
                             ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                             if(ticket!=null){
-                                await PaymentBiletiki.findOneAndUpdate({wallet: responce[1]['attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce[0]['attributes']['DTS']+' \nID: '+responce[0]['attributes']['QID']})
-                                await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                                await PaymentBiletiki.updateOne({wallet: responce[1]['attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce[0]['attributes']['DTS']+' \nID: '+responce[0]['attributes']['QID']})
+                                await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                                 let mailingBiletiki = await MailingBiletiki.findOne();
                                 let mailOptions = {
                                     from: mailingBiletiki.mailuser,
@@ -750,8 +750,8 @@ router.get('/balance/pay', async (req, res, next) => {
         if(req.param('status') == 'SUCCESS'){
             let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
             if(ticket!=null){
-                    await PaymentBiletiki.findOneAndUpdate({wallet: req.param('transaction_id')}, {status: 'совершен', meta:'*'})
-                    await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                    await PaymentBiletiki.updateOne({wallet: req.param('transaction_id')}, {status: 'совершен', meta:'*'})
+                    await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                 let mailingBiletiki = await MailingBiletiki.findOne();
                 let mailOptions = {
                     from: mailingBiletiki.mailuser,
@@ -783,8 +783,8 @@ router.get('/balance/pay', async (req, res, next) => {
             } else {
                 ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                 if(ticket!=null){
-                    await PaymentBiletiki.findOneAndUpdate({wallet: req.param('transaction_id')}, {status: 'совершен', meta:'*'})
-                    await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                    await PaymentBiletiki.updateOne({wallet: req.param('transaction_id')}, {status: 'совершен', meta:'*'})
+                    await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                     let mailingBiletiki = await MailingBiletiki.findOne();
                     let mailOptions = {
                         from: mailingBiletiki.mailuser,
@@ -943,8 +943,8 @@ router.post('/visa/pay', async (req, res, next) => {
 
              let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
              if(ticket!=null){
-                 await PaymentBiletiki.findOneAndUpdate({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
-                 await TicketBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                 await PaymentBiletiki.updateOne({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
+                 await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                  let mailOptions = {
                      from: mailingBiletiki.mailuser,
                      to: wallet.email,
@@ -977,8 +977,8 @@ router.post('/visa/pay', async (req, res, next) => {
              } else {
                  ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                  if(ticket!=null){
-                     await PaymentBiletiki.findOneAndUpdate({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
-                     await TicketCinemaBiletiki.findOneAndUpdate({_id: wallet.ticket}, {status: 'продан'})
+                     await PaymentBiletiki.updateOne({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
+                     await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
                      let mailingBiletiki = await MailingBiletiki.findOne();
                      let mailOptions = {
                          from: mailingBiletiki.mailuser,

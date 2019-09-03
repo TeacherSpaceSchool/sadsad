@@ -46,7 +46,7 @@ const addMailingBiletiki = async (object) => {
 
 const setMailingBiletiki = async (object, id) => {
     try{
-        await MailingBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await MailingBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

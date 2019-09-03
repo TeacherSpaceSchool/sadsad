@@ -151,7 +151,7 @@ const addContactBiletiki = async (object) => {
 
 const setContactBiletiki = async (object, id) => {
     try{
-        await ContactBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await ContactBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }

@@ -97,7 +97,7 @@ const addLogoBiletiki = async (object) => {
 
 const setLogoBiletiki = async (object, id) => {
     try{
-        await LogoBiletiki.findOneAndUpdate({_id: id}, {$set: object});
+        await LogoBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
         console.error(error)
     }
