@@ -10,15 +10,20 @@ window.scrollBannerItems =
 
 
 
-
 let banner = document.getElementById('js-scroll-banner');
 window.onload = function() {
     setTimeout(function () {
-        initBanner(banner, {
-            width: 600,
-            items: window.scrollBannerItems.items
-        });
-    }, 5000);
+        console.log('olo',window.timer)
+        if(window.timer==undefined){
+            window.timer = 1
+            console.log('ololo')
+            initBanner(banner, {
+                width: 600,
+                items: window.scrollBannerItems.items
+            });
+        }
+        console.log('olo',window.timer)
+    }, 500);
 };
 
 

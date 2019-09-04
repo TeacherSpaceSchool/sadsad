@@ -73,7 +73,8 @@ $(document).ready(function(){
     $('.icheck input').iCheck({
         checkboxClass: 'icheckbox_flat-orange check',
         radioClass: 'iradio_flat-orange check'
-    }).on('ifChecked',(e)=>{
+    }).on('ifChecked',
+        (e)=>{
         let idCheckbox = e.target.id;
         if(idCheckbox === 'week'){
             pickmeup('.datepicker').set_date([monday,tuesday,wednesday,thursday,friday,saturday,sunday]);
