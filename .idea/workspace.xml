@@ -2,83 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/precache-manifest.7ebc5dbda3bb3ea1e5cff775c09011b4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/8.5297368c.chunk.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/8.5297368c.chunk.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/main.6cb7761a.chunk.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/css/main.6cb7761a.chunk.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/1.51696d46.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/1.51696d46.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/10.d0079b2f.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/10.d0079b2f.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/11.cf765a12.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/11.cf765a12.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/12.f4e0c76b.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/12.f4e0c76b.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/13.b6359424.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/13.b6359424.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/14.a7756076.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/14.a7756076.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/15.5e089adf.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/15.5e089adf.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/16.4c71308e.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/16.4c71308e.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/17.128e2cb8.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/17.128e2cb8.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/18.2d344952.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/18.2d344952.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/19.81c541b4.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/19.81c541b4.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/2.fd9ee539.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/2.fd9ee539.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/20.f64bd4ab.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/20.f64bd4ab.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/21.296209b2.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/21.296209b2.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/22.6f81962a.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/22.6f81962a.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/23.ec4068c7.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/23.ec4068c7.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/24.f933d380.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/24.f933d380.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/25.7d527e1f.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/25.7d527e1f.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/26.986ac2bf.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/26.986ac2bf.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/27.891128d4.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/27.891128d4.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/5.a4a7a798.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/5.a4a7a798.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/6.90086a59.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/6.90086a59.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/7.be0c5b39.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/7.be0c5b39.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.687b6626.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.687b6626.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/9.94ec6fba.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/9.94ec6fba.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.2b467d40.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.2b467d40.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.737ea648.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.737ea648.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/precache-manifest.6ec3a13a8653bac46987796e86deac71.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.78cb112e.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.78cb112e.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.d1ca3cdf.chunk.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.d1ca3cdf.chunk.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.c5a8ad14.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.c5a8ad14.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/precache-manifest.3025b1331306452a7a52d8d63782495c.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.ed7bfcd9.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.ed7bfcd9.chunk.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/asset-manifest.json" afterPath="$PROJECT_DIR$/aclient/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/css/style.css" afterPath="$PROJECT_DIR$/aclient/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/index.html" afterPath="$PROJECT_DIR$/aclient/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/service-worker.js" afterPath="$PROJECT_DIR$/aclient/service-worker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/www" afterPath="$PROJECT_DIR$/bin/www" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/user.js" afterPath="$PROJECT_DIR$/module/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/whereBiletiki.js" afterPath="$PROJECT_DIR$/module/whereBiletiki.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -95,7 +27,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/user.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="259">
@@ -127,6 +59,46 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
               <caret line="78" column="33" lean-forward="false" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="www" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bin/www">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="60" column="17" lean-forward="false" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="www1" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/www1">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -221,7 +193,6 @@
         <option value="$PROJECT_DIR$/models/walletBiletiki.js" />
         <option value="$PROJECT_DIR$/models/paymentBiletiki.js" />
         <option value="$PROJECT_DIR$/models/eventBiletiki.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/php/visa.php" />
         <option value="$PROJECT_DIR$/models/checkVisa.js" />
         <option value="$PROJECT_DIR$/models/checkVisaBiletiki.js" />
@@ -262,9 +233,10 @@
         <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/module/FAQBiletiki.js" />
         <option value="$PROJECT_DIR$/module/eventBiletiki.js" />
-        <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/module/user.js" />
         <option value="$PROJECT_DIR$/module/whereBiletiki.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/bin/www" />
       </list>
     </option>
   </component>
@@ -384,18 +356,18 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\biletiki\biletiki-api\bin" />
+      <recent name="C:\projects\biletiki\biletiki-api\module" />
+      <recent name="C:\projects\biletiki\biletiki-api\models" />
+      <recent name="C:\projects\biletiki\biletiki-api\routes" />
+      <recent name="C:\projects\biletiki\biletiki-api\node_modules" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\projects\biletiki\biletiki-api\bin" />
       <recent name="C:\projects\biletiki\biletiki-api\public" />
       <recent name="C:\projects\biletiki\biletiki-api\node_modules" />
       <recent name="C:\projects\museum\museum-api" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\projects\biletiki\biletiki-api\module" />
-      <recent name="C:\projects\biletiki\biletiki-api\models" />
-      <recent name="C:\projects\biletiki\biletiki-api\routes" />
-      <recent name="C:\projects\biletiki\biletiki-api\node_modules" />
-      <recent name="C:\projects\biletiki\biletiki-api\public\barcode" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -616,12 +588,12 @@
       <workItem from="1565673466529" duration="2245000" />
       <workItem from="1567055409087" duration="818000" />
       <workItem from="1567488626775" duration="1936000" />
-      <workItem from="1567578203535" duration="6458000" />
+      <workItem from="1567578203535" duration="7140000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1072364000" />
+    <option name="totallyTimeSpent" value="1073046000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -634,11 +606,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.8070797" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16159695" sideWeight="0.19292036" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -674,13 +647,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/module/personalBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="32" lean-forward="false" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/phoneBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -793,13 +759,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="25" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aclient/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10761">
@@ -832,13 +791,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="60" column="17" lean-forward="false" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -949,14 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -1036,6 +980,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="504" column="45" lean-forward="false" selection-start-line="504" selection-start-column="45" selection-end-line="504" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="60" column="17" lean-forward="false" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
           <folding />
         </state>
       </provider>
