@@ -12,7 +12,7 @@ const getClient = async () => {
 
 const getIds = async (city) => {
     if(city!==undefined&&city.length>0)
-        return await WhereBiletiki.find({city: city}).select('nameRu _id')
+        return await WhereBiletiki.find({city: city}).select('nameRu _id').sort('nameRu')
     else
         return []
 }

@@ -494,6 +494,19 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Асанбай Центр'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Асанбай Центр',
+                nameKg:  'Асанбай Центр',
+                image: '*',
+                imageThumbnail: '*',
+                address: '21, 11 Аалы Токомбаева, Бишкек',
+                coords: '42.817424, 74.620439',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
         findAdmin = await WhereBiletiki.findOne({nameRu: 'MMA Дворец спорта им. К. Кожомкула'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({

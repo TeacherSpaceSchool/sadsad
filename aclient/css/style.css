@@ -1770,7 +1770,6 @@ input[type="button"].button-primary {
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
 }
 
 .events .col-12 {
