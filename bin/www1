@@ -3,16 +3,6 @@
 /**
  * Module dependencies.
  */
-const cluster = require('cluster');
-const os = require('os');
-
-if (cluster.isMaster) {
-    let cpuCount = /*os.cpus().length*/1
-    for (let i = 0; i < cpuCount; i += 1) {
-        cluster.fork();
-        console.log('cluster '+i+' run')
-    }
-} else {
     let app = require('../app');
     let app1 = require('../app');
     let debug = require('debug')('museum-api:server');
@@ -149,6 +139,4 @@ if (cluster.isMaster) {
             : 'port ' + addr.port;
         debug('Listening on ' + bind);
     }
-
-}
 

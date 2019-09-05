@@ -23,7 +23,7 @@ window.onload = function() {
             });
         }
         console.log('olo',window.timer)
-    }, 500);
+    }, 5000);
 };
 
 

@@ -14,7 +14,6 @@ if (cluster.isMaster) {
     }
 } else {
     let app = require('../app');
-    let app1 = require('../app');
     let debug = require('debug')('museum-api:server');
     let http = require('http');
     const https = require('https');
@@ -39,13 +38,10 @@ if (cluster.isMaster) {
     let port = normalizePort(process.env.PORT || '443');
     app.set('port', port);
 
-    let port1 = normalizePort(process.env.PORT || '80');
-    app1.set('port', port1);
     /**
      * Create HTTP server.
      */
     let server = https.createServer(options, app);
-    let server1 = http.createServer(app);
 
     /**
      * Listen on provided port, on all network interfaces.
@@ -55,10 +51,7 @@ if (cluster.isMaster) {
     server.on('error', onError);
     server.on('listening', onListening);
 
-    server1.listen(port1);
-    server1.on('error', onError1);
-    server1.on('listening', onListening1);
-    /**
+      /**
      * Normalize a port into a number, string, or false.
      */
 
@@ -82,29 +75,7 @@ if (cluster.isMaster) {
      * Event listener for HTTP server 'error' event.
      */
 
-    function onError1(error) {
-        if (error.syscall !== 'listen') {
-            throw error;
-        }
 
-        let bind = typeof port1 === 'string'
-            ? 'Pipe ' + port1
-            : 'Port ' + port1;
-
-        // handle specific listen errors with friendly messages
-        switch (error.code) {
-            case 'EACCES':
-                console.error(bind + ' requires elevated privileges');
-                process.exit(1);
-                break;
-            case 'EADDRINUSE':
-                console.error(bind + ' is already in use');
-                process.exit(1);
-                break;
-            default:
-                throw error;
-        }
-    }
 
     function onError(error) {
         if (error.syscall !== 'listen') {
@@ -142,13 +113,9 @@ if (cluster.isMaster) {
         debug('Listening on ' + bind);
     }
 
-    function onListening1() {
-        let addr = server1.address();
-        let bind = typeof addr === 'string'
-            ? 'pipe ' + addr
-            : 'port ' + addr.port;
-        debug('Listening on ' + bind);
-    }
-
+    http.createServer(function (req, res) {
+        res.writeHead(301, { 'Location': 'https://' + req.headers['host'] + req.url });
+        res.end();
+    }).listen(80);
 }
 
