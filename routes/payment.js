@@ -8,21 +8,16 @@ const https = require('https');
 const TicketBiletiki = require('../models/ticketBiletiki');
 const TicketCinemaBiletiki = require('../models/ticketCinemaBiletiki');
 const CheckVisaBiletiki = require('../models/checkVisaBiletiki');
-const ActionCheckVisaBiletiki = require('../module/checkVisaBiletiki');
 const nodemailer = require('nodemailer');
 const FormData = require('form-data');
-const randomstring = require('randomstring');
 const app = require('../app');
 const path = require('path');
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 const myConst = require('../module/const');
-const jwt = require('jsonwebtoken');
-let  dirname1 = __dirname.replace('\\routes', '')
-dirname1 = dirname1.replace('/routes', '')
 
 /* GET home page. */
-router.get('/asisnur', async (req, res, next) => {
+router.get('/asisnur', async (req, res) => {
     let result;
     try{
         let ip = JSON.stringify(req.ip)
@@ -52,17 +47,17 @@ router.get('/asisnur', async (req, res, next) => {
                         res.status(200);
                         res.end(xml(result, true));
                     } else {
-                         let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
-                        if(ticket!=null){
+                         let tickets = await TicketBiletiki.find({payment: wallet._id})
+                        if(tickets.length>0){
                             await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
-                            await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
+                            await TicketBiletiki.updateMany({payment: wallet._id}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
                                 from: mailingBiletiki.mailuser,
                                 to: wallet.email,
-                                subject: 'Kassir.kg - Билет на '+ticket.event,
-                                text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
+                                subject: 'Kassir.kg - Билет на '+tickets[0].event,
+                                text: 'Спасибо за покупку билета на '+tickets[0].event+'. Место проведения события: '+tickets[0].where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
+                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', tickets[0].ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+tickets[0].event+'.pdf',}]
                             };
                             if (mailingBiletiki !== null) {
                                 const transporter = nodemailer.createTransport({
@@ -88,7 +83,7 @@ router.get('/asisnur', async (req, res, next) => {
                             res.status(200);
                             res.end(xml(result, true));
                         } else {
-                            ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                            let ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                             if(ticket!=null){
                                 await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
                                 await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
@@ -152,7 +147,7 @@ router.get('/asisnur', async (req, res, next) => {
     }
 });
 
-router.get('/quickpay', async (req, res, next) => {
+router.get('/quickpay', async (req, res) => {
     let result;
     try{
         let ip = JSON.stringify(req.ip)
@@ -182,17 +177,17 @@ router.get('/quickpay', async (req, res, next) => {
                         res.status(200);
                         res.end(xml(result, true));
                     } else {
-                        let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
-                        if(ticket!=null){
+                        let tickets = await TicketBiletiki.find({payment: wallet._id})
+                        if(tickets.length>0){
                             await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
-                            await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
+                            await TicketBiletiki.updateMany({payment: wallet._id}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
                                 from: mailingBiletiki.mailuser,
                                 to: wallet.email,
-                                subject: 'Kassir.kg - Билет на '+ticket.event,
-                                text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
+                                subject: 'Kassir.kg - Билет на '+tickets[0].event,
+                                text: 'Спасибо за покупку билета на '+tickets[0].event+'. Место проведения события: '+tickets[0].where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
+                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', tickets[0].ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+tickets[0].event+'.pdf',}]
                             };
                             if (mailingBiletiki !== null) {
                                 const transporter = nodemailer.createTransport({
@@ -218,7 +213,7 @@ router.get('/quickpay', async (req, res, next) => {
                             res.status(200);
                             res.end(xml(result, true));
                         } else {
-                            ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                            let ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                             if(ticket!=null){
                                 await PaymentBiletiki.updateOne({wallet: req.param('account')}, {status: 'совершен', meta:'Дата: '+new Date(parseInt(req.param('txn_date')))+' \nID: '+req.param('txn_id')})
                                 await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
@@ -282,7 +277,7 @@ router.get('/quickpay', async (req, res, next) => {
     }
 });
 /*
-router.get('/qiwi', async (req, res, next) => {
+router.get('/qiwi', async (req, res) => {
     try{
         let ip = JSON.stringify(req.ip)
         if(ip.includes('212.42.104.209')){
@@ -329,7 +324,7 @@ router.get('/qiwi', async (req, res, next) => {
 */
 
 
-router.post('/elsom/generate', async (req, res, next) => {
+router.post('/elsom/generate', async (req, res) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
             const instance = axios.create({
@@ -362,7 +357,7 @@ router.post('/elsom/generate', async (req, res, next) => {
     }
 })
 
-router.post('/elsom/pay', async (req, res, next) => {
+router.post('/elsom/pay', async (req, res) => {
     res.set('Content-Type', 'text/json; charset=utf-8');
     try{
         let ip = JSON.stringify(req.ip)
@@ -383,17 +378,17 @@ router.post('/elsom/pay', async (req, res, next) => {
                             }
                     });
                 } else {
-                    let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
-                    if(ticket!=null){
+                    let tickets = await TicketBiletiki.find({payment: wallet._id})
+                    if(tickets.length>0){
                         await PaymentBiletiki.updateOne({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
-                        await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
+                        await TicketBiletiki.updateMany({payment: wallet._id}, {status: 'продан'})
                         let mailingBiletiki = await MailingBiletiki.findOne();
                         let mailOptions = {
                             from: mailingBiletiki.mailuser,
                             to: wallet.email,
-                            subject: 'Kassir.kg - Билет на '+ticket.event,
-                            text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                            attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
+                            subject: 'Kassir.kg - Билет на '+tickets[0].event,
+                            text: 'Спасибо за покупку билета на '+tickets[0].event+'. Место проведения события: '+tickets[0].where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
+                            attachments: [{path: path.join(app.dirname, 'public', 'ticket', tickets[0].ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+tickets[0].event+'.pdf',}]
                         };
                         if (mailingBiletiki !== null) {
                             const transporter = nodemailer.createTransport({
@@ -424,7 +419,7 @@ router.post('/elsom/pay', async (req, res, next) => {
                             }
                         );
                     } else {
-                        ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                        let ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                         if(ticket!=null){
                             await PaymentBiletiki.updateOne({wallet: responce.PartnerTrnID}, {status: 'совершен', meta:'Сообщение: '+responce.Message+' \nID: '+responce.PSPTrnID})
                             await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
@@ -511,7 +506,7 @@ router.post('/elsom/pay', async (req, res, next) => {
     }
 })
 
-router.post('/elsom/check', async (req, res, next) => {
+router.post('/elsom/check', async (req, res) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
         const instance = axios.create({
@@ -519,7 +514,6 @@ router.post('/elsom/check', async (req, res, next) => {
                 rejectUnauthorized: false
             })
         });
-        console.log(req.body.wallet)
         let result = await instance.post('https://mbgwp.elsom.kg:10885/MerchantAPI', {
                 'PartnerGetPaymentStatus': {
                     'CultureInfo': 'ru-Ru',
@@ -541,7 +535,7 @@ router.post('/elsom/check', async (req, res, next) => {
     }
 })
 
-router.post('/kcb', async (req, res, next) => {
+router.post('/kcb', async (req, res) => {
     res.header('Content-Type', 'application/xml; charset=utf-8');
     try{
         let ip = JSON.stringify(req.ip)
@@ -576,17 +570,17 @@ router.post('/kcb', async (req, res, next) => {
                         res.status(200);
                         res.end(xml(result, true));
                     } else {
-                        let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
-                        if(ticket!=null){
+                        let tickets = await TicketBiletiki.find({payment: wallet._id})
+                        if(tickets.length>0){
                             await PaymentBiletiki.updateOne({wallet: responce[1]['attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce[0]['attributes']['DTS']+' \nID: '+responce[0]['attributes']['QID']})
-                            await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
+                            await TicketBiletiki.updateMany({payment: wallet._id}, {status: 'продан'})
                             let mailingBiletiki = await MailingBiletiki.findOne();
                             let mailOptions = {
                                 from: mailingBiletiki.mailuser,
                                 to: wallet.email,
-                                subject: 'Kassir.kg - Билет на '+ticket.event,
-                                text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
+                                subject: 'Kassir.kg - Билет на '+tickets[0].event,
+                                text: 'Спасибо за покупку билета на '+tickets[0].event+'. Место проведения события: '+tickets[0].where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
+                                attachments: [{path: path.join(app.dirname, 'public', 'ticket', tickets[0].ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+tickets[0].event+'.pdf',}]
                             };
                             if (mailingBiletiki !== null) {
                                 const transporter = nodemailer.createTransport({
@@ -615,7 +609,7 @@ router.post('/kcb', async (req, res, next) => {
                             res.status(200);
                             res.end(xml(result, true));
                         } else {
-                            ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                            let ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                             if(ticket!=null){
                                 await PaymentBiletiki.updateOne({wallet: responce[1]['attributes']['PARAM1']}, {status: 'совершен', meta:'Дата: '+responce[0]['attributes']['DTS']+' \nID: '+responce[0]['attributes']['QID']})
                                 await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
@@ -691,7 +685,7 @@ router.post('/kcb', async (req, res, next) => {
     }
 });
 
-router.post('/balance/generate', async (req, res, next) => {
+router.post('/balance/generate', async (req, res) => {
     try{
         let data = new FormData();
         data.append('merchant', 'KASSIR_KG');
@@ -742,23 +736,23 @@ router.post('/balance/generate', async (req, res, next) => {
     }
 })
 
-router.get('/balance/pay', async (req, res, next) => {
+router.get('/balance/pay', async (req, res) => {
     try{
         res.set('Content+Type', 'text/json; charset=utf-8');
         let wallet = await PaymentBiletiki.findOne({wallet: req.param('transaction_id')})
 
         if(req.param('status') == 'SUCCESS'){
-            let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
-            if(ticket!=null){
-                    await PaymentBiletiki.updateOne({wallet: req.param('transaction_id')}, {status: 'совершен', meta:'*'})
-                    await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
+            let tickets = await TicketBiletiki.find({payment: wallet._id})
+            if(tickets.length>0){
+                await PaymentBiletiki.updateOne({wallet: req.param('transaction_id')}, {status: 'совершен', meta:'*'})
+                await TicketBiletiki.updateMany({payment: wallet._id}, {status: 'продан'})
                 let mailingBiletiki = await MailingBiletiki.findOne();
                 let mailOptions = {
                     from: mailingBiletiki.mailuser,
                     to: wallet.email,
-                    subject: 'Kassir.kg - Билет на '+ticket.event,
-                    text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                    attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
+                    subject: 'Kassir.kg - Билет на '+tickets[0].event,
+                    text: 'Спасибо за покупку билета на '+tickets[0].event+'. Место проведения события: '+tickets[0].where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
+                    attachments: [{path: path.join(app.dirname, 'public', 'ticket', tickets[0].ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+tickets[0].event+'.pdf',}]
                 };
                 if (mailingBiletiki !== null) {
                     const transporter = nodemailer.createTransport({
@@ -781,7 +775,7 @@ router.get('/balance/pay', async (req, res, next) => {
                     });
                 }
             } else {
-                ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                let ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                 if(ticket!=null){
                     await PaymentBiletiki.updateOne({wallet: req.param('transaction_id')}, {status: 'совершен', meta:'*'})
                     await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
@@ -825,7 +819,7 @@ router.get('/balance/pay', async (req, res, next) => {
     }
 })
 
-router.post('/tested', async (req, res, next) => {
+router.post('/tested', async (req, res) => {
     try{
         console.log(req.body, req.params)
         res.writeHead(301, { 'Location': 'https://kassir.kg' });
@@ -837,7 +831,7 @@ router.post('/tested', async (req, res, next) => {
     }
 });
 
-router.post('/visa/pay', async (req, res, next) => {
+router.post('/visa/pay', async (req, res) => {
     try{
         console.log(req.body, req.params)
         let wallet = await PaymentBiletiki.findOne({wallet: req.body['ReturnOid']})
@@ -941,16 +935,16 @@ router.post('/visa/pay', async (req, res, next) => {
             });
             await CheckVisaBiletiki.create(payment);
 
-             let ticket = await TicketBiletiki.findOne({_id: wallet.ticket})
-             if(ticket!=null){
-                 await PaymentBiletiki.updateOne({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
-                 await TicketBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})
-                 let mailOptions = {
+            let tickets = await TicketBiletiki.find({payment: wallet._id})
+            if(tickets.length>0){
+                await PaymentBiletiki.updateOne({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
+                await TicketBiletiki.updateMany({payment: wallet._id}, {status: 'продан'})
+                let mailOptions = {
                      from: mailingBiletiki.mailuser,
                      to: wallet.email,
-                     subject: 'Kassir.kg - Билет на '+ticket.event,
-                     text: 'Спасибо за покупку билета на '+ticket.event+'. Место проведения события: '+ticket.where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
-                     attachments: [{path: path.join(app.dirname, 'public', 'ticket', ticket.ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+ticket.event+'.pdf',}]
+                     subject: 'Kassir.kg - Билет на '+tickets[0].event,
+                     text: 'Спасибо за покупку билета на '+tickets[0].event+'. Место проведения события: '+tickets[0].where+'. Электронные билеты на выкупленные места находятся во вложении к данному письму, их необходимо предъявить при входе на мероприятие',
+                     attachments: [{path: path.join(app.dirname, 'public', 'ticket', tickets[0].ticket.replace('https://kassir.kg/ticket/', '')), filename: 'Билет на '+tickets[0].event+'.pdf',}]
                  };
                  if (mailingBiletiki !== null) {
                      const transporter = nodemailer.createTransport({
@@ -975,7 +969,7 @@ router.post('/visa/pay', async (req, res, next) => {
                  res.writeHead(301, { 'Location': 'https://kassir.kg/check/'+pdfname });
                  res.end();
              } else {
-                 ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
+                 let ticket = await TicketCinemaBiletiki.findOne({_id: wallet.ticket})
                  if(ticket!=null){
                      await PaymentBiletiki.updateOne({wallet: req.body['ReturnOid']}, {status: 'совершен', meta:'maskedCreditCard: '+req.body['maskedCreditCard']})
                      await TicketCinemaBiletiki.updateOne({_id: wallet.ticket}, {status: 'продан'})

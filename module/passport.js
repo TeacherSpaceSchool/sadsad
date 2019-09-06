@@ -75,15 +75,11 @@ const verifydclientbuyticket = async (req, res) => {
             if (user&&user.status==='active'&&user.role==='client') {
                 await TicketBiletikiAction.buy(req, res, user)
                 console.log('ok')
-                res.status(200);
-                res.end('ok');
                 return user
             } else {
                 user = await UserBiletiki.findOne({role: 'admin'})
                 await TicketBiletikiAction.buy(req, res, user)
                 console.log('ok')
-                res.status(200);
-                res.end('ok');
             }
         } catch (err) {
             console.error(err)

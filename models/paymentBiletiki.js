@@ -5,10 +5,7 @@ const PaymentBiletikiSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-   ticket: {
-       type: mongoose.Schema.Types.ObjectId,
-       ref: 'TicketBiletiki'
-   },
+   ticket: String,
     ammount: {
         type: Number,
         required: true,

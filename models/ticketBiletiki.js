@@ -34,6 +34,7 @@ const TicketBiletikiSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'UserBiletiki'
     },
+    payment: String
 }, {
     timestamps: true
 });

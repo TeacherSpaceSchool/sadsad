@@ -177,7 +177,7 @@ const buy = async (req, res, user) => {
 }
 
 const checkHash = async (hash) => {
-    const new1 = await TicketCinemaBiletiki.count({hash: hash})===0;
+    const new1 = await TicketCinemaBiletiki.count({hash: {'$regex': hash, '$options': 'i'}})===0;
     return(new1)
 }
 
@@ -186,13 +186,13 @@ const getById = async (id) => {
 }
 
 const getByHash = async (hash) => {
-    return(await TicketCinemaBiletiki.findOne({hash: hash}).populate({path: 'user', select: 'name email'}))
+    return(await TicketCinemaBiletiki.findOne({hash: {'$regex': hash, '$options': 'i'}}).populate({path: 'user', select: 'name email'}))
 }
 
 const approveTicketCinemaBiletiki = async (object, hash) => {
     try{
-        if(await TicketCinemaBiletiki.count({hash: hash, status: 'продан'})!==0){
-            await TicketCinemaBiletiki.updateOne({hash: hash}, {$set: {status: 'использован'}});
+        if(await TicketCinemaBiletiki.count({hash: {'$regex': hash, '$options': 'i'}, status: 'продан'})!==0){
+            await TicketCinemaBiletiki.updateOne({hash: {'$regex': hash, '$options': 'i'}}, {$set: {status: 'использован'}});
             return('ok')
         } else {
             return('error')
