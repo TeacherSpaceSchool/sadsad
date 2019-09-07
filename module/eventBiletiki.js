@@ -12,6 +12,12 @@ const getByCity = async (city) => {
     return await EventBiletiki.find({city: city, active: 'on', realDate: {$elemMatch: { $gte: today }}});
 };
 
+const getByCityOrganizator = async (city, user) => {
+    let today = new Date();
+    console.log(user)
+    return await EventBiletiki.find({organizators: {'$regex': user.email, '$options': 'i'},city: city, active: 'on', realDate: {$elemMatch: { $gte: today }}});
+};
+
 const getPopular = async (city) => {
     let today = new Date();
     return await EventBiletiki.findRandom({city: {'$regex': city, '$options': 'i'}, popular: 'on', active: 'on', realDate: {$elemMatch: { $gte: today }}}).limit(20);
@@ -37,7 +43,6 @@ const getEvents = async (city, date, genre, skip) => {
         tomorrow = new Date(tomorrow)
         tomorrow.setDate(tomorrow.getDate() + 1)
     }
-    console.log(yesterday , tomorrow)
     return await EventBiletiki.find({city: city, genre: {'$regex': genre, '$options': 'i'}, active: 'on', $and: [{realDate: {$gte: yesterday}}, {realDate: {$lte: tomorrow}}]}).skip(skip).limit(20);
 };
 
@@ -60,7 +65,8 @@ const getEventBiletiki = async (search, sort, skip) => {
             'популярный',
             'активен',
             'создан',
-            '_id'
+            '_id',
+            'organizators'
         ];
         if(sort == undefined||sort=='')
             sort = '-updatedAt';
@@ -107,7 +113,6 @@ const getEventBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('active image nameRu city descriptionRu nameKg descriptionKg popular where date price video ageCategory genre updatedAt _id');
         } else if (mongoose.Types.ObjectId.isValid(search)) {
             count = await EventBiletiki.count({
                 $or: [
@@ -134,7 +139,6 @@ const getEventBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('active image nameRu popular city descriptionRu nameKg descriptionKg where date price video ageCategory genre updatedAt _id');
         } else {
             count = await EventBiletiki.count({
                 $or: [
@@ -159,7 +163,6 @@ const getEventBiletiki = async (search, sort, skip) => {
                 .sort(sort)
                 .skip(parseInt(skip))
                 .limit(10)
-                .select('active image nameRu popular city descriptionRu nameKg descriptionKg where date price video ageCategory genre updatedAt _id');
         }
         for (let i=0; i<findResult.length; i++){
             let image=findResult[i].image.toString();
@@ -177,7 +180,11 @@ const getEventBiletiki = async (search, sort, skip) => {
             if(findResult[i].city!=undefined){
                 city = findResult[i].city
             }
-            data.push([image, findResult[i].nameRu, findResult[i].descriptionRu, findResult[i].nameKg, findResult[i].descriptionKg, city, JSON.stringify(where), JSON.stringify(findResult[i].date), JSON.stringify(findResult[i].price), findResult[i].video, findResult[i].ageCategory, findResult[i].genre, findResult[i].popular, active, format(findResult[i].updatedAt), findResult[i]._id]);
+            let organizators = ''
+            if(findResult[i].organizators!=undefined){
+                organizators = findResult[i].organizators
+            }
+            data.push([image, findResult[i].nameRu, findResult[i].descriptionRu, findResult[i].nameKg, findResult[i].descriptionKg, city, JSON.stringify(where), JSON.stringify(findResult[i].date), JSON.stringify(findResult[i].price), findResult[i].video, findResult[i].ageCategory, findResult[i].genre, findResult[i].popular, active, format(findResult[i].updatedAt), findResult[i]._id, organizators]);
         }
         return {data: data, count: count, row: row}
     } catch(error) {
@@ -213,7 +220,7 @@ const setEventBiletiki = async (object, id) => {
         event.imageThumbnail = object.imageThumbnail
         event.ageCategory = object.ageCategory
         event.genre = object.genre
-
+        event.organizators = object.organizators
         await event.save();
         //await EventBiletiki.updateOne({_id: id}, {$set: object});
     } catch(error) {
@@ -233,6 +240,7 @@ module.exports.getEventsByName = getEventsByName;
 module.exports.getEvents = getEvents;
 module.exports.getPopular = getPopular;
 module.exports.getByCity = getByCity;
+module.exports.getByCityOrganizator = getByCityOrganizator;
 module.exports.getIds = getIds;
 module.exports.deleteEventBiletiki = deleteEventBiletiki;
 module.exports.getEventBiletiki = getEventBiletiki;

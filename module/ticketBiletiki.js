@@ -74,10 +74,6 @@ const buy = async (req, res, user) => {
                         doc
                             .font('NotoSans')
                             .fontSize(10)
-                            .text('Сумма: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
-                        doc
-                            .font('NotoSans')
-                            .fontSize(10)
                             .text('Дата: '+dateTimeA, {width: doc.page.width - 100, align: 'justify'})
                         doc
                             .font('NotoSans')
@@ -139,7 +135,7 @@ const buy = async (req, res, user) => {
                                     height: 200,
                                     width: 465,
                                     align: 'justify'})
-                        if(i!==number-1)
+                        if(i!==number)
                             doc.addPage()
 
                         let _object = new TicketBiletiki({

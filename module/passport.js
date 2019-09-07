@@ -187,6 +187,20 @@ const verifydcashier = async (req, res, func) => {
     } )(req, res)
 }
 
+const verifydorganizator = async (req, res, func) => {
+    await passport.authenticate('jwt', async function (err, user) {
+        try{
+            if (user&&user.status==='active'&&user.role==='organizator') {
+                await func(user)
+            }
+        } catch (err) {
+            console.error(err)
+            res.status(401);
+            res.end('err')
+        }
+    } )(req, res)
+}
+
 const verifydeuser = async (req, res, func) => {
     await passport.authenticate('jwt', async function (err, user) {
         try{
@@ -384,6 +398,7 @@ const getstatus = async (req, res) => {
 }
 
 module.exports.getWallet = getWallet;
+module.exports.verifydorganizator = verifydorganizator;
 module.exports.verifydrole = verifydrole;
 module.exports.verifydcinema = verifydcinema;
 module.exports.verifydcashier = verifydcashier;

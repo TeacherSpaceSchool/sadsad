@@ -190,6 +190,8 @@ router.post('/get', async (req, res) => {
                     await res.send(await StatisticBiletiki.getEventStatisticBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Статистика пользователя'){
                     await res.send(await StatisticBiletiki.getUserStatisticBiletiki(req.body.search, req.body.sort, req.body.skip))
+                } else if(req.body.name == 'Статистика организаторов'){
+                    await res.send(await StatisticBiletiki.getOrganizatorStatisticBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Статистика жанров'){
                     await res.send(await StatisticBiletiki.getGenreStatisticBiletiki(req.body.search, req.body.sort, req.body.skip))
                 } else if(req.body.name == 'Статистика кинотеатров'){
@@ -232,6 +234,9 @@ router.post('/get', async (req, res) => {
                     await res.send(await StatisticBiletiki.getCinemaStatisticCinemaBiletiki())
                 } else if(req.body.name == 'Статистика фильмов'){
                     await res.send(await StatisticBiletiki.getCinemaStatisticMovieBiletiki())
+                }
+                else if(req.body.name == 'Статистика организаторов'){
+                    await res.send(await StatisticBiletiki.getOrganizatorStatisticBiletiki(req.body.search, req.body.sort, req.body.skip))
                 }
             });
         }
@@ -277,6 +282,20 @@ router.post('/get', async (req, res) => {
                     await res.send(await SeanceBiletiki.getSeanceBiletiki1(req.body.search, req.body.sort, req.body.skip,  cinema.name))
                 } else if(req.body.name == 'ВсеКино'){
                     await res.send(await MovieBiletiki.getAll())
+                }
+            });
+        }
+        else if(role==='organizator'){
+            await passportEngine.verifydorganizator(req, res, async (user)=>{
+                if(req.body.name == 'Города'){
+                    await res.send(await WhereBiletiki.getCity())
+                } else if(req.body.name == 'СобытиеГород'){
+                    await res.send(await EventBiletiki.getByCityOrganizator(JSON.parse(req.body.data).city, user))
+                } else if(req.body.name == 'Билеты'){
+                    await res.send(await TicketBiletiki.getTicketBiletiki1(req.body.search, req.body.sort, req.body.skip, user._id))
+                }
+                else if(req.body.name == 'Статистика организаторов'){
+                    await res.send(await StatisticBiletiki.getOrganizatorStatisticBiletiki1(req.body.search, req.body.sort, req.body.skip, user))
                 }
             });
         }
@@ -592,6 +611,7 @@ router.post('/add', async (req, res) => {
                                         imageThumbnail: imageThumbnail,
                                         ageCategory: myNew.ageCategory,
                                         genre: myNew.genre,
+                                        organizators: myNew.organizators,
                                     }
                                     if(req.body.id==undefined)
                                         await EventBiletiki.addEventBiletiki(data)
@@ -1041,6 +1061,7 @@ router.post('/add', async (req, res) => {
                         }
                         data = {
                             realDate: realDate,
+                            organizators: myNew.organizators,
                             popular: myNew.popular,
                             active: myNew.active,
                             nameRu: myNew.nameRu,
@@ -1057,6 +1078,7 @@ router.post('/add', async (req, res) => {
                             ageCategory: myNew.ageCategory,
                             genre: myNew.genre,
                         }
+
                         if(req.body.id==undefined)
                             await EventBiletiki.addEventBiletiki(data)
                         else
@@ -1679,6 +1701,7 @@ router.post('/add', async (req, res) => {
                                         imageThumbnail: imageThumbnail,
                                         ageCategory: myNew.ageCategory,
                                         genre: myNew.genre,
+                                        organizators: myNew.organizators,
                                     }
                                     if(req.body.id==undefined)
                                         await EventBiletiki.addEventBiletiki(data)
@@ -1722,7 +1745,7 @@ router.post('/add', async (req, res) => {
                                     .text(myNew.event.nameRu, 60, 30) // the text and the position where the it should come
                                 doc.image(qrpath, 360, 30, {fit: [100, 100]})
                                 doc.fontSize(12)
-                                    .text(myNew.event.where, 50, 70) // the text and the position where the it should come
+                                    .text(myNew.event.where.name, 50, 70) // the text and the position where the it should come
                                 let dateTime;
                                 let place1 = '';
                                 let sector = ''
@@ -1768,8 +1791,8 @@ router.post('/add', async (req, res) => {
                                     .fontSize(12)
                                     .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
                                 doc.save()
-                                
-                                
+
+
                                 doc.end()
 
 
@@ -1881,6 +1904,7 @@ router.post('/add', async (req, res) => {
                             imageThumbnail: imageThumbnail,
                             ageCategory: myNew.ageCategory,
                             genre: myNew.genre,
+                            organizators: myNew.organizators,
                         }
                         if(req.body.id==undefined)
                             await EventBiletiki.addEventBiletiki(data)
@@ -1889,7 +1913,121 @@ router.post('/add', async (req, res) => {
                         await res.send(await EventBiletiki.getEventBiletiki(req.body.search, req.body.sort, req.body.skip))
                     }
                 }
-                
+
+
+
+
+            });
+        }
+        else if(role==='organizator') {
+            await passportEngine.verifydorganizator(req, res, async (user)=>{
+                let data, myNew = JSON.parse(req.body.new);
+                    if(req.body.name == 'Билеты'){
+                        if(req.body.id==undefined){
+                            let hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            while (!await TicketBiletiki.checkHash(hash))
+                                hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            let qrname = randomstring.generate(5) + myNew.user + myNew.event._id+'.png';
+                            let pdfname = qrname.replace('.png','.pdf');
+                            let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
+                            let fstream = fs.createWriteStream(qrpath);
+                            let qrTicket = await qr.image(hash, { type: 'png' });
+                            let stream = qrTicket.pipe(fstream)
+                            stream.on('finish', async () => {
+                                let doc = new PDFDocument({
+                                    size: [500, 200],
+                                    margins : { // by default, all are 72
+                                        top: 80,
+                                        bottom:10,
+                                        left: 10,
+                                        right: 10
+                                    }
+                                });
+                                let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
+                                let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+                                doc.registerFont('NotoSans', robotoBlack);
+                                let fstream = fs.createWriteStream(pdfpath);
+                                doc.pipe(fstream);
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(18)
+                                    .text(myNew.event.nameRu, 60, 30) // the text and the position where the it should come
+                                doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                                doc.fontSize(12)
+                                    .text(myNew.event.where.name, 50, 70) // the text and the position where the it should come
+                                let dateTime;
+                                let place1 = '';
+                                let sector = ''
+                                let ryad = ''
+                                let sum = 0
+                                for(let i = 0; i<data.seats.length; i++){
+                                    sum+=parseInt(data.seats[i][0]['price'])
+                                }
+                                for(let i = 0; i<myNew.seats.length; i++){
+                                    let date = myNew.seats[i][1].split('T')[0].split('-')
+                                    let time = myNew.seats[i][1].split('T')[1].split(':')
+                                    dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                    let place = myNew.seats[i][0]['name']
+                                    if(i===0||sector != myNew.seats[i][2]){
+                                        sector = myNew.seats[i][2]
+                                        if(i != 0)
+                                            place1+=', Сектор '+sector
+                                        else
+                                            place1+='Сектор '+sector
+                                    }
+                                    if(myNew.seats[i][0]['name'].split(':')[1]!==undefined){
+                                        if(i===0){
+                                            ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                            place1+=' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                        } else if(ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
+                                            ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                            place1+=', Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                        }
+                                        place = ' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
+                                    }
+                                    place1+=place
+                                }
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(12)
+                                    .text(dateTime, {width: doc.page.width - 100, align: 'justify'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(12)
+                                    .text(place1, {width: doc.page.width - 100, align: 'justify'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(12)
+                                    .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
+                                doc.save()
+
+
+                                doc.end()
+
+
+                            })
+
+
+                            data = {
+                                seats: myNew.seats,
+                                hash: hash,
+                                where: myNew.event.where.name,
+                                user: myNew.user,
+                                genre: myNew.event.genre,
+                                image: myNew.event.image,
+                                event: myNew.event.nameRu,
+                                ticket: myConst.url + 'ticket/' + pdfname,
+                                status: myNew.status,
+                                cashier: user._id,
+                            }
+                            await TicketBiletiki.addTicketBiletiki(data);
+                            await EventBiletiki.setEventBiletiki(myNew.event, myNew.event._id);
+                            res.send(myConst.url + 'ticket/' + pdfname)
+                        }
+                    }
+
+
+
 
 
 

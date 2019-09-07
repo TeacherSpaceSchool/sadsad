@@ -66,6 +66,7 @@ const EventBiletikiSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    organizators: String
 }, {
     timestamps: true
 });

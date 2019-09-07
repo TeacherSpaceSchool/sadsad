@@ -80,7 +80,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.xml());
 app.use(express.static(path.join(__dirname, 'aclient')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'admin')));
 app.use(cors());
 //app.use(nocache())
 // parse data with connect-multiparty.
@@ -93,7 +92,6 @@ app.use(formData.stream());
 app.use(formData.union());
 app.set('trust proxy', true)
 app.use(/^\/(faq|about|logo|cashboxes|offer|return|delivery|contacts|vacancies|halls|profile|historycinema|historyevent|events\/[\s\S]+|search|check\/[\s\S]+|hall\/[\s\S]+|event\/[\s\S]+|selectplace\/[\s\S]+|cinema|movie\/[\s\S]+)?/, indexRouter);
-app.use('/admin', adminRouter);
 app.use('/users', usersRouter);
 app.use('/data', dataRouter);
 app.use('/payment', paymentRouter);
