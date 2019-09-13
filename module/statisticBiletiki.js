@@ -88,7 +88,6 @@ const getGenreStatisticBiletiki = async () => {
         count = genres.length;
         for(let i = 0; i<genres.length; i++) {
             let sold = await TicketBiletiki.find({status: 'продан', genre: genres[i]})
-            console.log(await TicketBiletiki.find({status: 'продан'}))
             sold = sold.length
             let returned = await TicketBiletiki.find({status: 'возвращен', genre: genres[i]})
             returned = returned.length
@@ -152,9 +151,11 @@ const getEventStatisticBiletiki = async (search, sort, skip) => {
             for(let i = 0; i<ticketSoldAndReturned.length; i++){
                 if(ticketSoldAndReturned[i].status==='использован'||ticketSoldAndReturned[i].status==='продан'){
                     for(let i1 = 0; i1<ticketSoldAndReturned[i].seats.length; i1++){
-                        if(ticketSoldAndReturned[i].seats[i1][0].price===undefined)
-                            ticketSoldAndReturned[i].seats[i1][0].price=0
-                        cash+=parseInt(ticketSoldAndReturned[i].seats[i1][0].price);
+                        if(ticketSoldAndReturned[i].seats[i1][0]!==undefined){
+                            if(ticketSoldAndReturned[i].seats[i1][0]===undefined||ticketSoldAndReturned[i].seats[i1][0].price===undefined)
+                                ticketSoldAndReturned[i].seats[i1][0].price=0
+                            cash+=parseInt(ticketSoldAndReturned[i].seats[i1][0].price);
+                        }
                     }
                 }
             }

@@ -1,0 +1,166 @@
+self.__precacheManifest = [
+  {
+    "revision": "2bd05ea565d9597369b2",
+    "url": "/static/js/0.2bd05ea5.chunk.js"
+  },
+  {
+    "revision": "e24f894b13399b71c598",
+    "url": "/static/js/1.e24f894b.chunk.js"
+  },
+  {
+    "revision": "da4ea7dc7fa123c30d43",
+    "url": "/static/js/2.da4ea7dc.chunk.js"
+  },
+  {
+    "revision": "1aaff1743a88a1015c17",
+    "url": "/static/js/3.1aaff174.chunk.js"
+  },
+  {
+    "revision": "9f6d3bf5461cc3cc2767",
+    "url": "/static/css/main.b4d76624.chunk.css"
+  },
+  {
+    "revision": "9f6d3bf5461cc3cc2767",
+    "url": "/static/js/main.9f6d3bf5.chunk.js"
+  },
+  {
+    "revision": "ef5f1b6cc6aeb239e171",
+    "url": "/static/js/5.ef5f1b6c.chunk.js"
+  },
+  {
+    "revision": "238ba84807d4d235e76d",
+    "url": "/static/js/6.238ba848.chunk.js"
+  },
+  {
+    "revision": "c3d434e04a26b7e48a96",
+    "url": "/static/css/7.ffb3f331.chunk.css"
+  },
+  {
+    "revision": "c3d434e04a26b7e48a96",
+    "url": "/static/js/7.c3d434e0.chunk.js"
+  },
+  {
+    "revision": "45d5eb9ff45bdfa0d2ec",
+    "url": "/static/css/8.59d32e56.chunk.css"
+  },
+  {
+    "revision": "45d5eb9ff45bdfa0d2ec",
+    "url": "/static/js/8.45d5eb9f.chunk.js"
+  },
+  {
+    "revision": "f06aa9f35a2d14342e22",
+    "url": "/static/js/9.f06aa9f3.chunk.js"
+  },
+  {
+    "revision": "1478bfac2bb1bae818f5",
+    "url": "/static/js/10.1478bfac.chunk.js"
+  },
+  {
+    "revision": "cf5daa1d0c8488e4cfd1",
+    "url": "/static/js/11.cf5daa1d.chunk.js"
+  },
+  {
+    "revision": "63ca66d8ee64e838af57",
+    "url": "/static/js/12.63ca66d8.chunk.js"
+  },
+  {
+    "revision": "8e32ff7bed73cbc5d8c2",
+    "url": "/static/js/13.8e32ff7b.chunk.js"
+  },
+  {
+    "revision": "c181c285325b7f3f5e3b",
+    "url": "/static/js/14.c181c285.chunk.js"
+  },
+  {
+    "revision": "191122c979d8de7c8d85",
+    "url": "/static/js/15.191122c9.chunk.js"
+  },
+  {
+    "revision": "d7dd13589dc700384c6c",
+    "url": "/static/js/16.d7dd1358.chunk.js"
+  },
+  {
+    "revision": "ee4b747f7c4e2d3ac350",
+    "url": "/static/js/17.ee4b747f.chunk.js"
+  },
+  {
+    "revision": "cafb1420632a3f98c6da",
+    "url": "/static/js/18.cafb1420.chunk.js"
+  },
+  {
+    "revision": "c3cf3d7f30a847e15d69",
+    "url": "/static/js/19.c3cf3d7f.chunk.js"
+  },
+  {
+    "revision": "3fefae710dabcdd8fe1b",
+    "url": "/static/js/20.3fefae71.chunk.js"
+  },
+  {
+    "revision": "fc033aa003a41494b61e",
+    "url": "/static/js/21.fc033aa0.chunk.js"
+  },
+  {
+    "revision": "ed9e0c5848ea27f4622a",
+    "url": "/static/js/22.ed9e0c58.chunk.js"
+  },
+  {
+    "revision": "63119df349d356ffccd6",
+    "url": "/static/js/23.63119df3.chunk.js"
+  },
+  {
+    "revision": "ba62d7c024dd3ad6d2bb",
+    "url": "/static/js/24.ba62d7c0.chunk.js"
+  },
+  {
+    "revision": "88fcad5f2147960fd68e",
+    "url": "/static/js/25.88fcad5f.chunk.js"
+  },
+  {
+    "revision": "9858862c44229d9eb0c0",
+    "url": "/static/js/26.9858862c.chunk.js"
+  },
+  {
+    "revision": "c5ce4ca0a832c719e41d",
+    "url": "/static/css/27.e1b75586.chunk.css"
+  },
+  {
+    "revision": "c5ce4ca0a832c719e41d",
+    "url": "/static/js/27.c5ce4ca0.chunk.js"
+  },
+  {
+    "revision": "751e5297b31cc12fd0ff",
+    "url": "/static/js/runtime~main.751e5297.js"
+  },
+  {
+    "revision": "e905f3329daec8840d7423e9ca5c3218",
+    "url": "/static/media/KASSIR_KG_BANNER_WEB-01.e905f332.png"
+  },
+  {
+    "revision": "c353ea59f01fdb6d5af1ea1a1d181c35",
+    "url": "/static/media/8plq6-uc7g9.c353ea59.png"
+  },
+  {
+    "revision": "345c573b2957e804cde78ec917b7eee0",
+    "url": "/static/media/od3ht-7o9q5.345c573b.png"
+  },
+  {
+    "revision": "f8730e6d7ad5b456bcefbf963078e176",
+    "url": "/static/media/RUS.f8730e6d.PNG"
+  },
+  {
+    "revision": "ba501caad7b6ad18c6900fcc49beed77",
+    "url": "/static/media/xebjc-kyva5.ba501caa.png"
+  },
+  {
+    "revision": "50c7fb679d8a9d2da9f7ebf2b88cbed7",
+    "url": "/static/media/dvorecsporta.50c7fb67.png"
+  },
+  {
+    "revision": "15cddd077023e819ab1591e02b05008a",
+    "url": "/static/media/oplata.15cddd07.png"
+  },
+  {
+    "revision": "35c632625688537b34b858ce4d57efe4",
+    "url": "/index.html"
+  }
+];
