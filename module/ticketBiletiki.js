@@ -32,6 +32,7 @@ const buy = async (req, res, user) => {
             let fstream = fs.createWriteStream(qrpathA[i]);
             let qrTicket = await qr.image(hashA[i], {type: 'png'});
             let stream = qrTicket.pipe(fstream)
+            let tickets = ''
             stream.on('finish', async () => {
                 number++
                 if(number===(data.seats.length)){
@@ -150,6 +151,11 @@ const buy = async (req, res, user) => {
                             status: 'ожидается оплата',
                             payment: payment._id
                         });
+
+                        if(i1!==0&&i1!==number-1)
+                            tickets+=','
+                        tickets+=_object._id
+
                         await TicketBiletiki.create(_object);
 
                     }
@@ -175,7 +181,7 @@ const buy = async (req, res, user) => {
                     event.genre = data.event.genre
                     await event.save();
 
-
+                    payment.ticket = tickets
                     await PaymentBiletiki.create(payment);
                     let mailingBiletiki = await MailingBiletiki.findOne();
                     let wallet1 = data.wallet

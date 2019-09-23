@@ -7,7 +7,7 @@ const cluster = require('cluster');
 const os = require('os');
 
 if (cluster.isMaster) {
-    let cpuCount = os.cpus().length
+    let cpuCount = /*os.cpus().length*/1
     for (let i = 0; i < cpuCount; i += 1) {
         cluster.fork();
         console.log('cluster '+i+' run')
@@ -45,7 +45,7 @@ if (cluster.isMaster) {
      * Create HTTP server.
      */
     let server = https.createServer(options, app);
-    let server1 = http.createServer(app1);
+    let server1 = https.createServer(options, app1);
 
     /**
      * Listen on provided port, on all network interfaces.

@@ -98,9 +98,8 @@ const getGenreStatisticBiletiki = async () => {
             for(let i = 0; i<ticketSoldAndReturned.length; i++){
                 if(ticketSoldAndReturned[i].status==='использован'||ticketSoldAndReturned[i].status==='продан'){
                     for(let i1 = 0; i1<ticketSoldAndReturned[i].seats.length; i1++){
-                        if(ticketSoldAndReturned[i].seats[i1][0].price===undefined)
-                            ticketSoldAndReturned[i].seats[i1][0].price=0
-                        cash+=parseInt(ticketSoldAndReturned[i].seats[i1][0].price);
+                        if(!(ticketSoldAndReturned[i].seats[i1][0]===undefined||ticketSoldAndReturned[i].seats[i1][0].price===undefined))
+                            cash+=parseInt(ticketSoldAndReturned[i].seats[i1][0].price);
                     }
                 }
             }
@@ -151,11 +150,8 @@ const getEventStatisticBiletiki = async (search, sort, skip) => {
             for(let i = 0; i<ticketSoldAndReturned.length; i++){
                 if(ticketSoldAndReturned[i].status==='использован'||ticketSoldAndReturned[i].status==='продан'){
                     for(let i1 = 0; i1<ticketSoldAndReturned[i].seats.length; i1++){
-                        if(ticketSoldAndReturned[i].seats[i1][0]!==undefined){
-                            if(ticketSoldAndReturned[i].seats[i1][0]===undefined||ticketSoldAndReturned[i].seats[i1][0].price===undefined)
-                                ticketSoldAndReturned[i].seats[i1][0].price=0
+                            if(!(ticketSoldAndReturned[i].seats[i1][0]===undefined||ticketSoldAndReturned[i].seats[i1][0].price===undefined))
                             cash+=parseInt(ticketSoldAndReturned[i].seats[i1][0].price);
-                        }
                     }
                 }
             }
