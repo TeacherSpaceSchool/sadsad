@@ -11,6 +11,7 @@ const myConst = require('../module/const');
 const PaymentBiletiki = require('../models/paymentBiletiki');
 const checkEmail = require('./const').validMail
 const checkPhone = require('./const').validPhone
+const abc = require('./seats').abc
 const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
 
@@ -136,7 +137,7 @@ const buy = async (req, res, user) => {
                                     height: 200,
                                     width: 465,
                                     align: 'justify'})
-                        if(i!==number)
+                        if(i1!==number-1)
                             doc.addPage()
 
                         let _object = new TicketBiletiki({
@@ -153,7 +154,7 @@ const buy = async (req, res, user) => {
                         });
 
                         if(i1!==0&&i1!==number-1)
-                            tickets+=','
+                            tickets+=' '
                         tickets+=_object._id
 
                         await TicketBiletiki.create(_object);
@@ -227,7 +228,7 @@ const buy = async (req, res, user) => {
                                                     for (let i3 = 0; i3 < _event_.where.data[_event_.date[i]][keys[i1]][i2].length; i3++) {
                                                         if (_event_.where.data[_event_.date[i]][keys[i1]][i2][i3].name === tickets[ii].seats[x][0].name &&
                                                             tickets[ii].seats[x][1].includes(_event_.date[i])&&
-                                                            keys[i1] === tickets[ii].seats[x][0].selectSector
+                                                            abc[_event_.where.name][keys[i1]] === tickets[ii].seats[x][0].selectSector
                                                         ) {
                                                             _event_.where.data[_event_.date[i]][keys[i1]][i2][i3].status = 'free'
                                                             for (let c = 0; c < _event_.price.length; c++) {
@@ -247,7 +248,7 @@ const buy = async (req, res, user) => {
                             }
                         }
 
-                    }, 1800000);
+                    }, 30*60*1000);
                     res.status(200);
                     res.end('ok');
                 }

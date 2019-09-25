@@ -273,7 +273,7 @@ const getHistory = async (req, res) => {
         try{
             if (user&&user.status==='active') {
                 res.status(200);
-                res.end(JSON.stringify(await TicketBiletiki.find({user: user._id}).sort('-updatedAt')));
+                res.end(JSON.stringify(await TicketBiletiki.find({user: user._id, status: { $ne: 'ожидается оплата'}}).sort('-updatedAt')));
             } else {
                 console.error('No such user')
                 res.status(401);
