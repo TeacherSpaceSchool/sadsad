@@ -19,7 +19,6 @@ let start = () => {
             session: false
         },
         function (email, password, done) {
-            console.log('email', email, password)
             UserBiletiki.findOne({email: email}, (err, user) => {
                 if (err) {
                     return done(err);
@@ -74,12 +73,10 @@ const verifydclientbuyticket = async (req, res) => {
         try{
             if (user&&user.status==='active'&&user.role==='client') {
                 await TicketBiletikiAction.buy(req, res, user)
-                console.log('ok')
                 return user
             } else {
                 user = await UserBiletiki.findOne({role: 'admin'})
                 await TicketBiletikiAction.buy(req, res, user)
-                console.log('ok')
             }
         } catch (err) {
             console.error(err)
@@ -94,14 +91,12 @@ const verifydclientbuyticketcinema = async (req, res) => {
         try{
             if (user&&user.status==='active'&&user.role==='client') {
                 await TicketCinemaBiletikiAction.buy(req, res, user)
-                console.log('ok')
                 res.status(200);
                 res.end('ok');
                 return user
             } else {
                 user = await UserBiletiki.findOne({role: 'admin'})
                 await TicketCinemaBiletikiAction.buy(req, res, user)
-                console.log('ok')
                 res.status(200);
                 res.end('ok');
             }

@@ -153,7 +153,7 @@ const buy = async (req, res, user) => {
                             payment: payment._id
                         });
 
-                        if(i1!==0&&i1!==number-1)
+                        if(i1!==number-1)
                             tickets+=' '
                         tickets+=_object._id
 

@@ -494,6 +494,19 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Дворец спорта'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Дворец спорта',
+                nameKg:  'Дворец спорта',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.878374, 74.595275',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
         findAdmin = await WhereBiletiki.findOne({nameRu: 'Асанбай Центр'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
