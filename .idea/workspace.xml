@@ -2,13 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/precache-manifest.7f74f546cc4fb6f6e67a8ffcb82166de.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/1.e24f894b.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/1.e24f894b.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/20.3fefae71.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/20.3fefae71.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/25.88fcad5f.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/25.88fcad5f.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/26.9858862c.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/26.9858862c.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/6.238ba848.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/6.238ba848.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.72800486.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.72800486.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.c7576d98.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.c7576d98.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.2f37ac12.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.2f37ac12.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/precache-manifest.3a66d3f38c2a886d596544a5098d71c3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/11.be4c0dc4.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/11.be4c0dc4.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.f828d4f9.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/12.f828d4f9.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.53de007d.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/14.53de007d.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/16.828cceb1.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/16.828cceb1.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/18.120f5203.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/18.120f5203.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/19.c2eb8941.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/19.c2eb8941.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/20.cd85f948.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/20.cd85f948.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/main.0ae07c3c.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/main.0ae07c3c.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.12530ebf.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.12530ebf.js.map" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/asset-manifest.json" afterPath="$PROJECT_DIR$/aclient/asset-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/css/style.css" afterPath="$PROJECT_DIR$/aclient/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/index.html" afterPath="$PROJECT_DIR$/aclient/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/lib/slider-baner.js" afterPath="$PROJECT_DIR$/aclient/lib/slider-baner.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/www" afterPath="$PROJECT_DIR$/bin/www" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/service-worker.js" afterPath="$PROJECT_DIR$/aclient/service-worker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/eventBiletiki.js" afterPath="$PROJECT_DIR$/module/eventBiletiki.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/passport.js" afterPath="$PROJECT_DIR$/module/passport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/seats.js" afterPath="$PROJECT_DIR$/module/seats.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/statisticBiletiki.js" afterPath="$PROJECT_DIR$/module/statisticBiletiki.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/ticketBiletiki.js" afterPath="$PROJECT_DIR$/module/ticketBiletiki.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/user.js" afterPath="$PROJECT_DIR$/module/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/payment.js" afterPath="$PROJECT_DIR$/routes/payment.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,18 +73,91 @@
       <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="254" column="14" lean-forward="false" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
+            <state relative-caret-position="255">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="seats.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/module/seats.js">
+      <file leaf-file-name="passport.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/passport.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="147" column="22" lean-forward="false" selection-start-line="147" selection-start-column="22" selection-end-line="150" selection-end-column="30" />
+            <state relative-caret-position="-85">
+              <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/data.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="489">
+              <caret line="219" column="85" lean-forward="false" selection-start-line="219" selection-start-column="85" selection-end-line="219" selection-end-column="85" />
+              <folding>
+                <element signature="e#2014#5780#0" expanded="false" />
+                <element signature="e#5836#6600#0" expanded="false" />
+                <element signature="e#14439#14825#0" expanded="false" />
+                <element signature="e#14874#16137#0" expanded="false" />
+                <element signature="e#17663#19360#0" expanded="false" />
+                <element signature="e#20520#28715#0" expanded="false" />
+                <element signature="e#29398#50663#0" expanded="false" />
+                <element signature="e#50735#51303#0" expanded="false" />
+                <element signature="e#51360#51760#0" expanded="false" />
+                <element signature="e#51815#52412#0" expanded="false" />
+                <element signature="e#52470#53234#0" expanded="false" />
+                <element signature="e#53293#54088#0" expanded="false" />
+                <element signature="e#54142#55156#0" expanded="false" />
+                <element signature="e#55213#56145#0" expanded="false" />
+                <element signature="e#56199#56762#0" expanded="false" />
+                <element signature="e#56819#57699#0" expanded="false" />
+                <element signature="e#57754#58577#0" expanded="false" />
+                <element signature="e#58634#60167#0" expanded="false" />
+                <element signature="e#60220#60872#0" expanded="false" />
+                <element signature="e#60929#61511#0" expanded="false" />
+                <element signature="e#61569#62175#0" expanded="false" />
+                <element signature="e#62232#62720#0" expanded="false" />
+                <element signature="e#62775#63263#0" expanded="false" />
+                <element signature="e#63321#63959#0" expanded="false" />
+                <element signature="e#64021#64842#0" expanded="false" />
+                <element signature="e#64900#65816#0" expanded="false" />
+                <element signature="e#65874#66665#0" expanded="false" />
+                <element signature="e#70155#70555#0" expanded="false" />
+                <element signature="e#70654#71537#0" expanded="false" />
+                <element signature="e#75720#80270#0" expanded="false" />
+                <element signature="e#80348#98236#0" expanded="false" />
+                <element signature="e#98488#98730#0" expanded="false" />
+                <element signature="e#98828#99287#0" expanded="false" />
+                <element signature="e#99435#102538#0" expanded="false" />
+                <element signature="e#102613#111398#0" expanded="false" />
+                <element signature="e#106047#106423#0" expanded="false" />
+                <element signature="e#106522#107369#0" expanded="false" />
+                <element signature="e#111458#115736#0" expanded="false" />
+                <element signature="e#115793#117325#0" expanded="false" />
+                <element signature="e#117653#125697#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="eventBiletiki.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/eventBiletiki.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="298" column="78" lean-forward="false" selection-start-line="298" selection-start-column="48" selection-end-line="298" selection-end-column="78" />
+              <folding>
+                <element signature="e#9791#11128#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="const.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/const.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-285">
+              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -57,14 +175,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ГдеID</find>
-      <find>place1</find>
-      <find>({hash: hash</find>
-      <find>buy(</find>
-      <find>buy</find>
-      <find>[i</find>
-      <find>dateTime</find>
-      <find>TicketBiletikiAction.buy</find>
       <find>number</find>
       <find>hashA</find>
       <find>payment</find>
@@ -87,6 +197,14 @@
       <find>/visa/</find>
       <find>дворец</find>
       <find>Дворец спорта</find>
+      <find>status:</find>
+      <find>TicketBiletiki.find</find>
+      <find>ticketSoldAndReturned</find>
+      <find>place</find>
+      <find>content-type</find>
+      <find>axios({</find>
+      <find>qr.image</find>
+      <find>_event_</find>
     </findStrings>
     <replaceStrings>
       <replace>body.</replace>
@@ -103,7 +221,6 @@
       <replace>11</replace>
       <replace>' Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+data.seats[i][0]['name'].split(':')[1].split(' ')[0]</replace>
       <replace>if(data.seats[i][0]['name'].split(':')[1]!==undefined)</replace>
-      <replace>event</replace>
       <replace>data.</replace>
       <replace>image</replace>
       <replace>doc.moveTo(330</replace>
@@ -119,6 +236,7 @@
       <replace>({hash: {'$regex': hash, '$options': 'i'}</replace>
       <replace>[number</replace>
       <replace>i1</replace>
+      <replace>event</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -164,20 +282,20 @@
         <option value="$PROJECT_DIR$/public/ticket/debug.log" />
         <option value="$PROJECT_DIR$/models/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/models/paymentBiletiki.js" />
-        <option value="$PROJECT_DIR$/routes/payment.js" />
         <option value="$PROJECT_DIR$/models/eventBiletiki.js" />
-        <option value="$PROJECT_DIR$/module/eventBiletiki.js" />
-        <option value="$PROJECT_DIR$/routes/data.js" />
         <option value="$PROJECT_DIR$/bin/www1" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/appAdmin.js" />
-        <option value="$PROJECT_DIR$/module/statisticBiletiki.js" />
         <option value="$PROJECT_DIR$/module/passport.js" />
         <option value="$PROJECT_DIR$/bin/www" />
-        <option value="$PROJECT_DIR$/module/user.js" />
         <option value="$PROJECT_DIR$/module/const.js" />
-        <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/module/seats.js" />
+        <option value="$PROJECT_DIR$/module/statisticBiletiki.js" />
+        <option value="$PROJECT_DIR$/module/user.js" />
+        <option value="$PROJECT_DIR$/routes/payment.js" />
+        <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
+        <option value="$PROJECT_DIR$/module/eventBiletiki.js" />
+        <option value="$PROJECT_DIR$/routes/data.js" />
       </list>
     </option>
   </component>
@@ -222,7 +340,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -243,7 +361,23 @@
             <path>
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
               <item name="module" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="ticket" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
@@ -254,21 +388,21 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path" value="C:/Nodist/bin/node" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../space school" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../azyk/azyk-admin/.eslintrc" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="C:\Nodist\bin\node_modules\eslint" />
+    <property name="node.js.selected.package.eslint" value="C:\projects\azyk\azyk-admin\node_modules\eslint" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.detected.package.standard" value="true" />
-    <property name="node.js.selected.package.standard" value="C:\Nodist\bin\node_modules\eslint" />
+    <property name="node.js.selected.package.standard" value="C:\projects\azyk\azyk-admin\node_modules\eslint" />
     <property name="node.js.path.for.package.jscs" value="project" />
     <property name="node.js.detected.package.jscs" value="true" />
     <property name="node.js.selected.package.jscs" value="C:\Nodist\bin\node_modules\jscs" />
@@ -531,12 +665,16 @@
       <workItem from="1569221117237" duration="2794000" />
       <workItem from="1569404295545" duration="5709000" />
       <workItem from="1569479579604" duration="3281000" />
-      <workItem from="1569821874399" duration="4116000" />
+      <workItem from="1569821874399" duration="4373000" />
+      <workItem from="1570171066001" duration="10594000" />
+      <workItem from="1570255733702" duration="1616000" />
+      <workItem from="1570261403478" duration="2961000" />
+      <workItem from="1570433811188" duration="12528000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1127692000" />
+    <option name="totallyTimeSpent" value="1155648000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -551,11 +689,11 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13371356" sideWeight="0.8070797" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.76283187" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13371356" sideWeight="0.19292036" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.23716815" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -581,16 +719,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/routes/data.js</url>
-          <line>426</line>
+          <line>441</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/module/statisticBiletiki.js</url>
-          <line>76</line>
+          <line>68</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/routes/data.js</url>
+          <line>1829</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -767,24 +911,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/ticketBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="36" column="14" lean-forward="false" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/paymentBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/eventBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4114">
-          <caret line="242" column="58" lean-forward="false" selection-start-line="242" selection-start-column="38" selection-end-line="242" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -838,45 +968,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/statisticBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
-          <folding>
-            <element signature="e#3624#6245#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1088">
           <caret line="64" column="24" lean-forward="false" selection-start-line="64" selection-start-column="24" selection-end-line="64" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/data.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="110" column="39" lean-forward="false" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
-          <folding>
-            <element signature="e#1906#5481#0" expanded="false" />
-            <element signature="e#16896#18593#0" expanded="false" />
-            <element signature="e#19519#27714#0" expanded="false" />
-            <element signature="e#57468#62522#0" expanded="false" />
-            <element signature="e#89835#107723#0" expanded="false" />
-            <element signature="e#107832#124652#0" expanded="false" />
-            <element signature="e#118749#123027#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/passport.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4896">
-          <caret line="288" column="0" lean-forward="false" selection-start-line="288" selection-start-column="0" selection-end-line="289" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,15 +979,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/payment.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14161">
-          <caret line="833" column="19" lean-forward="false" selection-start-line="833" selection-start-column="13" selection-end-line="833" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -900,7 +986,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="503">
           <caret line="78" column="33" lean-forward="false" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -908,39 +993,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="483" column="71" lean-forward="false" selection-start-line="483" selection-start-column="58" selection-end-line="483" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/const.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="254" column="14" lean-forward="false" selection-start-line="254" selection-start-column="14" selection-end-line="254" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,7 +1000,130 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="147" column="22" lean-forward="false" selection-start-line="147" selection-start-column="22" selection-end-line="150" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/ticketBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="8" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/statisticBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="53" column="50" lean-forward="false" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="50" />
+          <folding>
+            <element signature="e#357#1720#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="684" column="36" lean-forward="false" selection-start-line="684" selection-start-column="25" selection-end-line="684" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/payment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="687" column="30" lean-forward="false" selection-start-line="687" selection-start-column="14" selection-end-line="687" selection-end-column="30" />
+          <folding>
+            <element signature="e#30097#39859#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/const.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="23" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/passport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/eventBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="298" column="78" lean-forward="false" selection-start-line="298" selection-start-column="48" selection-end-line="298" selection-end-column="78" />
+          <folding>
+            <element signature="e#9791#11128#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/data.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="219" column="85" lean-forward="false" selection-start-line="219" selection-start-column="85" selection-end-line="219" selection-end-column="85" />
+          <folding>
+            <element signature="e#2014#5780#0" expanded="false" />
+            <element signature="e#5836#6600#0" expanded="false" />
+            <element signature="e#14439#14825#0" expanded="false" />
+            <element signature="e#14874#16137#0" expanded="false" />
+            <element signature="e#17663#19360#0" expanded="false" />
+            <element signature="e#20520#28715#0" expanded="false" />
+            <element signature="e#29398#50663#0" expanded="false" />
+            <element signature="e#50735#51303#0" expanded="false" />
+            <element signature="e#51360#51760#0" expanded="false" />
+            <element signature="e#51815#52412#0" expanded="false" />
+            <element signature="e#52470#53234#0" expanded="false" />
+            <element signature="e#53293#54088#0" expanded="false" />
+            <element signature="e#54142#55156#0" expanded="false" />
+            <element signature="e#55213#56145#0" expanded="false" />
+            <element signature="e#56199#56762#0" expanded="false" />
+            <element signature="e#56819#57699#0" expanded="false" />
+            <element signature="e#57754#58577#0" expanded="false" />
+            <element signature="e#58634#60167#0" expanded="false" />
+            <element signature="e#60220#60872#0" expanded="false" />
+            <element signature="e#60929#61511#0" expanded="false" />
+            <element signature="e#61569#62175#0" expanded="false" />
+            <element signature="e#62232#62720#0" expanded="false" />
+            <element signature="e#62775#63263#0" expanded="false" />
+            <element signature="e#63321#63959#0" expanded="false" />
+            <element signature="e#64021#64842#0" expanded="false" />
+            <element signature="e#64900#65816#0" expanded="false" />
+            <element signature="e#65874#66665#0" expanded="false" />
+            <element signature="e#70155#70555#0" expanded="false" />
+            <element signature="e#70654#71537#0" expanded="false" />
+            <element signature="e#75720#80270#0" expanded="false" />
+            <element signature="e#80348#98236#0" expanded="false" />
+            <element signature="e#98488#98730#0" expanded="false" />
+            <element signature="e#98828#99287#0" expanded="false" />
+            <element signature="e#99435#102538#0" expanded="false" />
+            <element signature="e#102613#111398#0" expanded="false" />
+            <element signature="e#106047#106423#0" expanded="false" />
+            <element signature="e#106522#107369#0" expanded="false" />
+            <element signature="e#111458#115736#0" expanded="false" />
+            <element signature="e#115793#117325#0" expanded="false" />
+            <element signature="e#117653#125697#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

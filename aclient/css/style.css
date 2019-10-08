@@ -2580,7 +2580,7 @@ input[type="button"].button-primary {
 }
 
 .stage-sector {
-  padding-top: 50px;
+  padding-top: 0px;
 }
 
 .main-buy .order-first-stage .content-stage .sector-info {
@@ -5887,7 +5887,7 @@ p0-pppp
   }
 
   .main-buy .order-first-stage .content-stage .table-tickets-order .ticket-order-row .person {
-    width: 30%;
+    width: 30vw;
   }
 
   .main-buy .order-first-stage .content-stage .sector-info-order {

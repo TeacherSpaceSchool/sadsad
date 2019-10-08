@@ -81,7 +81,6 @@ function initBanner(banner, data) {
         var curLeftMargin = movingBanner.getBoundingClientRect().left;
         var newLeftMargin = data.singleLineWidth;
         var ms = parseInt((newLeftMargin + curLeftMargin) * 15);
-        console.log(data.singleLineWidth)
         $(movingBanner).animate({marginLeft: -newLeftMargin}, ms, "linear");
         resetBannerMoveTimeout = setTimeout(resetBannerMove, ms);
     }
@@ -93,7 +92,6 @@ function initBanner(banner, data) {
             newLeftMargin = 0;
         }
 
-        console.log(curLeftMargin)
         $(movingBanner).stop(true).animate({marginLeft: newLeftMargin}, 0, "linear");
         startBannerMove();
     }
@@ -144,8 +142,6 @@ function initBanner(banner, data) {
             }
         }
 
-        console.log(document.cookie)
-        console.log(updatedCookie)
         document.cookie = updatedCookie;
     }
 
@@ -153,7 +149,6 @@ function initBanner(banner, data) {
         var matches = document.cookie.match(new RegExp(
             "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
         ));
-        console.log(matches)
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
 

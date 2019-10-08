@@ -2,6 +2,7 @@ const EventBiletiki = require('../models/eventBiletiki');
 const BillboardBiletiki = require('../models/billboardBiletiki');
 const format = require('./const').stringifyDateTime
 const mongoose = require('mongoose');
+const abc = require('./seats').abc
 
 const getIds = async () => {
     return await EventBiletiki.find().select('nameRu _id');
@@ -236,6 +237,67 @@ const deleteEventBiletiki = async (id) => {
         console.error(error)
     }
 }
+
+const checkSeatsEventBiletiki = async (seats, eventId) => {
+    try{
+        let free = true
+        let event = await EventBiletiki.findById({_id: eventId});
+        if (!event.where.data[event.date[0]].without&&!event.where.data[event.date[0]].withoutNew) {
+            for (let x = 0; x < seats.length; x++) {
+                for (let i = 0; i < event.date.length; i++) {
+                    let keys = Object.keys(event.where.data[event.date[i]]);
+                    for (let i1 = 0; i1 < keys.length; i1++) {
+                        for (let i2 = 0; i2 < event.where.data[event.date[i]][keys[i1]].length; i2++) {
+                            for (let i3 = 0; i3 < event.where.data[event.date[i]][keys[i1]][i2].length; i3++) {
+                                if (event.where.data[event.date[i]][keys[i1]][i2][i3].name === seats[x][0].name &&
+                                    seats[x][1].includes(event.date[i])&&
+                                    abc[event.where.name][keys[i1]] === seats[x][0].selectSector
+                                ) {
+                                    free = event.where.data[event.date[i]][keys[i1]][i2][i3].status == 'free'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return free
+
+    } catch(error) {
+        console.error(error)
+    }
+}
+const checkSeatsEventBiletikiAdminka = async (seats, eventId) => {
+    try{
+        let free = true
+        let event = await EventBiletiki.findById({_id: eventId});
+        if (!event.where.data[event.date[0]].without&&!event.where.data[event.date[0]].withoutNew) {
+            for (let x = 0; x < seats.length; x++) {
+                for (let i = 0; i < event.date.length; i++) {
+                    let keys = Object.keys(event.where.data[event.date[i]]);
+                    for (let i1 = 0; i1 < keys.length; i1++) {
+                        for (let i2 = 0; i2 < event.where.data[event.date[i]][keys[i1]].length; i2++) {
+                            for (let i3 = 0; i3 < event.where.data[event.date[i]][keys[i1]][i2].length; i3++) {
+                                if (event.where.data[event.date[i]][keys[i1]][i2][i3].name === seats[x][0].name &&
+                                    seats[x][1].includes(event.date[i])&&
+                                    abc[event.where.name][keys[i1]] === seats[x][2]
+                                ) {
+                                    free = event.where.data[event.date[i]][keys[i1]][i2][i3].status == 'free'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return free
+
+    } catch(error) {
+        console.error(error)
+    }
+}
+module.exports.checkSeatsEventBiletikiAdminka = checkSeatsEventBiletikiAdminka;
+module.exports.checkSeatsEventBiletiki = checkSeatsEventBiletiki;
 module.exports.getEventsByName = getEventsByName;
 module.exports.getEvents = getEvents;
 module.exports.getPopular = getPopular;

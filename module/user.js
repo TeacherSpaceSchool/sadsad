@@ -679,6 +679,58 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятия'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Мероприятия',
+                nameKg:  'Мероприятия',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.878891, 74.602820',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятия'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Мероприятия',
+                nameKg:  'Мероприятия',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.878891, 74.602820',
+                city: 'Иссык–Куль'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятия'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Мероприятия',
+                nameKg:  'Мероприятия',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.878891, 74.602820',
+                city: 'Ош'
+            });
+            await WhereBiletiki.create(_user);
+        }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятия'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Мероприятия',
+                nameKg:  'Мероприятия',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.878891, 74.602820',
+                city: 'Джалал-Абад'
+            });
+            await WhereBiletiki.create(_user);
+        }
     } catch(error) {
         console.log(error)
     }

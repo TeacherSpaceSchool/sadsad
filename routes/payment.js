@@ -685,6 +685,27 @@ router.post('/kcb', async (req, res) => {
     }
 });
 
+router.post('/megapay/generate', async (req, res) => {
+    try{
+        let id = await axios({
+            method: 'post',
+            url: 'https://webadmin.paysystem.kg/web-api/v1.2/orders/',
+            data: {'serviceId': 22, 'account': '996555780860', 'sum': req.body.sum},
+            headers: {
+                'Content-Type': `application/json`,
+                'Authorization': `Basic dXNyX2thc3NpcmtnOis2cUJJclpi`,
+            },
+        })
+        console.log(id)
+        res.status(200);
+        res.end('error');
+    } catch(error) {
+        console.error(error)
+        res.status(200);
+        res.end('error');
+    }
+})
+
 router.post('/balance/generate', async (req, res) => {
     try{
         let data = new FormData();

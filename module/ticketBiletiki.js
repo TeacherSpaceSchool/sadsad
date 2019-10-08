@@ -1,5 +1,7 @@
 const MailingBiletiki = require('../models/mailingBiletiki');
-const TicketBiletiki = require('../models/ticketBiletiki'), EventBiletiki = require('../models/eventBiletiki')
+const TicketBiletiki = require('../models/ticketBiletiki')
+const EventBiletiki = require('../models/eventBiletiki')
+const EventBiletikiModule = require('../module/eventBiletiki')
 const randomstring = require('randomstring');
 const format = require('./const').stringifyDateTime
 const app = require('../app');
@@ -54,6 +56,7 @@ const buy = async (req, res, user) => {
                     doc.registerFont('NotoSans', robotoBlack);
                     let fstream = fs.createWriteStream(pdfpath);
                     doc.pipe(fstream);
+                    let event = await EventBiletiki.findById({_id: data.event._id});
                     for(let i1=0; i1<number; i1++){
                         doc.moveDown()
                         doc.image(qrpathA[i1], doc.page.width - 200, 15, {fit: [200, 200], align: 'center'})
@@ -77,10 +80,11 @@ const buy = async (req, res, user) => {
                             .font('NotoSans')
                             .fontSize(10)
                             .text('Дата: '+dateTimeA, {width: doc.page.width - 100, align: 'justify'})
-                        doc
-                            .font('NotoSans')
-                            .fontSize(10)
-                            .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
+                        if(!data.seats[i1][0].newWithout)
+                            doc
+                                .font('NotoSans')
+                                .fontSize(10)
+                                .text('Площадка: '+data.event.where.name, {width: doc.page.width - 100, align: 'justify'})
                         doc
                             .font('NotoSans')
                             .fontSize(10)
@@ -93,6 +97,8 @@ const buy = async (req, res, user) => {
                         if(data.seats[i1][0]['name'].split(':')[1]!==undefined) {
                             place = 'Сектор '+data.seats[i1][0]['selectSector'] + ' Ряд ' + data.seats[i1][0]['name'].split(':')[0].split(' ')[1] + ' Место ' + data.seats[i1][0]['name'].split(':')[1].split(' ')[0]
                         }
+                        if(data.seats[i1][0].newWithout)
+                            place = 'Тариф: '+place
                         doc
                             .font('NotoSans')
                             .fontSize(10)
@@ -153,34 +159,37 @@ const buy = async (req, res, user) => {
                             payment: payment._id
                         });
 
-                        if(i1!==number-1)
-                            tickets+=' '
-                        tickets+=_object._id
+                        tickets+=('|'+_object._id)
 
                         await TicketBiletiki.create(_object);
+
+                        if (!event.where.data[event.date[0]].without&&!event.where.data[event.date[0]].withoutNew) {
+                            for (let x = 0; x < _object.seats.length; x++) {
+                                for (let i = 0; i < event.date.length; i++) {
+                                    let keys = Object.keys(event.where.data[event.date[i]]);
+                                    for (let i1 = 0; i1 < keys.length; i1++) {
+                                        for (let i2 = 0; i2 < event.where.data[event.date[i]][keys[i1]].length; i2++) {
+                                            for (let i3 = 0; i3 < event.where.data[event.date[i]][keys[i1]][i2].length; i3++) {
+                                                if (event.where.data[event.date[i]][keys[i1]][i2][i3].name === _object.seats[x][0].name &&
+                                                    _object.seats[x][1].includes(event.date[i])&&
+                                                    abc[event.where.name][keys[i1]] === _object.seats[x][0].selectSector
+                                                ) {
+                                                    event.where.data[event.date[i]][keys[i1]][i2][i3].status = 'sold'
+                                                    event.where.data[event.date[i]][keys[i1]][i2][i3].color = 'red'
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+
 
                     }
                     doc.end()
 
-
-                    let event = await EventBiletiki.findById({_id: data.event._id});
-                    event.realDate = data.event.realDate
-                    event.popular = data.event.popular
-                    event.active = data.event.active
-                    event.nameRu = data.event.nameRu
-                    event.nameKg =  data.event.nameKg
-                    event.descriptionRu = data.event.descriptionRu
-                    event.descriptionKg = data.event.descriptionKg
-                    event.where = data.event.where
-                    event.price = data.event.price
-                    event.date = data.event.date
-                    event.video = data.event.video
-                    event.city = data.event.city
-                    event.image = data.event.image
-                    event.imageThumbnail = data.event.imageThumbnail
-                    event.ageCategory = data.event.ageCategory
-                    event.genre = data.event.genre
-                    await event.save();
+                    await EventBiletikiModule.setEventBiletiki(event, event._id);
 
                     payment.ticket = tickets
                     await PaymentBiletiki.create(payment);
@@ -219,7 +228,7 @@ const buy = async (req, res, user) => {
                         for(let ii=0; ii<tickets.length; ii++){
                             if (tickets[ii].status === 'ожидается оплата') {
                                 let _event_ = await EventBiletiki.findOne({_id: data.event._id})
-                                if (!_event_.where.data[_event_.date[0]].without) {
+                                if (!_event_.where.data[_event_.date[0]].without&&!_event_.where.data[_event_.date[0]].withoutNew) {
                                     for (let x = 0; x < tickets[ii].seats.length; x++) {
                                         for (let i = 0; i < _event_.date.length; i++) {
                                             let keys = Object.keys(_event_.where.data[_event_.date[i]]);
