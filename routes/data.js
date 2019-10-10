@@ -1163,6 +1163,8 @@ router.post('/add', async (req, res) => {
                                         }
                                     }
                                 }
+                            } else {
+                                _event_ = myNew.event
                             }
 
                             data = {
@@ -1702,6 +1704,8 @@ router.post('/add', async (req, res) => {
                                         }
                                     }
                                 }
+                            } else {
+                                _event_ = myNew.event
                             }
 
                             data = {
@@ -1714,6 +1718,7 @@ router.post('/add', async (req, res) => {
                                 event: myNew.event.nameRu,
                                 ticket: myConst.url + 'ticket/' + pdfname,
                                 status: myNew.status,
+                                cashier: user._id,
                             }
                             await TicketBiletiki.addTicketBiletiki(data);
                             await EventBiletiki.setEventBiletiki(_event_, myNew.event._id);
@@ -1931,6 +1936,8 @@ router.post('/add', async (req, res) => {
                                         }
                                     }
                                 }
+                            } else {
+                                _event_ = myNew.event
                             }
 
 

@@ -182,7 +182,9 @@ const buy = async (req, res, user) => {
                                     }
                                 }
                             }
-                        }
+                        } else [
+                            event = data.event
+                        ]
 
 
 
@@ -353,6 +355,7 @@ const getTicketBiletiki1 = async (search, sort, skip, user) => {
                     {_id: search},
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {seats: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await TicketBiletiki.find({
@@ -361,6 +364,7 @@ const getTicketBiletiki1 = async (search, sort, skip, user) => {
                     {_id: search},
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {seats: {'$regex': search, '$options': 'i'}},
                 ]
             })
                 .sort(sort)
@@ -377,6 +381,7 @@ const getTicketBiletiki1 = async (search, sort, skip, user) => {
                 $or: [
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {seats: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await TicketBiletiki.find({
@@ -384,6 +389,7 @@ const getTicketBiletiki1 = async (search, sort, skip, user) => {
                 $or: [
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {seats: {'$regex': search, '$options': 'i'}},
                 ]
             })
                 .sort(sort)

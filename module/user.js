@@ -679,11 +679,11 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
-        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятия'});
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятие'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
-                nameRu: 'Мероприятия',
-                nameKg:  'Мероприятия',
+                nameRu: 'Мероприятие',
+                nameKg:  'Мероприятие',
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
@@ -692,11 +692,11 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
-        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятия'});
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятие'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
-                nameRu: 'Мероприятия',
-                nameKg:  'Мероприятия',
+                nameRu: 'Мероприятие',
+                nameKg:  'Мероприятие',
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
@@ -705,11 +705,11 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
-        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятия'});
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятие'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
-                nameRu: 'Мероприятия',
-                nameKg:  'Мероприятия',
+                nameRu: 'Мероприятие',
+                nameKg:  'Мероприятие',
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',
@@ -718,11 +718,11 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
-        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятия'});
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Мероприятие'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
-                nameRu: 'Мероприятия',
-                nameKg:  'Мероприятия',
+                nameRu: 'Мероприятие',
+                nameKg:  'Мероприятие',
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',

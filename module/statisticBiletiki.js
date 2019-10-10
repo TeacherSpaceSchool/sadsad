@@ -275,6 +275,7 @@ const getOrganizatorStatisticBiletiki1 = async (search, sort, skip, user) => {
         let data = [], count, users;
         const row = [
             'пользователь',
+            'прибыль',
             'купил',
             'отмена',
             'Концерт',
@@ -288,6 +289,16 @@ const getOrganizatorStatisticBiletiki1 = async (search, sort, skip, user) => {
         count = 1
         users = [user];
         for(let i = 0; i<users.length; i++){
+
+            let cash = 0
+            let ticketSoldAndReturned = await TicketBiletiki.find({user: users[i]._id, $or: [{status: 'использован'}, {status: 'продан'}, {status: 'возвращен'}]});
+            for(let i = 0; i<ticketSoldAndReturned.length; i++){
+                for(let i1 = 0; i1<ticketSoldAndReturned[i].seats.length; i1++){
+                    if(!(ticketSoldAndReturned[i].seats[i1][0]===undefined||ticketSoldAndReturned[i].seats[i1][0].price===undefined))
+                        cash+=parseInt(ticketSoldAndReturned[i].seats[i1][0].price);
+                }
+            }
+
             let user = users[i].email+'\n'+users[i]._id
             let sold = await TicketBiletiki.count({user: users[i]._id, $or: [{status: 'использован'}, {status: 'продан'}, {status: 'возвращен'}]})
             sold += await TicketCinemaBiletiki.count({user: users[i]._id, $or: [{status: 'использован'}, {status: 'продан'}, {status: 'возвращен'}]})
@@ -315,7 +326,7 @@ const getOrganizatorStatisticBiletiki1 = async (search, sort, skip, user) => {
             let sold7 = await TicketBiletiki.find({user: users[i]._id, $or: [{status: 'использован'}, {status: 'продан'}, {status: 'возвращен'}], genre: 'Развитие'})
             sold7 = sold7.length
 
-            data.push([user, sold, cancel, sold1, sold2, sold3, sold4, sold5, sold6, sold7]);
+            data.push([user, cash, sold, cancel, sold1, sold2, sold3, sold4, sold5, sold6, sold7]);
         }
         return {data: data, count: count, row: row}
     } catch(error) {
