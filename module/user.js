@@ -429,6 +429,19 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кыргызская Государственная Филармония им. Т. С.'});
+        if(findAdmin==null){
+            let _user = new WhereBiletiki({
+                nameRu: 'Кыргызская Государственная Филармония им. Т. С.',
+                nameKg:  'Кыргызская Государственная Филармония им. Т. С.',
+                image: '*',
+                imageThumbnail: '*',
+                address: '*',
+                coords: '42.877936, 74.587614',
+                city: 'Бишкек'
+            });
+            await WhereBiletiki.create(_user);
+        }
         findAdmin = await WhereBiletiki.findOne({nameRu: 'Русский драм театр им. Ч.Айтматова'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
