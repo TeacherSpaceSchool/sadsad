@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/static/js/main.fa336521.chunk.js.map" afterPath="$PROJECT_DIR$/aclient/static/js/main.fa336521.chunk.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/seats.js" afterPath="$PROJECT_DIR$/module/seats.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/ticketBiletiki.js" afterPath="$PROJECT_DIR$/module/ticketBiletiki.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/user.js" afterPath="$PROJECT_DIR$/module/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/payment.js" afterPath="$PROJECT_DIR$/routes/payment.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -108,9 +100,6 @@
                 <element signature="e#28835#35770#0" expanded="false" />
                 <element signature="e#35828#42609#0" expanded="false" />
                 <element signature="e#40951#42499#0" expanded="false" />
-                <marker date="1571298899543" expanded="false" signature="42655:42819" ph="{...}" />
-                <marker date="1571298899543" expanded="false" signature="42869:43004" ph="{...}" />
-                <marker date="1571298899543" expanded="false" signature="43049:43176" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -620,12 +609,12 @@
       <workItem from="1570433811188" duration="12783000" />
       <workItem from="1570523778917" duration="2415000" />
       <workItem from="1570603330919" duration="10535000" />
-      <workItem from="1571206791776" duration="20438000" />
+      <workItem from="1571206791776" duration="20888000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1189291000" />
+    <option name="totallyTimeSpent" value="1189741000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -644,8 +633,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.18938053" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.18938053" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1095,9 +1084,6 @@
             <element signature="e#28835#35770#0" expanded="false" />
             <element signature="e#35828#42609#0" expanded="false" />
             <element signature="e#40951#42499#0" expanded="false" />
-            <marker date="1571298899543" expanded="false" signature="42655:42819" ph="{...}" />
-            <marker date="1571298899543" expanded="false" signature="42869:43004" ph="{...}" />
-            <marker date="1571298899543" expanded="false" signature="43049:43176" ph="{...}" />
           </folding>
         </state>
       </provider>
