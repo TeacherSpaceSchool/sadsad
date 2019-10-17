@@ -207,6 +207,8 @@ router.post('/get', async (req, res) => {
                     await res.send(await WhereBiletiki.getCity())
                 } else if(req.body.name == 'СобытиеГород'){
                     await res.send(await EventBiletiki.getByCity(JSON.parse(req.body.data).city))
+                } else if(req.body.name == 'СобытиеГородВсе'){
+                    await res.send(await EventBiletiki.getByCityAll(JSON.parse(req.body.data).city))
                 } else if(req.body.name == 'БилетыHash'){
                     await res.send(await TicketBiletiki.getByHash(JSON.parse(req.body.data).hash))
                 } else if(req.body.name == 'БилетыКиноHash'){
@@ -257,6 +259,8 @@ router.post('/get', async (req, res) => {
                     await res.send(await WhereBiletiki.getCity())
                 } else if(req.body.name == 'СобытиеГород'){
                     await res.send(await EventBiletiki.getByCity(JSON.parse(req.body.data).city))
+                } else if(req.body.name == 'СобытиеГородВсе'){
+                    await res.send(await EventBiletiki.getByCityAll(JSON.parse(req.body.data).city))
                 } else if(req.body.name == 'БилетыHash'){
                     await res.send(await TicketBiletiki.getByHash(JSON.parse(req.body.data).hash))
                 } else if(req.body.name == 'БилетыКиноHash'){
@@ -305,6 +309,8 @@ router.post('/get', async (req, res) => {
                     await res.send(await WhereBiletiki.getCity())
                 } else if(req.body.name == 'СобытиеГород'){
                     await res.send(await EventBiletiki.getByCityOrganizator(JSON.parse(req.body.data).city, user))
+                } else if(req.body.name == 'СобытиеГородВсе'){
+                    await res.send(await EventBiletiki.getByCityAll(JSON.parse(req.body.data).city))
                 } else if(req.body.name == 'Билеты'){
                     await res.send(await TicketBiletiki.getTicketBiletiki1(req.body.search, req.body.sort, req.body.skip, user._id))
                 }

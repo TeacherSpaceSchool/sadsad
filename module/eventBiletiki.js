@@ -13,6 +13,10 @@ const getByCity = async (city) => {
     return await EventBiletiki.find({city: city, active: 'on', realDate: {$elemMatch: { $gte: today }}});
 };
 
+const getByCityAll = async (city) => {
+    return await EventBiletiki.find({city: city,});
+};
+
 const getByCityOrganizator = async (city, user) => {
     let today = new Date();
     console.log(user)
@@ -308,3 +312,4 @@ module.exports.deleteEventBiletiki = deleteEventBiletiki;
 module.exports.getEventBiletiki = getEventBiletiki;
 module.exports.setEventBiletiki = setEventBiletiki;
 module.exports.addEventBiletiki = addEventBiletiki;
+module.exports.getByCityAll = getByCityAll;
