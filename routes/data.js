@@ -218,6 +218,9 @@ router.post('/get', async (req, res) => {
                 }  else if(req.body.name == 'ПроверитьМеста'){
                     let data = JSON.parse(req.body.data);
                     await res.send(await EventBiletiki.checkSeatsEventBiletikiAdminka(data.seats, data.eventId))
+                }  else if(req.body.name == 'Выгрузка'){
+                    let data = JSON.parse(req.body.data);
+                    await res.send(await TicketBiletiki.getUnlouding(data.event))
                 }
             });
         }

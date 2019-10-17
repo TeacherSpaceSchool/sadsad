@@ -340,7 +340,7 @@ router.post('/elsom/generate', async (req, res) => {
                        'PartnerCode': '12467',
                        'ChequeNo': '',
                        'Amount': req.body.sum,
-                       'CashierNo': '',
+                       'CashierNo': req.body.wallet,
                        'UDF': '',
                        'Password': 'A8E87F4BD8A0BCFEA6106DC26A4BA9A3'
                    }
@@ -366,7 +366,6 @@ router.post('/elsom/pay', async (req, res) => {
             responce = req.body
             responce = responce.PartnerPaymentResult
             let wallet = await PaymentBiletiki.findOne({wallet: responce.PartnerTrnID})
-            console.log(wallet)
             if(wallet!=null){
                 if(wallet.status=='совершен'){
                     res.status(200);
@@ -374,7 +373,7 @@ router.post('/elsom/pay', async (req, res) => {
                         'Response':
                             {
                                 'ErrorCode': '11003',
-                                'ErrorMsg': 'User Authentication Failed.'
+                                'ErrorMsg': 'Платеж уже совершен.'
                             }
                     });
                 } else {
@@ -465,19 +464,20 @@ router.post('/elsom/pay', async (req, res) => {
                                 'Response':
                                     {
                                         'ErrorCode': '11003',
-                                        'ErrorMsg': 'User Authentication Failed.'
+                                        'ErrorMsg': 'Платеж не найден..'
                                     }
                             });
                         }
                     }
                 }
-            } else {
+            }
+            else {
                 res.status(200);
                 res.json({
                     'Response':
                         {
                             'ErrorCode': '11003',
-                            'ErrorMsg': 'User Authentication Failed.'
+                            'ErrorMsg': 'Платеж не найден.'
                         }
                 });
             }

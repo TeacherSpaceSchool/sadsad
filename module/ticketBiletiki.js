@@ -16,6 +16,7 @@ const checkPhone = require('./const').validPhone
 const abc = require('./seats').abc
 const nodemailer = require('nodemailer');
 const mongoose = require('mongoose');
+const ExcelJS = require('exceljs');
 
 const buy = async (req, res, user) => {
     let data = JSON.parse(req.body.data);
@@ -295,19 +296,240 @@ const getByHash = async (hash) => {
     return(await TicketBiletiki.findOne({hash: {'$regex': hash, '$options': 'i'}}).populate({path: 'user', select: 'name email'}))
 }
 
+const getUnlouding = async (event) => {
+    let findEvent = await EventBiletiki
+        .findOne({nameRu: event});
+    let price = findEvent.price.map((element)=>element.price)
+    let paymentSystems = {}
+
+    let findResult = await TicketBiletiki
+        .find({event: event})
+        .populate({
+            path: 'user',
+        });
+    console.log(findResult)
+    let workbook = new ExcelJS.Workbook();
+
+    let worksheet = await workbook.addWorksheet('Выгрузка');
+    worksheet.columns = [
+        { header: 'id', key: '_id', width: 10 },
+        { header: 'время заказа', key: 'timeBuy', width: 10 },
+        { header: 'событие', key: 'event', width: 10 },
+        { header: 'время проведения', key: 'timeCurry', width: 10 },
+        { header: 'категория', key: 'genre', width: 10 },
+        { header: 'место проведения', key: 'where', width: 10 },
+        { header: 'секция', key: 'sector', width: 10 },
+        { header: 'ряд', key: 'row', width: 10 },
+        { header: 'место', key: 'seat', width: 10 },
+        { header: 'стоимость', key: 'price', width: 10 },
+        { header: 'пользователь', key: 'user', width: 10 },
+        { header: 'система', key: 'paySystem', width: 10 },
+        { header: 'штрихкод', key: 'qrCode', width: 10 },
+        { header: 'статус', key: 'status', width: 10 },
+    ];
+    for (let i=0; i<findResult.length; i++){
+        let user = '';
+        let paymentSystem = '';
+        if(findResult[i].user !=undefined){
+            user = findResult[i].user.email+' ['+findResult[i].user._id+']'
+            if(findResult[i].user.role=='admin'){
+                paymentSystem = 'центральная касса'
+
+            }
+            else if(findResult[i].user.role=='cashier'){
+                paymentSystem = 'кассир'
+            }
+            else if(findResult[i].user.role=='organizator'){
+                paymentSystem = 'организатор'
+            }
+            else {
+                paymentSystem = await PaymentBiletiki.findOne({ticket: {'$regex': findResult[i]._id, '$options': 'i'}})
+                if(paymentSystem !=undefined){
+                    paymentSystem = paymentSystem.service
+                } else {
+                    paymentSystem = 'ошибка'
+                }
+            }
+            if(paymentSystems[paymentSystem]===undefined)
+                paymentSystems[paymentSystem] = {
+                    count: 0,
+                    usd: 0
+                }
+            if(['использован', 'продан', 'возвращен'].includes(findResult[i].status))
+                paymentSystems[paymentSystem] = {
+                    count: paymentSystems[paymentSystem].count+=1,
+                    usd: paymentSystems[paymentSystem].usd+=parseInt(findResult[i].seats[0][0].price)
+                }
+        }
+        let seat = '';
+        let row = '';
+        let sector = '';
+        let timeCarry = '';
+        let price = '';
+        if(findResult[i].seats !=undefined){
+            if(findResult[i].seats[0][0].name.split(':')[1]!==undefined) {
+                seat = findResult[i].seats[0][0].name.split(':')[1].split(' ')[0];
+                row = findResult[i].seats[0][0].name.split(':')[0].split(' ')[1];
+            }
+            if(findResult[i].seats[0][0].selectSector!==undefined) sector = findResult[i].seats[0][0].selectSector
+            else if(findResult[i].seats[0][2]!==undefined) sector = findResult[i].seats[0][2];
+            else sector = findResult[i].seats[0][0].name
+            timeCarry = findResult[i].seats[0][1];
+            price = findResult[i].seats[0][0].price;
+        }
+        await worksheet.addRow({
+            ticket: findResult[i].ticket,
+            qrCode: findResult[i].hash,
+            user: user,
+            event: findResult[i].event,
+            where: findResult[i].where,
+            status: findResult[i].status,
+            seat: seat,
+            row: row,
+            paySystem: paymentSystem,
+            sector: sector,
+            timeCurry: format(timeCarry),
+            price: price,
+            genre: findResult[i].genre,
+            timeBuy: format(findResult[i].createdAt),
+            _id: findResult[i]._id
+        });
+    }
+
+    worksheet = await workbook.addWorksheet('Отчет по ценам');
+    worksheet.columns = [
+        { header: 'цена', key: 'price', width: 10 },
+        { header: 'заведено', key: 'count', width: 10 },
+        { header: 'продано', key: 'sell', width: 10 },
+        { header: 'отмена', key: 'cancel', width: 10 },
+        { header: 'прибыль', key: 'usd', width: 10 },
+    ];
+    let otchet = []
+    let allUsd = 0
+    let count = {'Итого': 0}
+    if (!findEvent.where.data[findEvent.date[0]].without&&!findEvent.where.data[findEvent.date[0]].withoutNew) {
+        for (let x = 0; x < price.length; x++) {
+            count[price[x]] = 0
+            for (let i = 0; i < findEvent.date.length; i++) {
+                let keys = Object.keys(findEvent.where.data[findEvent.date[i]]);
+                for (let i1 = 0; i1 < keys.length; i1++) {
+                    for (let i2 = 0; i2 < findEvent.where.data[findEvent.date[i]][keys[i1]].length; i2++) {
+                        for (let i3 = 0; i3 < findEvent.where.data[findEvent.date[i]][keys[i1]][i2].length; i3++) {
+                            if (findEvent.where.data[findEvent.date[i]][keys[i1]][i2][i3].price == price[x]) {
+                                count[price[x]] += 1
+                            }
+                        }
+                    }
+                }
+            }
+            count['Итого'] += count[price[x]]
+        }
+    } else if(findEvent.where.data[findEvent.date[0]].withoutNew){
+        for (let x = 0; x < price.length; x++) {
+            count[price[x]] = 0
+            for (let i = 0; i < findEvent.date.length; i++) {
+                let keys = Object.keys(findEvent.where.data[findEvent.date[i]]);
+                for (let i1 = 0; i1 < keys.length; i1++) {
+                    for (let i2 = 0; i2 < findEvent.where.data[findEvent.date[i]][keys[i1]].length; i2++) {
+                        if (findEvent.where.data[findEvent.date[i]][keys[i1]][i2].price.price == price[x]) {
+                                count[price[x]] += (parseInt(findEvent.where.data[findEvent.date[i]][keys[i1]][i2].free)+parseInt(findEvent.where.data[findEvent.date[i]][keys[i1]][i2].sold))
+                        }
+                    }
+                }
+            }
+            count['Итого'] += count[price[x]]
+        }
+    } else if(findEvent.where.data[findEvent.date[0]].without){
+        for (let x = 0; x < price.length; x++) {
+            count[price[x]] = 0
+            for (let i = 0; i < findEvent.date.length; i++) {
+                let keys = Object.keys(findEvent.where.data[findEvent.date[i]]);
+                for (let i1 = 0; i1 < keys.length; i1++) {
+                    for (let i2 = 0; i2 < findEvent.where.data[findEvent.date[i]][keys[i1]].length; i2++) {
+                        if (findEvent.where.data[findEvent.date[i]][keys[i1]][i2].price.price == price[x]) {
+                            count[price[x]] += parseInt(findEvent.where.data[findEvent.date[i]][keys[i1]][i2].free)
+                        }
+                    }
+                }
+            }
+            count['Итого'] += count[price[x]]
+        }
+    }
+    for (let i=0; i<price.length; i++){
+        let findTicketByPrice = findResult.filter(findResult => findResult.seats[0][0].price==price[i])
+        otchet[i] = {}
+        otchet[i].name = price[i]
+        otchet[i].count = count[price[i]]
+        otchet[i].sell = (findTicketByPrice.filter(findTicketByPrice => ['использован', 'продан', 'возвращен'].includes(findTicketByPrice.status))).length;
+        otchet[i].cancel = (findTicketByPrice.filter(findTicketByPrice => ['отмена'].includes(findTicketByPrice.status))).length
+        otchet[i].usd = ((findTicketByPrice.filter(findTicketByPrice => ['использован', 'продан', 'возвращен'].includes(findTicketByPrice.status))).length)*parseInt(price[i]);
+        allUsd+=otchet[i].usd
+    }
+    otchet[otchet.length] = {}
+    otchet[otchet.length-1].name = 'Итого'
+    otchet[otchet.length-1].count = count['Итого']
+    otchet[otchet.length-1].sell = (findResult.filter(findResult => ['использован', 'продан', 'возвращен'].includes(findResult.status))).length;
+    otchet[otchet.length-1].cancel = (findResult.filter(findResult => ['отмена'].includes(findResult.status))).length
+    otchet[otchet.length-1].usd = allUsd
+    for (let i=0; i<otchet.length; i++){
+        await worksheet.addRow({
+            count: otchet[i].count,
+            price: otchet[i].name,
+            sell: otchet[i].sell,
+            cancel: otchet[i].cancel,
+            usd: otchet[i].usd
+        });
+    }
+
+    worksheet = await workbook.addWorksheet('Отчет по Платежным Системам');
+    worksheet.columns = [
+        { header: 'имя', key: 'price', width: 10 },
+        { header: 'продано', key: 'count', width: 10 },
+        { header: 'прибыль', key: 'usd', width: 10 },
+    ];
+    let allCount = 0, allUsd1 = 0;
+    for (let i=0; i<(Object.keys(paymentSystems)).length; i++){
+        allCount += paymentSystems[(Object.keys(paymentSystems))[i]].count
+        allUsd1 += parseInt(paymentSystems[(Object.keys(paymentSystems))[i]].usd)
+        await worksheet.addRow({
+            price: (Object.keys(paymentSystems))[i],
+            count: paymentSystems[(Object.keys(paymentSystems))[i]].count,
+            usd: paymentSystems[(Object.keys(paymentSystems))[i]].usd
+        });
+    }
+    await worksheet.addRow({
+        price: 'Итого',
+        count: allCount,
+        usd: allUsd1
+    });
+
+    let xlsxname = randomstring.generate(10) + '.xlsx';
+    let xlsxdir = path.join(app.dirname, 'public', 'xlsx');
+    if (!await fs.existsSync(xlsxdir)){
+        await fs.mkdirSync(xlsxdir);
+    }
+    let xlsxpath = path.join(app.dirname, 'public', 'xlsx', xlsxname);
+    await workbook.xlsx.writeFile(xlsxpath);
+    return(myConst.url + 'xlsx/' + xlsxname)
+}
+
 const getTicketBiletiki1 = async (search, sort, skip, user) => {
     try{
         let findResult = [], data = [], count;
         const row = [
             'билет',
-            'hash',
+            'проверочный код',
             'пользователь',
             'событие',
-            'место',
+            'место проведения',
             'статус',
-            'места',
+            'место',
+            'ряд',
+            'сектор',
+            'время проведения',
+            'стоимость',
             'жанр',
-            'создан',
+            'время заказа',
             '_id'
         ];
         if(sort == undefined||sort=='')
@@ -356,6 +578,10 @@ const getTicketBiletiki1 = async (search, sort, skip, user) => {
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                     {seats: {'$regex': search, '$options': 'i'}},
+                    {event: {'$regex': search, '$options': 'i'}},
+                    {where: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}},
+                    {payment: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await TicketBiletiki.find({
@@ -365,6 +591,10 @@ const getTicketBiletiki1 = async (search, sort, skip, user) => {
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                     {seats: {'$regex': search, '$options': 'i'}},
+                    {event: {'$regex': search, '$options': 'i'}},
+                    {where: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}},
+                    {payment: {'$regex': search, '$options': 'i'}},
                 ]
             })
                 .sort(sort)
@@ -382,6 +612,10 @@ const getTicketBiletiki1 = async (search, sort, skip, user) => {
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                     {seats: {'$regex': search, '$options': 'i'}},
+                    {event: {'$regex': search, '$options': 'i'}},
+                    {where: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}},
+                    {payment: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await TicketBiletiki.find({
@@ -390,6 +624,10 @@ const getTicketBiletiki1 = async (search, sort, skip, user) => {
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
                     {seats: {'$regex': search, '$options': 'i'}},
+                    {event: {'$regex': search, '$options': 'i'}},
+                    {where: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}},
+                    {payment: {'$regex': search, '$options': 'i'}},
                 ]
             })
                 .sort(sort)
@@ -405,7 +643,38 @@ const getTicketBiletiki1 = async (search, sort, skip, user) => {
             let user = '';
             if(findResult[i].user !=undefined)
                 user = findResult[i].user.name+'\n'+findResult[i].user.email+'\n'+findResult[i].user._id
-            data.push([findResult[i].ticket, findResult[i].hash, user, findResult[i].event, findResult[i].where, findResult[i].status, JSON.stringify(findResult[i].seats), findResult[i].genre, format(findResult[i].createdAt), findResult[i]._id]);
+            let seat = '';
+            let row = '';
+            let sector = '';
+            let timeCarry = '';
+            let price = '';
+            if(findResult[i].seats !=undefined){
+                if(findResult[i].seats[0][0].name.split(':')[1]!==undefined){
+                    seat = findResult[i].seats[0][0].name.split(':')[1].split(' ')[0];
+                    row = findResult[i].seats[0][0].name.split(':')[0].split(' ')[1];
+                }
+                if(findResult[i].seats[0][0].selectSector!==undefined) sector = findResult[i].seats[0][0].selectSector
+                else if(findResult[i].seats[0][2]!==undefined) sector = findResult[i].seats[0][2];
+                else sector = findResult[i].seats[0][0].name
+                timeCarry = findResult[i].seats[0][1];
+                price = findResult[i].seats[0][0].price;
+            }
+            data.push([
+                findResult[i].ticket,
+                findResult[i].hash,
+                user,
+                findResult[i].event,
+                findResult[i].where,
+                findResult[i].status,
+                seat,
+                row,
+                sector,
+                format(timeCarry),
+                price,
+                findResult[i].genre,
+                format(findResult[i].createdAt),
+                findResult[i]._id]
+            );
         }
         return {data: data, count: count, row: row}
     } catch(error) {
@@ -418,14 +687,18 @@ const getTicketBiletiki = async (search, sort, skip) => {
         let findResult = [], data = [], count;
         const row = [
             'билет',
-            'hash',
+            'проверочный код',
             'пользователь',
             'событие',
-            'место',
+            'место проведения',
             'статус',
-            'места',
+            'место',
+            'ряд',
+            'сектор',
+            'время проведения',
+            'стоимость',
             'жанр',
-            'создан',
+            'время заказа',
             '_id'
         ];
         if(sort == undefined||sort=='')
@@ -472,8 +745,11 @@ const getTicketBiletiki = async (search, sort, skip) => {
                     {_id: search},
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {seats: {'$regex': search, '$options': 'i'}},
                     {event: {'$regex': search, '$options': 'i'}},
                     {where: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}},
+                    {payment: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await TicketBiletiki.find({
@@ -481,8 +757,11 @@ const getTicketBiletiki = async (search, sort, skip) => {
                     {_id: search},
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {seats: {'$regex': search, '$options': 'i'}},
                     {event: {'$regex': search, '$options': 'i'}},
                     {where: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}},
+                    {payment: {'$regex': search, '$options': 'i'}},
                 ]
             })
                 .sort(sort)
@@ -498,16 +777,22 @@ const getTicketBiletiki = async (search, sort, skip) => {
                 $or: [
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {seats: {'$regex': search, '$options': 'i'}},
                     {event: {'$regex': search, '$options': 'i'}},
                     {where: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}},
+                    {payment: {'$regex': search, '$options': 'i'}},
                 ]
             });
             findResult = await TicketBiletiki.find({
                 $or: [
                     {hash: {'$regex': search, '$options': 'i'}},
                     {status: {'$regex': search, '$options': 'i'}},
+                    {seats: {'$regex': search, '$options': 'i'}},
                     {event: {'$regex': search, '$options': 'i'}},
                     {where: {'$regex': search, '$options': 'i'}},
+                    {genre: {'$regex': search, '$options': 'i'}},
+                    {payment: {'$regex': search, '$options': 'i'}},
                 ]
             })
                 .sort(sort)
@@ -523,7 +808,38 @@ const getTicketBiletiki = async (search, sort, skip) => {
             let user = '';
             if(findResult[i].user !=undefined)
                 user = findResult[i].user.name+'\n'+findResult[i].user.email+'\n'+findResult[i].user._id
-            data.push([findResult[i].ticket, findResult[i].hash, user, findResult[i].event, findResult[i].where, findResult[i].status, JSON.stringify(findResult[i].seats), findResult[i].genre, format(findResult[i].createdAt), findResult[i]._id]);
+            let seat = '';
+            let row = '';
+            let sector = '';
+            let timeCarry = '';
+            let price = '';
+            if(findResult[i].seats !=undefined){
+                if(findResult[i].seats[0][0].name.split(':')[1]!==undefined){
+                    seat = findResult[i].seats[0][0].name.split(':')[1].split(' ')[0];
+                    row = findResult[i].seats[0][0].name.split(':')[0].split(' ')[1];
+                }
+                if(findResult[i].seats[0][0].selectSector!==undefined) sector = findResult[i].seats[0][0].selectSector
+                else if(findResult[i].seats[0][2]!==undefined) sector = findResult[i].seats[0][2];
+                else sector = findResult[i].seats[0][0].name
+                timeCarry = findResult[i].seats[0][1];
+                price = findResult[i].seats[0][0].price;
+            }
+            data.push([
+                findResult[i].ticket,
+                findResult[i].hash,
+                user,
+                findResult[i].event,
+                findResult[i].where,
+                findResult[i].status,
+                seat,
+                row,
+                sector,
+                format(timeCarry),
+                price,
+                findResult[i].genre,
+                format(findResult[i].createdAt),
+                findResult[i]._id]
+            );
         }
         return {data: data, count: count, row: row}
     } catch(error) {
@@ -556,6 +872,7 @@ const deleteTicketBiletiki = async (id) => {
     }
 }
 
+module.exports.getUnlouding = getUnlouding;
 module.exports.getByHash = getByHash;
 module.exports.checkHash = checkHash;
 module.exports.deleteTicketBiletiki = deleteTicketBiletiki;
