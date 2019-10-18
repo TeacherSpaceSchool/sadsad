@@ -429,11 +429,11 @@ let createAdmin = async () => {
             });
             await WhereBiletiki.create(_user);
         }
-        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кыргызская Национальная Филармония им. Т.С.'});
+        findAdmin = await WhereBiletiki.findOne({nameRu: 'Кыргызская национальная филармония'});
         if(findAdmin==null){
             let _user = new WhereBiletiki({
-                nameRu: 'Кыргызская Национальная Филармония им. Т.С.',
-                nameKg:  'Кыргызская Национальная Филармония им. Т.С.',
+                nameRu: 'Кыргызская национальная филармония',
+                nameKg:  'Кыргызская национальная филармония',
                 image: '*',
                 imageThumbnail: '*',
                 address: '*',

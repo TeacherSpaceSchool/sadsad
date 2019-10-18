@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="" />
+    <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/precache-manifest.352b2917555b0f080fe1bc3060f2aaaa.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.805f885e.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/8.805f885e.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.554bbe63.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/main.554bbe63.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.a119e756.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/aclient/static/js/runtime~main.a119e756.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/precache-manifest.c3f71e8a6a7d8b2aa112e5e573fbf7c8.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/11.318f5ab2.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/11.318f5ab2.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/13.558b2d84.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/13.558b2d84.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/20.1978ad52.chunk.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/20.1978ad52.chunk.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.0c742977.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/static/js/runtime~main.0c742977.js.map" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/asset-manifest.json" afterPath="$PROJECT_DIR$/aclient/asset-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/index.html" afterPath="$PROJECT_DIR$/aclient/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aclient/service-worker.js" afterPath="$PROJECT_DIR$/aclient/service-worker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/asset-manifest.json" afterPath="$PROJECT_DIR$/admin/asset-manifest.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/index.html" afterPath="$PROJECT_DIR$/admin/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service-worker.js" afterPath="$PROJECT_DIR$/admin/service-worker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/seats.js" afterPath="$PROJECT_DIR$/module/seats.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/user.js" afterPath="$PROJECT_DIR$/module/user.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,8 +46,8 @@
       <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="309" column="56" lean-forward="false" selection-start-line="309" selection-start-column="44" selection-end-line="309" selection-end-column="56" />
+            <state relative-caret-position="383">
+              <caret line="322" column="15" lean-forward="false" selection-start-line="322" selection-start-column="15" selection-end-line="322" selection-end-column="15" />
               <folding>
                 <element signature="e#2014#5780#0" expanded="false" />
                 <element signature="e#5836#6600#0" expanded="false" />
@@ -137,7 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>История</find>
       <find>console.log</find>
       <find>/visa/</find>
       <find>дворец</find>
@@ -167,9 +192,9 @@
       <find>elsom</find>
       <find>event</find>
       <find>СобытиеГород</find>
+      <find>Кыргызская Национальная Филармония им. Т.С.</find>
     </findStrings>
     <replaceStrings>
-      <replace>'</replace>
       <replace>send</replace>
       <replace>json</replace>
       <replace>responce.CashierNo</replace>
@@ -199,6 +224,7 @@
       <replace>Кыргызская Государственная Филармония им. Т. С.</replace>
       <replace>Кыргызская Национальная Филармония им. Т.С.</replace>
       <replace>findEvent</replace>
+      <replace>Кыргызская национальная филармония</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -207,7 +233,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/php/visa.php" />
         <option value="$PROJECT_DIR$/models/checkVisa.js" />
         <option value="$PROJECT_DIR$/models/checkVisaBiletiki.js" />
         <option value="$PROJECT_DIR$/routes/data123.js" />
@@ -258,6 +283,7 @@
         <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/module/eventBiletiki.js" />
         <option value="$PROJECT_DIR$/routes/data.js" />
+        <option value="$PROJECT_DIR$/aclient/static/js/main.554bbe63.chunk.js.map" />
       </list>
     </option>
   </component>
@@ -621,12 +647,12 @@
       <workItem from="1570603330919" duration="10535000" />
       <workItem from="1571206791776" duration="21591000" />
       <workItem from="1571309095761" duration="1118000" />
-      <workItem from="1571380843578" duration="16000" />
+      <workItem from="1571380843578" duration="1864000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1191578000" />
+    <option name="totallyTimeSpent" value="1193426000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -639,15 +665,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.7889273" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.78938055" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.21107267" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.21061946" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -655,7 +683,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -689,13 +716,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/cinemaHallBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="20" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/ticketCinemaBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1038,8 +1058,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="309" column="56" lean-forward="false" selection-start-line="309" selection-start-column="44" selection-end-line="309" selection-end-column="56" />
+        <state relative-caret-position="383">
+          <caret line="322" column="15" lean-forward="false" selection-start-line="322" selection-start-column="15" selection-end-line="322" selection-end-column="15" />
           <folding>
             <element signature="e#2014#5780#0" expanded="false" />
             <element signature="e#5836#6600#0" expanded="false" />
@@ -1080,6 +1100,17 @@
             <element signature="e#112380#116658#0" expanded="false" />
             <element signature="e#116715#118247#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aclient/static/js/main.554bbe63.chunk.js.map">
+      <provider editor-type-id="sourcemapFileViewerProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="0" column="1612" lean-forward="false" selection-start-line="0" selection-start-column="1612" selection-end-line="0" selection-end-column="1612" />
+          <folding />
         </state>
       </provider>
     </entry>
