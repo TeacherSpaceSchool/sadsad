@@ -23,8 +23,8 @@
       <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="348" column="20" lean-forward="true" selection-start-line="348" selection-start-column="20" selection-end-line="348" selection-end-column="20" />
+            <state relative-caret-position="301">
+              <caret line="350" column="13" lean-forward="false" selection-start-line="350" selection-start-column="13" selection-end-line="350" selection-end-column="13" />
               <folding>
                 <element signature="e#890#18031#0" expanded="false" />
                 <element signature="e#18067#18179#0" expanded="false" />
@@ -35,12 +35,12 @@
                 <element signature="e#20608#20676#0" expanded="false" />
                 <element signature="e#20732#20788#0" expanded="false" />
                 <element signature="e#20848#20909#0" expanded="false" />
-                <element signature="e#23981#24825#0" expanded="false" />
-                <element signature="e#24889#25723#0" expanded="false" />
-                <element signature="e#25784#26543#0" expanded="false" />
-                <element signature="e#29717#36652#0" expanded="false" />
-                <element signature="e#36710#43491#0" expanded="false" />
-                <element signature="e#41833#43381#0" expanded="false" />
+                <element signature="e#24323#25167#0" expanded="false" />
+                <element signature="e#25231#26065#0" expanded="false" />
+                <element signature="e#26126#26885#0" expanded="false" />
+                <element signature="e#30059#36994#0" expanded="false" />
+                <element signature="e#37052#43833#0" expanded="false" />
+                <element signature="e#42175#43723#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -543,12 +543,12 @@
       <workItem from="1571206791776" duration="21591000" />
       <workItem from="1571309095761" duration="1118000" />
       <workItem from="1571380843578" duration="1909000" />
-      <workItem from="1571402903910" duration="7375000" />
+      <workItem from="1571402903910" duration="7642000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1200846000" />
+    <option name="totallyTimeSpent" value="1201113000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -986,8 +986,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="348" column="20" lean-forward="true" selection-start-line="348" selection-start-column="20" selection-end-line="348" selection-end-column="20" />
+        <state relative-caret-position="301">
+          <caret line="350" column="13" lean-forward="false" selection-start-line="350" selection-start-column="13" selection-end-line="350" selection-end-column="13" />
           <folding>
             <element signature="e#890#18031#0" expanded="false" />
             <element signature="e#18067#18179#0" expanded="false" />
@@ -998,12 +998,12 @@
             <element signature="e#20608#20676#0" expanded="false" />
             <element signature="e#20732#20788#0" expanded="false" />
             <element signature="e#20848#20909#0" expanded="false" />
-            <element signature="e#23981#24825#0" expanded="false" />
-            <element signature="e#24889#25723#0" expanded="false" />
-            <element signature="e#25784#26543#0" expanded="false" />
-            <element signature="e#29717#36652#0" expanded="false" />
-            <element signature="e#36710#43491#0" expanded="false" />
-            <element signature="e#41833#43381#0" expanded="false" />
+            <element signature="e#24323#25167#0" expanded="false" />
+            <element signature="e#25231#26065#0" expanded="false" />
+            <element signature="e#26126#26885#0" expanded="false" />
+            <element signature="e#30059#36994#0" expanded="false" />
+            <element signature="e#37052#43833#0" expanded="false" />
+            <element signature="e#42175#43723#0" expanded="false" />
           </folding>
         </state>
       </provider>
