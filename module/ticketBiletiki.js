@@ -342,6 +342,7 @@ const getUnlouding = async (event) => {
                 paymentSystem = 'организатор'
             }
             else {
+                console.log(findResult[i]._id)
                 paymentSystem = await PaymentBiletiki.findOne({ticket: {'$regex': findResult[i]._id, '$options': 'i'}})
                 if(paymentSystem != null){
                     paymentSystem = paymentSystem.service
@@ -351,6 +352,7 @@ const getUnlouding = async (event) => {
             }
         }
         else {
+            console.log(findResult[i]._id)
             paymentSystem = await PaymentBiletiki.findOne({ticket: {'$regex': findResult[i]._id, '$options': 'i'}})
             if(paymentSystem != null){
                 paymentSystem = paymentSystem.service
