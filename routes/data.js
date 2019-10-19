@@ -313,8 +313,7 @@ router.post('/get', async (req, res) => {
                     await res.send(await EventBiletiki.getByCityAll(JSON.parse(req.body.data).city))
                 } else if(req.body.name == 'Билеты'){
                     await res.send(await TicketBiletiki.getTicketBiletiki1(req.body.search, req.body.sort, req.body.skip, user._id))
-                }
-                else if(req.body.name == 'Статистика организаторов'){
+                } else if(req.body.name == 'Статистика организаторов'){
                     await res.send(await StatisticBiletiki.getOrganizatorStatisticBiletiki1(req.body.search, req.body.sort, req.body.skip, user))
                 }  else if(req.body.name == 'ПроверитьМеста'){
                     let data = JSON.parse(req.body.data);
@@ -1103,15 +1102,15 @@ router.post('/add', async (req, res) => {
                                 let sector = ''
                                 let ryad = ''
                                 let sum = 0
-                                for(let i = 0; i<data.seats.length; i++){
-                                    sum+=parseInt(data.seats[i][0]['price'])
+                                for(let i = 0; i<myNew.seats.length; i++){
+                                    sum+=parseInt(myNew.seats[i][0]['price'])
                                 }
                                 for (let i = 0; i < myNew.seats.length; i++) {
-                                    let date = data.seats[i][1].split('T')[0].split('-')
-                                    let time = data.seats[i][1].split('T')[1].split(':')
+                                    let date = myNew.seats[i][1].split('T')[0].split('-')
+                                    let time = myNew.seats[i][1].split('T')[1].split(':')
                                     dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                     if(!myNew.seats[0][0].newWithout) {
-                                        let place = data.seats[i][0]['name']
+                                        let place = myNew.seats[i][0]['name']
                                         if (i === 0 || sector != myNew.seats[i][2]) {
                                                 sector = myNew.seats[i][2]
                                                 if (i !== 0)
@@ -1119,15 +1118,15 @@ router.post('/add', async (req, res) => {
                                                 else
                                                     place1 += 'Сектор ' + sector
                                             }
-                                        if (data.seats[i][0]['name'].split(':')[1] !== undefined) {
+                                        if (myNew.seats[i][0]['name'].split(':')[1] !== undefined) {
                                                 if (i === 0) {
                                                     ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
-                                                    place1 += ', Ряд ' + data.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                    place1 += ', Ряд ' + myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                                 } else if (ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]) {
                                                     ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
-                                                    place1 += ', Ряд ' + data.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                    place1 += ', Ряд ' + myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                                 }
-                                                place = ' Место ' + data.seats[i][0]['name'].split(':')[1].split(' ')[0]
+                                                place = ' Место ' + myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                             }
                                         place1 += place
                                     } else {
@@ -1601,7 +1600,8 @@ router.post('/add', async (req, res) => {
                             }
                         })
                     }
-                } else {
+                }
+                else {
                     if(req.body.name == 'Билеты'){
                         if(req.body.id==undefined){
                             let hash = randomstring.generate({length: 12, charset: 'numeric'});
@@ -1644,15 +1644,16 @@ router.post('/add', async (req, res) => {
                                 let sector = ''
                                 let ryad = ''
                                 let sum = 0
-                                for(let i = 0; i<data.seats.length; i++){
-                                    sum+=parseInt(data.seats[i][0]['price'])
+
+                                for(let i = 0; i<myNew.seats.length; i++){
+                                    sum+=parseInt(myNew.seats[i][0]['price'])
                                 }
                                 for (let i = 0; i < myNew.seats.length; i++) {
-                                    let date = data.seats[i][1].split('T')[0].split('-')
-                                    let time = data.seats[i][1].split('T')[1].split(':')
+                                    let date = myNew.seats[i][1].split('T')[0].split('-')
+                                    let time = myNew.seats[i][1].split('T')[1].split(':')
                                     dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
                                     if(!myNew.seats[0][0].newWithout) {
-                                        let place = data.seats[i][0]['name']
+                                        let place = myNew.seats[i][0]['name']
                                         if (i === 0 || sector != myNew.seats[i][2]) {
                                             sector = myNew.seats[i][2]
                                             if (i !== 0)
@@ -1660,15 +1661,15 @@ router.post('/add', async (req, res) => {
                                             else
                                                 place1 += 'Сектор ' + sector
                                         }
-                                        if (data.seats[i][0]['name'].split(':')[1] !== undefined) {
+                                        if (myNew.seats[i][0]['name'].split(':')[1] !== undefined) {
                                             if (i === 0) {
                                                 ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
-                                                place1 += ', Ряд ' + data.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                place1 += ', Ряд ' + myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                             } else if (ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]) {
                                                 ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
-                                                place1 += ', Ряд ' + data.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                place1 += ', Ряд ' + myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                             }
-                                            place = ' Место ' + data.seats[i][0]['name'].split(':')[1].split(' ')[0]
+                                            place = ' Место ' + myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                         }
                                         place1 += place
                                     } else {
@@ -1878,8 +1879,8 @@ router.post('/add', async (req, res) => {
                                 let sector = ''
                                 let ryad = ''
                                 let sum = 0
-                                for(let i = 0; i<data.seats.length; i++){
-                                    sum+=parseInt(data.seats[i][0]['price'])
+                                for(let i = 0; i<myNew.seats.length; i++){
+                                    sum+=parseInt(myNew.seats[i][0]['price'])
                                 }
                                 for(let i = 0; i<myNew.seats.length; i++){
                                     let date = myNew.seats[i][1].split('T')[0].split('-')
@@ -1899,7 +1900,7 @@ router.post('/add', async (req, res) => {
                                             place1+=' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                         } else if(ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]){
                                             ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
-                                            place1+=', Ряд '+data.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                            place1+=', Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
                                         }
                                         place = ' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
                                     }
