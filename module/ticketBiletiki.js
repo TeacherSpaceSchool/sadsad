@@ -332,8 +332,12 @@ const getUnlouding = async (event) => {
         if(findResult[i].user !=undefined){
             user = findResult[i].user.email+' ['+findResult[i].user._id+']'
             if(findResult[i].user.role=='admin'){
-                paymentSystem = 'центральная касса'
-
+                paymentSystem = await PaymentBiletiki.findOne({ticket: {'$regex': findResult[i]._id, '$options': 'i'}})
+                if(paymentSystem != null){
+                    paymentSystem = paymentSystem.service
+                } else {
+                    paymentSystem = 'центральная касса'
+                }
             }
             else if(findResult[i].user.role=='cashier'){
                 paymentSystem = 'кассир'
