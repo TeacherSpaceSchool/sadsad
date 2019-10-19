@@ -341,25 +341,25 @@ const getUnlouding = async (event) => {
             else if(findResult[i].user.role=='organizator'){
                 paymentSystem = 'организатор'
             }
-            else {
-                paymentSystem = await PaymentBiletiki.findOne({ticket: {'$regex': findResult[i]._id, '$options': 'i'}})
-                if(paymentSystem !=undefined){
-                    paymentSystem = paymentSystem.service
-                } else {
-                    paymentSystem = 'ошибка'
-                }
-            }
-            if(paymentSystems[paymentSystem]===undefined)
-                paymentSystems[paymentSystem] = {
-                    count: 0,
-                    usd: 0
-                }
-            if(['использован', 'продан', 'возвращен'].includes(findResult[i].status))
-                paymentSystems[paymentSystem] = {
-                    count: paymentSystems[paymentSystem].count+=1,
-                    usd: paymentSystems[paymentSystem].usd+=parseInt(findResult[i].seats[0][0].price)
-                }
         }
+        else {
+            paymentSystem = await PaymentBiletiki.findOne({ticket: {'$regex': findResult[i]._id, '$options': 'i'}})
+            if(paymentSystem != null){
+                paymentSystem = paymentSystem.service
+            } else {
+                paymentSystem = 'ошибка'
+            }
+        }
+        if(paymentSystems[paymentSystem]===undefined)
+            paymentSystems[paymentSystem] = {
+                count: 0,
+                usd: 0
+            }
+        if(['использован', 'продан', 'возвращен'].includes(findResult[i].status))
+            paymentSystems[paymentSystem] = {
+                count: paymentSystems[paymentSystem].count+=1,
+                usd: paymentSystems[paymentSystem].usd+=parseInt(findResult[i].seats[0][0].price)
+            }
         let seat = '';
         let row = '';
         let sector = '';
