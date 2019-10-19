@@ -346,7 +346,6 @@ const getUnlouding = async (event) => {
                 paymentSystem = 'организатор'
             }
             else {
-                console.log(findResult[i]._id)
                 paymentSystem = await PaymentBiletiki.findOne({ticket: {'$regex': findResult[i]._id, '$options': 'i'}})
                 if(paymentSystem != null){
                     paymentSystem = paymentSystem.service
@@ -356,20 +355,19 @@ const getUnlouding = async (event) => {
             }
         }
         else {
-            console.log(findResult[i]._id)
             paymentSystem = await PaymentBiletiki.findOne({ticket: {'$regex': findResult[i]._id, '$options': 'i'}})
             if(paymentSystem != null){
                 paymentSystem = paymentSystem.service
-            } else {
+            }/* else {
                 paymentSystem = 'ошибка'
-            }
+            }*/
         }
         if(paymentSystems[paymentSystem]===undefined)
             paymentSystems[paymentSystem] = {
                 count: 0,
                 usd: 0
             }
-        if(['использован', 'продан', 'возвращен'].includes(findResult[i].status))
+        if(paymentSystem.length>0 && ['использован', 'продан', 'возвращен'].includes(findResult[i].status))
             paymentSystems[paymentSystem] = {
                 count: paymentSystems[paymentSystem].count+=1,
                 usd: paymentSystems[paymentSystem].usd+=parseInt(findResult[i].seats[0][0].price)
