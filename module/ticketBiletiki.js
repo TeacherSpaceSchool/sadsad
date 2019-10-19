@@ -80,7 +80,7 @@ const buy = async (req, res, user) => {
                         doc
                             .font('NotoSans')
                             .fontSize(10)
-                            .text('Дата: '+dateTimeA, {width: doc.page.width - 100, align: 'justify'})
+                            .text('Дата покупки: '+dateTimeA, {width: doc.page.width - 100, align: 'justify'})
                         if(!data.seats[i1][0].newWithout)
                             doc
                                 .font('NotoSans')
@@ -103,7 +103,7 @@ const buy = async (req, res, user) => {
                         doc
                             .font('NotoSans')
                             .fontSize(10)
-                            .text('    Дата: '+dateTimeB+'\n'+
+                            .text('    Дата проведения: '+dateTimeB+'\n'+
                                 '    '+place+'\n'+
                                 '    Цена: '+data.seats[i1][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
                         doc.moveDown()
@@ -307,9 +307,8 @@ const getUnlouding = async (event) => {
         .populate({
             path: 'user',
         });
-    console.log(findResult)
     let workbook = new ExcelJS.Workbook();
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     let worksheet = await workbook.addWorksheet('Выгрузка');
     worksheet.columns = [
         { header: 'id', key: '_id', width: 10 },
@@ -395,18 +394,20 @@ const getUnlouding = async (event) => {
             _id: findResult[i]._id
         });
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     worksheet = await workbook.addWorksheet('Отчет по ценам');
     worksheet.columns = [
         { header: 'цена', key: 'price', width: 10 },
         { header: 'заведено', key: 'count', width: 10 },
-        { header: 'продано', key: 'sell', width: 10 },
+        { header: 'остаток', key: 'ost', width: 10 },
         { header: 'отмена', key: 'cancel', width: 10 },
+        { header: 'продано', key: 'sell', width: 10 },
         { header: 'прибыль', key: 'usd', width: 10 },
     ];
-    let otchet = []
-    let allUsd = 0
-    let count = {'Итого': 0}
+    let otchet = [];
+    let allUsd = 0;
+    let allOst = 0;
+    let count = {'Итого': 0};
     if (!findEvent.where.data[findEvent.date[0]].without&&!findEvent.where.data[findEvent.date[0]].withoutNew) {
         for (let x = 0; x < price.length; x++) {
             count[price[x]] = 0
@@ -424,7 +425,8 @@ const getUnlouding = async (event) => {
             }
             count['Итого'] += count[price[x]]
         }
-    } else if(findEvent.where.data[findEvent.date[0]].withoutNew){
+    }
+    else if(findEvent.where.data[findEvent.date[0]].withoutNew){
         for (let x = 0; x < price.length; x++) {
             count[price[x]] = 0
             for (let i = 0; i < findEvent.date.length; i++) {
@@ -439,7 +441,8 @@ const getUnlouding = async (event) => {
             }
             count['Итого'] += count[price[x]]
         }
-    } else if(findEvent.where.data[findEvent.date[0]].without){
+    }
+    else if(findEvent.where.data[findEvent.date[0]].without){
         for (let x = 0; x < price.length; x++) {
             count[price[x]] = 0
             for (let i = 0; i < findEvent.date.length; i++) {
@@ -463,7 +466,9 @@ const getUnlouding = async (event) => {
         otchet[i].sell = (findTicketByPrice.filter(findTicketByPrice => ['использован', 'продан', 'возвращен'].includes(findTicketByPrice.status))).length;
         otchet[i].cancel = (findTicketByPrice.filter(findTicketByPrice => ['отмена'].includes(findTicketByPrice.status))).length
         otchet[i].usd = ((findTicketByPrice.filter(findTicketByPrice => ['использован', 'продан', 'возвращен'].includes(findTicketByPrice.status))).length)*parseInt(price[i]);
+        otchet[i].ost = otchet[i].count - otchet[i].sell
         allUsd+=otchet[i].usd
+        allOst+=otchet[i].ost
     }
     otchet[otchet.length] = {}
     otchet[otchet.length-1].name = 'Итого'
@@ -471,16 +476,18 @@ const getUnlouding = async (event) => {
     otchet[otchet.length-1].sell = (findResult.filter(findResult => ['использован', 'продан', 'возвращен'].includes(findResult.status))).length;
     otchet[otchet.length-1].cancel = (findResult.filter(findResult => ['отмена'].includes(findResult.status))).length
     otchet[otchet.length-1].usd = allUsd
+    otchet[otchet.length-1].ost = allOst
     for (let i=0; i<otchet.length; i++){
         await worksheet.addRow({
             count: otchet[i].count,
             price: otchet[i].name,
             sell: otchet[i].sell,
             cancel: otchet[i].cancel,
-            usd: otchet[i].usd
+            usd: otchet[i].usd,
+            ost: otchet[i].ost
         });
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     worksheet = await workbook.addWorksheet('Отчет по Платежным Системам');
     worksheet.columns = [
         { header: 'имя', key: 'price', width: 10 },

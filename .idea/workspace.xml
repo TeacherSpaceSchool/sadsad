@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="aef3c9e9-2922-42a5-aaa5-79ce22b59d1a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/data.js" afterPath="$PROJECT_DIR$/routes/data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/passport.js" afterPath="$PROJECT_DIR$/module/passport.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/ticketBiletiki.js" afterPath="$PROJECT_DIR$/module/ticketBiletiki.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,13 +21,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="data.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="data.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/data.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="105" column="77" lean-forward="false" selection-start-line="105" selection-start-column="67" selection-end-line="105" selection-end-column="77" />
+            <state relative-caret-position="179">
+              <caret line="115" column="38" lean-forward="false" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
               <folding>
-                <element signature="e#5836#6600#0" expanded="false" />
+                <element signature="e#6644#21146#0" expanded="false" />
                 <element signature="e#14800#15186#0" expanded="false" />
                 <element signature="e#15235#16498#0" expanded="false" />
                 <element signature="e#18188#19885#0" expanded="false" />
@@ -68,6 +69,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="passport.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/module/passport.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="774">
+              <caret line="270" column="86" lean-forward="false" selection-start-line="270" selection-start-column="86" selection-end-line="270" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="eventBiletiki.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/eventBiletiki.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -96,23 +107,45 @@
       <file leaf-file-name="ticketBiletiki.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6834">
-              <caret line="449" column="47" lean-forward="false" selection-start-line="449" selection-start-column="47" selection-end-line="449" selection-end-column="47" />
+            <state relative-caret-position="340">
+              <caret line="360" column="17" lean-forward="false" selection-start-line="360" selection-start-column="17" selection-end-line="360" selection-end-column="17" />
               <folding>
-                <element signature="e#18048#18160#0" expanded="false" />
-                <element signature="e#18216#18589#0" expanded="false" />
-                <element signature="e#18621#18676#0" expanded="false" />
-                <element signature="e#18712#18846#0" expanded="false" />
-                <element signature="e#19341#20159#0" expanded="false" />
-                <element signature="e#20429#20497#0" expanded="false" />
-                <element signature="e#20553#20609#0" expanded="false" />
-                <element signature="e#20669#20730#0" expanded="false" />
-                <element signature="e#20748#21076#0" expanded="false" />
-                <element signature="e#27297#27523#0" expanded="false" />
-                <element signature="e#28835#35770#0" expanded="false" />
-                <element signature="e#35828#42609#0" expanded="false" />
-                <element signature="e#40951#42499#0" expanded="false" />
+                <element signature="e#890#18031#0" expanded="false" />
+                <element signature="e#18067#18179#0" expanded="false" />
+                <element signature="e#18235#18608#0" expanded="false" />
+                <element signature="e#18640#18695#0" expanded="false" />
+                <element signature="e#18731#18865#0" expanded="false" />
+                <element signature="e#19520#20338#0" expanded="false" />
+                <element signature="e#20608#20676#0" expanded="false" />
+                <element signature="e#20732#20788#0" expanded="false" />
+                <element signature="e#20848#20909#0" expanded="false" />
+                <element signature="e#24057#24901#0" expanded="false" />
+                <element signature="e#24965#25799#0" expanded="false" />
+                <element signature="e#25860#26619#0" expanded="false" />
+                <element signature="e#29793#36728#0" expanded="false" />
+                <element signature="e#36786#43567#0" expanded="false" />
+                <element signature="e#41909#43457#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/xlsx/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/visa/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,8 +172,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>дворец</find>
-      <find>Дворец спорта</find>
       <find>status:</find>
       <find>TicketBiletiki.find</find>
       <find>ticketSoldAndReturned</find>
@@ -168,7 +199,9 @@
       <find>СобытиеГород</find>
       <find>Кыргызская Национальная Филармония им. Т.С.</find>
       <find>data</find>
+      <find>История</find>
       <find>data.seats</find>
+      <find>paymentSystems</find>
     </findStrings>
     <replaceStrings>
       <replace>send</replace>
@@ -248,7 +281,6 @@
         <option value="$PROJECT_DIR$/bin/www1" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/appAdmin.js" />
-        <option value="$PROJECT_DIR$/module/passport.js" />
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/module/const.js" />
         <option value="$PROJECT_DIR$/module/statisticBiletiki.js" />
@@ -256,10 +288,11 @@
         <option value="$PROJECT_DIR$/module/seats.js" />
         <option value="$PROJECT_DIR$/aclient/static/js/main.fa336521.chunk.js.map" />
         <option value="$PROJECT_DIR$/routes/payment.js" />
-        <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
         <option value="$PROJECT_DIR$/module/eventBiletiki.js" />
         <option value="$PROJECT_DIR$/aclient/static/js/main.554bbe63.chunk.js.map" />
         <option value="$PROJECT_DIR$/routes/data.js" />
+        <option value="$PROJECT_DIR$/module/passport.js" />
+        <option value="$PROJECT_DIR$/module/ticketBiletiki.js" />
       </list>
     </option>
   </component>
@@ -332,6 +365,42 @@
               <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="qr" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="thumbnail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="ticket" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="visa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biletiki-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="biletiki-api" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="xlsx" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -364,18 +433,18 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\projects\biletiki\biletiki-api\module" />
-      <recent name="C:\projects\biletiki\biletiki-api" />
-      <recent name="C:\projects\biletiki\biletiki-api\bin" />
-      <recent name="C:\projects\biletiki\biletiki-api\models" />
-      <recent name="C:\projects\biletiki\biletiki-api\routes" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\projects\biletiki\biletiki-api\bin" />
       <recent name="C:\projects\biletiki\biletiki-api\public" />
       <recent name="C:\projects\biletiki\biletiki-api\node_modules" />
       <recent name="C:\projects\museum\museum-api" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\biletiki\biletiki-api\public\visa" />
+      <recent name="C:\projects\biletiki\biletiki-api\public\xlsx" />
+      <recent name="C:\projects\biletiki\biletiki-api\module" />
+      <recent name="C:\projects\biletiki\biletiki-api" />
+      <recent name="C:\projects\biletiki\biletiki-api\bin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -629,12 +698,12 @@
       <workItem from="1571206791776" duration="21591000" />
       <workItem from="1571309095761" duration="1118000" />
       <workItem from="1571380843578" duration="1909000" />
-      <workItem from="1571402903910" duration="2903000" />
+      <workItem from="1571402903910" duration="5456000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1196374000" />
+    <option name="totallyTimeSpent" value="1198927000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -648,14 +717,15 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.82300884" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.8114187" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12040558" sideWeight="0.17699115" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12040558" sideWeight="0.18858132" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2395693" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22207268" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -663,7 +733,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -697,20 +766,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/ticketCinemaBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aclient/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10761">
@@ -926,13 +981,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/passport.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -1005,28 +1053,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6834">
-          <caret line="449" column="47" lean-forward="false" selection-start-line="449" selection-start-column="47" selection-end-line="449" selection-end-column="47" />
-          <folding>
-            <element signature="e#18048#18160#0" expanded="false" />
-            <element signature="e#18216#18589#0" expanded="false" />
-            <element signature="e#18621#18676#0" expanded="false" />
-            <element signature="e#18712#18846#0" expanded="false" />
-            <element signature="e#19341#20159#0" expanded="false" />
-            <element signature="e#20429#20497#0" expanded="false" />
-            <element signature="e#20553#20609#0" expanded="false" />
-            <element signature="e#20669#20730#0" expanded="false" />
-            <element signature="e#20748#21076#0" expanded="false" />
-            <element signature="e#27297#27523#0" expanded="false" />
-            <element signature="e#28835#35770#0" expanded="false" />
-            <element signature="e#35828#42609#0" expanded="false" />
-            <element signature="e#40951#42499#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/module/eventBiletiki.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4862">
@@ -1038,12 +1064,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aclient/static/js/main.554bbe63.chunk.js.map" />
+    <entry file="file://$PROJECT_DIR$/module/passport.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="270" column="86" lean-forward="false" selection-start-line="270" selection-start-column="86" selection-end-line="270" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/data.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="105" column="77" lean-forward="false" selection-start-line="105" selection-start-column="67" selection-end-line="105" selection-end-column="77" />
+        <state relative-caret-position="179">
+          <caret line="115" column="38" lean-forward="false" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="38" />
           <folding>
-            <element signature="e#5836#6600#0" expanded="false" />
+            <element signature="e#6644#21146#0" expanded="false" />
             <element signature="e#14800#15186#0" expanded="false" />
             <element signature="e#15235#16498#0" expanded="false" />
             <element signature="e#18188#19885#0" expanded="false" />
@@ -1081,6 +1115,46 @@
             <element signature="e#112399#116677#0" expanded="false" />
             <element signature="e#116734#118266#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/module/ticketBiletiki.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="360" column="17" lean-forward="false" selection-start-line="360" selection-start-column="17" selection-end-line="360" selection-end-column="17" />
+          <folding>
+            <element signature="e#890#18031#0" expanded="false" />
+            <element signature="e#18067#18179#0" expanded="false" />
+            <element signature="e#18235#18608#0" expanded="false" />
+            <element signature="e#18640#18695#0" expanded="false" />
+            <element signature="e#18731#18865#0" expanded="false" />
+            <element signature="e#19520#20338#0" expanded="false" />
+            <element signature="e#20608#20676#0" expanded="false" />
+            <element signature="e#20732#20788#0" expanded="false" />
+            <element signature="e#20848#20909#0" expanded="false" />
+            <element signature="e#24057#24901#0" expanded="false" />
+            <element signature="e#24965#25799#0" expanded="false" />
+            <element signature="e#25860#26619#0" expanded="false" />
+            <element signature="e#29793#36728#0" expanded="false" />
+            <element signature="e#36786#43567#0" expanded="false" />
+            <element signature="e#41909#43457#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/xlsx/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/visa/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
