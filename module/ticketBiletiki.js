@@ -362,12 +362,12 @@ const getUnlouding = async (event) => {
                 paymentSystem = 'ошибка'
             }*/
         }
-        if(paymentSystems[paymentSystem]===undefined)
+        if(paymentSystem != null&&paymentSystems[paymentSystem]===undefined)
             paymentSystems[paymentSystem] = {
                 count: 0,
                 usd: 0
             }
-        if(paymentSystem.length>0 && ['использован', 'продан', 'возвращен'].includes(findResult[i].status))
+        if(paymentSystem != null&&paymentSystem.length>0 && ['использован', 'продан', 'возвращен'].includes(findResult[i].status))
             paymentSystems[paymentSystem] = {
                 count: paymentSystems[paymentSystem].count+=1,
                 usd: paymentSystems[paymentSystem].usd+=parseInt(findResult[i].seats[0][0].price)
