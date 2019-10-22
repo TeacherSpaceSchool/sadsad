@@ -632,7 +632,8 @@ const detection = async (event, type) => {
                                             findEvent.where.data[findEvent.date[i]][keys[i1]][i2][i3].name === findTickets[ii].seats[x][0].name &&
                                             findTickets[ii].seats[x][1].includes(findEvent.date[i])&&
                                             abc[findEvent.where.name][keys[i1]] === findTickets[ii].seats[x][0].selectSector &&
-                                            findEvent.where.data[findEvent.date[i]][keys[i1]][i2][i3].status === 'free'
+                                            findEvent.where.data[findEvent.date[i]][keys[i1]][i2][i3].status === 'free' &&
+                                            findTickets[ii].status==='отмена'
                                         ) {
                                             breakTickets.push(findTickets[ii])
                                         }
