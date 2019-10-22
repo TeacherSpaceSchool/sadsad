@@ -223,12 +223,21 @@ router.post('/get', async (req, res) => {
                 }  else if(req.body.name == 'Выгрузка'){
                     let data = JSON.parse(req.body.data);
                     await res.send(await TicketBiletiki.getUnlouding(data.event))
+                }  else if(req.body.name == 'Выявление'){
+                    let data = JSON.parse(req.body.data);
+                    await res.send(await TicketBiletiki.detection(data.event, data.type))
                 }
             });
         }
         else if(role==='turnstile'){
-            await passportEngine.verifydturnstile(req, res, async ()=>{
-                if(req.body.name == 'Подтверждение'){
+            await passportEngine.verifydadmin(req, res, async ()=>{
+                if(req.body.name == 'Билеты'){
+                    await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
+                }  else if(req.body.name == 'БилетыHash'){
+                    await res.send(await TicketBiletiki.getByHash(JSON.parse(req.body.data).hash))
+                } else if(req.body.name == 'БилетыКиноHash'){
+                    await res.send(await TicketCinemaBiletiki.getByHash(JSON.parse(req.body.data).hash))
+                } else if(req.body.name == 'Подтверждение'){
                     await res.send(await TicketBiletiki.approveTicketBiletiki(JSON.parse(req.body.data).hash))
                 } else if(req.body.name == 'ПодтверждениеКино'){
                     await res.send(await TicketCinemaBiletiki.approveTicketCinemaBiletiki(JSON.parse(req.body.data).hash))
@@ -446,7 +455,6 @@ router.post('/add', async (req, res) => {
                         imageThumbnail.push(image[i].replace('images', 'thumbnail'))
                     }
                 }
-                console.log(req.body.fileLength>0)
                 if(req.body.fileLength>0) {
                     for(let i=0; i<image.length; i++){
                         if(image[i].length>0){
@@ -1974,6 +1982,211 @@ router.post('/add', async (req, res) => {
 
 
 
+            });
+        }
+        else if(role==='turnstile'){
+            await passportEngine.verifydadmin(req, res, async ()=>{
+                let data, myNew = JSON.parse(req.body.new), image = [], imageThumbnail = [];
+                if(req.body.name == 'Билеты') {
+                        if(req.body.id==undefined){
+                            let hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            while (!await TicketBiletiki.checkHash(hash))
+                                hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            let qrname = randomstring.generate(5) + myNew.user + myNew.event._id+'.png';
+                            let pdfname = qrname.replace('.png','.pdf');
+                            let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
+                            let fstream = fs.createWriteStream(qrpath);
+                            let qrTicket = await qr.image(hash, { type: 'png' });
+                            let stream = qrTicket.pipe(fstream)
+                            stream.on('finish', async () => {
+                                let doc = new PDFDocument({
+                                    size: [500, 200],
+                                    margins : { // by default, all are 72
+                                        top: 80,
+                                        bottom:10,
+                                        left: 10,
+                                        right: 10
+                                    }
+                                });
+                                let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
+                                let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+                                doc.registerFont('NotoSans', robotoBlack);
+                                let fstream = fs.createWriteStream(pdfpath);
+                                doc.pipe(fstream);
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(18)
+                                    .text(myNew.event.nameRu, 60, 30)
+                                doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                                if(!myNew.seats[0][0].newWithout)
+                                    doc.fontSize(12)
+                                        .text(myNew.event.where.name, 50, 70)
+                                else
+                                    doc.fontSize(12)
+                                        .text('', 50, 70)
+                                let dateTime;
+                                let place1 = '';
+                                let sector = ''
+                                let ryad = ''
+                                let sum = 0
+                                for(let i = 0; i<myNew.seats.length; i++){
+                                    sum+=parseInt(myNew.seats[i][0]['price'])
+                                }
+                                for (let i = 0; i < myNew.seats.length; i++) {
+                                    let date = myNew.seats[i][1].split('T')[0].split('-')
+                                    let time = myNew.seats[i][1].split('T')[1].split(':')
+                                    dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                    if(!myNew.seats[0][0].newWithout) {
+                                        let place = myNew.seats[i][0]['name']
+                                        if (i === 0 || sector != myNew.seats[i][2]) {
+                                            sector = myNew.seats[i][2]
+                                            if (i !== 0)
+                                                place1 += ', Сектор ' + sector
+                                            else
+                                                place1 += 'Сектор ' + sector
+                                        }
+                                        if (myNew.seats[i][0]['name'].split(':')[1] !== undefined) {
+                                            if (i === 0) {
+                                                ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                place1 += ', Ряд ' + myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                            } else if (ryad != myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]) {
+                                                ryad = myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                                place1 += ', Ряд ' + myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]
+                                            }
+                                            place = ' Место ' + myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]
+                                        }
+                                        place1 += place
+                                    } else {
+                                        place1 = myNew.seats[0][0].name
+                                    }
+                                }
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(12)
+                                    .text(dateTime, {width: doc.page.width - 100, align: 'justify'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(12)
+                                    .text(place1, {width: doc.page.width - 100, align: 'justify'})
+                                doc
+                                    .font('NotoSans')
+                                    .fontSize(12)
+                                    .text('Цена: '+sum+' сом', {width: doc.page.width - 100, align: 'justify'})
+                                doc.save()
+
+
+                                doc.end()
+                            })
+
+                            let _event_ = await EventBiletikiModels.findOne({_id: myNew.event._id})
+                            if (!_event_.where.data[_event_.date[0]].without&&!_event_.where.data[_event_.date[0]].withoutNew) {
+                                for (let x = 0; x < myNew.seats.length; x++) {
+                                    for (let i = 0; i < _event_.date.length; i++) {
+                                        let keys = Object.keys(_event_.where.data[_event_.date[i]]);
+                                        for (let i1 = 0; i1 < keys.length; i1++) {
+                                            for (let i2 = 0; i2 < _event_.where.data[_event_.date[i]][keys[i1]].length; i2++) {
+                                                for (let i3 = 0; i3 < _event_.where.data[_event_.date[i]][keys[i1]][i2].length; i3++) {
+                                                    if (_event_.where.data[_event_.date[i]][keys[i1]][i2][i3].name === myNew.seats[x][0].name &&
+                                                        myNew.seats[x][1].includes(_event_.date[i])&&
+                                                        abc[_event_.where.name][keys[i1]] === myNew.seats[x][2]
+                                                    ) {
+                                                        _event_.where.data[_event_.date[i]][keys[i1]][i2][i3].status = 'sold'
+                                                        _event_.where.data[_event_.date[i]][keys[i1]][i2][i3].color = 'red'
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                _event_ = myNew.event
+                            }
+
+                            data = {
+                                seats: myNew.seats,
+                                hash: hash,
+                                where: myNew.event.where.name,
+                                user: myNew.user,
+                                genre: myNew.event.genre,
+                                image: myNew.event.image,
+                                event: myNew.event.nameRu,
+                                ticket: myConst.url + 'ticket/' + pdfname,
+                                status: myNew.status,
+                            }
+                            await TicketBiletiki.addTicketBiletiki(data);
+                            await EventBiletiki.setEventBiletiki(_event_, myNew.event._id);
+                            res.send(myConst.url + 'ticket/' + pdfname)
+                        } else {
+                            await TicketBiletiki.setTicketBiletiki({status: myNew.status}, req.body.id)
+                            await res.send(await TicketBiletiki.getTicketBiletiki(req.body.search, req.body.sort, req.body.skip))
+                        }
+                    }
+                else if(req.body.name == 'Билеты кино') {
+                        if(req.body.id==undefined){
+                            let hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            while (!await TicketCinemaBiletiki.checkHash(hash))
+                                hash = randomstring.generate({length: 12, charset: 'numeric'});
+                            let qrname = randomstring.generate(5) + myNew.user + myNew.seance._id+'.png';
+                            let pdfname = qrname.replace('.png','.pdf');
+                            let qrpath = path.join(app.dirname, 'public', 'qr', qrname);
+                            let fstream = fs.createWriteStream(qrpath);
+                            let qrTicket = await qr.image(hash, { type: 'png' });
+                            let stream = qrTicket.pipe(fstream)
+                            stream.on('finish', async () => {
+                                try{
+                                    let doc = new PDFDocument({
+                                        size: [500, 200],
+                                        margins : { // by default, all are 72
+                                            top: 80,
+                                            bottom:10,
+                                            left: 10,
+                                            right: 10
+                                        }
+                                    });
+                                    let pdfpath = path.join(app.dirname, 'public', 'ticket', pdfname);
+                                    let robotoBlack = path.join(app.dirname, 'public', 'font', 'roboto', 'NotoSans-Regular.ttf');
+                                    doc.registerFont('NotoSans', robotoBlack);
+                                    let fstream = fs.createWriteStream(pdfpath);
+                                    doc.pipe(fstream);
+                                    doc
+                                        .font('NotoSans')
+                                        .fontSize(18)
+                                        .text(myNew.movie, 60, 30) // the text and the position where the it should come
+                                    doc.image(qrpath, 360, 30, {fit: [100, 100]})
+                                    doc.fontSize(12)
+                                        .text(myNew.cinema+' '+myNew.hall, 50, 70) // the text and the position where the it should come
+                                    for(let i = 0; i<myNew.seats.length; i++){
+                                        let date = myNew.seats[i][1].split('T')[0].split('-')
+                                        let time = myNew.seats[i][1].split('T')[1].split(':')
+                                        let dateTime = date[2] + ' ' + myConst.month[date[1]] + ' ' + date[0] + ', ' + time[0] + ':' + time[1];
+                                        doc
+                                            .font('NotoSans')
+                                            .fontSize(12)
+                                            .text(dateTime+' Ряд '+myNew.seats[i][0]['name'].split(':')[0].split(' ')[1]+' Место '+myNew.seats[i][0]['name'].split(':')[1].split(' ')[0]+' Цена: '+myNew.seats[i][0]['price'] + ' сом', {width: doc.page.width - 100, align: 'justify'})
+                                    }
+                                    doc.end()
+                                } catch(error) {
+                                    console.error(error)
+                                }})
+
+                            data = {
+                                seats: myNew.seats,
+                                hash: hash,
+                                user: myNew.user,
+                                movie: myNew.movie,
+                                cinema: myNew.cinema,
+                                image: 'null',
+                                hall: myNew.hall,
+                                ticket: myConst.url + 'ticket/' + pdfname,
+                                status: myNew.status,
+                            }
+                            await TicketCinemaBiletiki.addTicketCinemaBiletiki(data);
+                            await SeanceBiletiki.setSeanceBiletiki(myNew.seance, myNew.seance._id);
+                        } else {
+                            await TicketCinemaBiletiki.setTicketCinemaBiletiki({status: myNew.status}, req.body.id)
+                        }
+                        await res.send(await TicketCinemaBiletiki.getTicketCinemaBiletiki(req.body.search, req.body.sort, req.body.skip))
+                    }
             });
         }
         })
