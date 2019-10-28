@@ -685,18 +685,40 @@ router.post('/kcb', async (req, res) => {
     }
 });
 
-router.post('/megapay/generate', async (req, res) => {
+router.post('/megapay/sms', async (req, res) => {
     try{
-        let id = await axios({
+        let data = await axios({
             method: 'post',
-            url: 'https://webadmin.paysystem.kg/web-api/v1.2/orders/',
-            data: {'serviceId': 22, 'account': '996555780860', 'sum': req.body.sum},
+            url: `https://megapay.kg/site-api/v1.3/users/${req.body.phone.substring(1)}/code`,
             headers: {
                 'Content-Type': `application/json`,
-                'Authorization': `Basic dXNyX2thc3NpcmtnOis2cUJJclpi`,
+                'Authorization': `Basic bW9iaWxlSWQzOnNlY3JldA==`,
             },
         })
-        console.log(id)
+        res.status(200);
+        if(data.data.status=== 'FAIL')
+            res.end('error');
+        else
+            res.end('ok')
+    } catch(error) {
+        console.error(error)
+        res.status(200);
+        res.end('error');
+    }
+})
+
+router.post('/megapay/code', async (req, res) => {
+    try{
+        let data = await axios({
+            method: 'post',
+            url: `https://megapay.kg/site-api/oauth/token?grant_type=password&username=${req.body.phone.substring(1)}&password=${req.body.code}`,
+            headers: {
+                'Content-Type': `application/json`,
+                'Authorization': `Basic bW9iaWxlSWQzOnNlY3JldA==`,
+            },
+        })
+        if(data.data.access_token===undefined) res.end('error');
+        else res.end('ok')
         res.status(200);
         res.end('error');
     } catch(error) {
