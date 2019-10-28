@@ -542,86 +542,88 @@ const detection = async (event, type) => {
         .populate({
             path: 'user',
         });
-    if(type==='повторяющиеся билеты') {
-        for (let i = 0; i < findTickets.length; i++) {
-            let checked = breakTickets.filter((breakTicket) => {
-                return (findTickets[i]._id === breakTicket._id)
-            })
-            if (checked.length === 0) {
-                let seat = '';
-                let row = '';
-                let sector = '';
-                let timeCarry = '';
-                let price = '';
-                if (findTickets[i].seats != undefined) {
-                    if (findTickets[i].seats[0][0].name.split(':')[1] !== undefined) {
-                        seat = findTickets[i].seats[0][0].name.split(':')[1].split(' ')[0];
-                        row = findTickets[i].seats[0][0].name.split(':')[0].split(' ')[1];
-                    }
-                    if (findTickets[i].seats[0][0].selectSector !== undefined) sector = findTickets[i].seats[0][0].selectSector
-                    else if (findTickets[i].seats[0][2] !== undefined) sector = findTickets[i].seats[0][2];
-                    else sector = findTickets[i].seats[0][0].name
-                    timeCarry = findTickets[i].seats[0][1];
-                    price = findTickets[i].seats[0][0].price;
-                }
-                let repeat = findTickets.filter((findTicket) => {
-                    let findseat = '';
-                    let findrow = '';
-                    let findsector = '';
-                    let findtimeCarry = '';
-                    let findprice = '';
-                    if (findTicket.seats != undefined) {
-                        if (findTicket.seats[0][0].name.split(':')[1] !== undefined) {
-                            findseat = findTicket.seats[0][0].name.split(':')[1].split(' ')[0];
-                            findrow = findTicket.seats[0][0].name.split(':')[0].split(' ')[1];
-                        }
-                        if (findTicket.seats[0][0].selectSector !== undefined) findsector = findTicket.seats[0][0].selectSector
-                        else if (findTicket.seats[0][2] !== undefined) findsector = findTicket.seats[0][2];
-                        else findsector = findTicket.seats[0][0].name
-                        findtimeCarry = findTicket.seats[0][1];
-                        findprice = findTicket.seats[0][0].price;
-                    }
-                    return (findTickets[i]._id != findTicket._id && findseat == seat && findrow == row && findsector == sector && findtimeCarry == timeCarry && findprice == price)
+    if(!findEvent.where.data[findEvent.date[0]].without&&!findEvent.where.data[findEvent.date[0]].withoutNew) {
+        if (type === 'повторяющиеся билеты') {
+            for (let i = 0; i < findTickets.length; i++) {
+                let checked = breakTickets.filter((breakTicket) => {
+                    return (findTickets[i]._id === breakTicket._id)
                 })
-                if (repeat.length > 0) {
-                    repeat.push(findTickets[i])
-                    for (let i = 0; i < repeat.length; i++) {
-                        let seat = '';
-                        let row = '';
-                        let sector = '';
-                        let timeCarry = '';
-                        let price = '';
-                        if (repeat[i].seats != undefined) {
-                            if (repeat[i].seats[0][0].name.split(':')[1] !== undefined) {
-                                seat = repeat[i].seats[0][0].name.split(':')[1].split(' ')[0];
-                                row = repeat[i].seats[0][0].name.split(':')[0].split(' ')[1];
-                            }
-                            if (repeat[i].seats[0][0].selectSector !== undefined) sector = repeat[i].seats[0][0].selectSector
-                            else if (repeat[i].seats[0][2] !== undefined) sector = repeat[i].seats[0][2];
-                            else sector = repeat[i].seats[0][0].name
-                            timeCarry = repeat[i].seats[0][1];
-                            price = repeat[i].seats[0][0].price;
+                if (checked.length === 0) {
+                    let seat = '';
+                    let row = '';
+                    let sector = '';
+                    let timeCarry = '';
+                    let price = '';
+                    if (findTickets[i].seats != undefined) {
+                        if (findTickets[i].seats[0][0].name.split(':')[1] !== undefined) {
+                            seat = findTickets[i].seats[0][0].name.split(':')[1].split(' ')[0];
+                            row = findTickets[i].seats[0][0].name.split(':')[0].split(' ')[1];
                         }
-                        repeat[i] = {
-                            _id: repeat[i]._id,
-                            seat: seat,
-                            row: row,
-                            sector: sector,
-                            timeCarry: timeCarry,
-                            price: price,
-                            status: repeat[i].status,
-                            type: 'повторяющийся билет'
-                        }
+                        if (findTickets[i].seats[0][0].selectSector !== undefined) sector = findTickets[i].seats[0][0].selectSector
+                        else if (findTickets[i].seats[0][2] !== undefined) sector = findTickets[i].seats[0][2];
+                        else sector = findTickets[i].seats[0][0].name
+                        timeCarry = findTickets[i].seats[0][1];
+                        price = findTickets[i].seats[0][0].price;
                     }
-                    breakTickets.push(...repeat)
+                    let repeat = findTickets.filter((findTicket) => {
+                        let findseat = '';
+                        let findrow = '';
+                        let findsector = '';
+                        let findtimeCarry = '';
+                        let findprice = '';
+                        if (findTicket.seats != undefined) {
+                            if (findTicket.seats[0][0].name.split(':')[1] !== undefined) {
+                                findseat = findTicket.seats[0][0].name.split(':')[1].split(' ')[0];
+                                findrow = findTicket.seats[0][0].name.split(':')[0].split(' ')[1];
+                            }
+                            if (findTicket.seats[0][0].selectSector !== undefined) findsector = findTicket.seats[0][0].selectSector
+                            else if (findTicket.seats[0][2] !== undefined) findsector = findTicket.seats[0][2];
+                            else findsector = findTicket.seats[0][0].name
+                            findtimeCarry = findTicket.seats[0][1];
+                            findprice = findTicket.seats[0][0].price;
+                        }
+                        return (findTickets[i]._id != findTicket._id && findseat == seat && findrow == row && findsector == sector && findtimeCarry == timeCarry && findprice == price)
+                    })
+                    if (repeat.length > 0) {
+                        repeat.push(findTickets[i])
+                        for (let i = 0; i < repeat.length; i++) {
+                            let seat = '';
+                            let row = '';
+                            let sector = '';
+                            let timeCarry = '';
+                            let price = '';
+                            if (repeat[i].seats != undefined) {
+                                if (repeat[i].seats[0][0].name.split(':')[1] !== undefined) {
+                                    seat = repeat[i].seats[0][0].name.split(':')[1].split(' ')[0];
+                                    row = repeat[i].seats[0][0].name.split(':')[0].split(' ')[1];
+                                }
+                                if (repeat[i].seats[0][0].selectSector !== undefined) sector = repeat[i].seats[0][0].selectSector
+                                else if (repeat[i].seats[0][2] !== undefined) sector = repeat[i].seats[0][2];
+                                else sector = repeat[i].seats[0][0].name
+                                timeCarry = repeat[i].seats[0][1];
+                                price = repeat[i].seats[0][0].price;
+                            }
+                            repeat[i] = {
+                                _id: repeat[i]._id,
+                                seat: seat,
+                                row: row,
+                                sector: sector,
+                                timeCarry: timeCarry,
+                                price: price,
+                                status: repeat[i].status,
+                                date_buy: repeat[i].createdAt,
+                                type: 'повторяющийся билет'
+                            }
+                        }
+                        breakTickets.push(...repeat)
+                    }
                 }
             }
         }
-    }
-    else if(type==='слетевшие билеты') {
+        else if (type === 'слетевшие билеты') {
 
-        for(let ii=0; ii<findTickets.length; ii++){
-                if (!findEvent.where.data[findEvent.date[0]].without&&!findEvent.where.data[findEvent.date[0]].withoutNew) {
+            for (let ii = 0; ii < findTickets.length; ii++) {
+                if (!findEvent.where.data[findEvent.date[0]].without && !findEvent.where.data[findEvent.date[0]].withoutNew) {
                     for (let x = 0; x < findTickets[ii].seats.length; x++) {
                         for (let i = 0; i < findEvent.date.length; i++) {
                             let keys = Object.keys(findEvent.where.data[findEvent.date[i]]);
@@ -630,10 +632,10 @@ const detection = async (event, type) => {
                                     for (let i3 = 0; i3 < findEvent.where.data[findEvent.date[i]][keys[i1]][i2].length; i3++) {
                                         if (
                                             findEvent.where.data[findEvent.date[i]][keys[i1]][i2][i3].name === findTickets[ii].seats[x][0].name &&
-                                            findTickets[ii].seats[x][1].includes(findEvent.date[i])&&
+                                            findTickets[ii].seats[x][1].includes(findEvent.date[i]) &&
                                             abc[findEvent.where.name][keys[i1]] === findTickets[ii].seats[x][0].selectSector &&
                                             findEvent.where.data[findEvent.date[i]][keys[i1]][i2][i3].status === 'free' &&
-                                            findTickets[ii].status==='отмена'
+                                            findTickets[ii].status === 'отмена'
                                         ) {
                                             breakTickets.push(findTickets[ii])
                                         }
@@ -643,37 +645,38 @@ const detection = async (event, type) => {
                         }
                     }
                 }
-        }
-        for (let i = 0; i < breakTickets.length; i++) {
-            let seat = '';
-            let row = '';
-            let sector = '';
-            let timeCarry = '';
-            let price = '';
-            if (breakTickets[i].seats != undefined) {
-                if (breakTickets[i].seats[0][0].name.split(':')[1] !== undefined) {
-                    seat = breakTickets[i].seats[0][0].name.split(':')[1].split(' ')[0];
-                    row = breakTickets[i].seats[0][0].name.split(':')[0].split(' ')[1];
-                }
-                if (breakTickets[i].seats[0][0].selectSector !== undefined) sector = breakTickets[i].seats[0][0].selectSector
-                else if (breakTickets[i].seats[0][2] !== undefined) sector = breakTickets[i].seats[0][2];
-                else sector = breakTickets[i].seats[0][0].name
-                timeCarry = breakTickets[i].seats[0][1];
-                price = breakTickets[i].seats[0][0].price;
             }
-            breakTickets[i] = {
-                _id: breakTickets[i]._id,
-                seat: seat,
-                row: row,
-                sector: sector,
-                timeCarry: timeCarry,
-                price: price,
-                status: breakTickets[i].status,
-                type: 'слетевший билет'
+            for (let i = 0; i < breakTickets.length; i++) {
+                let seat = '';
+                let row = '';
+                let sector = '';
+                let timeCarry = '';
+                let price = '';
+                if (breakTickets[i].seats != undefined) {
+                    if (breakTickets[i].seats[0][0].name.split(':')[1] !== undefined) {
+                        seat = breakTickets[i].seats[0][0].name.split(':')[1].split(' ')[0];
+                        row = breakTickets[i].seats[0][0].name.split(':')[0].split(' ')[1];
+                    }
+                    if (breakTickets[i].seats[0][0].selectSector !== undefined) sector = breakTickets[i].seats[0][0].selectSector
+                    else if (breakTickets[i].seats[0][2] !== undefined) sector = breakTickets[i].seats[0][2];
+                    else sector = breakTickets[i].seats[0][0].name
+                    timeCarry = breakTickets[i].seats[0][1];
+                    price = breakTickets[i].seats[0][0].price;
+                }
+                breakTickets[i] = {
+                    date_buy: breakTickets[i].createdAt,
+                    _id: breakTickets[i]._id,
+                    seat: seat,
+                    row: row,
+                    sector: sector,
+                    timeCarry: timeCarry,
+                    price: price,
+                    status: breakTickets[i].status,
+                    type: 'слетевший билет'
+                }
             }
         }
     }
-
     return(breakTickets)
 }
 
