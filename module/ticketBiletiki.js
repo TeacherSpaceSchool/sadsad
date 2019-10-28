@@ -611,7 +611,7 @@ const detection = async (event, type) => {
                                 timeCarry: timeCarry,
                                 price: price,
                                 status: repeat[i].status,
-                                date_buy: repeat[i].createdAt,
+                                date_buy: format(repeat[i].createdAt),
                                 type: 'повторяющийся билет'
                             }
                         }
@@ -664,7 +664,7 @@ const detection = async (event, type) => {
                     price = breakTickets[i].seats[0][0].price;
                 }
                 breakTickets[i] = {
-                    date_buy: breakTickets[i].createdAt,
+                    date_buy: format(breakTickets[i].createdAt),
                     _id: breakTickets[i]._id,
                     seat: seat,
                     row: row,
