@@ -541,7 +541,8 @@ const detection = async (event, type) => {
         .find({event: event})
         .populate({
             path: 'user',
-        });
+        })
+        .sort('createdAt');
     if(!findEvent.where.data[findEvent.date[0]].without&&!findEvent.where.data[findEvent.date[0]].withoutNew) {
         if (type === 'повторяющиеся билеты') {
             for (let i = 0; i < findTickets.length; i++) {
@@ -554,7 +555,7 @@ const detection = async (event, type) => {
                     let sector = '';
                     let timeCarry = '';
                     let price = '';
-                    if (findTickets[i].seats != undefined) {
+                    if (findTickets[i].status!=='отмена'&&findTickets[i].seats != undefined) {
                         if (findTickets[i].seats[0][0].name.split(':')[1] !== undefined) {
                             seat = findTickets[i].seats[0][0].name.split(':')[1].split(' ')[0];
                             row = findTickets[i].seats[0][0].name.split(':')[0].split(' ')[1];
