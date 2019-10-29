@@ -583,7 +583,7 @@ const detection = async (event, type) => {
                             findtimeCarry = findTicket.seats[0][1];
                             findprice = findTicket.seats[0][0].price;
                         }
-                        return (findTickets[i].status !== 'отмена' && findTickets[i]._id != findTicket._id && findseat == seat && findrow == row && findsector == sector && findtimeCarry == timeCarry && findprice == price)
+                        return (findTicket.status !== 'отмена' && findTickets[i]._id != findTicket._id && findseat == seat && findrow == row && findsector == sector && findtimeCarry == timeCarry && findprice == price)
                     })
                     if (repeat.length > 0) {
                         repeat.push(findTickets[i])
