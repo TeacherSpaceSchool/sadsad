@@ -582,7 +582,7 @@ const detection = async (event, type) => {
                             findtimeCarry = findTicket.seats[0][1];
                             findprice = findTicket.seats[0][0].price;
                         }
-                        return (findTickets[i]._id != findTicket._id && findseat == seat && findrow == row && findsector == sector && findtimeCarry == timeCarry && findprice == price)
+                        return (findTickets[i].status !== 'отмена' && findTickets[i]._id != findTicket._id && findseat == seat && findrow == row && findsector == sector && findtimeCarry == timeCarry && findprice == price)
                     })
                     if (repeat.length > 0) {
                         repeat.push(findTickets[i])
@@ -621,7 +621,6 @@ const detection = async (event, type) => {
             }
         }
         else if (type === 'слетевшие билеты') {
-
             for (let ii = 0; ii < findTickets.length; ii++) {
                 if (!findEvent.where.data[findEvent.date[0]].without && !findEvent.where.data[findEvent.date[0]].withoutNew) {
                     for (let x = 0; x < findTickets[ii].seats.length; x++) {
@@ -630,12 +629,16 @@ const detection = async (event, type) => {
                             for (let i1 = 0; i1 < keys.length; i1++) {
                                 for (let i2 = 0; i2 < findEvent.where.data[findEvent.date[i]][keys[i1]].length; i2++) {
                                     for (let i3 = 0; i3 < findEvent.where.data[findEvent.date[i]][keys[i1]][i2].length; i3++) {
+                                        let sector;
+                                        if(findTickets[ii].seats[x][0].selectSector!==undefined) sector = findTickets[ii].seats[x][0].selectSector
+                                        else if(findTickets[ii].seats[0][2]!==undefined) sector = findTickets[ii].seats[0][2];
+                                        else sector = findTickets[ii].seats[0][0].name
                                         if (
                                             findEvent.where.data[findEvent.date[i]][keys[i1]][i2][i3].name === findTickets[ii].seats[x][0].name &&
                                             findTickets[ii].seats[x][1].includes(findEvent.date[i]) &&
-                                            abc[findEvent.where.name][keys[i1]] === findTickets[ii].seats[x][0].selectSector &&
+                                            abc[findEvent.where.name][keys[i1]] === sector &&
                                             findEvent.where.data[findEvent.date[i]][keys[i1]][i2][i3].status === 'free' &&
-                                            findTickets[ii].status === 'отмена'
+                                            findTickets[ii].status !== 'отмена'
                                         ) {
                                             breakTickets.push(findTickets[ii])
                                         }
