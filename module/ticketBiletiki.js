@@ -238,10 +238,14 @@ const buy = async (req, res, user) => {
                                             for (let i1 = 0; i1 < keys.length; i1++) {
                                                 for (let i2 = 0; i2 < _event_.where.data[_event_.date[i]][keys[i1]].length; i2++) {
                                                     for (let i3 = 0; i3 < _event_.where.data[_event_.date[i]][keys[i1]][i2].length; i3++) {
+                                                        let sector;
+                                                        if(tickets[ii].seats[x][0].selectSector!==undefined) sector = tickets[ii].seats[x][0].selectSector
+                                                        else if(tickets[ii].seats[0][2]!==undefined) sector = tickets[ii].seats[0][2];
+                                                        else sector = tickets[ii].seats[0][0].name
                                                         if (
                                                             _event_.where.data[_event_.date[i]][keys[i1]][i2][i3].name === tickets[ii].seats[x][0].name &&
                                                             tickets[ii].seats[x][1].includes(_event_.date[i])&&
-                                                            abc[_event_.where.name][keys[i1]] === tickets[ii].seats[x][0].selectSector
+                                                            abc[_event_.where.name][keys[i1]] === sector
                                                         ) {
                                                             _event_.where.data[_event_.date[i]][keys[i1]][i2][i3].status = 'free'
                                                             for (let c = 0; c < _event_.price.length; c++) {
